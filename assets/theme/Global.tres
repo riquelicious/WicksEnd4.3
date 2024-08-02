@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://xiy1beq5fkuh"]
+
+[ext_resource type="FontFile" uid="uid://be7tsy07e5604" path="res://assets/fonts/OPTIMA_B.TTF" id="8_4jjih"]
+
+[resource]
+default_font = ExtResource("8_4jjih")
+default_font_size = 24

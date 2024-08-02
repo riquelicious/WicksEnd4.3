@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://0k4ei75fcmch"]
+
+[ext_resource type="Script" path="res://assets/global_scripts/cursor/cursor.gd" id="1_6ap4r"]
+[ext_resource type="Texture2D" uid="uid://d6gkyevafeyg" path="res://assets/images/cursor_gestures/arrow.png" id="2_13o21"]
+
+[node name="cursor" type="CanvasLayer"]
+layer = 105
+script = ExtResource("1_6ap4r")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Control"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_13o21")
+centered = false
+
+[node name="gesture_timer" type="Timer" parent="."]
+one_shot = true

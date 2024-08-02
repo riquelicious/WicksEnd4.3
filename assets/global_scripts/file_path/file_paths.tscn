@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://qm1jpjmpj1i0"]
+
+[ext_resource type="Script" path="res://assets/global_scripts/file_path/file_paths.gd" id="1_sdjui"]
+
+[node name="FilePaths" type="Node"]
+script = ExtResource("1_sdjui")

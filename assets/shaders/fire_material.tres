@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://b7eiti7ytsghs"]
+
+[ext_resource type="Shader" path="res://assets/shaders/fire.gdshader" id="1_bqgcl"]
+[ext_resource type="Texture2D" uid="uid://ht5p78ijmutm" path="res://assets/noise_textures/pixelated_noise.png" id="2_nqhd4"]
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_bqgcl")
+shader_parameter/root_color = Color(1, 0.75, 0.3, 1)
+shader_parameter/tip_color = Color(1, 0.03, 0.001, 1)
+shader_parameter/fire_alpha = 1.0
+shader_parameter/fire_speed = Vector2(0, 1)
+shader_parameter/fire_aperture = 0.0
+shader_parameter/fire_percentage = 100.0
+shader_parameter/glow = 0.05
+shader_parameter/is_on_bottom = false
+shader_parameter/base_amplitude = 0.1
+shader_parameter/base_frequency = 1.0
+shader_parameter/edge_thickness = 0.65
+shader_parameter/noise_tex = ExtResource("2_nqhd4")

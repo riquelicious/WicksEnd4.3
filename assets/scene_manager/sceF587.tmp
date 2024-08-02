@@ -1,0 +1,677 @@
+[gd_scene load_steps=24 format=3 uid="uid://bjlo7l7uu7ylo"]
+
+[ext_resource type="Script" path="res://assets/scene_manager/scene_manager.gd" id="1_r7iwm"]
+[ext_resource type="FontFile" uid="uid://dj5pbb3fkregr" path="res://assets/fonts/oldnewspapertypes/OldNewspaperTypes.ttf" id="2_rdi8d"]
+[ext_resource type="Shader" path="res://assets/shaders/invertv2.gdshader" id="4_3w4ta"]
+[ext_resource type="Script" path="res://assets/scene_manager/choice 1.gd" id="4_n62j5"]
+[ext_resource type="Texture2D" uid="uid://b6ov7hlgts3vh" path="res://assets/gestures/thumbsup.png" id="5_efwhv"]
+[ext_resource type="Script" path="res://assets/scene_manager/choice 2.gd" id="6_8spev"]
+[ext_resource type="Script" path="res://assets/scene_manager/choice 3.gd" id="7_e6obd"]
+[ext_resource type="Script" path="res://assets/scene_manager/choice 4.gd" id="8_ku76s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fn1o0"]
+bg_color = Color(0.13425, 0.1185, 0.15, 1)
+border_width_left = 20
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.266667, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 20.0
+expand_margin_top = 20.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e8gr1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xsuwl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5vmf2"]
+shader = ExtResource("4_3w4ta")
+shader_parameter/invert_amount = 1.0
+
+[sub_resource type="Animation" id="Animation_btfaa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/HBoxContainer/Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bg1:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.705882, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bg1:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector2(1, 1e-05)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bg2:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector2(1, 1e-05)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Bg3:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector2(1, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_5v1pn"]
+resource_name = "clicked"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bg1:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/HBoxContainer/Label:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fonmd"]
+resource_name = "fade_background"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bg1:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(1, 1e-05), Vector2(1, 1e-05), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bg2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(1, 1e-05), Vector2(1, 1e-05), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bg3:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(1, 1e-05), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer/HBoxContainer/Label:theme_override_colors/font_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [null, Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_l7e2j"]
+resource_name = "light_button_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bg1:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.705882, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kdk6j"]
+_data = {
+"RESET": SubResource("Animation_btfaa"),
+"clicked": SubResource("Animation_5v1pn"),
+"fade_background": SubResource("Animation_fonmd"),
+"light_button_up": SubResource("Animation_l7e2j")
+}
+
+[sub_resource type="Animation" id="Animation_khjc2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/CenterContainer/DialogueBox:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(830, 100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/CenterContainer/DialogueBox/Rows:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/CenterContainer/DialogueBox:theme_override_styles/panel:border_width_left")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [20]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/CenterContainer:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 448)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/CenterContainer/DialogueBox/Rows/Name:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control/choices_button_container:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_e5tog"]
+resource_name = "fade_choices"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/choices_button_container:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_c7vg5"]
+resource_name = "fade_name"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/CenterContainer/DialogueBox/Rows/Name:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_a2ajf"]
+resource_name = "hide_dialogue"
+length = 1.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/CenterContainer/DialogueBox:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3, 0.6, 0.7, 0.8, 1.15, 1.2, 1.25),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [Vector2(830, 100), Vector2(0, 100), Vector2(10, 100), Vector2(0, 100), Vector2(0, 0), Vector2(0, 10), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/CenterContainer/DialogueBox/Rows:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/CenterContainer/DialogueBox:theme_override_styles/panel:border_width_left")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [20, 2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/CenterContainer:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.25, 1.35, 1.5),
+"transitions": PackedFloat32Array(1, -2, -2),
+"update": 0,
+"values": [Vector2(0, 448), Vector2(0, 430), Vector2(0, 896)]
+}
+
+[sub_resource type="Animation" id="Animation_5go84"]
+resource_name = "show_dialogue"
+length = 1.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/CenterContainer/DialogueBox:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3, 0.6, 0.7, 0.8, 1.1, 1.15, 1.2),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 100), Vector2(0, 80), Vector2(0, 100), Vector2(830, 100), Vector2(800, 100), Vector2(830, 100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/CenterContainer/DialogueBox/Rows:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.2, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/CenterContainer/DialogueBox:theme_override_styles/panel:border_width_left")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2, 20]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/CenterContainer:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(-2, -2, 1),
+"update": 0,
+"values": [Vector2(0, 896), Vector2(0, 430), Vector2(0, 448)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r1c41"]
+_data = {
+"RESET": SubResource("Animation_khjc2"),
+"fade_choices": SubResource("Animation_e5tog"),
+"fade_name": SubResource("Animation_c7vg5"),
+"hide_dialogue": SubResource("Animation_a2ajf"),
+"show_dialogue": SubResource("Animation_5go84")
+}
+
+[node name="SceneManager" type="CanvasLayer"]
+script = ExtResource("1_r7iwm")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -200.0
+offset_right = 576.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DialogueBox" type="Panel" parent="Control/CenterContainer"]
+custom_minimum_size = Vector2(830, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fn1o0")
+
+[node name="Rows" type="VBoxContainer" parent="Control/CenterContainer/DialogueBox"]
+layout_mode = 2
+offset_left = 20.0
+offset_top = 2.0
+offset_right = 820.0
+offset_bottom = 96.0
+
+[node name="Name" type="RichTextLabel" parent="Control/CenterContainer/DialogueBox/Rows"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 0.623529, 0.27451, 1)
+theme_override_fonts/normal_font = ExtResource("2_rdi8d")
+theme_override_font_sizes/normal_font_size = 24
+text = "Test:"
+fit_content = true
+
+[node name="TextBoxContainer" type="CenterContainer" parent="Control/CenterContainer/DialogueBox/Rows"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+
+[node name="TextBox" type="RichTextLabel" parent="Control/CenterContainer/DialogueBox/Rows/TextBoxContainer"]
+custom_minimum_size = Vector2(750, 30)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.95, 0.93385, 0.893, 1)
+theme_override_fonts/normal_font = ExtResource("2_rdi8d")
+theme_override_font_sizes/normal_font_size = 24
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas blandit lacus et condimentum."
+fit_content = true
+
+[node name="choices_button_container" type="VBoxContainer" parent="Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -106.0
+offset_right = 250.0
+offset_bottom = 106.0
+grow_vertical = 2
+
+[node name="GestureButton" type="PanelContainer" parent="Control/choices_button_container" node_paths=PackedStringArray("parent")]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_e8gr1")
+script = ExtResource("4_n62j5")
+parent = NodePath("../../..")
+
+[node name="Bg3" type="ColorRect" parent="Control/choices_button_container/GestureButton"]
+layout_mode = 2
+color = Color(0.623529, 0, 0.00392157, 1)
+
+[node name="Bg2" type="ColorRect" parent="Control/choices_button_container/GestureButton"]
+layout_mode = 2
+color = Color(1, 0.184314, 0, 1)
+
+[node name="Bg1" type="ColorRect" parent="Control/choices_button_container/GestureButton"]
+layout_mode = 2
+color = Color(1, 0.705882, 0, 1)
+
+[node name="CenterContainer" type="PanelContainer" parent="Control/choices_button_container/GestureButton"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xsuwl")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/choices_button_container/GestureButton/CenterContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/choices_button_container/GestureButton/CenterContainer/HBoxContainer"]
+material = SubResource("ShaderMaterial_5vmf2")
+layout_mode = 2
+texture = ExtResource("5_efwhv")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Control/choices_button_container/GestureButton/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "button"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/choices_button_container/GestureButton"]
+libraries = {
+"": SubResource("AnimationLibrary_kdk6j")
+}
+
+[node name="GestureButton2" type="PanelContainer" parent="Control/choices_button_container" node_paths=PackedStringArray("parent")]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_e8gr1")
+script = ExtResource("6_8spev")
+parent = NodePath("../../..")
+
+[node name="Bg3" type="ColorRect" parent="Control/choices_button_container/GestureButton2"]
+layout_mode = 2
+color = Color(0.623529, 0, 0.00392157, 1)
+
+[node name="Bg2" type="ColorRect" parent="Control/choices_button_container/GestureButton2"]
+layout_mode = 2
+color = Color(1, 0.184314, 0, 1)
+
+[node name="Bg1" type="ColorRect" parent="Control/choices_button_container/GestureButton2"]
+layout_mode = 2
+color = Color(1, 0.705882, 0, 1)
+
+[node name="CenterContainer" type="PanelContainer" parent="Control/choices_button_container/GestureButton2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xsuwl")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/choices_button_container/GestureButton2/CenterContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/choices_button_container/GestureButton2/CenterContainer/HBoxContainer"]
+material = SubResource("ShaderMaterial_5vmf2")
+layout_mode = 2
+texture = ExtResource("5_efwhv")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Control/choices_button_container/GestureButton2/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "button"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/choices_button_container/GestureButton2"]
+libraries = {
+"": SubResource("AnimationLibrary_kdk6j")
+}
+
+[node name="GestureButton3" type="PanelContainer" parent="Control/choices_button_container" node_paths=PackedStringArray("parent")]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_e8gr1")
+script = ExtResource("7_e6obd")
+parent = NodePath("../../..")
+
+[node name="Bg3" type="ColorRect" parent="Control/choices_button_container/GestureButton3"]
+layout_mode = 2
+color = Color(0.623529, 0, 0.00392157, 1)
+
+[node name="Bg2" type="ColorRect" parent="Control/choices_button_container/GestureButton3"]
+layout_mode = 2
+color = Color(1, 0.184314, 0, 1)
+
+[node name="Bg1" type="ColorRect" parent="Control/choices_button_container/GestureButton3"]
+layout_mode = 2
+color = Color(1, 0.705882, 0, 1)
+
+[node name="CenterContainer" type="PanelContainer" parent="Control/choices_button_container/GestureButton3"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xsuwl")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/choices_button_container/GestureButton3/CenterContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/choices_button_container/GestureButton3/CenterContainer/HBoxContainer"]
+material = SubResource("ShaderMaterial_5vmf2")
+layout_mode = 2
+texture = ExtResource("5_efwhv")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Control/choices_button_container/GestureButton3/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "button"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/choices_button_container/GestureButton3"]
+libraries = {
+"": SubResource("AnimationLibrary_kdk6j")
+}
+
+[node name="GestureButton4" type="PanelContainer" parent="Control/choices_button_container" node_paths=PackedStringArray("parent")]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_e8gr1")
+script = ExtResource("8_ku76s")
+parent = NodePath("../../..")
+
+[node name="Bg3" type="ColorRect" parent="Control/choices_button_container/GestureButton4"]
+layout_mode = 2
+color = Color(0.623529, 0, 0.00392157, 1)
+
+[node name="Bg2" type="ColorRect" parent="Control/choices_button_container/GestureButton4"]
+layout_mode = 2
+color = Color(1, 0.184314, 0, 1)
+
+[node name="Bg1" type="ColorRect" parent="Control/choices_button_container/GestureButton4"]
+layout_mode = 2
+color = Color(1, 0.705882, 0, 1)
+
+[node name="CenterContainer" type="PanelContainer" parent="Control/choices_button_container/GestureButton4"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xsuwl")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/choices_button_container/GestureButton4/CenterContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/choices_button_container/GestureButton4/CenterContainer/HBoxContainer"]
+material = SubResource("ShaderMaterial_5vmf2")
+layout_mode = 2
+texture = ExtResource("5_efwhv")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Control/choices_button_container/GestureButton4/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "button"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/choices_button_container/GestureButton4"]
+libraries = {
+"": SubResource("AnimationLibrary_kdk6j")
+}
+
+[node name="start_delay" type="Timer" parent="."]
+
+[node name="per_char_timer" type="Timer" parent="."]
+
+[node name="per_dialogue_timer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r1c41")
+}

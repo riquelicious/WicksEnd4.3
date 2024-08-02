@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://d30qmtkljswab"]
+
+[ext_resource type="Script" path="res://assets/game_objects/interactables/Pickups.gd" id="1_7bvky"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yj585"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4jon8"]
+
+[node name="pickup" type="StaticBody3D"]
+collision_layer = 513
+collision_mask = 512
+script = ExtResource("1_7bvky")
+
+[node name="marker_origin" type="Marker3D" parent="."]
+
+[node name="something" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_yj585")
+skeleton = NodePath("../..")
+
+[node name="wall_collision" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_4jon8")

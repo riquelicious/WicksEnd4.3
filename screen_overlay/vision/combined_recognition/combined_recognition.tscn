@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://b85ek4351mhpq"]
+
+[ext_resource type="Script" path="res://screen_overlay/vision/combined_recognition/combined_recognition.gd" id="1_7we14"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_feial"]
+
+[node name="CombinedRecognition" type="Control" node_paths=PackedStringArray("lbl_handedness", "image_view", "permission_dialog")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_7we14")
+lbl_handedness = NodePath("CanvasLayer/Label")
+image_view = NodePath("CanvasLayer/stream_frame")
+permission_dialog = NodePath("CanvasLayer/camera_permission")
+vision_task = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 50
+
+[node name="stream_frame" type="TextureRect" parent="CanvasLayer"]
+custom_minimum_size = Vector2(200, 200)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+mouse_filter = 2
+texture = SubResource("ImageTexture_feial")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="camera_permission" type="AcceptDialog" parent="CanvasLayer"]
+title = "Camera Permission"
+initial_position = 2
+size = Vector2i(357, 100)
+ok_button_text = "Allow"
+dialog_text = "Please grant camera permission to continue"
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0

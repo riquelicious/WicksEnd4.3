@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://js0y1ym1045y"]
+
+[ext_resource type="PackedScene" uid="uid://q1yxpssljlq1" path="res://Assets/entities/player.tscn" id="1_yf7aq"]
+
+[sub_resource type="Environment" id="Environment_ww3vx"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_n042r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cgs1v"]
+albedo_color = Color(0.154876, 0.154876, 0.154876, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ol0mq"]
+material = SubResource("StandardMaterial3D_cgs1v")
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vxusw"]
+size = Vector3(20, 1, 20)
+
+[node name="Level-1" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ww3vx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.830637, -0.0535748, -0.554231, 0.26487, -0.837515, 0.477925, -0.489781, -0.543782, -0.681481, 0, 2.32634, 4.29147)
+layers = 524289
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World"]
+physics_material_override = SubResource("PhysicsMaterial_n042r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/StaticBody3D"]
+mesh = SubResource("BoxMesh_ol0mq")
+skeleton = NodePath("../../..")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/StaticBody3D"]
+shape = SubResource("BoxShape3D_vxusw")
+
+[node name="player" parent="." instance=ExtResource("1_yf7aq")]

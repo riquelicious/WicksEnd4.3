@@ -1,0 +1,18 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://5glmg4vjk4jy"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f27tk"]
+
+[sub_resource type="Sky" id="Sky_2uay1"]
+sky_material = SubResource("ProceduralSkyMaterial_f27tk")
+
+[resource]
+background_energy_multiplier = 0.0
+sky = SubResource("Sky_2uay1")
+ambient_light_sky_contribution = 0.3
+reflected_light_source = 1
+tonemap_mode = 3
+tonemap_exposure = 0.5
+tonemap_white = 0.5
+glow_enabled = true
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 0.914

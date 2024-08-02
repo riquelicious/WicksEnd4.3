@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjlo7l7uu7ylo"]
+
+[ext_resource type="Script" path="res://assets/scene_manager/scene_manager.gd" id="1_r7iwm"]
+[ext_resource type="FontFile" uid="uid://dj5pbb3fkregr" path="res://assets/fonts/oldnewspapertypes/OldNewspaperTypes.ttf" id="2_rdi8d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fn1o0"]
+bg_color = Color(0.134132, 0.112627, 0.0834654, 1)
+border_width_left = 2
+border_width_top = 10
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 20.0
+expand_margin_top = 20.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
+
+[node name="SceneManager" type="CanvasLayer"]
+script = ExtResource("1_r7iwm")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background" type="ColorRect" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DialogueBox" type="PanelContainer" parent="Control/CenterContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fn1o0")
+
+[node name="Rows" type="VBoxContainer" parent="Control/CenterContainer/DialogueBox"]
+layout_mode = 2
+
+[node name="Name" type="RichTextLabel" parent="Control/CenterContainer/DialogueBox/Rows"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_rdi8d")
+theme_override_font_sizes/normal_font_size = 24
+fit_content = true
+
+[node name="TextBoxContainer" type="CenterContainer" parent="Control/CenterContainer/DialogueBox/Rows"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+
+[node name="TextBox" type="RichTextLabel" parent="Control/CenterContainer/DialogueBox/Rows/TextBoxContainer"]
+custom_minimum_size = Vector2(750, 30)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_rdi8d")
+theme_override_font_sizes/normal_font_size = 24
+fit_content = true

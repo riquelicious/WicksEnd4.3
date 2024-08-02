@@ -1,0 +1,22 @@
+{
+	"nodes": {
+		"1": {
+			"text": "Hello, adventurer! What do you want to do?",
+			"name": "Stranger",
+			"choices": [
+				{ "text": "About the town...", "nextNode": "2" },
+				{ "text": "Leave.", "nextNode": "3" }
+			]
+		},
+		"2": {
+			"text": "The town is peaceful and quiet.",
+			"name": "You",
+			"choices": [{ "text": "Thank you.", "nextNode": "1" }]
+		},
+		"3": {
+			"text": "Goodbye!",
+			"name": "Stranger",
+			"choices": []
+		}
+	}
+}

@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctr27imw0v806"]
+
+[ext_resource type="Script" path="res://assets/modules/jigsaw_minigame/jigsaw_minigame.gd" id="1_yjlyf"]
+[ext_resource type="Texture2D" uid="uid://cqrw0fff4082w" path="res://icon.svg" id="2_bwwcd"]
+
+[node name="Jigsaw_minigame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yjlyf")
+
+[node name="jigsaw_container" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -149.0
+offset_top = -149.0
+offset_right = 149.0
+offset_bottom = 149.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="piece #1" type="TextureRect" parent="jigsaw_container"]
+layout_mode = 0
+offset_left = 396.0
+offset_top = 183.0
+offset_right = 545.0
+offset_bottom = 332.0
+mouse_filter = 0
+texture = ExtResource("2_bwwcd")
+expand_mode = 2
+
+[node name="piece #2" type="TextureRect" parent="jigsaw_container"]
+layout_mode = 0
+offset_left = -277.0
+offset_top = 170.0
+offset_right = -128.0
+offset_bottom = 319.0
+mouse_filter = 0
+texture = ExtResource("2_bwwcd")
+expand_mode = 2
+
+[node name="piece #3" type="TextureRect" parent="jigsaw_container"]
+layout_mode = 0
+offset_left = 439.0
+offset_top = -150.0
+offset_right = 588.0
+offset_bottom = -1.0
+mouse_filter = 0
+texture = ExtResource("2_bwwcd")
+expand_mode = 2
+
+[node name="piece #4" type="TextureRect" parent="jigsaw_container"]
+layout_mode = 0
+offset_left = -359.0
+offset_top = -155.0
+offset_right = -210.0
+offset_bottom = -6.0
+mouse_filter = 0
+texture = ExtResource("2_bwwcd")
+expand_mode = 2

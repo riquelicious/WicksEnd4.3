@@ -1,0 +1,168 @@
+[gd_scene load_steps=13 format=3 uid="uid://cdawb4igah42t"]
+
+[ext_resource type="Script" path="res://game/main-menu/main_menu_level.gd" id="1_1v7a3"]
+[ext_resource type="PackedScene" uid="uid://bvxjgcnlaplpk" path="res://game/main-menu/menu_script/main_menu_ui.tscn" id="2_yk03q"]
+[ext_resource type="Theme" uid="uid://xiy1beq5fkuh" path="res://assets/theme/Global.tres" id="3_n2bm6"]
+[ext_resource type="PackedScene" uid="uid://cy8unlr7q6d35" path="res://assets/models/office/office.tscn" id="5_b5npi"]
+[ext_resource type="PackedScene" uid="uid://hv22w03byfgv" path="res://assets/UpgradeShop/UpgradeShop.tscn" id="5_li84t"]
+[ext_resource type="PackedScene" uid="uid://deuc616mep0xa" path="res://game/main-menu/level_selector/level_selector_ui.tscn" id="6_fd3ha"]
+
+[sub_resource type="Environment" id="Environment_a5h1b"]
+background_mode = 1
+ambient_light_source = 3
+reflected_light_source = 2
+tonemap_mode = 3
+glow_enabled = true
+glow_intensity = 0.3
+fog_enabled = true
+fog_light_color = Color(0.05, 0.0136583, 0.0055, 1)
+fog_light_energy = 13.67
+fog_density = 0.4516
+adjustment_enabled = true
+adjustment_brightness = 0.7
+adjustment_saturation = 0.4
+
+[sub_resource type="Animation" id="Animation_6s630"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8vs2h"]
+resource_name = "fade"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v6xpe"]
+_data = {
+"RESET": SubResource("Animation_6s630"),
+"fade": SubResource("Animation_8vs2h")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j5ftk"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4rvth"]
+material = SubResource("StandardMaterial3D_j5ftk")
+size = Vector3(0.1, 4, 4)
+
+[node name="main-menu-level" type="Node3D"]
+script = ExtResource("1_1v7a3")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_a5h1b")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.591, 2.001, -0.204)
+cull_mask = 524287
+current = true
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_n2bm6")
+
+[node name="main_menu" parent="UI" instance=ExtResource("2_yk03q")]
+layout_mode = 1
+
+[node name="level_selector" parent="UI" instance=ExtResource("6_fd3ha")]
+visible = false
+layout_mode = 1
+
+[node name="UpgradeShop" parent="UI" instance=ExtResource("5_li84t")]
+visible = false
+layout_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
+libraries = {
+"": SubResource("AnimationLibrary_v6xpe")
+}
+
+[node name="world" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="world"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3, 2, 0)
+visible = false
+mesh = SubResource("BoxMesh_4rvth")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="world"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.1, 4, 0)
+visible = false
+mesh = SubResource("BoxMesh_4rvth")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="office" parent="world" instance=ExtResource("5_b5npi")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="back_light" type="SpotLight3D" parent="world"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.407968, 2.4, -0.172913)
+light_color = Color(0.223023, 0.625377, 0.794239, 1)
+light_energy = 79.33
+spot_range = 3.33004
+spot_attenuation = 8.5
+spot_angle = 65.5248
+
+[node name="back_light2" type="SpotLight3D" parent="world"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.732937, 2.26008, -0.157086)
+light_color = Color(0.223023, 0.625377, 0.794239, 1)
+light_energy = 9.242
+spot_range = 2.09237
+
+[node name="candle" type="OmniLight3D" parent="world"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.4, -0.9)
+light_color = Color(1, 0.45, 0, 1)
+light_energy = 0.0
+shadow_enabled = true
+omni_range = 1.5
+
+[node name="candle2" type="OmniLight3D" parent="world"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.2, -0.9)
+light_color = Color(1, 0.45, 0, 1)
+light_energy = 0.5
+shadow_enabled = true
+omni_range = 1.5
+
+[node name="camera_positions" type="Node3D" parent="."]
+
+[node name="main_menu" type="Marker3D" parent="camera_positions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03413, 1.29935, -0.374025)
+
+[node name="level_1" type="Marker3D" parent="camera_positions"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 2.12135, 0.624826)
+
+[node name="level_2" type="Marker3D" parent="camera_positions"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 2.61474, -0.249535)
+
+[node name="level_3" type="Marker3D" parent="camera_positions"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 2.3075, -0.813717)
+
+[node name="level_4" type="Marker3D" parent="camera_positions"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 1.751, -0.126721)
+
+[node name="upgrade_shop" type="Marker3D" parent="camera_positions"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.591, 2.001, -0.204)

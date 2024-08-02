@@ -1,0 +1,89 @@
+[gd_scene load_steps=10 format=3 uid="uid://d16gnyq6dhvlo"]
+
+[ext_resource type="Script" path="res://assets/game_objects/interactables/valve_instance.gd" id="1_2kelu"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yj585"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4jon8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vm1kj"]
+size = Vector3(2, 2, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0gn0o"]
+albedo_color = Color(1, 0.416667, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_40hwj"]
+material = SubResource("StandardMaterial3D_0gn0o")
+size = Vector3(0.5, 0.5, 0.3)
+
+[sub_resource type="Animation" id="Animation_hokex"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ymhut"]
+resource_name = "turn"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -1.5708), Vector3(0, 0, -2.79253), Vector3(0, 0, -3.14159)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kwuig"]
+_data = {
+"RESET": SubResource("Animation_hokex"),
+"turn": SubResource("Animation_ymhut")
+}
+
+[node name="valve" type="StaticBody3D"]
+collision_layer = 512
+collision_mask = 512
+script = ExtResource("1_2kelu")
+
+[node name="marker_origin" type="Marker3D" parent="."]
+
+[node name="camera_position" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
+
+[node name="something" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_yj585")
+skeleton = NodePath("../..")
+
+[node name="wall_collision" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_4jon8")
+
+[node name="valve_module" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.763415)
+collision_layer = 2
+collision_mask = 2
+
+[node name="ray_target" type="CollisionShape3D" parent="valve_module"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2174)
+shape = SubResource("BoxShape3D_vm1kj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="valve_module"]
+mesh = SubResource("BoxMesh_40hwj")
+
+[node name="valve_animation" type="AnimationPlayer" parent="valve_module"]
+libraries = {
+"": SubResource("AnimationLibrary_kwuig")
+}

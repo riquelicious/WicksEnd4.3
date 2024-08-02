@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://cwphdco3oqbna"]
+
+[ext_resource type="Script" path="res://assets/modules/gauges/gauges.gd" id="1_5375m"]
+[ext_resource type="Texture2D" uid="uid://gtocj646u8e2" path="res://assets/images/ui/on-game/health/health_background.png" id="2_7lyir"]
+[ext_resource type="Texture2D" uid="uid://73cg1o712nff" path="res://assets/images/ui/on-game/health/health_foreground.png" id="2_i1psp"]
+[ext_resource type="Texture2D" uid="uid://bdtfwbtu3muyd" path="res://assets/images/ui/on-game/health/water_background.png" id="3_2erlq"]
+[ext_resource type="Texture2D" uid="uid://badlskepuhcxi" path="res://assets/images/ui/on-game/health/water_foreground.png" id="4_8tcd0"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bpg18"]
+light_mode = 2
+
+[sub_resource type="Animation" id="Animation_f534k"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_huauj"]
+resource_name = "health_shake"
+length = 0.05
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kqymp"]
+_data = {
+"RESET": SubResource("Animation_f534k"),
+"health_shake": SubResource("Animation_huauj")
+}
+
+[node name="gauges" type="Node2D"]
+script = ExtResource("1_5375m")
+
+[node name="health" type="Node2D" parent="."]
+
+[node name="background" type="Sprite2D" parent="health"]
+texture = ExtResource("2_7lyir")
+offset = Vector2(0, 4)
+metadata/_edit_lock_ = true
+
+[node name="foreground" type="Sprite2D" parent="health"]
+light_mask = 2
+visibility_layer = 2
+material = SubResource("CanvasItemMaterial_bpg18")
+texture = ExtResource("2_i1psp")
+metadata/_edit_lock_ = true
+
+[node name="health_mask" type="PointLight2D" parent="health"]
+blend_mode = 2
+range_item_cull_mask = 2
+texture = ExtResource("2_i1psp")
+
+[node name="water" type="Node2D" parent="."]
+position = Vector2(0, 25)
+
+[node name="background" type="Sprite2D" parent="water"]
+texture = ExtResource("3_2erlq")
+offset = Vector2(0, 4)
+metadata/_edit_lock_ = true
+
+[node name="foreground" type="Sprite2D" parent="water"]
+light_mask = 2
+visibility_layer = 2
+material = SubResource("CanvasItemMaterial_bpg18")
+texture = ExtResource("4_8tcd0")
+metadata/_edit_lock_ = true
+
+[node name="water_mask" type="PointLight2D" parent="water"]
+blend_mode = 2
+range_item_cull_mask = 2
+texture = ExtResource("4_8tcd0")
+
+[node name="water-timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="gauge-animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kqymp")
+}

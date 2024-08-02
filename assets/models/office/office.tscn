@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy8unlr7q6d35"]
+
+[ext_resource type="PackedScene" uid="uid://dfta4cx5xjcck" path="res://assets/models/office/office.glb" id="1_quck4"]
+
+[node name="office" instance=ExtResource("1_quck4")]
+
+[node name="cuboid_050" parent="Node_88/Camera" index="1"]
+visible = false
+
+[node name="plane_008" parent="Node_88/Candles" index="1"]
+cast_shadow = 0
+
+[node name="back_light" type="OmniLight3D" parent="Node_88/Candles/plane_008" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.27374e-13, 0, -2.27374e-13, 1, 1.19209e-07, 0.0999992, -0.5)
+visible = false
+light_color = Color(0.840656, 0.476278, 0.180211, 1)
+light_energy = 0.3
+shadow_enabled = true
+
+[node name="plane_009" parent="Node_88/Candles" index="2"]
+cast_shadow = 0
+
+[node name="back_light" type="OmniLight3D" parent="Node_88/Candles/plane_009" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 4.83169e-13, 0, -4.83169e-13, 1, 0.1, 0.0999992, -0.399999)
+visible = false
+light_color = Color(0.840656, 0.476278, 0.180211, 1)
+light_energy = 0.3
+shadow_enabled = true
+
+[node name="plane_010" parent="Node_88/Candles" index="3"]
+cast_shadow = 0
+
+[node name="back_light" type="OmniLight3D" parent="Node_88/Candles/plane_010" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 3.97904e-13, 0, -3.97904e-13, 1, 1.19209e-07, -0.100001, -0.299999)
+visible = false
+light_color = Color(0.840656, 0.476278, 0.180211, 1)
+light_energy = 0.3
+shadow_enabled = true

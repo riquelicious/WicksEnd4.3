@@ -1,0 +1,951 @@
+[gd_scene load_steps=29 format=3 uid="uid://deuc616mep0xa"]
+
+[ext_resource type="Theme" uid="uid://xiy1beq5fkuh" path="res://assets/theme/Global.tres" id="1_6llpi"]
+[ext_resource type="Script" path="res://game/main-menu/level_selector/level_selector_ui.gd" id="1_e2vw8"]
+[ext_resource type="PackedScene" uid="uid://cat16tsjuq6mn" path="res://assets/modules/button_move_left.tscn" id="2_odcdv"]
+[ext_resource type="PackedScene" uid="uid://dosr4gyclbxwq" path="res://assets/modules/button_move_right.tscn" id="3_enhoi"]
+[ext_resource type="Texture2D" uid="uid://chxrckw0idr84" path="res://assets/images/ui/level_selector/img_placeholder.png" id="3_fadxo"]
+[ext_resource type="Script" path="res://game/main-menu/level_selector/level_selector_buttons/move_left.gd" id="4_an5ky"]
+[ext_resource type="Script" path="res://assets/modules/button.gd" id="4_eoynu"]
+[ext_resource type="FontFile" uid="uid://dxorddxxcs41b" path="res://assets/fonts/NutgameDEMO-Regular.ttf" id="5_jwytl"]
+[ext_resource type="Script" path="res://game/main-menu/level_selector/level_selector_buttons/move_right.gd" id="6_flpec"]
+[ext_resource type="Script" path="res://assets/modules/gesture_button/gesture-button.gd" id="7_jhdbm"]
+[ext_resource type="Shader" path="res://assets/shaders/invertv2.gdshader" id="8_hgxv0"]
+[ext_resource type="Texture2D" uid="uid://b6ov7hlgts3vh" path="res://assets/gestures/thumbsup.png" id="9_dwm8c"]
+[ext_resource type="FontFile" uid="uid://be7tsy07e5604" path="res://assets/fonts/OPTIMA_B.TTF" id="10_81v0g"]
+
+[sub_resource type="Animation" id="Animation_qc8q3"]
+resource_name = "clicked"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("button-label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.442287, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.870588), Color(0, 0, 0, 0.870588), Color(1, 1, 1, 0.870588), Color(0, 0, 0, 0.870588), Color(1, 1, 1, 0.870588), Color(0, 0, 0, 0.870588), Color(1, 1, 1, 0.870588), Color(0, 0, 0, 0.870588), Color(1, 1, 1, 0.870588), Color(0, 0, 0, 0.870588), Color(1, 1, 1, 0.870588)]
+}
+
+[sub_resource type="Animation" id="Animation_mwfn0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("button-label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hvt5w"]
+resource_name = "fade_in_background"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("button-label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.870588)]
+}
+
+[sub_resource type="Animation" id="Animation_v5kvy"]
+resource_name = "light_button_up"
+length = 1.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.870588), Color(1, 1, 1, 0.870588)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("button-label:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bcc34"]
+_data = {
+"RESET": SubResource("Animation_mwfn0"),
+"clicked": SubResource("Animation_qc8q3"),
+"fade_in_background": SubResource("Animation_hvt5w"),
+"light_button_up": SubResource("Animation_v5kvy")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0q8cm"]
+bg_color = Color(0.71, 0.568, 0, 1)
+border_width_top = 75
+border_color = Color(0.250818, 0.250818, 0.250818, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5vmf2"]
+shader = ExtResource("8_hgxv0")
+shader_parameter/invert_amount = 1.0
+shader_parameter/black_threshold = 0.1
+shader_parameter/white_threshold = 0.5
+
+[sub_resource type="Animation" id="Animation_btfaa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/HBoxContainer/Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("background/Bg1:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector2(1, 1e-05)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("background/Bg2:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector2(1, 1e-05)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("background/Bg3:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector2(1, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_5v1pn"]
+resource_name = "clicked"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("background/Bg1:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/HBoxContainer/Label:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fonmd"]
+resource_name = "fade_background"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("background/Bg1:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(1, 1e-05), Vector2(1, 1e-05), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("background/Bg2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(1, 1e-05), Vector2(1, 1e-05), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("background/Bg3:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(1, 1e-05), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer/HBoxContainer/Label:theme_override_colors/font_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [null, Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_l7e2j"]
+resource_name = "light_button_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("background/Bg1:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.705882, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kdk6j"]
+_data = {
+"RESET": SubResource("Animation_btfaa"),
+"clicked": SubResource("Animation_5v1pn"),
+"fade_background": SubResource("Animation_fonmd"),
+"light_button_up": SubResource("Animation_l7e2j")
+}
+
+[sub_resource type="Animation" id="Animation_tlfve"]
+resource_name = "fade"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ui/image:anchor_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(0.366021, 0.366021),
+"update": 0,
+"values": [0.5, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ui/image:anchor_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(0.366021, 0.366021),
+"update": 0,
+"values": [0.5, 0.5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ui/image:anchor_right")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(0.366021, 0.366021),
+"update": 0,
+"values": [0.5, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ui/image:anchor_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(0.366021, 0.366021),
+"update": 0,
+"values": [0.5, 0.5]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ui/image:offset_left")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(0.366021, 0.366021),
+"update": 0,
+"values": [-187.5, -375.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ui/image:offset_top")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(0.366021, 0.366021),
+"update": 0,
+"values": [-150.0, -150.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ui/image:offset_right")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(0.366021, 0.366021),
+"update": 0,
+"values": [187.5, -150.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ui/image:offset_bottom")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(0.366021, 0.366021),
+"update": 0,
+"values": [150.0, 150.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ui/image:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("ui/description:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(1, 1.3),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_p7gcy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ui/image:anchor_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ui/image:anchor_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ui/image:anchor_right")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ui/image:anchor_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ui/image:offset_left")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-187.5]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ui/image:offset_top")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-150.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ui/image:offset_right")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [187.5]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ui/image:offset_bottom")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [150.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ui/image:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("ui/description:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3iuwl"]
+_data = {
+"RESET": SubResource("Animation_p7gcy"),
+"fade": SubResource("Animation_tlfve")
+}
+
+[node name="level-selector-ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e2vw8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.466667)
+
+[node name="ui" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_6llpi")
+
+[node name="image" type="TextureRect" parent="ui"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(375, 300)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.5
+offset_top = -150.0
+offset_right = 187.5
+offset_bottom = 150.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("3_fadxo")
+script = ExtResource("4_eoynu")
+
+[node name="ColorRect" type="ColorRect" parent="ui/image"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="button-label" type="Label" parent="ui/image"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.0
+offset_top = -19.0
+offset_right = 47.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "PLAY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ui/image"]
+libraries = {
+"": SubResource("AnimationLibrary_bcc34")
+}
+
+[node name="description" type="Panel" parent="ui"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(375, 300)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 150.0
+offset_top = -150.0
+offset_right = 375.0
+offset_bottom = 150.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0q8cm")
+
+[node name="CenterContainer" type="CenterContainer" parent="ui/description"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ui/description/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="level_name" type="RichTextLabel" parent="ui/description/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.912289, 0.912289, 0.912289, 1)
+theme_override_fonts/normal_font = ExtResource("5_jwytl")
+bbcode_enabled = true
+text = "[b]Something[/b]"
+
+[node name="level_description" type="RichTextLabel" parent="ui/description/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 190)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.135617, 0.135617, 0.135617, 1)
+theme_override_fonts/normal_font = ExtResource("5_jwytl")
+bbcode_enabled = true
+text = "		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas, quam nec sodales rhoncus, libero eros vestibulum tortor, et fringilla turpis lorem sit amet ex"
+
+[node name="move-left" parent="ui" instance=ExtResource("2_odcdv")]
+layout_mode = 1
+offset_right = 75.0
+script = ExtResource("4_an5ky")
+delay = 2.5
+
+[node name="move-right" parent="ui" instance=ExtResource("3_enhoi")]
+layout_mode = 1
+script = ExtResource("6_flpec")
+delay = 2.5
+
+[node name="Gesture Buttons" type="HBoxContainer" parent="ui"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Evidence" type="Control" parent="ui/Gesture Buttons"]
+clip_contents = true
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+script = ExtResource("7_jhdbm")
+
+[node name="background" type="Control" parent="ui/Gesture Buttons/Evidence"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bg3" type="ColorRect" parent="ui/Gesture Buttons/Evidence/background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.14441e-05
+offset_right = 200.0
+offset_bottom = 1.14441e-05
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1e-05)
+pivot_offset = Vector2(0, 50)
+color = Color(0.623529, 0, 0.00392157, 1)
+
+[node name="Bg2" type="ColorRect" parent="ui/Gesture Buttons/Evidence/background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.14441e-05
+offset_right = 200.0
+offset_bottom = 1.14441e-05
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1e-05)
+pivot_offset = Vector2(0, 50)
+color = Color(1, 0.184314, 0, 1)
+
+[node name="Bg1" type="ColorRect" parent="ui/Gesture Buttons/Evidence/background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.14441e-05
+offset_right = 200.0
+offset_bottom = 1.14441e-05
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1e-05)
+pivot_offset = Vector2(0, 50)
+
+[node name="CenterContainer" type="CenterContainer" parent="ui/Gesture Buttons/Evidence"]
+layout_mode = 2
+offset_right = 300.0
+offset_bottom = 48.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ui/Gesture Buttons/Evidence/CenterContainer"]
+layout_mode = 2
+
+[node name="button_gesture_icon" type="TextureRect" parent="ui/Gesture Buttons/Evidence/CenterContainer/HBoxContainer"]
+material = SubResource("ShaderMaterial_5vmf2")
+layout_mode = 2
+texture = ExtResource("9_dwm8c")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="ui/Gesture Buttons/Evidence/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_81v0g")
+theme_override_font_sizes/font_size = 38
+text = "Evidence"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ui/Gesture Buttons/Evidence"]
+libraries = {
+"": SubResource("AnimationLibrary_kdk6j")
+}
+
+[node name="Upgrade" type="Control" parent="ui/Gesture Buttons"]
+clip_contents = true
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+script = ExtResource("7_jhdbm")
+
+[node name="background" type="Control" parent="ui/Gesture Buttons/Upgrade"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bg3" type="ColorRect" parent="ui/Gesture Buttons/Upgrade/background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.14441e-05
+offset_right = 200.0
+offset_bottom = 1.14441e-05
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1e-05)
+pivot_offset = Vector2(0, 50)
+color = Color(0.623529, 0, 0.00392157, 1)
+
+[node name="Bg2" type="ColorRect" parent="ui/Gesture Buttons/Upgrade/background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.14441e-05
+offset_right = 200.0
+offset_bottom = 1.14441e-05
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1e-05)
+pivot_offset = Vector2(0, 50)
+color = Color(1, 0.184314, 0, 1)
+
+[node name="Bg1" type="ColorRect" parent="ui/Gesture Buttons/Upgrade/background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.14441e-05
+offset_right = 200.0
+offset_bottom = 1.14441e-05
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1e-05)
+pivot_offset = Vector2(0, 50)
+
+[node name="CenterContainer" type="CenterContainer" parent="ui/Gesture Buttons/Upgrade"]
+layout_mode = 2
+offset_right = 300.0
+offset_bottom = 48.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ui/Gesture Buttons/Upgrade/CenterContainer"]
+layout_mode = 2
+
+[node name="button_gesture_icon" type="TextureRect" parent="ui/Gesture Buttons/Upgrade/CenterContainer/HBoxContainer"]
+material = SubResource("ShaderMaterial_5vmf2")
+layout_mode = 2
+texture = ExtResource("9_dwm8c")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="ui/Gesture Buttons/Upgrade/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_81v0g")
+theme_override_font_sizes/font_size = 38
+text = "Upgrade Shop
+"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ui/Gesture Buttons/Upgrade"]
+libraries = {
+"": SubResource("AnimationLibrary_kdk6j")
+}
+
+[node name="Back" type="Control" parent="ui/Gesture Buttons"]
+clip_contents = true
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+script = ExtResource("7_jhdbm")
+
+[node name="background" type="Control" parent="ui/Gesture Buttons/Back"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bg3" type="ColorRect" parent="ui/Gesture Buttons/Back/background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.14441e-05
+offset_right = 200.0
+offset_bottom = 1.14441e-05
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1e-05)
+pivot_offset = Vector2(0, 50)
+color = Color(0.623529, 0, 0.00392157, 1)
+
+[node name="Bg2" type="ColorRect" parent="ui/Gesture Buttons/Back/background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.14441e-05
+offset_right = 200.0
+offset_bottom = 1.14441e-05
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1e-05)
+pivot_offset = Vector2(0, 50)
+color = Color(1, 0.184314, 0, 1)
+
+[node name="Bg1" type="ColorRect" parent="ui/Gesture Buttons/Back/background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.14441e-05
+offset_right = 200.0
+offset_bottom = 1.14441e-05
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1e-05)
+pivot_offset = Vector2(0, 50)
+
+[node name="CenterContainer" type="CenterContainer" parent="ui/Gesture Buttons/Back"]
+layout_mode = 2
+offset_right = 300.0
+offset_bottom = 48.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ui/Gesture Buttons/Back/CenterContainer"]
+layout_mode = 2
+
+[node name="button_gesture_icon" type="TextureRect" parent="ui/Gesture Buttons/Back/CenterContainer/HBoxContainer"]
+material = SubResource("ShaderMaterial_5vmf2")
+layout_mode = 2
+texture = ExtResource("9_dwm8c")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="ui/Gesture Buttons/Back/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_81v0g")
+theme_override_font_sizes/font_size = 38
+text = "Back"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ui/Gesture Buttons/Back"]
+libraries = {
+"": SubResource("AnimationLibrary_kdk6j")
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3iuwl")
+}
+
+[connection signal="animation_finished" from="ui/image/AnimationPlayer" to="ui/image" method="_on_animation_player_animation_finished"]
+[connection signal="current_animation_changed" from="ui/image/AnimationPlayer" to="ui/image" method="_on_animation_player_current_animation_changed"]

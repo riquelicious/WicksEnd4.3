@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvhyyvriypcso"]
+
+[ext_resource type="Texture2D" uid="uid://cqrw0fff4082w" path="res://icon.svg" id="1_gbpkh"]
+[ext_resource type="Script" path="res://assets/modules/3d/floating_ui/marker.gd" id="2_qo1et"]
+
+[node name="Objective" type="Sprite2D"]
+scale = Vector2(0.21875, 0.21875)
+texture = ExtResource("1_gbpkh")
+script = ExtResource("2_qo1et")

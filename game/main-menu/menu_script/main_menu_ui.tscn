@@ -1,0 +1,139 @@
+[gd_scene load_steps=9 format=3 uid="uid://bvxjgcnlaplpk"]
+
+[ext_resource type="Theme" uid="uid://xiy1beq5fkuh" path="res://assets/theme/Global.tres" id="1_hbjkq"]
+[ext_resource type="PackedScene" uid="uid://cxy7gsgde6a66" path="res://assets/modules/button.tscn" id="1_kli3d"]
+[ext_resource type="Script" path="res://game/main-menu/menu_script/new_game.gd" id="3_5m5tq"]
+[ext_resource type="Shader" path="res://assets/shaders/font_gradient.gdshader" id="4_8eva2"]
+[ext_resource type="FontFile" uid="uid://dgobsdr8j1kjn" path="res://assets/fonts/NutgameDEMO-BoldItalic.ttf" id="4_xrawc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8axd1"]
+shader = ExtResource("4_8eva2")
+shader_parameter/first_color = Color(1, 1, 1, 1)
+shader_parameter/second_color = Color(1, 1, 1, 1)
+shader_parameter/position = 0.137
+shader_parameter/size = 0.562
+shader_parameter/text_size = Vector2(524, 134)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vmvp7"]
+shader = ExtResource("4_8eva2")
+shader_parameter/first_color = Color(0.9, 0.243, 0.243, 1)
+shader_parameter/second_color = Color(1, 1, 1, 1)
+shader_parameter/position = 0.0
+shader_parameter/size = 0.5
+shader_parameter/text_size = null
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_82mmq"]
+
+[node name="main-menu-ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ui" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hbjkq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ui"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.95
+anchor_right = 0.05
+anchor_bottom = 0.95
+offset_left = -36.2
+offset_top = -158.0
+offset_right = 213.8
+grow_vertical = 0
+
+[node name="new-game" parent="ui/VBoxContainer" instance=ExtResource("1_kli3d")]
+layout_mode = 2
+script = ExtResource("3_5m5tq")
+one_shot = true
+
+[node name="button-label" parent="ui/VBoxContainer/new-game" index="3"]
+theme_override_colors/font_shadow_color = Color(0.226707, 0.226707, 0.226707, 1)
+theme_override_constants/shadow_outline_size = 3
+text = "New Game"
+
+[node name="continue" parent="ui/VBoxContainer" instance=ExtResource("1_kli3d")]
+layout_mode = 2
+script = ExtResource("3_5m5tq")
+one_shot = true
+
+[node name="button-label" parent="ui/VBoxContainer/continue" index="3"]
+theme_override_colors/font_shadow_color = Color(0.226707, 0.226707, 0.226707, 1)
+theme_override_constants/shadow_outline_size = 3
+text = "Continue"
+
+[node name="quit" parent="ui/VBoxContainer" instance=ExtResource("1_kli3d")]
+layout_mode = 2
+script = ExtResource("3_5m5tq")
+one_shot = true
+
+[node name="Bg1" parent="ui/VBoxContainer/quit" index="2"]
+color = Color(1, 0.717647, 0, 1)
+
+[node name="button-label" parent="ui/VBoxContainer/quit" index="3"]
+theme_override_colors/font_shadow_color = Color(0.226707, 0.226707, 0.226707, 1)
+theme_override_constants/shadow_outline_size = 3
+text = "Quit"
+
+[node name="label_shadow" type="Label" parent="ui"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -587.98
+offset_top = 46.235
+offset_right = -102.98
+offset_bottom = 180.235
+grow_horizontal = 0
+theme = ExtResource("1_hbjkq")
+theme_override_colors/font_color = Color(0.15967, 0.15967, 0.15967, 1)
+theme_override_fonts/font = ExtResource("4_xrawc")
+theme_override_font_sizes/font_size = 100
+text = "Wick's End"
+
+[node name="Label" type="Label" parent="ui"]
+material = SubResource("ShaderMaterial_8axd1")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -585.0
+offset_top = 50.0
+offset_right = -100.0
+offset_bottom = 184.0
+grow_horizontal = 0
+theme = ExtResource("1_hbjkq")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_xrawc")
+theme_override_font_sizes/font_size = 100
+text = "Wick's End"
+
+[node name="TextureRect" type="TextureRect" parent="ui"]
+visible = false
+material = SubResource("ShaderMaterial_vmvp7")
+custom_minimum_size = Vector2(524, 134)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -524.0
+offset_top = 100.0
+offset_right = -100.0
+offset_bottom = 134.0
+grow_horizontal = 0
+texture = SubResource("CanvasTexture_82mmq")
+
+[editable path="ui/VBoxContainer/new-game"]
+[editable path="ui/VBoxContainer/continue"]
+[editable path="ui/VBoxContainer/quit"]

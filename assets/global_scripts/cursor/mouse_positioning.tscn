@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxma8tjy7bekw"]
+
+[ext_resource type="Script" path="res://assets/global_scripts/cursor/mouse_positioning.gd" id="1_3efiv"]
+
+[node name="MousePositioning" type="Node"]
+script = ExtResource("1_3efiv")

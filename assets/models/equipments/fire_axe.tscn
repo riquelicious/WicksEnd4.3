@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bohtjbfefqrws"]
+
+[ext_resource type="PackedScene" uid="uid://coym54oho1qgf" path="res://assets/models/equipments/fire_axe.glb" id="1_k8coa"]
+
+[node name="fire_axe" instance=ExtResource("1_k8coa")]
+
+[node name="Node_2" parent="." index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="cuboid" parent="Node_2" index="0"]
+layers = 524288
+
+[node name="cuboid_001" parent="Node_2" index="1"]
+layers = 524288

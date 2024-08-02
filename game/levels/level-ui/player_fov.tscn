@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://da4hpd7n8ei8o"]
+
+[ext_resource type="PackedScene" uid="uid://bradyey5jbin0" path="res://assets/models/equipments/nozzle.tscn" id="1_iqvl3"]
+
+[node name="player_fov" type="Node3D"]
+
+[node name="nozzle" parent="." instance=ExtResource("1_iqvl3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.272141, 0, -0.177612)
+
+[node name="player-light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.399306, -0.130943)
+visible = false
+
+[node name="player-camera" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.399306, -0.130943)
+cull_mask = 524288
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

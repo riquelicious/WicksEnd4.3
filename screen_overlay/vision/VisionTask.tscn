@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c02s3oy7tqsmk"]
+
+[ext_resource type="Script" path="res://screen_overlay/vision/VisionTask.gd" id="1_8hufu"]
+
+[node name="VisionTask" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_8hufu")

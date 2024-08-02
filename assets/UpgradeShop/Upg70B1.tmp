@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://hv22w03byfgv"]
+
+[ext_resource type="Script" path="res://assets/UpgradeShop/upgrade_shop.gd" id="1_8dgpv"]
+[ext_resource type="Texture2D" uid="uid://cqrw0fff4082w" path="res://icon.svg" id="2_vnfb6"]
+[ext_resource type="PackedScene" uid="uid://cbs4bxc0hka0k" path="res://assets/modules/gesture_button/gesture_button.tscn" id="3_pi8dy"]
+
+[node name="UpgradeShop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8dgpv")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -200.0
+offset_right = -100.0
+offset_bottom = 200.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("2_vnfb6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -160.0
+offset_right = 300.0
+offset_bottom = 160.0
+grow_vertical = 2
+
+[node name="GestureButton" parent="VBoxContainer" instance=ExtResource("3_pi8dy")]
+layout_mode = 2
+button_gesture = 1
+
+[node name="GestureButton2" parent="VBoxContainer" instance=ExtResource("3_pi8dy")]
+layout_mode = 2
+button_gesture = null
+
+[node name="GestureButton3" parent="VBoxContainer" instance=ExtResource("3_pi8dy")]
+layout_mode = 2
+button_gesture = null
+
+[node name="GestureButton4" parent="VBoxContainer" instance=ExtResource("3_pi8dy")]
+layout_mode = 2
+button_gesture = null
+
+[node name="GestureButton5" parent="VBoxContainer" instance=ExtResource("3_pi8dy")]
+layout_mode = 2
+button_gesture = null
+
+[node name="GestureButton6" parent="VBoxContainer" instance=ExtResource("3_pi8dy")]
+layout_mode = 2
+button_gesture = null

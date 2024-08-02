@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bev5tc1uhkp1j"]
+
+[ext_resource type="Script" path="res://assets/game_objects/interactables/interactables.gd" id="1_ln1xd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yj585"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4jon8"]
+
+[node name="interactable" type="StaticBody3D"]
+collision_layer = 513
+collision_mask = 512
+script = ExtResource("1_ln1xd")
+
+[node name="marker_origin" type="Marker3D" parent="."]
+
+[node name="camera_position" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.143)
+
+[node name="something" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_yj585")
+skeleton = NodePath("../..")
+
+[node name="wall_collision" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_4jon8")

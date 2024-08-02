@@ -1,0 +1,83 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Wicks End"
+config/tags=PackedStringArray("current")
+run/main_scene="res://game/main-menu/main_menu_level.tscn"
+config/features=PackedStringArray("4.3", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://assets/global_scripts/GlobalSettings.gd"
+PauseMenu="*res://assets/global_scripts/pause_menu/pause_menu.tscn"
+CombinedRecognition="*res://screen_overlay/vision/combined_recognition/combined_recognition.tscn"
+FilePaths="*res://assets/global_scripts/file_path/file_paths.tscn"
+GlobalControls="*res://assets/global_scripts/global_variables/global_controls.tscn"
+GlobalCursor="*res://assets/global_scripts/cursor/cursor.tscn"
+MousePositioning="*res://assets/global_scripts/cursor/mouse_positioning.tscn"
+GesturedDebug="*res://assets/global_scripts/gestured_debug.gd"
+Transition="*res://assets/transition/Transition.tscn"
+SaveManager="*res://assets/global_scripts/save_manager/SaveManager.gd"
+
+[debug]
+
+gdscript/warnings/unused_parameter=0
+gdscript/warnings/unused_signal=0
+
+[display]
+
+window/size/mode=3
+window/size/borderless=true
+window/size/window_width_override=576
+window/size/window_height_override=324
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_height"
+window/layer_20=""
+
+[dotnet]
+
+project/assembly_name="Wicks End"
+
+[editor]
+
+movie_writer/movie_file="D:/Downloads/movies/movie.avi"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/GDMP/plugin.cfg", "res://addons/nv.file_system/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://addons/": "blue",
+"res://assets/": "yellow",
+"res://game/": "green",
+"res://screen_overlay/": "red"
+}
+
+[layer_names]
+
+2d_render/layer_2="health"
+3d_render/layer_20="viewmodel"
+3d_physics/layer_2="valves"
+3d_physics/layer_9="interactables"
+3d_physics/layer_10="interactables"
+3d_physics/layer_11="fire"
+3d_physics/layer_12="water"
+3d_physics/layer_13="player_damage"
+
+[rendering]
+
+rendering_device/driver="vulcan"
+rendering_device/driver.windows="d3d12"
+renderer/rendering_method="gl_compatibility"

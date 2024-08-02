@@ -1,0 +1,295 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqggnex85baek"]
+
+[ext_resource type="Script" path="res://assets/transition/Transition.gd" id="1_1l3ju"]
+
+[sub_resource type="Animation" id="Animation_u87u8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bg1:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bg2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0472]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bg3:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0944]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bg4:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.14159]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Bg5:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [4.18879]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Bg6:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5.23599]
+}
+
+[sub_resource type="Animation" id="Animation_wakn7"]
+resource_name = "fade_background"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bg1:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.01, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [-0.523599, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bg2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.01, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.523599, 1.0472]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bg3:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.01, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [1.5708, 2.0944]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Bg4:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.01, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [2.61799, 3.14159]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Bg5:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.01, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [3.66519, 4.18879]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Bg6:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.01, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [4.71239, 5.23599]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("..:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.01, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i6kbu"]
+_data = {
+"RESET": SubResource("Animation_u87u8"),
+"fade_background": SubResource("Animation_wakn7")
+}
+
+[node name="Transition" type="CanvasLayer"]
+layer = 110
+script = ExtResource("1_1l3ju")
+
+[node name="Transition" type="Control" parent="."]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bg1" type="ColorRect" parent="Transition"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 2000.0
+offset_top = -2000.0
+offset_right = 4000.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(-1, 1)
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Bg2" type="ColorRect" parent="Transition"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 2732.0
+offset_top = 732.0
+offset_right = 4732.0
+offset_bottom = 2732.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.0472
+scale = Vector2(-1, 1)
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Bg3" type="ColorRect" parent="Transition"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 732.0
+offset_top = 2732.0
+offset_right = 2732.0
+offset_bottom = 4732.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 2.0944
+scale = Vector2(-1, 1)
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Bg4" type="ColorRect" parent="Transition"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2000.0
+offset_top = 2000.0
+offset_bottom = 4000.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.14159
+scale = Vector2(-1, 1)
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Bg5" type="ColorRect" parent="Transition"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2732.0
+offset_top = -732.0
+offset_right = -732.0
+offset_bottom = 1268.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 4.18879
+scale = Vector2(-1, 1)
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Bg6" type="ColorRect" parent="Transition"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -732.0
+offset_top = -2732.0
+offset_right = 1268.0
+offset_bottom = -732.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 5.23599
+scale = Vector2(-1, 1)
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Transition"]
+libraries = {
+"": SubResource("AnimationLibrary_i6kbu")
+}

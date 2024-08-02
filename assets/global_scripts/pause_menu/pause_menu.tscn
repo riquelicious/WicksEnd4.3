@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://jteotj0pq28k"]
+
+[ext_resource type="Script" path="res://assets/global_scripts/pause_menu/pause_menu.gd" id="1_dg176"]
+
+[node name="PauseMenu" type="Node"]
+script = ExtResource("1_dg176")
+enabled = false
