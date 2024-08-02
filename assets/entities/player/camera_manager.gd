@@ -63,3 +63,4 @@ func update_nozzle_aim(delta):
 func reset_camera_position():
 	reset_camera = true
 	back_button_container.visible = false	
+	

@@ -36,7 +36,6 @@ gdscript/warnings/unused_signal=0
 
 [display]
 
-window/size/mode=3
 window/size/borderless=true
 window/size/window_width_override=576
 window/size/window_height_override=324
@@ -69,7 +68,10 @@ folder_colors={
 
 2d_render/layer_2="health"
 3d_render/layer_20="viewmodel"
-3d_physics/layer_2="valves"
+3d_physics/layer_1="player"
+3d_physics/layer_2="other_stuff"
+3d_physics/layer_3="civilian"
+3d_physics/layer_7="valve"
 3d_physics/layer_9="interactables"
 3d_physics/layer_10="interactables"
 3d_physics/layer_11="fire"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://js0y1ym1045y"]
+[gd_scene load_steps=25 format=3 uid="uid://js0y1ym1045y"]
 
 [ext_resource type="Script" path="res://game/levels/level1/level-1.gd" id="1_amc4j"]
 [ext_resource type="PackedScene" uid="uid://q1yxpssljlq1" path="res://assets/entities/player/player.tscn" id="1_yf7aq"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bev5tc1uhkp1j" path="res://assets/entities/interactables/interactable.tscn" id="4_lpi4d"]
 [ext_resource type="PackedScene" uid="uid://d16gnyq6dhvlo" path="res://assets/entities/interactables/valve.tscn" id="5_11r4o"]
 [ext_resource type="PackedScene" uid="uid://d30qmtkljswab" path="res://assets/entities/interactables/pickup.tscn" id="5_or6l4"]
+[ext_resource type="Script" path="res://assets/game_objects/interactables/civilian_module/dropping_area.gd" id="6_oljpr"]
+[ext_resource type="PackedScene" uid="uid://c07pqmhe5cemp" path="res://assets/entities/interactables/civilian.tscn" id="6_r4n0h"]
 [ext_resource type="PackedScene" uid="uid://c7lfbpnhhs0hr" path="res://assets/entities/fire/cube_fire.tscn" id="6_xin8i"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tv6n2"]
@@ -57,6 +59,9 @@ size = Vector3(20, 7, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_vxusw"]
 size = Vector3(20, 7, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_dpepo"]
+size = Vector3(4, 2, 4)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_52b51"]
 transparency = 1
 shading_mode = 0
@@ -93,6 +98,8 @@ shadow_enabled = true
 [node name="World" type="Node3D" parent="."]
 
 [node name="bottom" type="StaticBody3D" parent="World"]
+collision_layer = 3
+collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_n042r")
 metadata/_edit_lock_ = true
 
@@ -105,6 +112,8 @@ shape = SubResource("BoxShape3D_qttcl")
 
 [node name="top" type="StaticBody3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+collision_layer = 3
+collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_n042r")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/top"]
@@ -116,6 +125,8 @@ shape = SubResource("BoxShape3D_mnnrh")
 
 [node name="top2" type="StaticBody3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 10)
+collision_layer = 3
+collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_n042r")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/top2"]
@@ -127,6 +138,8 @@ shape = SubResource("BoxShape3D_vxusw")
 
 [node name="top5" type="StaticBody3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -10)
+collision_layer = 3
+collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_n042r")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/top5"]
@@ -138,6 +151,8 @@ shape = SubResource("BoxShape3D_vxusw")
 
 [node name="top3" type="StaticBody3D" parent="World"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10, 3, 0)
+collision_layer = 3
+collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_n042r")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/top3"]
@@ -149,6 +164,8 @@ shape = SubResource("BoxShape3D_vxusw")
 
 [node name="top4" type="StaticBody3D" parent="World"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 3, 0)
+collision_layer = 3
+collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_n042r")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/top4"]
@@ -160,18 +177,36 @@ shape = SubResource("BoxShape3D_vxusw")
 
 [node name="breakable" parent="." instance=ExtResource("3_ifjm6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -6)
+collision_layer = 515
 
 [node name="interactable" parent="." instance=ExtResource("4_lpi4d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, -6)
+collision_layer = 515
 
 [node name="marker_origin" parent="interactable" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="valve" parent="." instance=ExtResource("5_11r4o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -6)
+collision_layer = 515
 
 [node name="pickup" parent="." instance=ExtResource("5_or6l4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -5)
+collision_layer = 515
+
+[node name="DropArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, 6)
+script = ExtResource("6_oljpr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DropArea"]
+shape = SubResource("BoxShape3D_dpepo")
+
+[node name="civilian" parent="." instance=ExtResource("6_r4n0h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 3, -4)
+collision_layer = 519
+collision_mask = 519
+axis_lock_angular_x = true
+axis_lock_angular_z = true
 
 [node name="player" parent="." instance=ExtResource("1_yf7aq")]
 unique_name_in_owner = true

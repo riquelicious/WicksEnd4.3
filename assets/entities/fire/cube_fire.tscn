@@ -90,36 +90,36 @@ script = ExtResource("1_8ynrw")
 
 [node name="top" type="RayCast3D" parent="raycasts"]
 target_position = Vector3(0, 1, 0)
-collision_mask = 1024
+collision_mask = 7168
 collide_with_areas = true
 collide_with_bodies = false
 
 [node name="bottom" type="RayCast3D" parent="raycasts"]
-collision_mask = 1024
+collision_mask = 7168
 collide_with_areas = true
 collide_with_bodies = false
 
 [node name="left" type="RayCast3D" parent="raycasts"]
 target_position = Vector3(1, 0, 0)
-collision_mask = 1024
+collision_mask = 7168
 collide_with_areas = true
 collide_with_bodies = false
 
 [node name="right" type="RayCast3D" parent="raycasts"]
 target_position = Vector3(-1, 0, 0)
-collision_mask = 1024
+collision_mask = 7168
 collide_with_areas = true
 collide_with_bodies = false
 
 [node name="front" type="RayCast3D" parent="raycasts"]
 target_position = Vector3(0, 0, -1)
-collision_mask = 1024
+collision_mask = 7168
 collide_with_areas = true
 collide_with_bodies = false
 
 [node name="back" type="RayCast3D" parent="raycasts"]
 target_position = Vector3(0, 0, 1)
-collision_mask = 1024
+collision_mask = 7168
 collide_with_areas = true
 collide_with_bodies = false
 

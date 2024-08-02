@@ -28,4 +28,7 @@ func position_camera(delta):
 			player_camera.global_position = default_camera_position
 			default_camera_position = null
 			is_interacting = false
+			if "valve_manager" in parent:
+				if parent.valve_manager.finished:
+					parent.remove_from_group("interactable")
 		

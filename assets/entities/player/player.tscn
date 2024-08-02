@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://q1yxpssljlq1"]
+[gd_scene load_steps=57 format=3 uid="uid://q1yxpssljlq1"]
 
 [ext_resource type="Script" path="res://assets/entities/player/player.gd" id="1_n13cy"]
 [ext_resource type="PackedScene" uid="uid://bradyey5jbin0" path="res://assets/models/equipments/nozzle.tscn" id="2_ikbvg"]
@@ -7,13 +7,13 @@
 [ext_resource type="Theme" uid="uid://xiy1beq5fkuh" path="res://assets/theme/Global.tres" id="4_rs542"]
 [ext_resource type="AudioStream" uid="uid://bjbo2o4hv7pmi" path="res://assets/sfx/axe/chop.ogg" id="6_vfucy"]
 [ext_resource type="Script" path="res://assets/modules/3d/floating_ui/marker_parent.gd" id="7_1bxbh"]
+[ext_resource type="Script" path="res://assets/modules/button.gd" id="7_eg6oj"]
 [ext_resource type="Texture2D" uid="uid://75m7lx62tblq" path="res://assets/images/ui/merit/merit.png" id="9_gail2"]
 [ext_resource type="FontFile" uid="uid://55nvttuxhy57" path="res://assets/fonts/NutgameDEMO-Bold.ttf" id="9_lnego"]
 [ext_resource type="PackedScene" uid="uid://cwphdco3oqbna" path="res://assets/modules/gauges/gauges.tscn" id="10_edsx7"]
 [ext_resource type="Shader" path="res://assets/shaders/font_gradient.gdshader" id="10_l4rio"]
 [ext_resource type="AudioStream" uid="uid://byqrtotf7jtwy" path="res://assets/sfx/points/point_up.ogg" id="12_52rgn"]
 [ext_resource type="AudioStream" uid="uid://dg8kksxovcd7w" path="res://assets/sfx/water/pressurized_water.ogg" id="14_h0c7s"]
-[ext_resource type="Script" path="res://assets/entities/player/back_button.gd" id="15_1j6yn"]
 [ext_resource type="Texture2D" uid="uid://b5tqeoeq77vyn" path="res://assets/overlays/damage_overlay.png" id="16_sj4g4"]
 [ext_resource type="AudioStream" uid="uid://cje45y2fk5yiq" path="res://assets/sfx/rustle.ogg" id="17_t6m43"]
 
@@ -100,6 +100,9 @@ _data = {
 }
 
 [sub_resource type="Environment" id="Environment_mu1tj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_phw3n"]
+size = Vector3(1, 2, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r5as6"]
 transparency = 1
@@ -837,10 +840,17 @@ transform = Transform3D(1, 0, 0, 0, 0.0714952, 0.997441, 0, -0.997441, 0.0714952
 
 [node name="nozzle" parent="Control/equipment-overlay/SubViewportContainer/SubViewport/viewmodel-camera/equipment_node" instance=ExtResource("2_ikbvg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.227, 0, -0.084)
+visible = false
 
 [node name="fire_axe" parent="Control/equipment-overlay/SubViewportContainer/SubViewport/viewmodel-camera/equipment_node" instance=ExtResource("3_aw3kq")]
 transform = Transform3D(1, 0, 0, 0, 0.99863, 0.052336, 0, -0.052336, 0.99863, 0.237, 0, -0.315)
 visible = false
+
+[node name="civilian" type="MeshInstance3D" parent="Control/equipment-overlay/SubViewportContainer/SubViewport/viewmodel-camera/equipment_node"]
+transform = Transform3D(1, 0, 0, 0, 0.790711, -0.61219, 0, 0.61219, 0.790711, 0.77272, -0.269056, -0.633138)
+layers = 524288
+mesh = SubResource("BoxMesh_phw3n")
+skeleton = NodePath("../..")
 
 [node name="water_particles" type="CPUParticles3D" parent="Control/equipment-overlay/SubViewportContainer/SubViewport/viewmodel-camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00267798, -0.0768623, -0.409205)
@@ -912,7 +922,7 @@ offset_top = -0.104004
 offset_right = 249.984
 offset_bottom = -0.200012
 theme = ExtResource("4_rs542")
-script = ExtResource("15_1j6yn")
+script = ExtResource("7_eg6oj")
 one_shot = true
 metadata/_edit_use_anchors_ = true
 
@@ -1085,6 +1095,7 @@ shape = SubResource("CapsuleShape3D_sfx4s")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+layers = 512
 mesh = SubResource("CapsuleMesh_je2te")
 
 [node name="cam_marker" type="Marker3D" parent="."]
@@ -1101,7 +1112,7 @@ libraries = {
 [node name="InteractRay" type="RayCast3D" parent="raycasts"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.404, 0)
 target_position = Vector3(0, 0, -2)
-collision_mask = 768
+collision_mask = 774
 debug_shape_custom_color = Color(0.592157, 1, 0.231373, 0.0392157)
 debug_shape_thickness = 3
 
@@ -1136,6 +1147,8 @@ bus = &"SFX"
 
 [node name="nozzle_aim_delay" type="Timer" parent="timers"]
 one_shot = true
+
+[node name="drop_delay" type="Timer" parent="timers"]
 
 [node name="particles" type="Node3D" parent="."]
 

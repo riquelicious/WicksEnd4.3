@@ -10,16 +10,20 @@ var total_rotations: int = 0
 var previous_ration_status := true
 var previous_gesture : String
 var finished := false
+var cam_reset := false
+var player : PlayerA
 
 func initialize(parent_instance : Node3D):
 	parent = parent_instance
 	valve_anim = parent.get_node("valve_module/valve_animation")
 	valve_model = parent.get_node("valve_module")
 	parent.set_process_input(true)	
+	player = parent.get_node("%player")
 
 func update_rotation(_delta):
 	if finished : return
-	if not parent.positioner.is_interacting: return
+	if not parent.positioner.is_interacting: 
+		return
 	var mouse_pos = parent.get_viewport().get_mouse_position()
 	if filter_geture():
 		if not last_angle:
@@ -58,3 +62,7 @@ func get_angle_to_mouse(mouse_pos: Vector2) -> float:
 
 func animate_valve():
 	valve_anim.play("turn")
+	await valve_anim.animation_finished
+	player.camera_manager.reset_camera_position()
+	Global.level_settings.lvlPoints += parent.points_to_add
+	

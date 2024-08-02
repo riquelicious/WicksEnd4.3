@@ -73,8 +73,8 @@ shape = SubResource("BoxShape3D_4jon8")
 
 [node name="valve_module" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.763415)
-collision_layer = 2
-collision_mask = 2
+collision_layer = 0
+collision_mask = 0
 
 [node name="ray_target" type="CollisionShape3D" parent="valve_module"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2174)

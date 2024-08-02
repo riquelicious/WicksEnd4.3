@@ -5,6 +5,11 @@ var player : PlayerA
 var straight_interaction_raycast : RayCast3D
 var axe_damage : float
 var anim : AnimationPlayer
+var is_civilian_carried : bool = false
+var drop_flag : bool = false
+var pick_flag : bool = false
+var civilian_id 
+var previous_gesture : String = ""
 
 func initialize(player_instance: PlayerA):
 	player = player_instance
@@ -14,6 +19,14 @@ func initialize(player_instance: PlayerA):
 
 func check_collision():
 	var collider = straight_interaction_raycast.get_collider()
+	if is_civilian_carried: 
+		if collider: 
+			if not collider.is_in_group("civilian"):
+				return
+		do_drop_civilian()
+		pick_flag = false
+		return
+	drop_flag = false
 	if collider:
 		if collider.is_in_group("breakable"):
 			do_breakable(collider)
@@ -66,20 +79,40 @@ func do_interactables(collider):
 func do_pickups(collider):
 	player.objective_markers.switch_crosshair("interaction")
 	if Global.gesture_settings.gesture == GlobalControls.mvInteract:
-		if is_instance_valid(collider):
-			collider.pickup_manager.pickup()
+		collider.pickup_manager.pickup()
 	
 func do_civilian(collider):
 	player.objective_markers.switch_crosshair("interaction")
 	if Global.gesture_settings.gesture == GlobalControls.mvInteract:
-		if is_instance_valid(collider):
-			collider.pickup_manager.pickup()
+		if not pick_flag: return
+		is_civilian_carried = true
+		collider.civilain_manager.pickup()
+		civilian_id = collider.get_instance_id()
+		player.objective_markers.switch_crosshair("crosshair")
+		await change_equipment(2 ,true)
+	else:
+		pick_flag = true
 
-func change_equipment(equipment: int):
+func do_drop_civilian():
+	if Global.gesture_settings.gesture == GlobalControls.mvInteract:
+		if not drop_flag: return
+		await change_equipment(0 ,true)
+		var front = -player.transform.basis.z.normalized()
+		var pos = player.global_transform.origin + front * 1
+		var civ = instance_from_id(civilian_id)
+		civ.civilain_manager.drop(pos)
+		is_civilian_carried = false
+	else:
+		drop_flag = true
+
+
+func change_equipment(equipment: int, slowed : bool = false,):
 	var equipments = player.equipment_manager.equipment_node.get_children()
 	if equipments[equipment].visible == true:
 		return
 	else:
+		if slowed:
+			anim.speed_scale = 0.5
 		anim.play("hide_equipment")
 		await anim.animation_finished
 		for eq in equipments:
@@ -87,3 +120,5 @@ func change_equipment(equipment: int):
 		equipments[equipment].visible = true
 		anim.play_backwards("hide_equipment")
 		await anim.animation_finished
+		if slowed:
+			anim.speed_scale = 1.0

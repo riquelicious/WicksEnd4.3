@@ -1,6 +1,8 @@
 extends interactables
 
 @export var rotation_amount := 3
+@export var points_to_add := 300
+
 var valve_manager : ValveManager = ValveManager.new()
 
 func _ready() -> void:
