@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://wgfefarodfrv"]
+
+[ext_resource type="Script" path="res://assets/game_objects/interactables/civilian_module/dropping_area.gd" id="1_0niua"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dpepo"]
+size = Vector3(4, 2, 4)
+
+[node name="DropArea" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, 6)
+script = ExtResource("1_0niua")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_dpepo")

@@ -18,6 +18,7 @@ func initialize(player_instance: PlayerA):
 	anim = player.get_node("AnimationPlayer")
 
 func check_collision():
+	if player.is_aim_active: return
 	var collider = straight_interaction_raycast.get_collider()
 	if is_civilian_carried: 
 		if collider: 

@@ -31,6 +31,7 @@ func initialize(player_instance: PlayerA):
 
 
 func update_aim(delta):
+	if player.interaction_manager.is_civilian_carried: return
 	if not player.is_aim_active and not player.is_interacting:
 		if player_camera.rotation != default_camera_rotation:
 			player_camera.rotation = lerp(player_camera.rotation, default_camera_rotation, 10 * delta)

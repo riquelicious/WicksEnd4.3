@@ -20,3 +20,4 @@ func _unpause_window():
 	for child in get_tree().root.get_children():
 		if child.name != self.name:
 			child.process_mode = Node.PROCESS_MODE_INHERIT
+

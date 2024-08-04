@@ -1,24 +1,29 @@
-class_name combo_minigame
+class_name ComboMinigame
 extends Control
 
 @onready var command_container := $CenterContainer/gesture_command_container
 @onready var combo_countdown := $combo_countdown
 @onready var countdown_bar = $countdown_bar
 @onready var combo_node_path := "res://assets/modules/combo_minigame/combo_node.tscn"
+@onready var color_rect: ColorRect = $ColorRect
 
 var command_list := []
 var index := 0
 var combo_countdown_duration := 0
 var cn_is_expandable := true
 var cn_min_size := 80
-var min_percommand_duration := 1.5
+var min_percommand_duration := 2.5
 var combo_achieved = false
-
+var combo_inistialied := false
 func _ready():
+	color_rect.visible = false
 	combo_countdown.connect("timeout",self._command_failed)
-	command_list = _generate_combo(5)
-	
-func _generate_combo(combo_amount):
+	#command_list = _generate_combo(5)
+
+signal finished_win
+signal finished_lose	
+
+func generate_combo(combo_amount):
 	var command_array := []
 	var previous_index : int = 0
 	combo_countdown_duration = combo_amount * min_percommand_duration
@@ -32,6 +37,7 @@ func _generate_combo(combo_amount):
 			previous_index = rand_index
 			combo_amount -= 1
 	combo_countdown.start(combo_countdown_duration)
+	combo_inistialied = true
 	return command_array
 
 func _add_combo_node(image_index):
@@ -43,6 +49,7 @@ func _add_combo_node(image_index):
 	command_container.add_child(node_instance)
 
 func _check_combo():
+	if not combo_inistialied: return
 	if combo_achieved: return
 	if not command_list.size() > index:
 		_command_succeed()
@@ -55,11 +62,13 @@ func _check_combo():
 		
 func _command_succeed():
 	print("congrats")
-	pass
+	emit_signal("finished_win")
 
 func _command_failed():	
 	print("failed")
-	pass
+	emit_signal("finished_lose")
+	color_rect.visible = true
+	
 		
 func _process(_delta):
 	_check_combo()
