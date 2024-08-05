@@ -12,7 +12,7 @@ void vertex() {
     // Calculate normalized UV coordinates based on text size
     iuv = VERTEX.xy; /// text_size;
 }
- 
+
 void fragment() {
     vec2 uv = iuv / text_size;
     //vec4 color.a = texture(TEXTURE, UV).a;

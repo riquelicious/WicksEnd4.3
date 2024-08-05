@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://c7lfbpnhhs0hr"]
 
 [ext_resource type="Script" path="res://assets/entities/fire/fire.gd" id="1_8ynrw"]
-[ext_resource type="AudioStream" uid="uid://bbpg22xv1aqjb" path="res://assets/sfx/fire/fire_crackle.ogg" id="2_hul2y"]
+[ext_resource type="AudioStream" uid="uid://bbpg22xv1aqjb" path="res://assets/audio/sfx/fire/fire_crackle.ogg" id="2_hul2y"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4827y"]
 transparency = 1

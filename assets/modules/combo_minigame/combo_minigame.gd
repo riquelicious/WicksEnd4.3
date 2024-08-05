@@ -4,7 +4,7 @@ extends Control
 @onready var command_container := $CenterContainer/gesture_command_container
 @onready var combo_countdown := $combo_countdown
 @onready var countdown_bar = $countdown_bar
-@onready var combo_node_path := "res://assets/modules/combo_minigame/combo_node.tscn"
+@onready var combo_node_path : String = FilePaths.combo_node_path
 @onready var color_rect: ColorRect = $ColorRect
 
 var command_list := []

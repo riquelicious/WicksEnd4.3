@@ -1,9 +1,28 @@
-[gd_resource type="VisualShader" format=3 uid="uid://gi0r7w3bmag5"]
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://gi0r7w3bmag5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tv6n2"]
+sky_top_color = Color(0.286307, 0.430578, 0.594383, 1)
+sky_horizon_color = Color(0.855748, 0.587475, 0.363265, 1)
+sky_curve = 0.212132
+sky_energy_multiplier = 0.75
+ground_horizon_color = Color(0.652008, 0.44797, 0.246579, 1)
+ground_curve = 0.0186606
+sun_angle_max = 53.49
+sun_curve = 0.14489
+
+[sub_resource type="Sky" id="Sky_inhm3"]
+sky_material = SubResource("ProceduralSkyMaterial_tv6n2")
 
 [resource]
-code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
-
-
-
-"
+background_mode = 2
+sky = SubResource("Sky_inhm3")
+ambient_light_source = 3
+ambient_light_color = Color(0.37, 0.0925, 0.0925, 1)
+ambient_light_sky_contribution = 0.1
+tonemap_mode = 3
+glow_enabled = true
+glow_bloom = 0.1
+fog_enabled = true
+fog_light_color = Color(0.774302, 0.456916, 0.294201, 1)
+adjustment_brightness = 0.75
+adjustment_saturation = 0.75

@@ -1,2 +1,9 @@
 # Godot 4+ specific ignores
 .godot/
+*.import
+*.tscn
+*.gdextension
+addons/
+*.godot
+*.tmp
+*.tres
