@@ -3,6 +3,8 @@
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_aqowc"]
 resource_name = "Reverb"
 room_size = 0.1
+dry = 0.75
+wet = 0.2
 
 [resource]
 bus/0/volume_db = 1.32491

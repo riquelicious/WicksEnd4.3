@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dl1s37dxw4b5j"]
 
-[ext_resource type="Script" path="res://assets/game_objects/breakables/breakable.gd" id="1_i4102"]
+[ext_resource type="Script" path="res://assets/entities/breakables/breakable.gd" id="1_i4102"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_yj585"]
 

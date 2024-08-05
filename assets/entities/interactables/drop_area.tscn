@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://wgfefarodfrv"]
 
-[ext_resource type="Script" path="res://assets/game_objects/interactables/civilian_module/dropping_area.gd" id="1_0niua"]
+[ext_resource type="Script" path="res://assets/entities/interactables/civilian_module/dropping_area.gd" id="1_0niua"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dpepo"]
 size = Vector3(4, 2, 4)

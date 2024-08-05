@@ -1,21 +1,22 @@
-[gd_scene load_steps=57 format=3 uid="uid://q1yxpssljlq1"]
+[gd_scene load_steps=58 format=3 uid="uid://q1yxpssljlq1"]
 
 [ext_resource type="Script" path="res://assets/entities/player/player.gd" id="1_n13cy"]
 [ext_resource type="PackedScene" uid="uid://bradyey5jbin0" path="res://assets/models/equipments/nozzle.tscn" id="2_ikbvg"]
 [ext_resource type="PackedScene" uid="uid://bohtjbfefqrws" path="res://assets/models/equipments/fire_axe.tscn" id="3_aw3kq"]
 [ext_resource type="Texture2D" uid="uid://dw1cp5etj7bth" path="res://assets/images/cursor_gestures/point_up.png" id="3_oqsjq"]
 [ext_resource type="Theme" uid="uid://xiy1beq5fkuh" path="res://assets/theme/Global.tres" id="4_rs542"]
-[ext_resource type="AudioStream" uid="uid://bjbo2o4hv7pmi" path="res://assets/sfx/axe/chop.ogg" id="6_vfucy"]
+[ext_resource type="AudioStream" uid="uid://bjbo2o4hv7pmi" path="res://assets/audio/sfx/axe/chop.ogg" id="6_vfucy"]
 [ext_resource type="Script" path="res://assets/modules/3d/floating_ui/marker_parent.gd" id="7_1bxbh"]
 [ext_resource type="Script" path="res://assets/modules/button.gd" id="7_eg6oj"]
 [ext_resource type="Texture2D" uid="uid://75m7lx62tblq" path="res://assets/images/ui/merit/merit.png" id="9_gail2"]
 [ext_resource type="FontFile" uid="uid://55nvttuxhy57" path="res://assets/fonts/NutgameDEMO-Bold.ttf" id="9_lnego"]
 [ext_resource type="PackedScene" uid="uid://cwphdco3oqbna" path="res://assets/modules/gauges/gauges.tscn" id="10_edsx7"]
 [ext_resource type="Shader" path="res://assets/shaders/font_gradient.gdshader" id="10_l4rio"]
-[ext_resource type="AudioStream" uid="uid://byqrtotf7jtwy" path="res://assets/sfx/points/point_up.ogg" id="12_52rgn"]
-[ext_resource type="AudioStream" uid="uid://dg8kksxovcd7w" path="res://assets/sfx/water/pressurized_water.ogg" id="14_h0c7s"]
+[ext_resource type="AudioStream" uid="uid://byqrtotf7jtwy" path="res://assets/audio/sfx/points/point_up.ogg" id="12_52rgn"]
+[ext_resource type="AudioStream" uid="uid://dg8kksxovcd7w" path="res://assets/audio/sfx/water/pressurized_water.ogg" id="14_h0c7s"]
 [ext_resource type="Texture2D" uid="uid://b5tqeoeq77vyn" path="res://assets/overlays/damage_overlay.png" id="16_sj4g4"]
-[ext_resource type="AudioStream" uid="uid://cje45y2fk5yiq" path="res://assets/sfx/rustle.ogg" id="17_t6m43"]
+[ext_resource type="AudioStream" uid="uid://by62fhqjtc7j" path="res://assets/audio/sfx/rubbles/rubble.ogg" id="17_gqy4a"]
+[ext_resource type="AudioStream" uid="uid://cje45y2fk5yiq" path="res://assets/audio/sfx/rustle.ogg" id="17_t6m43"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ipqwm"]
 bg_color = Color(1, 1, 1, 1)
@@ -1089,6 +1090,12 @@ current = true
 [node name="nozzle_end_point" type="Marker3D" parent="player-camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00267798, -0.0593733, -0.257012)
 
+[node name="extinguisher_raycast" type="RayCast3D" parent="player-camera"]
+target_position = Vector3(0, 0, -2)
+collision_mask = 774
+debug_shape_custom_color = Color(0.592157, 1, 0.231373, 0.0392157)
+debug_shape_thickness = 3
+
 [node name="player-collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_sfx4s")
@@ -1141,6 +1148,9 @@ transform = Transform3D(1, 2.98023e-08, 1.49012e-08, -1.3321e-08, -0.052336, 0.9
 stream = ExtResource("6_vfucy")
 bus = &"SFX"
 
+[node name="rubbles" type="AudioStreamPlayer3D" parent="sounds"]
+stream = ExtResource("17_gqy4a")
+
 [node name="timers" type="Node3D" parent="."]
 
 [node name="water_detection_delay" type="Timer" parent="timers"]
@@ -1177,6 +1187,19 @@ one_shot = true
 [node name="water_mesh_container" type="Node3D" parent="."]
 
 [node name="water_particles" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003, 1.345, -0.257)
+amount = 128
+lifetime = 0.2
+preprocess = 1.0
+mesh = SubResource("SphereMesh_eo3wx")
+direction = Vector3(0, 0, -1)
+spread = 1.0
+initial_velocity_min = 20.0
+initial_velocity_max = 21.0
+scale_amount_curve = SubResource("Curve_v4wc3")
+color_ramp = SubResource("Gradient_6l8st")
+
+[node name="extinguisher_particle" type="CPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003, 1.345, -0.257)
 amount = 128
 lifetime = 0.2
