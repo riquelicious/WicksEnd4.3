@@ -1,19 +1,26 @@
-[gd_scene load_steps=58 format=3 uid="uid://q1yxpssljlq1"]
+[gd_scene load_steps=76 format=3 uid="uid://q1yxpssljlq1"]
 
 [ext_resource type="Script" path="res://assets/entities/player/player.gd" id="1_n13cy"]
 [ext_resource type="PackedScene" uid="uid://bradyey5jbin0" path="res://assets/models/equipments/nozzle.tscn" id="2_ikbvg"]
 [ext_resource type="PackedScene" uid="uid://bohtjbfefqrws" path="res://assets/models/equipments/fire_axe.tscn" id="3_aw3kq"]
 [ext_resource type="Texture2D" uid="uid://dw1cp5etj7bth" path="res://assets/images/cursor_gestures/point_up.png" id="3_oqsjq"]
 [ext_resource type="Theme" uid="uid://xiy1beq5fkuh" path="res://assets/theme/Global.tres" id="4_rs542"]
+[ext_resource type="PackedScene" uid="uid://dprsalqd77m3j" path="res://assets/models/equipments/fireextinguisher_idle.tscn" id="6_1t0c7"]
 [ext_resource type="AudioStream" uid="uid://bjbo2o4hv7pmi" path="res://assets/audio/sfx/axe/chop.ogg" id="6_vfucy"]
 [ext_resource type="Script" path="res://assets/modules/3d/floating_ui/marker_parent.gd" id="7_1bxbh"]
 [ext_resource type="Script" path="res://assets/modules/button.gd" id="7_eg6oj"]
+[ext_resource type="PackedScene" uid="uid://dttjmi8a47id7" path="res://assets/models/equipments/extinguisher_nozzle.tscn" id="7_p2hgc"]
 [ext_resource type="Texture2D" uid="uid://75m7lx62tblq" path="res://assets/images/ui/merit/merit.png" id="9_gail2"]
 [ext_resource type="FontFile" uid="uid://55nvttuxhy57" path="res://assets/fonts/NutgameDEMO-Bold.ttf" id="9_lnego"]
 [ext_resource type="PackedScene" uid="uid://cwphdco3oqbna" path="res://assets/modules/gauges/gauges.tscn" id="10_edsx7"]
 [ext_resource type="Shader" path="res://assets/shaders/font_gradient.gdshader" id="10_l4rio"]
+[ext_resource type="Texture2D" uid="uid://dud4haiwy1epr" path="res://assets/images/ui/gesture_icons/point.png" id="12_4p2nv"]
 [ext_resource type="AudioStream" uid="uid://byqrtotf7jtwy" path="res://assets/audio/sfx/points/point_up.ogg" id="12_52rgn"]
+[ext_resource type="FontFile" uid="uid://be7tsy07e5604" path="res://assets/fonts/OPTIMA_B.TTF" id="12_m8wms"]
+[ext_resource type="Shader" path="res://assets/shaders/invertv2.gdshader" id="12_vp320"]
+[ext_resource type="Texture2D" uid="uid://chk1q68b2gl3n" path="res://assets/images/ui/gesture_icons/victory.png" id="14_dykr1"]
 [ext_resource type="AudioStream" uid="uid://dg8kksxovcd7w" path="res://assets/audio/sfx/water/pressurized_water.ogg" id="14_h0c7s"]
+[ext_resource type="Texture2D" uid="uid://7sfibnkn4j53" path="res://assets/images/ui/gesture_icons/iloveyou.png" id="15_dq2e0"]
 [ext_resource type="Texture2D" uid="uid://b5tqeoeq77vyn" path="res://assets/overlays/damage_overlay.png" id="16_sj4g4"]
 [ext_resource type="AudioStream" uid="uid://by62fhqjtc7j" path="res://assets/audio/sfx/rubbles/rubble.ogg" id="17_gqy4a"]
 [ext_resource type="AudioStream" uid="uid://cje45y2fk5yiq" path="res://assets/audio/sfx/rustle.ogg" id="17_t6m43"]
@@ -101,9 +108,6 @@ _data = {
 }
 
 [sub_resource type="Environment" id="Environment_mu1tj"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_phw3n"]
-size = Vector3(1, 2, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r5as6"]
 transparency = 1
@@ -320,6 +324,54 @@ _data = {
 "point_up": SubResource("Animation_qcb1j")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1r6uh"]
+bg_color = Color(0, 0, 0, 0.478431)
+border_width_right = 50
+border_color = Color(0, 0, 0, 0)
+border_blend = true
+expand_margin_right = 50.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2h4k5"]
+shader = ExtResource("12_vp320")
+shader_parameter/invert_amount = 0.0
+shader_parameter/black_threshold = 0.1
+shader_parameter/white_threshold = 0.5
+
+[sub_resource type="LabelSettings" id="LabelSettings_r8k57"]
+font = ExtResource("12_m8wms")
+font_size = 30
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.8)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_crar2"]
+shader = ExtResource("12_vp320")
+shader_parameter/invert_amount = 1.0
+shader_parameter/black_threshold = 0.1
+shader_parameter/white_threshold = 0.5
+
+[sub_resource type="LabelSettings" id="LabelSettings_yr3kn"]
+font = ExtResource("12_m8wms")
+font_size = 30
+font_color = Color(0.568627, 0.568627, 0.568627, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.8)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jinlf"]
+shader = ExtResource("12_vp320")
+shader_parameter/invert_amount = 1.0
+shader_parameter/black_threshold = 0.1
+shader_parameter/white_threshold = 0.5
+
+[sub_resource type="LabelSettings" id="LabelSettings_tr3qe"]
+font = ExtResource("12_m8wms")
+font_size = 30
+font_color = Color(0.57, 0.57, 0.57, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.8)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_a7j4q"]
+viewport_path = NodePath("Control/on-screen-ui/ui/gauges/SubViewport")
+
 [sub_resource type="Animation" id="Animation_i5bfu"]
 length = 0.001
 tracks/0/type = "value"
@@ -471,45 +523,29 @@ tracks/8/keys = {
 "update": 1,
 "values": [false]
 }
-
-[sub_resource type="Animation" id="Animation_3eq7u"]
-resource_name = "aim"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SubViewportContainer/SubViewport/viewmodel-camera/equipment_node/nozzle:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(-2, -2),
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("SubViewportContainer/SubViewport/viewmodel-camera/equipment_node/extinguisher/fireextinguisher_idle:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.227, 0, -0.084), Vector3(0, 0.108, -0.1)]
+"values": [Vector3(0.237, -0.5, -0.315)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SubViewportContainer/SubViewport/viewmodel-camera:fov")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("SubViewportContainer/SubViewport/viewmodel-camera/equipment_node/extinguisher/extinguisher_nozzle:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [75.0, 60.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../../player-camera:fov")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [75.0, 60.0]
+"values": [Vector3(-0.183529, -0.0302522, -0.1)]
 }
 
 [sub_resource type="Animation" id="Animation_ryy2q"]
@@ -622,11 +658,105 @@ tracks/2/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_3eq7u"]
+resource_name = "nozzle_aim"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/viewmodel-camera/equipment_node/nozzle:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0.227, 0, -0.084), Vector3(0, 0.108, -0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SubViewportContainer/SubViewport/viewmodel-camera:fov")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [75.0, 60.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../player-camera:fov")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [75.0, 60.0]
+}
+
+[sub_resource type="Animation" id="Animation_4b8at"]
+resource_name = "extinguisher_aim"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/viewmodel-camera:fov")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [75.0, 60.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../player-camera:fov")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [75.0, 60.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SubViewportContainer/SubViewport/viewmodel-camera/equipment_node/extinguisher/fireextinguisher_idle:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0.237, -0.5, -0.315), Vector3(0.7666, -0.915319, -0.00279212)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SubViewportContainer/SubViewport/viewmodel-camera/equipment_node/extinguisher/extinguisher_nozzle:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector3(0, -0.37, -0.1), Vector3(0, 0.298672, -0.1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fcqol"]
 _data = {
 "RESET": SubResource("Animation_6q6u2"),
-"aim": SubResource("Animation_3eq7u"),
+"extinguisher_aim": SubResource("Animation_4b8at"),
 "hide_equipment": SubResource("Animation_ryy2q"),
+"nozzle_aim": SubResource("Animation_3eq7u"),
 "reset_axe": SubResource("Animation_x0cwu"),
 "swing": SubResource("Animation_jsi7e")
 }
@@ -657,7 +787,7 @@ distance_fade_max_distance = 0.0
 [sub_resource type="SphereMesh" id="SphereMesh_eo3wx"]
 material = SubResource("StandardMaterial3D_lrle6")
 flip_faces = true
-radius = 0.05
+radius = 0.025
 height = 0.05
 radial_segments = 4
 rings = 8
@@ -672,12 +802,38 @@ interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.447059)
 colors = PackedColorArray(0.47, 0.735, 1, 1, 0, 0.533333, 1, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_654kt"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+refraction_enabled = true
+grow_amount = -0.474
+proximity_fade_distance = 4096.0
+distance_fade_mode = 1
+distance_fade_min_distance = 5.0
+distance_fade_max_distance = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_frn03"]
+material = SubResource("StandardMaterial3D_654kt")
+flip_faces = true
+radius = 0.02
+height = 0.04
+radial_segments = 4
+rings = 8
+
+[sub_resource type="Gradient" id="Gradient_u6tve"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.300885, 0.778761)
+colors = PackedColorArray(1, 1, 1, 1, 0.76242, 0.785295, 0.906141, 1, 0.49399, 0.52804, 0.569714, 1)
+
 [node name="player" type="CharacterBody3D"]
 collision_layer = 4097
 collision_mask = 4097
 script = ExtResource("1_n13cy")
 
-[node name="Control" type="Node2D" parent="."]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
 
 [node name="equipment-overlay" type="CanvasLayer" parent="Control"]
 follow_viewport_enabled = true
@@ -834,6 +990,7 @@ render_target_update_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.404, 0)
 cull_mask = 524288
 environment = SubResource("Environment_mu1tj")
+current = true
 far = 3.06
 
 [node name="equipment_node" type="Node3D" parent="Control/equipment-overlay/SubViewportContainer/SubViewport/viewmodel-camera"]
@@ -841,17 +998,19 @@ transform = Transform3D(1, 0, 0, 0, 0.0714952, 0.997441, 0, -0.997441, 0.0714952
 
 [node name="nozzle" parent="Control/equipment-overlay/SubViewportContainer/SubViewport/viewmodel-camera/equipment_node" instance=ExtResource("2_ikbvg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.227, 0, -0.084)
-visible = false
 
 [node name="fire_axe" parent="Control/equipment-overlay/SubViewportContainer/SubViewport/viewmodel-camera/equipment_node" instance=ExtResource("3_aw3kq")]
 transform = Transform3D(1, 0, 0, 0, 0.99863, 0.052336, 0, -0.052336, 0.99863, 0.237, 0, -0.315)
 visible = false
 
-[node name="civilian" type="MeshInstance3D" parent="Control/equipment-overlay/SubViewportContainer/SubViewport/viewmodel-camera/equipment_node"]
-transform = Transform3D(1, 0, 0, 0, 0.790711, -0.61219, 0, 0.61219, 0.790711, 0.77272, -0.269056, -0.633138)
-layers = 524288
-mesh = SubResource("BoxMesh_phw3n")
-skeleton = NodePath("../..")
+[node name="extinguisher" type="Node3D" parent="Control/equipment-overlay/SubViewportContainer/SubViewport/viewmodel-camera/equipment_node"]
+visible = false
+
+[node name="fireextinguisher_idle" parent="Control/equipment-overlay/SubViewportContainer/SubViewport/viewmodel-camera/equipment_node/extinguisher" instance=ExtResource("6_1t0c7")]
+transform = Transform3D(-0.5, 0, 4.37114e-08, 0, 0.5, 0, -4.37114e-08, 0, -0.5, 0.237, -0.5, -0.315)
+
+[node name="extinguisher_nozzle" parent="Control/equipment-overlay/SubViewportContainer/SubViewport/viewmodel-camera/equipment_node/extinguisher" instance=ExtResource("7_p2hgc")]
+transform = Transform3D(-0.5, 0, 7.54979e-08, 0, 0.5, 0, -7.54979e-08, 0, -0.5, -0.183529, -0.0302522, -0.1)
 
 [node name="water_particles" type="CPUParticles3D" parent="Control/equipment-overlay/SubViewportContainer/SubViewport/viewmodel-camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00267798, -0.0768623, -0.409205)
@@ -892,7 +1051,6 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 62.0
 grow_horizontal = 2
-metadata/_edit_lock_ = true
 
 [node name="on-game-timer-display" type="Label" parent="Control/on-screen-ui/ui/LevelTimer"]
 layout_mode = 2
@@ -1051,6 +1209,106 @@ position = Vector2(-0.478363, 1.63236)
 stream = ExtResource("12_52rgn")
 bus = &"UIFX"
 
+[node name="inventory" type="Control" parent="Control/on-screen-ui/ui"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background" type="Panel" parent="Control/on-screen-ui/ui/inventory"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1r6uh")
+
+[node name="rows" type="VBoxContainer" parent="Control/on-screen-ui/ui/inventory/background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="nozzle" type="HBoxContainer" parent="Control/on-screen-ui/ui/inventory/background/rows"]
+layout_mode = 2
+
+[node name="gesture_icon" type="TextureRect" parent="Control/on-screen-ui/ui/inventory/background/rows/nozzle"]
+material = SubResource("ShaderMaterial_2h4k5")
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+texture = ExtResource("12_4p2nv")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="equipment_name" type="Label" parent="Control/on-screen-ui/ui/inventory/background/rows/nozzle"]
+layout_mode = 2
+text = "Water Nozzle"
+label_settings = SubResource("LabelSettings_r8k57")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="axe" type="HBoxContainer" parent="Control/on-screen-ui/ui/inventory/background/rows"]
+layout_mode = 2
+
+[node name="gesture_icon" type="TextureRect" parent="Control/on-screen-ui/ui/inventory/background/rows/axe"]
+material = SubResource("ShaderMaterial_crar2")
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+texture = ExtResource("14_dykr1")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="equipment_name" type="Label" parent="Control/on-screen-ui/ui/inventory/background/rows/axe"]
+layout_mode = 2
+text = "Fire Axe"
+label_settings = SubResource("LabelSettings_yr3kn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="extinguisher" type="HBoxContainer" parent="Control/on-screen-ui/ui/inventory/background/rows"]
+layout_mode = 2
+
+[node name="gesture_icon" type="TextureRect" parent="Control/on-screen-ui/ui/inventory/background/rows/extinguisher"]
+material = SubResource("ShaderMaterial_jinlf")
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+texture = ExtResource("15_dq2e0")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="equipment_name" type="Label" parent="Control/on-screen-ui/ui/inventory/background/rows/extinguisher"]
+layout_mode = 2
+text = "Fire Extinguisher"
+label_settings = SubResource("LabelSettings_tr3qe")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="gauges" type="Control" parent="Control/on-screen-ui/ui"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Control/on-screen-ui/ui/gauges"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = SubResource("ViewportTexture_a7j4q")
+
+[node name="SubViewport" type="SubViewport" parent="Control/on-screen-ui/ui/gauges"]
+transparent_bg = true
+size = Vector2i(1152, 648)
+
+[node name="gauges" parent="Control/on-screen-ui/ui/gauges/SubViewport" node_paths=PackedStringArray("player") instance=ExtResource("10_edsx7")]
+player = NodePath("../../../../../..")
+
 [node name="overlays" type="Control" parent="Control/on-screen-ui"]
 layout_mode = 3
 anchors_preset = 15
@@ -1078,21 +1336,20 @@ libraries = {
 "": SubResource("AnimationLibrary_glc0u")
 }
 
-[node name="gauges" parent="Control" node_paths=PackedStringArray("player") instance=ExtResource("10_edsx7")]
-position = Vector2(192, 582)
-player = NodePath("../..")
-
 [node name="player-camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.404, 0)
 cull_mask = 524287
 current = true
 
 [node name="nozzle_end_point" type="Marker3D" parent="player-camera"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00267798, -0.0593733, -0.257012)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00267798, -0.0593733, -0.365125)
 
 [node name="extinguisher_raycast" type="RayCast3D" parent="player-camera"]
-target_position = Vector3(0, 0, -2)
-collision_mask = 774
+target_position = Vector3(0, 0, -2.5)
+collision_mask = 2048
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
 debug_shape_custom_color = Color(0.592157, 1, 0.231373, 0.0392157)
 debug_shape_thickness = 3
 
@@ -1102,6 +1359,7 @@ shape = SubResource("CapsuleShape3D_sfx4s")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 layers = 512
 mesh = SubResource("CapsuleMesh_je2te")
 
@@ -1158,6 +1416,9 @@ stream = ExtResource("17_gqy4a")
 [node name="nozzle_aim_delay" type="Timer" parent="timers"]
 one_shot = true
 
+[node name="inventory_delay" type="Timer" parent="timers"]
+one_shot = true
+
 [node name="drop_delay" type="Timer" parent="timers"]
 
 [node name="particles" type="Node3D" parent="."]
@@ -1187,7 +1448,7 @@ one_shot = true
 [node name="water_mesh_container" type="Node3D" parent="."]
 
 [node name="water_particles" type="CPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003, 1.345, -0.257)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003, 1.345, -0.365113)
 amount = 128
 lifetime = 0.2
 preprocess = 1.0
@@ -1200,19 +1461,21 @@ scale_amount_curve = SubResource("Curve_v4wc3")
 color_ramp = SubResource("Gradient_6l8st")
 
 [node name="extinguisher_particle" type="CPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003, 1.345, -0.257)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003, 1.345, -0.365113)
 amount = 128
-lifetime = 0.2
+lifetime = 0.1
 preprocess = 1.0
-mesh = SubResource("SphereMesh_eo3wx")
+speed_scale = 0.5
+explosiveness = 0.1
+randomness = 1.0
+lifetime_randomness = 0.8
+mesh = SubResource("SphereMesh_frn03")
 direction = Vector3(0, 0, -1)
-spread = 1.0
+spread = 10.0
 initial_velocity_min = 20.0
 initial_velocity_max = 21.0
 scale_amount_curve = SubResource("Curve_v4wc3")
-color_ramp = SubResource("Gradient_6l8st")
+color_ramp = SubResource("Gradient_u6tve")
 
 [connection signal="animation_finished" from="Control/on-screen-ui/ui/button_container/Back/AnimationPlayer" to="Control/on-screen-ui/ui/button_container/Back" method="_on_animation_player_animation_finished"]
 [connection signal="current_animation_changed" from="Control/on-screen-ui/ui/button_container/Back/AnimationPlayer" to="Control/on-screen-ui/ui/button_container/Back" method="_on_animation_player_current_animation_changed"]
-
-[editable path="Control/gauges"]

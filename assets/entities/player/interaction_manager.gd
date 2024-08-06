@@ -1,7 +1,7 @@
 class_name InteractionManager
 extends Node
 
-var player : PlayerA
+var player : PlayerA 
 var straight_interaction_raycast : RayCast3D
 var axe_damage : float
 var anim : AnimationPlayer
@@ -12,13 +12,15 @@ var civilian_id
 var previous_gesture : String = ""
 var gauges : Node2D
 var objective_markers : Control
+var equipment_manager : EquipmentManger
 
 func initialize(player_instance: PlayerA):
 	player = player_instance
 	straight_interaction_raycast = player.get_node("raycasts/InteractRay")
 	anim = player.get_node("AnimationPlayer")
-	gauges = player.get_node("Control/gauges")
+	gauges = player.get_node("Control/on-screen-ui/ui/gauges/SubViewport/gauges")
 	objective_markers = player.get_node("Control/equipment-overlay/ObjectMarkers")
+	equipment_manager = player.equipment_manager
 	axe_damage = Global.equipment_settings.calculate_stat(["axe","damage"])
 
 func check_collision():
@@ -43,13 +45,13 @@ func check_collision():
 			do_civilian(collider)
 	else:
 		objective_markers.switch_crosshair("crosshair")
-		if not anim.is_playing():
-			change_equipment(0)
+		# if not anim.is_playing():
+		# 	change_equipment(0)
 
 func do_breakable(collider):
 	objective_markers.switch_crosshair("breakable")
 	if Global.gesture_settings.gesture == GlobalControls.eqAxeSwing:
-		change_equipment(1)
+		equipment_manager.change_equipment(1)
 		if not anim.is_playing():
 			anim.play("swing")
 			await anim.animation_finished
@@ -94,14 +96,14 @@ func do_civilian(collider):
 		collider.civilain_manager.pickup()
 		civilian_id = collider.get_instance_id()
 		objective_markers.switch_crosshair("crosshair")
-		await change_equipment(2 ,true)
+		await equipment_manager.change_equipment(2 ,true)
 	else:
 		pick_flag = true
 
 func do_drop_civilian():
 	if Global.gesture_settings.gesture == GlobalControls.mvInteract:
 		if not drop_flag: return
-		await change_equipment(0 ,true)
+		await equipment_manager.change_equipment(0 ,true)
 		var front = -player.transform.basis.z.normalized()
 		var pos = player.global_transform.origin + front * 1
 		var civ = instance_from_id(civilian_id)
@@ -110,20 +112,3 @@ func do_drop_civilian():
 	else:
 		drop_flag = true
 
-
-func change_equipment(equipment: int, slowed : bool = false,):
-	var equipments = player.equipment_manager.equipment_node.get_children()
-	if equipments[equipment].visible == true:
-		return
-	else:
-		if slowed:
-			anim.speed_scale = 0.5
-		anim.play("hide_equipment")
-		await anim.animation_finished
-		for eq in equipments:
-			eq.visible = false
-		equipments[equipment].visible = true
-		anim.play_backwards("hide_equipment")
-		await anim.animation_finished
-		if slowed:
-			anim.speed_scale = 1.0

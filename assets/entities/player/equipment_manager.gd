@@ -5,11 +5,14 @@ var player : PlayerA
 var equipment_sway_amout : float = 0.0005
 var equipment_node : Node3D
 var default_equipment_hold_position : Vector3
+var anim : AnimationPlayer
 
 func initialize(player_instance: PlayerA):
 	player = player_instance
 	equipment_node = player.get_node("Control/equipment-overlay/SubViewportContainer/SubViewport/viewmodel-camera/equipment_node")
+	anim = player.get_node("AnimationPlayer")
 	default_equipment_hold_position = equipment_node.position
+	change_equipment(0)
 	#turning_pads = player.get_node("on-screen-ui/turning-pads")
 	#turning_panel_animation = player.get_node("on-screen-ui/turning-pads/turning_panel_animation")
 
@@ -29,3 +32,20 @@ func update_bob(vel : float, delta):
 		else:
 			equipment_node.position.z = lerp(equipment_node.position.z, default_equipment_hold_position.z, 10 * delta)
 			equipment_node.position.y = lerp(equipment_node.position.y, default_equipment_hold_position.y, 10 * delta)
+
+func change_equipment(equipment: int, slowed : bool = false,):
+	var equipments = player.equipment_manager.equipment_node.get_children()
+	if equipments[equipment].visible == true:
+		return
+	else:
+		if slowed:
+			anim.speed_scale = 0.5
+		anim.play("hide_equipment")
+		await anim.animation_finished
+		for eq in equipments:
+			eq.visible = false
+		equipments[equipment].visible = true
+		anim.play_backwards("hide_equipment")
+		await anim.animation_finished
+		if slowed:
+			anim.speed_scale = 1.0

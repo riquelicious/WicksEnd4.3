@@ -7,14 +7,15 @@ extends CharacterBody3D
 @onready var viewport_size := get_viewport().get_visible_rect().size
 @onready var viewport := get_viewport()
 
-var camera_manager : CameraManager = CameraManager.new()
+var camera_manager : CameraManager = CameraManager.new() 
 var equipment_manager : EquipmentManger = EquipmentManger.new()
 var movement_manager : MovementManager = MovementManager.new()
 var interaction_manager : InteractionManager = InteractionManager.new()
 var audio_manager : AudioManager = AudioManager.new()
 var pressurized_water : PressurizedWater = PressurizedWater.new()
-var extinguisher_manager : ExtinguisherManager = ExtinguisherManager.new()
+var extinguisher_manager : ExtinguisherManager = ExtinguisherManager.new() 
 var point_manager : PointManager = PointManager.new()
+var inventory_manager : InventoryManager = InventoryManager.new()
 
 var is_aim_active : bool = false
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -30,8 +31,8 @@ func _ready():
 	audio_manager.initialize(self)
 	pressurized_water.initialize(self)
 	point_manager.initialize(self)
-	camera_manager.back_button_container.visible = false
 	extinguisher_manager.initialize(self)
+	inventory_manager.initialize(self)
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -45,8 +46,12 @@ func _physics_process(delta):
 	extinguisher_manager.update_extinguisher(delta)
 	camera_manager.camera_shake(delta)
 	if is_interacting: return
-	movement_manager.update_movement(delta)
-	camera_manager.update_aim(delta)
-	camera_manager.update_nozzle_aim(delta)
+	inventory_manager.toggle_inventory(delta)
 	equipment_manager.update_sway(delta)
 	equipment_manager.update_bob(velocity.length(),delta)
+	if inventory_manager.is_inventory: 
+		inventory_manager.select_equipment()
+		return
+	camera_manager.update_aim(delta)
+	camera_manager.update_nozzle_aim(delta)
+	movement_manager.update_movement(delta)

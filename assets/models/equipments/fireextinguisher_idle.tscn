@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://dprsalqd77m3j"]
+
+[ext_resource type="PackedScene" uid="uid://b3l1ploxbe5i5" path="res://assets/models/equipments/fireextinguisher_idle.glb" id="1_mbrl3"]
+
+[node name="fireextinguisher_idle" instance=ExtResource("1_mbrl3")]
+
+[node name="cuboid" parent="Node_11" index="1"]
+layers = 524288
+
+[node name="cuboid_001" parent="Node_11" index="2"]
+layers = 524288
+
+[node name="cylinder" parent="Node_11" index="3"]
+layers = 524288
+
+[node name="cylinder_001" parent="Node_11" index="4"]
+layers = 524288
+
+[node name="cylinder_002" parent="Node_11" index="5"]
+layers = 524288
+
+[node name="cylinder_003" parent="Node_11" index="6"]
+layers = 524288
+
+[node name="cylinder_004" parent="Node_11" index="7"]
+layers = 524288
+
+[node name="cylinder_005" parent="Node_11" index="8"]
+layers = 524288
+
+[node name="sphere" parent="Node_11" index="9"]
+layers = 524288
+
+[node name="tube" parent="Node_11" index="10"]
+layers = 524288

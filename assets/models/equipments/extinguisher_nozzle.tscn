@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dttjmi8a47id7"]
+
+[ext_resource type="PackedScene" uid="uid://bj2miid8d5ix1" path="res://assets/models/equipments/fire_extingiusher_nozzle.gltf" id="1_45keu"]
+
+[node name="blockbench_export" instance=ExtResource("1_45keu")]
+
+[node name="tube" parent="Node" index="1"]
+layers = 524288
+
+[node name="cylinder" parent="Node" index="2"]
+layers = 524288

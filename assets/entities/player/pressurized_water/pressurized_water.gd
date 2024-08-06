@@ -23,6 +23,7 @@ var current_position
 var current_segment = 0
 var stream_update_delay := 0.0
 var toggle_water := false
+var water_available := true
 var line_velocity : Vector3
 var starting_stream := false
 var has_collided := false
@@ -42,11 +43,11 @@ func initialize(player_instance : PlayerA):
 	damage = Global.equipment_settings.calculate_stat(["nozzle","damage"])
 
 func update_water_stream(delta):
-	water_particle.emitting = toggle_water
-	pressurized_water_gauge.active = toggle_water
-	steam_particle.emitting = toggle_water
-	water_audio.stream_paused = !toggle_water
-	if not toggle_water: 
+	water_particle.emitting = (toggle_water and water_available)
+	pressurized_water_gauge.active = (toggle_water and water_available)
+	steam_particle.emitting = (toggle_water and water_available)
+	water_audio.stream_paused = !(toggle_water and water_available)
+	if not toggle_water or not water_available: 
 		ray.position = Vector3.ZERO
 		ray.target_position = Vector3.ZERO
 		current_segment = 0
