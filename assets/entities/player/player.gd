@@ -1,7 +1,7 @@
 class_name PlayerA
 extends CharacterBody3D
 
-@export var camera_sensitivity : float = 0.075
+@export var camera_sensitivity : float = 0.1
 @onready var default_cam_marker = $cam_marker
 @onready var damage_animation_player := $"Control/on-screen-ui/overlays/AnimationPlayer"
 @onready var viewport_size := get_viewport().get_visible_rect().size

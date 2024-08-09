@@ -6,6 +6,8 @@ signal button_clicked
 @export var delay := 0.0
 @export var one_shot : bool = false
 @onready var anim : AnimationPlayer = $AnimationPlayer
+@export var disableable : bool = false
+var disabled : bool = false
 #@onready var button_label : Label = $"button-label"
 
 var previous_animation : String = ''
@@ -21,6 +23,13 @@ func _ready():
 	#$Bg3.scale.x = 0
 	mouse_exited.connect(_mouse_exited)
 	mouse_entered.connect(_mouse_entered)
+
+func check_status():
+	if disableable:
+		if disabled:
+			modulate = Color(1.0,1.0,1.0,0.5)
+		else:
+			modulate = Color.WHITE
 
 func _fade_in():
 	if anim.is_playing():
@@ -39,6 +48,7 @@ func _fade_out():
 	anim.play_backwards("fade_in_background")
 
 func _process(delta):
+	check_status()
 	if is_executed:
 		if time < delay:
 			time += delta
@@ -51,9 +61,11 @@ func _process(delta):
 			_fade_in()
 
 func _mouse_entered():
+	if disabled: return
 	is_hover = true
 	
 func _mouse_exited():
+	if disabled: return
 	is_hover = false
 	if not loop_animation_finished:
 		_fade_out()

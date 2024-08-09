@@ -181,6 +181,9 @@ offset_right = 250.0
 offset_bottom = 50.0
 theme = ExtResource("1_dhdiv")
 script = ExtResource("2_6kx67")
+delay = null
+one_shot = null
+disableable = null
 
 [node name="Bg3" type="ColorRect" parent="."]
 layout_mode = 1

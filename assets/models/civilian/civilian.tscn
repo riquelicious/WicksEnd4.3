@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dy8hlopo75qaq"]
+
+[ext_resource type="PackedScene" uid="uid://d0mcdb73jpsql" path="res://assets/models/civilian/civilian.glb" id="1_yyoju"]
+
+[sub_resource type="Animation" id="Animation_k1d55"]
+resource_name = "to_panic"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k87qh"]
+_data = {
+"to_panic": SubResource("Animation_k1d55")
+}
+
+[node name="civilian" instance=ExtResource("1_yyoju")]
+
+[node name="Skeleton3D" parent="root" index="0"]
+bones/0/rotation = Quaternion(0.000474975, 0.000474975, 0.000474975, 1.00048)
+bones/1/rotation = Quaternion(-0.487525, 0.000474975, 0.000474975, 0.872475)
+bones/2/rotation = Quaternion(-0.130525, 0.000474975, 0.000474975, 0.991475)
+bones/12/rotation = Quaternion(-0.956525, 0.000474975, 0.000474975, 0.291475)
+bones/13/rotation = Quaternion(-0.487525, 0.000474975, 0.000474975, 0.873475)
+bones/14/rotation = Quaternion(0.736475, -0.000525026, -0.000525026, 0.676475)
+bones/15/rotation = Quaternion(-0.956525, 0.000474975, 0.000474975, 0.291475)
+bones/16/rotation = Quaternion(-0.487525, 0.000474975, 0.000474975, 0.873475)
+bones/17/rotation = Quaternion(0.736475, -0.000525026, -0.000525026, 0.676475)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_k87qh")
+}

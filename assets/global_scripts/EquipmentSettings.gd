@@ -20,7 +20,7 @@ var equipments: Dictionary = {
 			},
 		},
 		"damage": {
-			"base" : 10.0,
+			"base" : 5.0,
 			"multiplier" : 0.5
 		}
 	},
@@ -53,7 +53,7 @@ var equipments: Dictionary = {
 			}
 		},
 		"damage": {
-			"base" : 20.0,
+			"base" : 10.0,
 			"multiplier" : 0.25
 		}
 	},

@@ -1,10 +1,11 @@
-[gd_scene load_steps=76 format=3 uid="uid://q1yxpssljlq1"]
+[gd_scene load_steps=78 format=3 uid="uid://q1yxpssljlq1"]
 
 [ext_resource type="Script" path="res://assets/entities/player/player.gd" id="1_n13cy"]
 [ext_resource type="PackedScene" uid="uid://bradyey5jbin0" path="res://assets/models/equipments/nozzle.tscn" id="2_ikbvg"]
 [ext_resource type="PackedScene" uid="uid://bohtjbfefqrws" path="res://assets/models/equipments/fire_axe.tscn" id="3_aw3kq"]
 [ext_resource type="Texture2D" uid="uid://dw1cp5etj7bth" path="res://assets/images/cursor_gestures/point_up.png" id="3_oqsjq"]
 [ext_resource type="Theme" uid="uid://xiy1beq5fkuh" path="res://assets/theme/Global.tres" id="4_rs542"]
+[ext_resource type="Shader" path="res://assets/shaders/inline_outline.gdshader" id="4_thmrv"]
 [ext_resource type="PackedScene" uid="uid://dprsalqd77m3j" path="res://assets/models/equipments/fireextinguisher_idle.tscn" id="6_1t0c7"]
 [ext_resource type="AudioStream" uid="uid://bjbo2o4hv7pmi" path="res://assets/audio/sfx/axe/chop.ogg" id="6_vfucy"]
 [ext_resource type="Script" path="res://assets/modules/3d/floating_ui/marker_parent.gd" id="7_1bxbh"]
@@ -106,6 +107,14 @@ _data = {
 "aim": SubResource("Animation_uyodn"),
 "fade": SubResource("Animation_pa4s5")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ait8d"]
+shader = ExtResource("4_thmrv")
+shader_parameter/color = Color(0.883378, 0.883378, 0.883378, 0.152941)
+shader_parameter/width = 3.0
+shader_parameter/pattern = 1
+shader_parameter/inside = false
+shader_parameter/add_margins = true
 
 [sub_resource type="Environment" id="Environment_mu1tj"]
 
@@ -548,6 +557,59 @@ tracks/10/keys = {
 "values": [Vector3(-0.183529, -0.0302522, -0.1)]
 }
 
+[sub_resource type="Animation" id="Animation_4b8at"]
+resource_name = "extinguisher_aim"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/viewmodel-camera:fov")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [75.0, 60.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../player-camera:fov")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [75.0, 60.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SubViewportContainer/SubViewport/viewmodel-camera/equipment_node/extinguisher/fireextinguisher_idle:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0.237, -0.5, -0.315), Vector3(0.7666, -0.915319, -0.00279212)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SubViewportContainer/SubViewport/viewmodel-camera/equipment_node/extinguisher/extinguisher_nozzle:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector3(0, -0.37, -0.1), Vector3(0, 0.298672, -0.1)]
+}
+
 [sub_resource type="Animation" id="Animation_ryy2q"]
 resource_name = "hide_equipment"
 length = 0.2
@@ -587,6 +649,46 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(0, 0, 0),
 "update": 1,
 "values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_3eq7u"]
+resource_name = "nozzle_aim"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/viewmodel-camera/equipment_node/nozzle:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0.227, 0, -0.084), Vector3(0, 0.108, -0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SubViewportContainer/SubViewport/viewmodel-camera:fov")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [75.0, 60.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../player-camera:fov")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [75.0, 60.0]
 }
 
 [sub_resource type="Animation" id="Animation_x0cwu"]
@@ -656,99 +758,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_3eq7u"]
-resource_name = "nozzle_aim"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SubViewportContainer/SubViewport/viewmodel-camera/equipment_node/nozzle:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector3(0.227, 0, -0.084), Vector3(0, 0.108, -0.1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SubViewportContainer/SubViewport/viewmodel-camera:fov")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [75.0, 60.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../../player-camera:fov")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [75.0, 60.0]
-}
-
-[sub_resource type="Animation" id="Animation_4b8at"]
-resource_name = "extinguisher_aim"
-length = 0.4
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SubViewportContainer/SubViewport/viewmodel-camera:fov")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [75.0, 60.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../../player-camera:fov")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [75.0, 60.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SubViewportContainer/SubViewport/viewmodel-camera/equipment_node/extinguisher/fireextinguisher_idle:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector3(0.237, -0.5, -0.315), Vector3(0.7666, -0.915319, -0.00279212)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("SubViewportContainer/SubViewport/viewmodel-camera/equipment_node/extinguisher/extinguisher_nozzle:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.2, 0.4),
-"transitions": PackedFloat32Array(0.5, 0.5),
-"update": 0,
-"values": [Vector3(0, -0.37, -0.1), Vector3(0, 0.298672, -0.1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fcqol"]
@@ -972,6 +981,7 @@ libraries = {
 }
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Control/equipment-overlay"]
+material = SubResource("ShaderMaterial_ait8d")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1340,6 +1350,7 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.404, 0)
 cull_mask = 524287
 current = true
+near = 0.2
 
 [node name="nozzle_end_point" type="Marker3D" parent="player-camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00267798, -0.0593733, -0.365125)
@@ -1420,6 +1431,9 @@ one_shot = true
 one_shot = true
 
 [node name="drop_delay" type="Timer" parent="timers"]
+
+[node name="iframe_delay" type="Timer" parent="timers"]
+one_shot = true
 
 [node name="particles" type="Node3D" parent="."]
 

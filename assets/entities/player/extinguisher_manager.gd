@@ -37,7 +37,6 @@ func detect_collision() -> bool:
 	if collider:
 		if collider.health > 0:
 			collider.fire_state_manager.damage_fire(damage)
-			print("A")
 	return !(collider == null)
 
 

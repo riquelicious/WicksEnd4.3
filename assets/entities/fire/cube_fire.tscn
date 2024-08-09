@@ -1,19 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://c7lfbpnhhs0hr"]
+[gd_scene load_steps=16 format=3 uid="uid://c7lfbpnhhs0hr"]
 
 [ext_resource type="Script" path="res://assets/entities/fire/fire.gd" id="1_8ynrw"]
 [ext_resource type="AudioStream" uid="uid://bbpg22xv1aqjb" path="res://assets/audio/sfx/fire/fire_crackle.ogg" id="2_hul2y"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4827y"]
-transparency = 1
-shading_mode = 0
-albedo_color = Color(1, 0.2, 0, 0.172549)
-
-[sub_resource type="QuadMesh" id="QuadMesh_3q3qb"]
-material = SubResource("StandardMaterial3D_4827y")
-
-[sub_resource type="QuadMesh" id="QuadMesh_oj5rs"]
-material = SubResource("StandardMaterial3D_4827y")
-orientation = 0
+[ext_resource type="Shader" path="res://assets/shaders/fire.gdshader" id="3_qlss5"]
+[ext_resource type="Material" uid="uid://b7eiti7ytsghs" path="res://assets/shaders/fire_material.tres" id="3_vxjcb"]
+[ext_resource type="Texture2D" uid="uid://ht5p78ijmutm" path="res://assets/noise_textures/pixelated_noise.png" id="4_21fgb"]
+[ext_resource type="Shader" uid="uid://cplccbp7l15ot" path="res://assets/shaders/fire_mesh_test.tres" id="6_pg544"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y2cm8"]
 size = Vector3(0.8, 0.8, 0.8)
@@ -30,7 +22,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1, 1, 1)]
+"values": [Vector3(0.97, 1, 0.97)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -57,9 +49,9 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"transitions": PackedFloat32Array(-2, -2, -2),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(1.4, 1.4, 1.4), Vector3(1, 1, 1)]
+"values": [Vector3(0, 0, 0), Vector3(1.4, 1.4, 1.4), Vector3(0.97, 1, 0.97)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -69,9 +61,9 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"transitions": PackedFloat32Array(-2, -2, -2),
 "update": 0,
-"values": [Vector3(0, -0.5, 0), Vector3(0, 0.2, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, -0.5, 0), Vector3(0, -0.2, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jt54j"]
@@ -80,8 +72,53 @@ _data = {
 "fade": SubResource("Animation_fntw1")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8knq6"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_qlss5")
+shader_parameter/is_active = true
+shader_parameter/is_blue = true
+shader_parameter/is_editing = false
+shader_parameter/is_on_bottom = false
+shader_parameter/root_color1 = Color(1, 0.75, 0.3, 1)
+shader_parameter/tip_color1 = Color(1, 0.03, 0.001, 1)
+shader_parameter/root_color2 = Color(0.572, 0.894, 0.596, 1)
+shader_parameter/tip_color2 = Color(0, 0.278, 0.671, 1)
+shader_parameter/fire_alpha = 1.0
+shader_parameter/fire_speed = Vector2(0, 1.5)
+shader_parameter/fire_aperture = 0.333
+shader_parameter/fire_percentage = 100.0
+shader_parameter/glow = 0.05
+shader_parameter/frequency = 10.0
+shader_parameter/amplitude = 0.0
+shader_parameter/noise_tex = ExtResource("4_21fgb")
+
+[sub_resource type="BoxMesh" id="BoxMesh_8ll13"]
+material = ExtResource("3_vxjcb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6hmeb"]
+render_priority = 0
+shader = ExtResource("6_pg544")
+shader_parameter/is_blue = false
+shader_parameter/top_color2 = Color(0, 0.278431, 0.670588, 1)
+shader_parameter/bottom_color2 = Color(0.745098, 0.952941, 0.752941, 1)
+shader_parameter/isBottom = false
+shader_parameter/fire_percentage = 100.0
+shader_parameter/custom_texture = false
+shader_parameter/speed = Vector2(0, 1)
+shader_parameter/glow = 0.05
+shader_parameter/top_color = Color(0.829678, 0, 0.080224, 1)
+shader_parameter/bottom_color = Color(1, 0.741176, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0t6ec"]
+size = Vector2(1, 1)
+orientation = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kkd1s"]
+size = Vector2(1, 1)
+orientation = 2
+
 [node name="cube_fire" type="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.03649, -2.72487)
 collision_layer = 7168
 collision_mask = 7168
 script = ExtResource("1_8ynrw")
@@ -123,28 +160,6 @@ collision_mask = 7168
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="faces" type="Node3D" parent="."]
-
-[node name="face1" type="MeshInstance3D" parent="faces"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
-mesh = SubResource("QuadMesh_3q3qb")
-skeleton = NodePath("../..")
-
-[node name="face2" type="MeshInstance3D" parent="faces"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -0.5)
-mesh = SubResource("QuadMesh_3q3qb")
-skeleton = NodePath("../..")
-
-[node name="face3" type="MeshInstance3D" parent="faces"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.5, 0, 0)
-mesh = SubResource("QuadMesh_oj5rs")
-skeleton = NodePath("../..")
-
-[node name="face4" type="MeshInstance3D" parent="faces"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
-mesh = SubResource("QuadMesh_oj5rs")
-skeleton = NodePath("../..")
-
 [node name="fire_light" type="OmniLight3D" parent="."]
 light_color = Color(1, 0.756863, 0.14902, 1)
 
@@ -160,11 +175,48 @@ bus = &"SFX"
 
 [node name="fire_fx" type="AudioStreamPlayer3D" parent="audio"]
 
-[node name="update_timer" type="Timer" parent="."]
-wait_time = 0.3
-one_shot = true
-
 [node name="spawn_animation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_jt54j")
 }
+
+[node name="fire_mesh" type="MeshInstance3D" parent="."]
+visible = false
+material_override = SubResource("ShaderMaterial_8knq6")
+mesh = SubResource("BoxMesh_8ll13")
+
+[node name="timers" type="Node" parent="."]
+
+[node name="player_damage_delay" type="Timer" parent="timers"]
+one_shot = true
+
+[node name="update_delay" type="Timer" parent="timers"]
+
+[node name="initial_update_timer" type="Timer" parent="timers"]
+wait_time = 0.3
+one_shot = true
+
+[node name="faces" type="Node3D" parent="."]
+transform = Transform3D(0.97, 0, 0, 0, 1, 0, 0, 0, 0.97, 0, 0, 0)
+
+[node name="x1" type="MeshInstance3D" parent="faces"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+material_override = SubResource("ShaderMaterial_6hmeb")
+mesh = SubResource("PlaneMesh_0t6ec")
+
+[node name="x2" type="MeshInstance3D" parent="faces"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+material_override = SubResource("ShaderMaterial_6hmeb")
+mesh = SubResource("PlaneMesh_0t6ec")
+
+[node name="x3" type="MeshInstance3D" parent="faces"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+material_override = SubResource("ShaderMaterial_6hmeb")
+mesh = SubResource("PlaneMesh_kkd1s")
+skeleton = NodePath("../x2")
+
+[node name="x4" type="MeshInstance3D" parent="faces"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+material_override = SubResource("ShaderMaterial_6hmeb")
+mesh = SubResource("PlaneMesh_kkd1s")
+skeleton = NodePath("../x2")

@@ -5,7 +5,7 @@
 [ext_resource type="Environment" uid="uid://c1jsw4puq6pku" path="res://assets/environments/level1.tres" id="2_dtwka"]
 [ext_resource type="PackedScene" path="res://assets/entities/interactables/breakable.tscn" id="3_ifjm6"]
 [ext_resource type="PackedScene" uid="uid://bev5tc1uhkp1j" path="res://assets/entities/interactables/interactable.tscn" id="4_lpi4d"]
-[ext_resource type="PackedScene" path="res://assets/entities/interactables/civilian.tscn" id="6_r4n0h"]
+[ext_resource type="PackedScene" uid="uid://c55ams3nst3h4" path="res://assets/entities/interactables/civilian.tscn" id="6_r4n0h"]
 [ext_resource type="PackedScene" uid="uid://c7lfbpnhhs0hr" path="res://assets/entities/fire/cube_fire.tscn" id="6_xin8i"]
 [ext_resource type="PackedScene" path="res://assets/entities/interactables/valve.tscn" id="7_6iftk"]
 [ext_resource type="PackedScene" path="res://assets/entities/interactables/pickup.tscn" id="8_tuyxg"]
@@ -152,25 +152,26 @@ shape = SubResource("BoxShape3D_vxusw")
 [node name="fires" type="Node3D" parent="World"]
 
 [node name="cube_fire" parent="World/fires" instance=ExtResource("6_xin8i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.03649, -2.72487)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -3)
 
 [node name="cube_fire3" parent="World/fires" instance=ExtResource("6_xin8i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.03649, -1.72487)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -2)
+is_blue = true
 
 [node name="cube_fire4" parent="World/fires" instance=ExtResource("6_xin8i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.03649, -0.72487)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -1)
 
 [node name="cube_fire5" parent="World/fires" instance=ExtResource("6_xin8i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.03649, -0.72487)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -1)
 
 [node name="cube_fire6" parent="World/fires" instance=ExtResource("6_xin8i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.03649, -1.72487)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -2)
 
 [node name="cube_fire2" parent="World/fires" instance=ExtResource("6_xin8i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.03649, -2.72487)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -3)
 
 [node name="cube_fire7" parent="World/fires" instance=ExtResource("6_xin8i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3.03649, -2.72487)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3, -3)
 
 [node name="smokes" type="CPUParticles3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)

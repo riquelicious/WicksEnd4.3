@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://coq3n0q577rcb"]
+
+[ext_resource type="PackedScene" uid="uid://ev20sbhyyt86" path="res://assets/models/equipments/armor.gltf" id="1_kadcb"]
+
+[node name="armor" instance=ExtResource("1_kadcb")]
+
+[node name="cuboid" parent="Node/root/Hip/Torso/upperTorso/Neck" index="0"]
+layers = 524288
+
+[node name="cuboid2" parent="Node/root/Hip/Torso/upperTorso/LeftShoulder/LeftArm/LeftWrist" index="0"]
+layers = 524288
+
+[node name="cuboid3" parent="Node/root/Hip/Torso/upperTorso/LeftShoulder/LeftArm" index="1"]
+layers = 524288
+
+[node name="cuboid4" parent="Node/root/Hip/Torso/upperTorso/LeftShoulder" index="1"]
+layers = 524288
+
+[node name="cuboid5" parent="Node/root/Hip/Torso/upperTorso/RightShoulder/RightArm/RightWrist" index="0"]
+layers = 524288
+
+[node name="cuboid6" parent="Node/root/Hip/Torso/upperTorso/RightShoulder/RightArm" index="1"]
+layers = 524288
+
+[node name="cuboid7" parent="Node/root/Hip/Torso/upperTorso/RightShoulder" index="1"]
+layers = 524288
+
+[node name="cuboid8" parent="Node/root/Hip/Torso/upperTorso" index="3"]
+layers = 524288
+
+[node name="cuboid_selection" parent="Node/root/Hip/Torso" index="1"]
+layers = 524288

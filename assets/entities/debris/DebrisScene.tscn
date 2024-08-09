@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://cuqwa058d5k5q" path="res://assets/noise_textures/T_Noise_05.png" id="3_i0678"]
 [ext_resource type="PackedScene" uid="uid://faxxs63wwsr5" path="res://assets/modules/combo_minigame/combo_minigame.tscn" id="4_smf8k"]
 [ext_resource type="PackedScene" uid="uid://dppwah7kypju2" path="res://assets/models/player/character.tscn" id="5_noooj"]
-[ext_resource type="Shader" path="res://assets/shaders/fire.gdshader" id="6_s37wd"]
-[ext_resource type="Texture2D" uid="uid://86wbwxt3p68w" path="res://assets/noise_textures/T_Noise_01.png" id="7_qw1o0"]
+[ext_resource type="Shader" uid="uid://cplccbp7l15ot" path="res://assets/shaders/fire_mesh_test.tres" id="6_mk2f5"]
+[ext_resource type="Texture2D" uid="uid://d4drjop32y0p" path="res://assets/noise_textures/T_Noise_03.png" id="7_hhgnc"]
 [ext_resource type="PackedScene" uid="uid://elptwgghwptv" path="res://assets/models/rubbish/cracked_wood1.gltf" id="8_7hupf"]
 [ext_resource type="AudioStream" uid="uid://bbpg22xv1aqjb" path="res://assets/audio/sfx/fire/fire_crackle.ogg" id="9_enaar"]
 
@@ -181,24 +181,23 @@ size = Vector3(20, 15, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_je8un"]
 size = Vector3(20, 7, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vyhkp"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7juyw"]
 render_priority = 0
-shader = ExtResource("6_s37wd")
-shader_parameter/root_color = Color(1, 0.75, 0.3, 1)
-shader_parameter/tip_color = Color(1, 0.03, 0.001, 1)
-shader_parameter/fire_alpha = 1.0
-shader_parameter/fire_speed = Vector2(0, 0.1)
-shader_parameter/fire_aperture = 0.0
+shader = ExtResource("6_mk2f5")
+shader_parameter/is_blue = false
+shader_parameter/top_color2 = Color(0, 0.278431, 0.670588, 1)
+shader_parameter/bottom_color2 = Color(0.745098, 0.952941, 0.752941, 1)
+shader_parameter/isBottom = false
 shader_parameter/fire_percentage = 100.0
+shader_parameter/custom_texture = true
+shader_parameter/speed = Vector2(0, 1)
 shader_parameter/glow = 0.05
-shader_parameter/is_on_bottom = false
-shader_parameter/base_amplitude = 0.1
-shader_parameter/base_frequency = 1.0
-shader_parameter/edge_thickness = 0.65
-shader_parameter/noise_tex = ExtResource("7_qw1o0")
+shader_parameter/top_color = Color(0.829678, 0, 0.080224, 1)
+shader_parameter/bottom_color = Color(1, 0.741176, 0, 1)
+shader_parameter/noise_tex = ExtResource("7_hhgnc")
 
 [sub_resource type="QuadMesh" id="QuadMesh_g2o20"]
+material = SubResource("ShaderMaterial_7juyw")
 
 [sub_resource type="BoxMesh" id="BoxMesh_5a0y6"]
 size = Vector3(0.3, 0.3, 0.3)
@@ -381,31 +380,27 @@ bones/15/scale = Vector3(1, 1, 0.999998)
 
 [node name="fire" type="MeshInstance3D" parent="World"]
 transform = Transform3D(-6.5, 0, -8.74228e-08, 0, 4.0885, 0, 5.68248e-07, 0, -1, 6.81898e-07, 2, 7.8)
-material_override = SubResource("ShaderMaterial_vyhkp")
+material_override = SubResource("ShaderMaterial_7juyw")
 mesh = SubResource("QuadMesh_g2o20")
 skeleton = NodePath("../..")
 
 [node name="fire3" type="MeshInstance3D" parent="World"]
 transform = Transform3D(-4.59619, 0, 0.707107, 0, 4.0885, 0, -4.59619, 0, -0.707107, -5.45079, 2, 5.57764)
-material_override = SubResource("ShaderMaterial_vyhkp")
 mesh = SubResource("QuadMesh_g2o20")
 skeleton = NodePath("../..")
 
 [node name="fire2" type="MeshInstance3D" parent="World"]
 transform = Transform3D(-2.74702, 0, -0.906308, 0, 4.0885, 0, 5.891, 0, -0.422618, 4.63679, 2, 5.07656)
-material_override = SubResource("ShaderMaterial_vyhkp")
 mesh = SubResource("QuadMesh_g2o20")
 skeleton = NodePath("../..")
 
 [node name="fire6" type="MeshInstance3D" parent="World"]
 transform = Transform3D(-5.891, -1.22179, 0.298836, 1.19209e-07, 2.89101, 0.707107, -2.74702, 2.62014, -0.640856, 3.77895, 2.01877, 3.35574)
-material_override = SubResource("ShaderMaterial_vyhkp")
 mesh = SubResource("QuadMesh_g2o20")
 skeleton = NodePath("../..")
 
 [node name="fire7" type="MeshInstance3D" parent="World"]
 transform = Transform3D(-5.95077, 1.18031, -0.280201, 0.0597652, 2.90819, 0.702819, 2.61435, 2.62014, -0.65386, -4.32105, 2.01877, 3.35574)
-material_override = SubResource("ShaderMaterial_vyhkp")
 mesh = SubResource("QuadMesh_g2o20")
 skeleton = NodePath("../..")
 

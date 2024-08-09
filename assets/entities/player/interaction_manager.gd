@@ -13,6 +13,8 @@ var previous_gesture : String = ""
 var gauges : Node2D
 var objective_markers : Control
 var equipment_manager : EquipmentManger
+var iframes_duration : float 
+var iframes_timer : Timer
 
 func initialize(player_instance: PlayerA):
 	player = player_instance
@@ -21,6 +23,9 @@ func initialize(player_instance: PlayerA):
 	gauges = player.get_node("Control/on-screen-ui/ui/gauges/SubViewport/gauges")
 	objective_markers = player.get_node("Control/equipment-overlay/ObjectMarkers")
 	equipment_manager = player.equipment_manager
+	iframes_timer = player.get_node("timers/iframe_delay")
+	iframes_timer.one_shot = true
+	iframes_duration = Global.fire_settings.fire_damage_cooldown_speed
 	axe_damage = Global.equipment_settings.calculate_stat(["axe","damage"])
 
 func check_collision():
@@ -49,6 +54,7 @@ func check_collision():
 		# 	change_equipment(0)
 
 func do_breakable(collider):
+	if not player.inventory_manager.current_index == 1: return
 	objective_markers.switch_crosshair("breakable")
 	if Global.gesture_settings.gesture == GlobalControls.eqAxeSwing:
 		equipment_manager.change_equipment(1)
@@ -112,3 +118,9 @@ func do_drop_civilian():
 	else:
 		drop_flag = true
 
+func damage_player(amount):
+	if iframes_timer.time_left == 0:
+		var remaining_health = player.health - amount
+		player.health = clamp(remaining_health, 0, 100)
+		player.damage_animation_player.play("damage_animation")
+		iframes_timer.start(iframes_duration)

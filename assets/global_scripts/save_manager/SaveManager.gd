@@ -4,10 +4,10 @@ var save_path = "user://wicks_end.json"
 
 var blank_save = {
 	"evidence": {
-		"0": false,
-		"1": false,
-		"2": false,
-		"3": false
+		"0": true,
+		"1": true,
+		"2": true,
+		"3": true
 	},
 	"evidence_finished": false,
 	"help": {
@@ -19,12 +19,10 @@ var blank_save = {
 		"5": false
 	},
 	"levels": {
-		"0": 0,
-		"1": 1,
-		"2": 2,
-		"3": 3,
-		"4": 4,
-		"5": false
+		"0": false,
+		"1": false,
+		"2": false,
+		"3": false,
 	},
 	"points": 1000,
 	"upgrade": {
@@ -68,21 +66,22 @@ func new_data():
 	update_data(current_save)
 
 func update_data(save : Dictionary) -> void:
-	var equipments = Global.equipment_settings.equipments
-	var levels = Global.level_settings.unlocked_levels
-	var _points = Global.level_settings.lvlPoints
-	for eq in equipments.keys():
-		equipments[eq]["level"] = save["upgrade"][eq]
-	for level in len(levels):
-		levels[level] = save["levels"][str(level + 1)]
-	_points = save["points"]
+	for eq in Global.equipment_settings.equipments.keys():
+		Global.equipment_settings.equipments[eq]["level"] = save["upgrade"][eq]
+	Global.level_settings.unlocked_levels = save["levels"]
+	Global.level_settings.lvlPoints = save["points"]
+	Global.gameplay_settings.evFinished = save["evidence_finished"] 
+	Global.gameplay_settings.evPiece = save["evidence"]
 
 func fetch_data(save : Dictionary):
 	var equipments = Global.equipment_settings.equipments
 	var levels = Global.level_settings.unlocked_levels
 	var points = Global.level_settings.lvlPoints
+	var evidence_finished = Global.gameplay_settings.evFinished
+	var evPiece = Global.gameplay_settings.evPiece
 	for eq in equipments.keys():
 		save["upgrade"][eq] = equipments[eq]["level"]
-	for level in len(levels):
-		save["levels"][level] = level
+	save["levels"] = levels
 	save["points"] = points 
+	save["evidence_finished"] = evidence_finished
+	save["evidence"] = evPiece

@@ -67,6 +67,7 @@ text = "New Game"
 layout_mode = 2
 script = ExtResource("3_5m5tq")
 one_shot = true
+disableable = true
 
 [node name="button-label" parent="ui/VBoxContainer/continue" index="3"]
 theme_override_colors/font_shadow_color = Color(0.226707, 0.226707, 0.226707, 1)

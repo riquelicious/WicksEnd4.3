@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://hbfgpiuifsgw"]
+
+[ext_resource type="PackedScene" uid="uid://b5j4s8c3mk8mv" path="res://assets/models/civilian/civilian_animated.glb" id="1_x0gah"]
+
+[node name="blockbench_export" instance=ExtResource("1_x0gah")]
+
+[node name="Skeleton3D" parent="root" index="0"]
+bones/0/position = Vector3(0, -3, 0)
+bones/0/rotation = Quaternion(0.19509, 0, 0, 0.980785)
+bones/2/rotation = Quaternion(-0.152123, 0, 0, 0.988362)
+bones/3/rotation = Quaternion(-0.34202, 0, 0, 0.939693)
+bones/4/rotation = Quaternion(-0.152123, 0, 0, 0.988362)
+bones/5/rotation = Quaternion(-0.0436194, 0, 0, 0.999048)
+bones/6/rotation = Quaternion(0.59131, 0, 0, 0.806445)
+bones/7/rotation = Quaternion(0.55557, 0, 0, 0.83147)
+bones/8/rotation = Quaternion(0, 0, -0.258819, 0.965926)
+bones/10/rotation = Quaternion(0.806445, 0, 0, 0.59131)
+bones/12/rotation = Quaternion(0, 0, 0.300706, 0.953717)
+bones/14/rotation = Quaternion(0.402747, 0, 0, 0.915311)
+bones/15/rotation = Quaternion(-0.67559, 0, 0, 0.737277)
+bones/16/rotation = Quaternion(0.0871557, 0, 0, 0.996195)
+bones/17/rotation = Quaternion(0.422618, 0, 0, 0.906308)
+bones/18/rotation = Quaternion(-0.737277, 0, 0, 0.67559)
+bones/19/rotation = Quaternion(0.173648, 0, 0, 0.984808)
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "shake"

@@ -26,6 +26,10 @@ func initialize(parent_instance : Node):
 	points_label = parent.get_node("points/HBoxContainer/PanelContainer/foreground") 
 	points_label_shadow = parent.get_node("points/HBoxContainer/PanelContainer/background")
 	description_label = parent.get_node("ItemInfo/Panel/description")
+	update()
+	
+func update():
+	temp_equipment_stats = {}
 	temp_equipment_stats = Global.equipment_settings.equipments.duplicate(true)
 	init_points()
 	

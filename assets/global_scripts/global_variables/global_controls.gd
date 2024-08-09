@@ -16,7 +16,6 @@ extends Node
 	Global.gesture_settings.gesture_list[4],
 	Global.gesture_settings.gesture_list[5],
 	Global.gesture_settings.gesture_list[6],
-	Global.gesture_settings.gesture_list[7]
 ]
 @onready var dlControls : Array = [
 	Global.gesture_settings.gesture_list[3],

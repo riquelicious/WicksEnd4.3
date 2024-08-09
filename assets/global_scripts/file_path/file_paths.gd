@@ -54,4 +54,8 @@ var fire_kindled_fx := AudioStreamOggVorbis.load_from_file("res://assets/audio/s
 var combo_minigame : PackedScene = preload("res://assets/entities/debris/DebrisScene.tscn")
 var bw_cam_env : Resource = preload("res://assets/environments/BW2.tres")
  
-#TODO
+var cvHelpSounds : Array = [
+	"res://assets/audio/sfx/civilian/help-01.ogg",
+	"res://assets/audio/sfx/civilian/help-02.ogg",
+	"res://assets/audio/sfx/civilian/help-03.ogg"
+]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cdawb4igah42t"]
+[gd_scene load_steps=14 format=3 uid="uid://cdawb4igah42t"]
 
 [ext_resource type="Script" path="res://game/main-menu/main_menu_level.gd" id="1_1v7a3"]
 [ext_resource type="PackedScene" uid="uid://bvxjgcnlaplpk" path="res://game/main-menu/menu_script/main_menu_ui.tscn" id="2_yk03q"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cy8unlr7q6d35" path="res://assets/models/office/office.tscn" id="5_b5npi"]
 [ext_resource type="PackedScene" uid="uid://hv22w03byfgv" path="res://assets/UpgradeShop/UpgradeShop.tscn" id="5_li84t"]
 [ext_resource type="PackedScene" uid="uid://deuc616mep0xa" path="res://game/main-menu/level_selector/level_selector_ui.tscn" id="6_fd3ha"]
+[ext_resource type="PackedScene" uid="uid://ctr27imw0v806" path="res://assets/modules/jigsaw_minigame/jigsaw_minigame.tscn" id="6_he4x4"]
 
 [sub_resource type="Environment" id="Environment_a5h1b"]
 background_mode = 1
@@ -97,6 +98,10 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
+[node name="evidence_menu" parent="UI" instance=ExtResource("6_he4x4")]
+visible = false
+layout_mode = 1
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
 libraries = {
 "": SubResource("AnimationLibrary_v6xpe")
@@ -166,3 +171,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 
 
 [node name="upgrade_shop" type="Marker3D" parent="camera_positions"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.591, 2.001, -0.204)
+
+[node name="evidence_menu" type="Marker3D" parent="camera_positions"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.845912, 1.306, -0.920595)
