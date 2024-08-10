@@ -14,7 +14,12 @@ config/name="Wicks End"
 config/tags=PackedStringArray("current")
 run/main_scene="res://game/main-menu/main_menu_level.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.117647, 0.117647, 0.117647, 1)
+boot_splash/image="res://assets/icons/icon.png"
+boot_splash/fullsize=false
+boot_splash/use_filter=false
+config/icon="res://assets/icons/icon.svg"
+config/windows_native_icon="res://assets/icons/icon.ico"
 
 [autoload]
 
@@ -36,6 +41,8 @@ gdscript/warnings/unused_signal=0
 
 [display]
 
+window/size/window_width_override=576
+window/size/window_height_override=324
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
 window/layer_20=""
@@ -78,6 +85,6 @@ folder_colors={
 
 [rendering]
 
-rendering_device/driver="vulcan"
+rendering_device/driver="d3d12"
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"

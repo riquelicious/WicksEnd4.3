@@ -10,8 +10,8 @@ var mvWalkingSpeed: float = 2.5
 
 var evFinished : bool = false
 var evPiece : Dictionary = {
-	"0": true,
-	"1": true,
-	"2": true,
-	"3": true
+	"0": false,
+	"1": false,
+	"2": false,
+	"3": false
 }

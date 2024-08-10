@@ -53,11 +53,9 @@ func damage_fire(amount):
 		do_damage(amount)
 	else:
 		var utimer = fire.fire_spread_manager.update_timer
-		print(utimer.time_left)
 		if utimer.get_wait_time() == fire.fire_spread_manager.upd_interval:
 			utimer.set_wait_time(1)
 			utimer.start()
-			print(utimer.get_wait_time())
 
 func fire_state_listener():
 	if prev_health != fire.health:

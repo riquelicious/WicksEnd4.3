@@ -39,11 +39,11 @@ func initialize(player_instance: PlayerA):
 	default_camera_rotation = player_camera.rotation
 	back_button.button_clicked.connect(reset_camera_position)
 	back_button_container.visible = false
-	player_occupied = player.interaction_manager.is_civilian_carried
 	aim_gesturer = GlobalControls.eqAim
 
 
 func update_aim(delta):
+	player_occupied = player.interaction_manager.is_civilian_carried
 	if not player_occupied:
 		var equipment_index = player.inventory_manager.current_index
 		var anim_type
@@ -52,6 +52,8 @@ func update_aim(delta):
 				anim_type = "nozzle_aim"
 			2: #extinguisher
 				anim_type = "extinguisher_aim"
+			_:
+				return
 		reset_aim(delta)
 		stop_timer()
 		if anim_type:

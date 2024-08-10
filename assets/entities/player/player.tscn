@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://q1yxpssljlq1"]
+[gd_scene load_steps=79 format=3 uid="uid://q1yxpssljlq1"]
 
 [ext_resource type="Script" path="res://assets/entities/player/player.gd" id="1_n13cy"]
 [ext_resource type="PackedScene" uid="uid://bradyey5jbin0" path="res://assets/models/equipments/nozzle.tscn" id="2_ikbvg"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://assets/modules/3d/floating_ui/marker_parent.gd" id="7_1bxbh"]
 [ext_resource type="Script" path="res://assets/modules/button.gd" id="7_eg6oj"]
 [ext_resource type="PackedScene" uid="uid://dttjmi8a47id7" path="res://assets/models/equipments/extinguisher_nozzle.tscn" id="7_p2hgc"]
+[ext_resource type="PackedScene" uid="uid://hbfgpiuifsgw" path="res://assets/models/civilian/civilian_anim.tscn" id="9_6i8r4"]
 [ext_resource type="Texture2D" uid="uid://75m7lx62tblq" path="res://assets/images/ui/merit/merit.png" id="9_gail2"]
 [ext_resource type="FontFile" uid="uid://55nvttuxhy57" path="res://assets/fonts/NutgameDEMO-Bold.ttf" id="9_lnego"]
 [ext_resource type="PackedScene" uid="uid://cwphdco3oqbna" path="res://assets/modules/gauges/gauges.tscn" id="10_edsx7"]
@@ -1022,6 +1023,19 @@ transform = Transform3D(-0.5, 0, 4.37114e-08, 0, 0.5, 0, -4.37114e-08, 0, -0.5, 
 [node name="extinguisher_nozzle" parent="Control/equipment-overlay/SubViewportContainer/SubViewport/viewmodel-camera/equipment_node/extinguisher" instance=ExtResource("7_p2hgc")]
 transform = Transform3D(-0.5, 0, 7.54979e-08, 0, 0.5, 0, -7.54979e-08, 0, -0.5, -0.183529, -0.0302522, -0.1)
 
+[node name="civilian" parent="Control/equipment-overlay/SubViewportContainer/SubViewport/viewmodel-camera/equipment_node" instance=ExtResource("9_6i8r4")]
+transform = Transform3D(-0.08, -1.4541e-09, 6.84099e-09, 0, 0.0782518, 0.0166329, -6.99382e-09, 0.0166329, -0.0782518, 0.838235, -0.973171, -0.811615)
+visible = false
+
+[node name="Skeleton3D" parent="Control/equipment-overlay/SubViewportContainer/SubViewport/viewmodel-camera/equipment_node/civilian/root" index="0"]
+bones/3/rotation = Quaternion(-0.341875, -0.00994756, -0.0273307, 0.939295)
+
+[node name="root" parent="Control/equipment-overlay/SubViewportContainer/SubViewport/viewmodel-camera/equipment_node/civilian/root/Skeleton3D" index="0"]
+layers = 524288
+
+[node name="AnimationPlayer" parent="Control/equipment-overlay/SubViewportContainer/SubViewport/viewmodel-camera/equipment_node/civilian" index="1"]
+active = false
+
 [node name="water_particles" type="CPUParticles3D" parent="Control/equipment-overlay/SubViewportContainer/SubViewport/viewmodel-camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00267798, -0.0768623, -0.409205)
 layers = 524288
@@ -1493,3 +1507,5 @@ color_ramp = SubResource("Gradient_u6tve")
 
 [connection signal="animation_finished" from="Control/on-screen-ui/ui/button_container/Back/AnimationPlayer" to="Control/on-screen-ui/ui/button_container/Back" method="_on_animation_player_animation_finished"]
 [connection signal="current_animation_changed" from="Control/on-screen-ui/ui/button_container/Back/AnimationPlayer" to="Control/on-screen-ui/ui/button_container/Back" method="_on_animation_player_current_animation_changed"]
+
+[editable path="Control/equipment-overlay/SubViewportContainer/SubViewport/viewmodel-camera/equipment_node/civilian"]

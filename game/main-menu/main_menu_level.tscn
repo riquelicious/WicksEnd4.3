@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cdawb4igah42t"]
+[gd_scene load_steps=15 format=3 uid="uid://cdawb4igah42t"]
 
 [ext_resource type="Script" path="res://game/main-menu/main_menu_level.gd" id="1_1v7a3"]
 [ext_resource type="PackedScene" uid="uid://bvxjgcnlaplpk" path="res://game/main-menu/menu_script/main_menu_ui.tscn" id="2_yk03q"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://hv22w03byfgv" path="res://assets/UpgradeShop/UpgradeShop.tscn" id="5_li84t"]
 [ext_resource type="PackedScene" uid="uid://deuc616mep0xa" path="res://game/main-menu/level_selector/level_selector_ui.tscn" id="6_fd3ha"]
 [ext_resource type="PackedScene" uid="uid://ctr27imw0v806" path="res://assets/modules/jigsaw_minigame/jigsaw_minigame.tscn" id="6_he4x4"]
+[ext_resource type="FontFile" uid="uid://bymlhp6jn8gl" path="res://assets/fonts/NutgameDEMO-Italic.ttf" id="7_pfnf4"]
 
 [sub_resource type="Environment" id="Environment_a5h1b"]
 background_mode = 1
@@ -88,6 +89,7 @@ grow_vertical = 2
 theme = ExtResource("3_n2bm6")
 
 [node name="main_menu" parent="UI" instance=ExtResource("2_yk03q")]
+visible = false
 layout_mode = 1
 
 [node name="level_selector" parent="UI" instance=ExtResource("6_fd3ha")]
@@ -99,8 +101,36 @@ visible = false
 layout_mode = 1
 
 [node name="evidence_menu" parent="UI" instance=ExtResource("6_he4x4")]
-visible = false
 layout_mode = 1
+
+[node name="jigsaw_container" parent="UI/evidence_menu" index="1"]
+offset_left = 29.0
+offset_right = 377.0
+
+[node name="paper" parent="UI/evidence_menu" index="2"]
+offset_left = 50.0
+offset_top = -195.0
+offset_right = 358.0
+offset_bottom = 191.0
+
+[node name="completed_note" parent="UI/evidence_menu/paper" index="0"]
+theme = null
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = 5
+theme_override_fonts/bold_italics_font = ExtResource("7_pfnf4")
+theme_override_font_sizes/bold_italics_font_size = 22
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/normal_font_size = 10
+text = "[i][b]The apartment fire is under control. Next, I’ll tackle the warehouse. It's a maze with all the cargo, so turning off the sprinklers might be tricky, but I’ll manage it to get the job done right.
+
+Following that, I’ll handle the house you showed me. With its electrical appliances, just using water won’t suffice. I’ll make sure the fire is thorough and leaves no chance for recovery, even if it’s more complicated.
+
+The industrial factory will be the final target. The presence of chemicals and weak structures might cause a collapse, so I’ll create a makeshift stair from the materials inside to reach the second floor and turn off the sprinklers.
+ This will help the fire spread as needed, despite the challenges.
+
+You better keep your promise about the promotion and pay. I’m managing these tough jobs—make sure you follow through with your end of the deal.
+
+Best regards, T.B[/b].[/i]"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
 libraries = {
@@ -174,3 +204,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.591,
 
 [node name="evidence_menu" type="Marker3D" parent="camera_positions"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.845912, 1.306, -0.920595)
+
+[editable path="UI/evidence_menu"]
+[editable path="UI/evidence_menu/Back"]

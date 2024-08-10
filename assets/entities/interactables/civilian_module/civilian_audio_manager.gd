@@ -31,6 +31,7 @@ func randomize_sound() -> AudioStreamOggVorbis:
 	return sounds[index]
 
 func on_timer_timeout():
+	if parent.visible == false: return
 	var audio = randomize_sound()
 	var delay = randomize_delay()
 	yell_audio_streamer.stream = audio

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ctr27imw0v806"]
+[gd_scene load_steps=25 format=3 uid="uid://ctr27imw0v806"]
 
 [ext_resource type="Script" path="res://assets/modules/jigsaw_minigame/jigsaw_minigame.gd" id="1_yjlyf"]
 [ext_resource type="FontFile" uid="uid://55nvttuxhy57" path="res://assets/fonts/NutgameDEMO-Bold.ttf" id="2_fm5dp"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ckwar4nnefpyt" path="res://assets/images/pcs/pc4.png" id="5_aajkw"]
 [ext_resource type="Texture2D" uid="uid://dwa1vlcnwhap" path="res://assets/images/pcs/paper.png" id="7_tqktc"]
 [ext_resource type="PackedScene" uid="uid://cbs4bxc0hka0k" path="res://assets/modules/gesture_button/gesture_button.tscn" id="8_scecl"]
+[ext_resource type="FontFile" uid="uid://b055q5k4ah4cv" path="res://assets/fonts/Optima_Italic.ttf" id="9_3422d"]
 [ext_resource type="Texture2D" uid="uid://bxheuqsen08tg" path="res://assets/images/ui/gesture_icons/fist.png" id="11_g26iw"]
 [ext_resource type="FontFile" uid="uid://be7tsy07e5604" path="res://assets/fonts/OPTIMA_B.TTF" id="12_l0ga1"]
 
@@ -31,6 +32,13 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_son16"]
+RichTextLabel/colors/default_color = Color(0, 0, 0, 0.709804)
+RichTextLabel/constants/line_separation = 5
+RichTextLabel/font_sizes/italics_font_size = 20
+RichTextLabel/font_sizes/normal_font_size = 10
+RichTextLabel/fonts/normal_font = ExtResource("9_3422d")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lv574"]
 
@@ -91,19 +99,19 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("paper/completed_note:modulate")
+tracks/4/path = NodePath("paper:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [Vector2(1, 1)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("paper:scale")
+tracks/5/path = NodePath("jigsaw_container:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -115,19 +123,19 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("jigsaw_container:scale")
+tracks/6/path = NodePath("notes:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("notes:modulate")
+tracks/7/path = NodePath("guide:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -139,19 +147,19 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("guide:modulate")
+tracks/8/path = NodePath("jigsaw_container/piece #1:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"update": 1,
+"values": [true]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("jigsaw_container/piece #1:visible")
+tracks/9/path = NodePath("jigsaw_container/piece #2:visible")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -163,7 +171,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("jigsaw_container/piece #2:visible")
+tracks/10/path = NodePath("jigsaw_container/piece #3:visible")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -175,22 +183,10 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("jigsaw_container/piece #3:visible")
+tracks/11/path = NodePath("jigsaw_container/piece #4:visible")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("jigsaw_container/piece #4:visible")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -238,91 +234,91 @@ step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("paper/completed_note:modulate")
+tracks/0/path = NodePath("jigsaw_container:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Vector2(605, 106), Vector2(402, 106)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("jigsaw_container:position")
+tracks/1/path = NodePath("paper:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.02, 0.1),
-"transitions": PackedFloat32Array(-2, -2, -2),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector2(605, 106), Vector2(605, 106), Vector2(402, 106)]
+"values": [Vector2(626, 129), Vector2(422, 131)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("paper:position")
+tracks/2/path = NodePath("paper:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.02, 0.1),
-"transitions": PackedFloat32Array(-2, -2, -2),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector2(626, 129), Vector2(626, 129), Vector2(422, 131)]
+"values": [Vector2(1, 1), Vector2(1.5, 1.5)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("paper:scale")
+tracks/3/path = NodePath("jigsaw_container:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.02, 0.1),
-"transitions": PackedFloat32Array(-2, -2, -2),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0.8, 0.8), Vector2(1.5, 1.5)]
+"values": [Vector2(1, 1), Vector2(1.5, 1.5)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("jigsaw_container:scale")
+tracks/4/path = NodePath("notes:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.02, 0.1),
-"transitions": PackedFloat32Array(-2, -2, -2),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0.8, 0.8), Vector2(1.5, 1.5)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("notes:modulate")
+tracks/5/path = NodePath("guide:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(-2, -2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("guide:modulate")
+tracks/6/path = NodePath("jigsaw_container/piece #1:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("jigsaw_container/piece #1:visible")
+tracks/7/path = NodePath("jigsaw_container/piece #2:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -334,7 +330,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("jigsaw_container/piece #2:visible")
+tracks/8/path = NodePath("jigsaw_container/piece #3:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -346,22 +342,10 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("jigsaw_container/piece #3:visible")
+tracks/9/path = NodePath("jigsaw_container/piece #4:visible")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("jigsaw_container/piece #4:visible")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -556,9 +540,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 29.0
+offset_left = -174.0
 offset_top = -218.0
-offset_right = 377.0
+offset_right = 174.0
 offset_bottom = 218.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -618,17 +602,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 50.0
-offset_top = -195.0
-offset_right = 358.0
-offset_bottom = 191.0
+offset_left = -154.0
+offset_top = -193.0
+offset_right = 154.0
+offset_bottom = 193.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(154, 193)
 texture = ExtResource("7_tqktc")
 
 [node name="completed_note" type="RichTextLabel" parent="paper"]
-modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(576, 732)
 layout_mode = 1
 anchors_preset = 8
@@ -645,11 +628,7 @@ grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 pivot_offset = Vector2(288, 366)
 mouse_filter = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_constants/line_separation = 5
-theme_override_fonts/normal_font = ExtResource("3_pwmcy")
-theme_override_font_sizes/italics_font_size = 20
-theme_override_font_sizes/normal_font_size = 10
+theme = SubResource("Theme_son16")
 bbcode_enabled = true
 text = "[i]The apartment fire is under control. Next, I’ll tackle the warehouse. It's a maze with all the cargo, so turning off the sprinklers might be tricky, but I’ll manage it to get the job done right.
 

@@ -5,3 +5,4 @@
 [resource]
 default_font = ExtResource("8_4jjih")
 default_font_size = 24
+textlabel/font_sizes/font_size = 24

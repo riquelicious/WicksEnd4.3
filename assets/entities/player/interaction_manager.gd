@@ -102,7 +102,7 @@ func do_civilian(collider):
 		collider.civilain_manager.pickup()
 		civilian_id = collider.get_instance_id()
 		objective_markers.switch_crosshair("crosshair")
-		await equipment_manager.change_equipment(2 ,true)
+		await equipment_manager.change_equipment(3 ,true)
 	else:
 		pick_flag = true
 

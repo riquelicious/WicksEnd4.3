@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://js0y1ym1045y"]
+[gd_scene load_steps=29 format=3 uid="uid://js0y1ym1045y"]
 
 [ext_resource type="Script" path="res://game/levels/level1/level-1.gd" id="1_amc4j"]
 [ext_resource type="PackedScene" uid="uid://q1yxpssljlq1" path="res://assets/entities/player/player.tscn" id="1_yf7aq"]
@@ -8,10 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://c55ams3nst3h4" path="res://assets/entities/interactables/civilian.tscn" id="6_r4n0h"]
 [ext_resource type="PackedScene" uid="uid://c7lfbpnhhs0hr" path="res://assets/entities/fire/cube_fire.tscn" id="6_xin8i"]
 [ext_resource type="PackedScene" path="res://assets/entities/interactables/valve.tscn" id="7_6iftk"]
-[ext_resource type="PackedScene" path="res://assets/entities/interactables/pickup.tscn" id="8_tuyxg"]
+[ext_resource type="PackedScene" uid="uid://dwhmjssaki4oo" path="res://assets/entities/interactables/pickup.tscn" id="8_tuyxg"]
 [ext_resource type="PackedScene" path="res://assets/entities/interactables/drop_area.tscn" id="10_enc66"]
 [ext_resource type="Script" path="res://assets/game_objects/interactables/combo_area.gd" id="11_18p2i"]
 [ext_resource type="AudioStream" uid="uid://dvxhpl54bsc6d" path="res://assets/audio/sfx/warning/Retro Event Wrong Echo 03.wav" id="12_m30pt"]
+[ext_resource type="PackedScene" uid="uid://crcx0uou65ta" path="res://assets/entities/interactables/pcs/pc.tscn" id="13_7oyi8"]
+[ext_resource type="PackedScene" uid="uid://j1d8e7jm3t7u" path="res://assets/entities/sprinkler/spinkler.tscn" id="13_kiquy"]
+[ext_resource type="Script" path="res://assets/entities/sprinkler/spinkler.gd" id="14_vfkdc"]
+[ext_resource type="Script" path="res://assets/entities/interactables/valve_module/valve_container.gd" id="15_kryyx"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_n042r"]
 
@@ -202,9 +206,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="pickup" parent="." instance=ExtResource("8_tuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -7)
 
-[node name="valve" parent="." instance=ExtResource("7_6iftk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -6)
-
 [node name="DropArea" parent="." instance=ExtResource("10_enc66")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1.6, 6)
 
@@ -230,4 +231,32 @@ shape = SubResource("BoxShape3D_wn25s")
 [node name="warning_audio" type="AudioStreamPlayer3D" parent="combo_area"]
 stream = ExtResource("12_m30pt")
 
+[node name="paper_piece" parent="." instance=ExtResource("13_7oyi8")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 7.604)
+
+[node name="sprinkler_system" type="Node" parent="."]
+script = ExtResource("15_kryyx")
+
+[node name="valve_container" type="Node" parent="sprinkler_system"]
+
+[node name="valve" parent="sprinkler_system/valve_container" instance=ExtResource("7_6iftk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, -6)
+
+[node name="valve2" parent="sprinkler_system/valve_container" instance=ExtResource("7_6iftk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -6)
+
+[node name="valve3" parent="sprinkler_system/valve_container" instance=ExtResource("7_6iftk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, -6)
+
+[node name="sprinkler_container" type="Node" parent="sprinkler_system"]
+
+[node name="spinkler" parent="sprinkler_system/sprinkler_container" instance=ExtResource("13_kiquy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 3, -2)
+script = ExtResource("14_vfkdc")
+
+[node name="CollisionShape3D" parent="sprinkler_system/sprinkler_container/spinkler" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
 [editable path="interactable"]
+[editable path="sprinkler_system/sprinkler_container/spinkler"]

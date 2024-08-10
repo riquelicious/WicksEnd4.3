@@ -1,8 +1,100 @@
-[gd_scene load_steps=4 format=3 uid="uid://d30qmtkljswab"]
+[gd_scene load_steps=13 format=3 uid="uid://dwhmjssaki4oo"]
 
 [ext_resource type="Script" path="res://assets/game_objects/interactables/Pickups.gd" id="1_7bvky"]
+[ext_resource type="Texture2D" uid="uid://oako53myj1a0" path="res://assets/flare/flare_1.png" id="2_4n4h5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_itsif"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_4n4h5")
+emission_enabled = true
+emission = Color(0.956863, 0.701961, 0, 1)
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sdo72"]
+material = SubResource("StandardMaterial3D_itsif")
+size = Vector2(0.5, 0.5)
+orientation = 2
+
+[sub_resource type="Curve" id="Curve_hd70c"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.518817, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_t4e3g"]
+interpolation_mode = 2
+colors = PackedColorArray(0.875596, 0.484592, 3.85046e-07, 1, 0.976639, 0.948242, 0.983251, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_yj585"]
+
+[sub_resource type="Animation" id="Animation_lag5g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("model:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("model:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pvdot"]
+resource_name = "fade"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("model:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.4, 1.4, 1.4), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_s0cyc"]
+resource_name = "rotate"
+length = 8.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("model:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4, 8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.14159, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6c01e"]
+_data = {
+"RESET": SubResource("Animation_lag5g"),
+"fade": SubResource("Animation_pvdot"),
+"rotate": SubResource("Animation_s0cyc")
+}
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4jon8"]
 
@@ -13,9 +105,32 @@ script = ExtResource("1_7bvky")
 
 [node name="marker_origin" type="Marker3D" parent="."]
 
-[node name="something" type="MeshInstance3D" parent="."]
+[node name="model" type="Node3D" parent="."]
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="model"]
+transform = Transform3D(1, 2.25354e-09, 4.16996e-10, -2.32614e-09, 1, 5.96046e-08, 6.02105e-09, -5.96046e-08, 1, -0.01587, 1.78785e-07, -0.000630543)
+lifetime = 4.0
+speed_scale = 2.0
+mesh = SubResource("PlaneMesh_sdo72")
+emission_shape = 1
+emission_sphere_radius = 0.5
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_amount_curve = SubResource("Curve_hd70c")
+color_ramp = SubResource("Gradient_t4e3g")
+
+[node name="test" type="MeshInstance3D" parent="model"]
+transform = Transform3D(0.2, -1.74846e-08, 4.68497e-09, 1.74846e-08, 0.173205, -0.1, 4.68497e-09, 0.1, 0.173205, 0, 0, 0)
 mesh = SubResource("BoxMesh_yj585")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="model"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_6c01e")
+}
+autoplay = "rotate"
 
 [node name="wall_collision" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_4jon8")
