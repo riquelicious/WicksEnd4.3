@@ -19,7 +19,7 @@ var blank_save = {
 		"5": false
 	},
 	"levels": {
-		"0": false,
+		"0": true,
 		"1": false,
 		"2": false,
 		"3": false,

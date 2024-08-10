@@ -8,6 +8,8 @@ signal button_clicked
 @onready var anim : AnimationPlayer = $AnimationPlayer
 @export var disableable : bool = false
 var disabled : bool = false
+var prev_status : bool = false
+var label : Label
 #@onready var button_label : Label = $"button-label"
 
 var previous_animation : String = ''
@@ -18,18 +20,18 @@ var is_executed : bool = false
 var time := 0.0
 
 func _ready():
-	#$Bg1.scale.x = 0
-	#$Bg2.scale.x = 0
-	#$Bg3.scale.x = 0
+	label = find_child("button-label")
 	mouse_exited.connect(_mouse_exited)
 	mouse_entered.connect(_mouse_entered)
 
 func check_status():
+	if prev_status == disabled : return
+	prev_status = disabled
 	if disableable:
 		if disabled:
-			modulate = Color(1.0,1.0,1.0,0.5)
+			label.modulate = Color(1.0,1.0,1.0,0.5)
 		else:
-			modulate = Color.WHITE
+			label.modulate = Color.WHITE
 
 func _fade_in():
 	if anim.is_playing():

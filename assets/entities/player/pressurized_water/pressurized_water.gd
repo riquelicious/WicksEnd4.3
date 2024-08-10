@@ -79,6 +79,9 @@ func detect_collision() -> bool:
 	var collider = ray.get_collider()
 	steam_particle.emitting = !(collider == null)
 	if collider:
+		if not collider is FireInstance: 
+			current_segment += 1
+			return false
 		if collider.health > 0:
 			collider.fire_state_manager.damage_fire(damage)
 			current_segment = 0

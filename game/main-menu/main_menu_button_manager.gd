@@ -90,7 +90,9 @@ func evidence_():
 	parent.anim_manager.switch_ui(3)
 
 func play_():
-	Transition.change_scene(FilePaths.levels[Global.level_settings.level_selection])
+	var level = Global.level_settings.level_selection
+	if Global.level_settings.unlocked_levels[str(level)] == true:
+		Transition.change_scene(FilePaths.levels[Global.level_settings.level_selection])
 
 func upgrade_():
 	upgrade_shop.shop_description_manager.update()

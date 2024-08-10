@@ -93,7 +93,6 @@ visible = false
 layout_mode = 1
 
 [node name="level_selector" parent="UI" instance=ExtResource("6_fd3ha")]
-visible = false
 layout_mode = 1
 
 [node name="UpgradeShop" parent="UI" instance=ExtResource("5_li84t")]
@@ -101,6 +100,7 @@ visible = false
 layout_mode = 1
 
 [node name="evidence_menu" parent="UI" instance=ExtResource("6_he4x4")]
+visible = false
 layout_mode = 1
 
 [node name="jigsaw_container" parent="UI/evidence_menu" index="1"]
@@ -191,10 +191,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03413, 1.29935, -0.374025)
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 2.12135, 0.624826)
 
 [node name="level_2" type="Marker3D" parent="camera_positions"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 2.61474, -0.249535)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 2.625, -0.25)
 
 [node name="level_3" type="Marker3D" parent="camera_positions"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 2.3075, -0.813717)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 2.307, -0.814)
 
 [node name="level_4" type="Marker3D" parent="camera_positions"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 1.751, -0.126721)
