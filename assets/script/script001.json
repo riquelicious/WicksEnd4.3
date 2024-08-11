@@ -90,6 +90,11 @@
 			"text": "It seems like we’re here. Let’s move out and get to work.",
 			"name": "Captain Hayes",
 			"choices": []
+		},
+		"21": {
+			"text": "Hmm... it seems that Burke is already here. Travis Burke, he’s a reporter known for his... intrusive methods.",
+			"name": "Captain Hayes",
+			"choices": []
 		}
 	}
 }

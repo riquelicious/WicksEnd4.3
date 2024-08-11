@@ -69,36 +69,41 @@
 		},
 		
 		"20": {
-			"text": "Great! We’re heading to 78 Crestwood Avenue. It’s a few blocks away.",
+			"text": "Great! It seems like we will arrive before Burke. We’re heading to 78 Crestwood Avenue. It’s a few blocks away.",
 			"name": "Captain Hayes",
 			"choices": []
 		},
 		"21": {
-			"text": "[shake rate=20.0 level=5 connected=1]W-wait, that’s my address![/shake]",
+			"text": "78 Crestwood Avenue?",
 			"name": "You",
 			"choices": []
 		},
 		"22": {
+			"text": "[shake rate=20.0 level=5 connected=1]W-wait, that’s my address![/shake]",
+			"name": "You",
+			"choices": []
+		},
+		"23": {
 			"text": "What!?",
 			"name": "Captain Hayes",
 			"choices": []
 		},
-		"23": {
+		"24": {
 			"text": "[shake rate=20.0 level=5 connected=1]My daughter… My wife…[/shake] We should hurry!",
 			"name": "You",
 			"choices": []
 		},
-		"24": {
+		"25": {
 			"text": "Calm down, young man. I know it’s hard, but try to stay level-headed. We need to focus on getting there quickly.",
 			"name": "Captain Hayes",
 			"choices": []
 		},
-		"25": {
+		"26": {
 			"text": "Also, You’ll need this for any electrical fires. Water alone can spread them or cause electrocution.",
 			"name": "Captain Hayes",
 			"choices": []
 		},
-		"26": {
+		"27": {
 			"text": "[color=yellow]You received a CO2 FIRE EXTINGUISHER![/color]",
 			"name": "Captain Hayes",
 			"choices": []
