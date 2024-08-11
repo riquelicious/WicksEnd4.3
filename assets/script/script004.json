@@ -1,0 +1,85 @@
+{
+	"nodes": {
+		"1": {
+			"text": "Alright, we’re heading into an industrial factory. It’s a challenging situation with many civilians trapped inside and the building in poor condition.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"2": {
+			"text": "Our main goal is to rescue everyone and manage the hazards effectively.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"3": {
+			"text": "Any questions before we arrive?",
+			"name": "Captain Hayes",
+			"choices": [
+				{ "text": "About the factory...", "nextNode": "5" },
+				{ "text": "Our plan", "nextNode": "10" },
+				{ "text": "The Chemicals", "nextNode": "15" },
+				{ "text": "No, Captain!", "nextNode": "20" }
+			]
+		},
+		"5": {
+			"text": "Can you tell me more about the factory?",
+			"name": "You",
+			"choices": []
+		},
+		"6": {
+			"text": "The factory is in a dangerous state. Many civilians are trapped inside, and the building is collapsing in several areas.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"7": {
+			"text": "Some stairs are damaged. Once again, we need to find alternate routes.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"8": {
+			"text": "Any questions before we arrive?",
+			"name": "Captain Hayes",
+			"choices": [
+				{ "text": "About the factory...", "nextNode": "5" },
+				{ "text": "Our plan", "nextNode": "10" },
+				{ "text": "The Chemicals", "nextNode": "15" },
+				{ "text": "No, Captain!", "nextNode": "20" }
+			]
+		},
+		"10": {
+			"text": "What should we know about the chemical fires?",
+			"name": "You",
+			"choices": []
+		},
+		"11": {
+			"text": "There are a lot of flammable chemicals within the factory, so expect numerous chemical fires.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"12": {
+			"text": "The sprinklers could help put out some of the fires, but we need to bring the flow back, which is stopped for some reason. ",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"13": {
+			"text": "We’ll handle the remaining chemical fires with the CO2 extinguisher.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"14": {
+			"text": "Any questions before we arrive?",
+			"name": "Captain Hayes",
+			"choices": [
+				{ "text": "About the factory...", "nextNode": "5" },
+				{ "text": "Our plan", "nextNode": "10" },
+				{ "text": "The Chemicals", "nextNode": "15" },
+				{ "text": "No, Captain!", "nextNode": "20" }
+			]
+		},
+		
+		"20": {
+			"text": "Alright, let’s do this.",
+			"name": "Captain Hayes",
+			"choices": []
+		}
+	}
+}

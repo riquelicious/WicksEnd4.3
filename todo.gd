@@ -10,3 +10,5 @@
 #// * sounds
 #// * timer
 #// * markers
+# * pause?
+# * locking of equipments

@@ -2,7 +2,6 @@ class_name SceneManager
 extends CanvasLayer
 
 ##buttons
-@export var script_index : int = 0
 @onready var choices_button_container := $Control/choices_button_container
 
 var json_manager : SceneJsonManager = SceneJsonManager.new()

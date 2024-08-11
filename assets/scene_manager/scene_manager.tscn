@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://bjlo7l7uu7ylo"]
+[gd_scene load_steps=20 format=3 uid="uid://bjlo7l7uu7ylo"]
 
 [ext_resource type="Script" path="res://assets/scene_manager/scene_manager.gd" id="1_r7iwm"]
 [ext_resource type="FontFile" uid="uid://55nvttuxhy57" path="res://assets/fonts/NutgameDEMO-Bold.ttf" id="2_aon8b"]
 [ext_resource type="Script" path="res://assets/modules/gesture_button/gesture-button.gd" id="3_vqo16"]
 [ext_resource type="Texture2D" uid="uid://b6ov7hlgts3vh" path="res://assets/gestures/thumbsup.png" id="5_efwhv"]
+[ext_resource type="AudioStream" uid="uid://dnd1o4qpbjdjs" path="res://assets/audio/sfx/text/text_pop-01-2.ogg" id="6_7p3av"]
 [ext_resource type="FontFile" uid="uid://be7tsy07e5604" path="res://assets/fonts/OPTIMA_B.TTF" id="6_l6qar"]
 
 [sub_resource type="Animation" id="Animation_khjc2"]
@@ -717,3 +718,8 @@ libraries = {
 [node name="per_char_timer" type="Timer" parent="."]
 
 [node name="per_dialogue_timer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_7p3av")
+volume_db = -18.0
+bus = &"UIFX"

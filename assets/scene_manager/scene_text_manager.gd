@@ -10,6 +10,7 @@ var per_char_timer : Timer
 var per_dial_timer : Timer
 var start_delay_timer : Timer
 var script_json : Dictionary
+var audio_pop : AudioStreamPlayer
 
 var displayed_char_length : int = 0
 var node_index := 0
@@ -28,8 +29,9 @@ func initialize(parent_instance : Node):
 	per_char_timer = parent.get_node("per_char_timer")
 	per_dial_timer = parent.get_node("per_dialogue_timer")
 	start_delay_timer = parent.get_node("start_delay")
+	audio_pop = parent.get_node("AudioStreamPlayer")
 	#call_deferred("init_text")
-	script_json = parent.json_manager.load_json(parent.script_index)
+	script_json = parent.json_manager.load_json(Global.level_settings.level_selection)
 	init_text()
 	
 
@@ -87,7 +89,16 @@ func get_char_name(index):
 			
 func increment_char():
 	if displayed_char_length < len(current_text):
-		displayed_char_length += 1
+		if current_text[displayed_char_length] == "[":
+			while current_text[displayed_char_length] != "]":
+				if displayed_char_length < len(current_text)-1:
+					displayed_char_length += 1
+				else:
+					break
+		else:
+			displayed_char_length += 1
+		audio_pop.stop()
+		audio_pop.play()
 		text_box.visible_characters = displayed_char_length
 		per_char_timer.start(char_display_speed)
 	else:
@@ -97,7 +108,9 @@ func increment_char():
 			await value_returned
 			delay = 0
 			await parent.anim_manager.fade_choices(false)
-		per_dial_timer.start(delay)
+			per_dial_timer.start(0)
+		else:
+			per_dial_timer.start(delay)
 
 func set_delay():
 	return start_delay

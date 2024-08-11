@@ -15,7 +15,7 @@ var unlocked_levels = {
 	"3" : false
 }
 
-var level_selection: int = 0
+var level_selection: int = 2
 var lvlPoints := 1000.0
 
 var civilians_remaining := 0

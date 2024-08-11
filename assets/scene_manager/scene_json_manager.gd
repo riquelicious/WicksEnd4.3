@@ -16,4 +16,3 @@ func load_json(file_index: int):
 		return result["nodes"]
 	else:
 		push_warning("JSON Parsing Error")
-	
