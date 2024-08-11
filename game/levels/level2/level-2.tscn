@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bvgjfma24af43"]
+[gd_scene load_steps=41 format=3 uid="uid://bvgjfma24af43"]
 
 [ext_resource type="Script" path="res://game/levels/level1/level-1.gd" id="1_5c2j4"]
 [ext_resource type="Environment" uid="uid://c1jsw4puq6pku" path="res://assets/environments/level1.tres" id="2_k586l"]
@@ -10,15 +10,20 @@
 [ext_resource type="PackedScene" uid="uid://dwhmjssaki4oo" path="res://assets/entities/interactables/pickup.tscn" id="8_l54kd"]
 [ext_resource type="Script" path="res://game/levels/level1/staircase.gd" id="9_gkrcc"]
 [ext_resource type="Script" path="res://assets/entities/interactables/valve_module/valve_container.gd" id="10_mk8f2"]
+[ext_resource type="PackedScene" uid="uid://q35h37cnbrmx" path="res://game/levels/level2/stairs/makeshift_stairs.gltf" id="10_xsa57"]
 [ext_resource type="PackedScene" uid="uid://dodep8crmbfm6" path="res://assets/entities/interactables/valve.tscn" id="11_4ssnj"]
 [ext_resource type="PackedScene" uid="uid://j1d8e7jm3t7u" path="res://assets/entities/sprinkler/spinkler.tscn" id="12_pg3gf"]
 [ext_resource type="Script" path="res://assets/entities/sprinkler/spinkler.gd" id="13_raj36"]
 [ext_resource type="Script" path="res://assets/modules/fire_system/fire_system.gd" id="14_mt4ng"]
+[ext_resource type="PackedScene" uid="uid://hsltjy1vkgs4" path="res://assets/models/sprinkler/sprinkler.glb" id="14_q866g"]
 [ext_resource type="PackedScene" uid="uid://c7lfbpnhhs0hr" path="res://assets/entities/fire/cube_fire.tscn" id="15_p2wwo"]
+[ext_resource type="Texture2D" uid="uid://cy837883aktk0" path="res://assets/flare/flare_12.png" id="15_u5d58"]
 [ext_resource type="Script" path="res://assets/entities/interactables/evidencesystem.gd" id="16_c7dus"]
+[ext_resource type="AudioStream" uid="uid://c0goprnbqmni4" path="res://assets/audio/sfx/sprinkler/sprinkler.ogg" id="16_imvmb"]
 [ext_resource type="PackedScene" uid="uid://crcx0uou65ta" path="res://assets/entities/interactables/pcs/pc.tscn" id="17_ks0kc"]
 [ext_resource type="PackedScene" uid="uid://3whxti0e2onl" path="res://assets/modules/combo/combo_area.tscn" id="18_1gftc"]
 [ext_resource type="PackedScene" uid="uid://dl1s37dxw4b5j" path="res://assets/entities/interactables/breakable.tscn" id="19_10g0n"]
+[ext_resource type="PackedScene" uid="uid://ktc6bu0r2vj2" path="res://game/levels/level2/model/warehouse.glb" id="20_aadq6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p0f3a"]
 transparency = 1
@@ -38,20 +43,51 @@ point_count = 2
 colors = PackedColorArray(0.140447, 0.140447, 0.140447, 1, 0.534361, 0.534361, 0.534361, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rvmu0"]
-size = Vector3(5, 1, 3.24268)
+size = Vector3(14.1753, 0.4, 3.24268)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wnwlo"]
 size = Vector3(6, 1, 5)
 
-[sub_resource type="PrismMesh" id="PrismMesh_w5dac"]
-left_to_right = 1.0
-size = Vector3(4, 3, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_wwg0q"]
 size = Vector3(6, 1, 1)
 
+[sub_resource type="BoxMesh" id="BoxMesh_xro8e"]
+size = Vector3(6, 1, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kp86q"]
+particle_flag_align_y = true
+direction = Vector3(0, -1, 0)
+spread = 20.0
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8quth"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.541176, 1, 1, 1)
+albedo_texture = ExtResource("15_u5d58")
+refraction_scale = -1.0
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_8llb4"]
+material = SubResource("StandardMaterial3D_8quth")
+size = 0.1
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_eqofl"]
 size = Vector3(100, 30, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_utp88"]
+size = Vector3(2.68445, 1, 4.1499)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jjrpn"]
+size = Vector3(11.3147, 1, 7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ex2r7"]
+size = Vector3(11.3147, 1, 7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cjs6o"]
+size = Vector3(11.3147, 1, 7)
 
 [node name="Level-2" type="Node3D" node_paths=PackedStringArray("quests")]
 script = ExtResource("1_5c2j4")
@@ -72,7 +108,7 @@ shadow_enabled = true
 [node name="World" type="Node3D" parent="."]
 
 [node name="smokes" type="CPUParticles3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8826, 1, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.1174, 1, -10)
 amount = 64
 lifetime = 0.75
 speed_scale = 1.94
@@ -87,7 +123,7 @@ scale_amount_curve = SubResource("Curve_2enan")
 color_ramp = SubResource("Gradient_js6bg")
 
 [node name="smokes2" type="CPUParticles3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.8826, 1, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1174, -9, -29)
 amount = 64
 lifetime = 0.75
 speed_scale = 1.94
@@ -102,7 +138,7 @@ scale_amount_curve = SubResource("Curve_2enan")
 color_ramp = SubResource("Gradient_js6bg")
 
 [node name="smokes3" type="CPUParticles3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.8826, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.8826, 1, -30)
 amount = 64
 lifetime = 0.75
 speed_scale = 1.94
@@ -117,7 +153,7 @@ scale_amount_curve = SubResource("Curve_2enan")
 color_ramp = SubResource("Gradient_js6bg")
 
 [node name="smokes4" type="CPUParticles3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.8826, 4, -8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8826, -8, 10)
 amount = 64
 lifetime = 0.75
 speed_scale = 1.94
@@ -132,9 +168,10 @@ scale_amount_curve = SubResource("Curve_2enan")
 color_ramp = SubResource("Gradient_js6bg")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66, 0, -6.9)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/StaticBody3D"]
-transform = Transform3D(0.917269, -0.398269, 0, 0.398269, 0.917269, 0, 0, 0, 1, 46.7917, 0.390369, -13.0941)
+transform = Transform3D(-4.00951e-08, 1.74089e-08, 1, -0.36853, -0.929616, 1.40732e-09, 0.929616, -0.36853, 4.36887e-08, 59.7917, -3.76756, -21.3843)
 shape = SubResource("BoxShape3D_rvmu0")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="World"]
@@ -146,7 +183,7 @@ shape = SubResource("BoxShape3D_rvmu0")
 
 [node name="player" parent="." instance=ExtResource("3_lkvv6")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.522, 0.474495, -5.01865)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.478, -6.24523, -2.01865)
 
 [node name="civilian_system" type="Node" parent="."]
 script = ExtResource("4_84hjl")
@@ -157,7 +194,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1.6, 6)
 [node name="civilians" type="Node" parent="civilian_system"]
 
 [node name="civilian" parent="civilian_system/civilians" instance=ExtResource("6_ecewq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4.14579, -12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.14579, -37)
+collision_layer = 519
+collision_mask = 519
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+
+[node name="civilian2" parent="civilian_system/civilians" instance=ExtResource("6_ecewq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0.14579, -37)
 collision_layer = 519
 collision_mask = 519
 axis_lock_angular_x = true
@@ -169,21 +213,21 @@ script = ExtResource("7_0o0c2")
 [node name="pickups" type="Node" parent="stair_system"]
 
 [node name="pickup" parent="stair_system/pickups" instance=ExtResource("8_l54kd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, -5, -26)
 
 [node name="pickup2" parent="stair_system/pickups" instance=ExtResource("8_l54kd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, -5, -29)
 
 [node name="pickup3" parent="stair_system/pickups" instance=ExtResource("8_l54kd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, -5, -27)
 
 [node name="pickup4" parent="stair_system/pickups" instance=ExtResource("8_l54kd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, -5, -18)
 
 [node name="makeshift_staircase" type="Node" parent="stair_system"]
 
 [node name="staircase" type="Area3D" parent="stair_system/makeshift_staircase"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, -5, 0)
 script = ExtResource("9_gkrcc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="stair_system/makeshift_staircase/staircase"]
@@ -191,14 +235,18 @@ shape = SubResource("BoxShape3D_wnwlo")
 
 [node name="stair_model" type="StaticBody3D" parent="stair_system/makeshift_staircase/staircase/CollisionShape3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="stair_system/makeshift_staircase/staircase/CollisionShape3D/stair_model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-visible = false
-mesh = SubResource("PrismMesh_w5dac")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="stair_system/makeshift_staircase/staircase/CollisionShape3D/stair_model"]
 transform = Transform3D(0.781858, -0.623457, 0, 0.623457, 0.781858, 0, 0, 0, 1, -0.0999999, 0.3, 0)
 shape = SubResource("BoxShape3D_wwg0q")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="stair_system/makeshift_staircase/staircase/CollisionShape3D/stair_model/CollisionShape3D"]
+transform = Transform3D(1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_xro8e")
+
+[node name="blockbench_export" parent="stair_system/makeshift_staircase/staircase/CollisionShape3D/stair_model" instance=ExtResource("10_xsa57")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 40, 0, -27)
+visible = false
 
 [node name="sprinkler_system" type="Node" parent="."]
 script = ExtResource("10_mk8f2")
@@ -206,18 +254,207 @@ script = ExtResource("10_mk8f2")
 [node name="valve_container" type="Node" parent="sprinkler_system"]
 
 [node name="valve" parent="sprinkler_system/valve_container" instance=ExtResource("11_4ssnj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, -6)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0.312278, -38.4)
+
+[node name="valve2" parent="sprinkler_system/valve_container" instance=ExtResource("11_4ssnj")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 29.2537, -4.52, 8.6)
 
 [node name="sprinkler_container" type="Node" parent="sprinkler_system"]
 
 [node name="spinkler" parent="sprinkler_system/sprinkler_container" instance=ExtResource("12_pg3gf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 3, -2)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6, 1, -2)
 collision_layer = 0
 script = ExtResource("13_raj36")
 
-[node name="CollisionShape3D" parent="sprinkler_system/sprinkler_container/spinkler" index="1"]
+[node name="sprinkler2" parent="sprinkler_system/sprinkler_container/spinkler" instance=ExtResource("14_q866g")]
+transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, -2, 2.5, 7)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler2"]
+transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
+amount = 32
+speed_scale = 2.0
+randomness = 0.83
+visibility_aabb = AABB(-2, 0, -2, 4, -10, 4)
+trail_lifetime = 0.01
+process_material = SubResource("ParticleProcessMaterial_kp86q")
+draw_pass_1 = SubResource("RibbonTrailMesh_8llb4")
+
+[node name="sprinkler_audio" type="AudioStreamPlayer3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler2"]
+transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
+stream = ExtResource("16_imvmb")
+volume_db = -2.0
+max_db = -1.0
+bus = &"SFX"
+
+[node name="sprinkler3" parent="sprinkler_system/sprinkler_container/spinkler" instance=ExtResource("14_q866g")]
+transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, -2, 2.5, 12)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler3"]
+transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
+amount = 32
+speed_scale = 2.0
+randomness = 0.83
+visibility_aabb = AABB(-2, 0, -2, 4, -10, 4)
+trail_lifetime = 0.01
+process_material = SubResource("ParticleProcessMaterial_kp86q")
+draw_pass_1 = SubResource("RibbonTrailMesh_8llb4")
+
+[node name="sprinkler_audio" type="AudioStreamPlayer3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler3"]
+transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
+stream = ExtResource("16_imvmb")
+volume_db = -2.0
+max_db = -1.0
+bus = &"SFX"
+
+[node name="sprinkler4" parent="sprinkler_system/sprinkler_container/spinkler" instance=ExtResource("14_q866g")]
+transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, -2, 2.5, 17)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler4"]
+transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
+amount = 32
+speed_scale = 2.0
+randomness = 0.83
+visibility_aabb = AABB(-2, 0, -2, 4, -10, 4)
+trail_lifetime = 0.01
+process_material = SubResource("ParticleProcessMaterial_kp86q")
+draw_pass_1 = SubResource("RibbonTrailMesh_8llb4")
+
+[node name="sprinkler_audio" type="AudioStreamPlayer3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler4"]
+transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
+stream = ExtResource("16_imvmb")
+volume_db = -2.0
+max_db = -1.0
+bus = &"SFX"
+
+[node name="sprinkler5" parent="sprinkler_system/sprinkler_container/spinkler" instance=ExtResource("14_q866g")]
+transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 3, 2.5, 17)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler5"]
+transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
+amount = 32
+speed_scale = 2.0
+randomness = 0.83
+visibility_aabb = AABB(-2, 0, -2, 4, -10, 4)
+trail_lifetime = 0.01
+process_material = SubResource("ParticleProcessMaterial_kp86q")
+draw_pass_1 = SubResource("RibbonTrailMesh_8llb4")
+
+[node name="sprinkler_audio" type="AudioStreamPlayer3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler5"]
+transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
+stream = ExtResource("16_imvmb")
+volume_db = -2.0
+max_db = -1.0
+bus = &"SFX"
+
+[node name="sprinkler6" parent="sprinkler_system/sprinkler_container/spinkler" instance=ExtResource("14_q866g")]
+transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 8, 2.5, 17)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler6"]
+transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
+amount = 32
+speed_scale = 2.0
+randomness = 0.83
+visibility_aabb = AABB(-2, 0, -2, 4, -10, 4)
+trail_lifetime = 0.01
+process_material = SubResource("ParticleProcessMaterial_kp86q")
+draw_pass_1 = SubResource("RibbonTrailMesh_8llb4")
+
+[node name="sprinkler_audio" type="AudioStreamPlayer3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler6"]
+transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
+stream = ExtResource("16_imvmb")
+volume_db = -2.0
+max_db = -1.0
+bus = &"SFX"
+
+[node name="sprinkler7" parent="sprinkler_system/sprinkler_container/spinkler" instance=ExtResource("14_q866g")]
+transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 14, 2.5, 17)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler7"]
+transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
+amount = 32
+speed_scale = 2.0
+randomness = 0.83
+visibility_aabb = AABB(-2, 0, -2, 4, -10, 4)
+trail_lifetime = 0.01
+process_material = SubResource("ParticleProcessMaterial_kp86q")
+draw_pass_1 = SubResource("RibbonTrailMesh_8llb4")
+
+[node name="sprinkler_audio" type="AudioStreamPlayer3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler7"]
+transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
+stream = ExtResource("16_imvmb")
+volume_db = -2.0
+max_db = -1.0
+bus = &"SFX"
+
+[node name="sprinkler8" parent="sprinkler_system/sprinkler_container/spinkler" instance=ExtResource("14_q866g")]
+transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 14, 2.5, 10)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler8"]
+transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
+amount = 32
+speed_scale = 2.0
+randomness = 0.83
+visibility_aabb = AABB(-2, 0, -2, 4, -10, 4)
+trail_lifetime = 0.01
+process_material = SubResource("ParticleProcessMaterial_kp86q")
+draw_pass_1 = SubResource("RibbonTrailMesh_8llb4")
+
+[node name="sprinkler_audio" type="AudioStreamPlayer3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler8"]
+transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
+stream = ExtResource("16_imvmb")
+volume_db = -2.0
+max_db = -1.0
+bus = &"SFX"
+
+[node name="sprinkler9" parent="sprinkler_system/sprinkler_container/spinkler" instance=ExtResource("14_q866g")]
+transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 14, 2.5, -4)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler9"]
+transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
+amount = 32
+speed_scale = 2.0
+randomness = 0.83
+visibility_aabb = AABB(-2, 0, -2, 4, -10, 4)
+trail_lifetime = 0.01
+process_material = SubResource("ParticleProcessMaterial_kp86q")
+draw_pass_1 = SubResource("RibbonTrailMesh_8llb4")
+
+[node name="sprinkler_audio" type="AudioStreamPlayer3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler9"]
+transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
+stream = ExtResource("16_imvmb")
+volume_db = -2.0
+max_db = -1.0
+bus = &"SFX"
+
+[node name="sprinkler10" parent="sprinkler_system/sprinkler_container/spinkler" instance=ExtResource("14_q866g")]
+transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 3, 2.5, -4)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler10"]
+transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
+amount = 32
+speed_scale = 2.0
+randomness = 0.83
+visibility_aabb = AABB(-2, 0, -2, 4, -10, 4)
+trail_lifetime = 0.01
+process_material = SubResource("ParticleProcessMaterial_kp86q")
+draw_pass_1 = SubResource("RibbonTrailMesh_8llb4")
+
+[node name="sprinkler_audio" type="AudioStreamPlayer3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler10"]
+transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
+stream = ExtResource("16_imvmb")
+volume_db = -2.0
+max_db = -1.0
+bus = &"SFX"
+
+[node name="CollisionShape3D" parent="sprinkler_system/sprinkler_container/spinkler" index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="spinkler2" parent="sprinkler_system/sprinkler_container" instance=ExtResource("12_pg3gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6, 1, -6)
+collision_layer = 0
+script = ExtResource("13_raj36")
+
+[node name="CollisionShape3D" parent="sprinkler_system/sprinkler_container/spinkler2" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="fire_system" type="Node" parent="."]
@@ -225,413 +462,149 @@ script = ExtResource("14_mt4ng")
 
 [node name="fire_container" type="Node" parent="fire_system"]
 
-[node name="cube_fire8" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9494, 0.738308, -9.4169)
-
-[node name="cube_fire9" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9494, 0.738308, -12.4169)
-
-[node name="cube_fire10" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9494, 0.738308, -9.4169)
-
 [node name="cube_fire11" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9494, 0.738308, -7.4169)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0506, -5.26169, -21.4169)
 
 [node name="cube_fire12" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9494, 0.738308, -13.4169)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0506, -5.26169, -21.4169)
 
 [node name="cube_fire13" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9494, 0.738308, -7.4169)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0506, -5.26169, -21.4169)
 
 [node name="cube_fire14" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9494, 0.738308, -7.4169)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0506, -5.26169, -28.4169)
 
 [node name="cube_fire15" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9494, 0.738308, -9.4169)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0506, -5.26169, -31.4169)
 
 [node name="cube_fire16" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.9494, 0.738308, -5.4169)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9494, -5.26169, -28.4169)
 
 [node name="cube_fire17" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.9494, 0.738308, 0.583104)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9494, -5.26169, -26.4169)
 
 [node name="cube_fire18" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9494, 0.738308, 2.5831)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9494, -5.26169, -23.4169)
 
 [node name="cube_fire19" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9494, 0.738308, 6.5831)
-
-[node name="cube_fire20" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9494, 0.738308, 6.5831)
-
-[node name="cube_fire21" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9494, 0.738308, 3.5831)
-
-[node name="cube_fire23" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.9494, 0.738308, 3.5831)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0506, -5.26169, -18.4169)
 
 [node name="cube_fire24" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.9494, 0.738308, 0.583104)
-
-[node name="cube_fire25" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.9494, 0.738308, -5.4169)
-
-[node name="cube_fire92" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.9494, 0.738308, -7.4169)
-
-[node name="cube_fire100" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.9494, 0.738308, -10.4169)
-
-[node name="cube_fire98" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.9494, 0.738308, -7.4169)
-
-[node name="cube_fire99" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.9494, 0.738308, -9.4169)
-
-[node name="cube_fire93" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.9494, 0.738308, -13.4169)
-
-[node name="cube_fire94" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9494, 0.738308, -12.4169)
-
-[node name="cube_fire95" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.9494, 0.738308, -10.4169)
-
-[node name="cube_fire97" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.9494, 0.738308, -10.4169)
-
-[node name="cube_fire96" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.9494, 0.738308, -9.4169)
-
-[node name="cube_fire29" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.9494, 0.738308, -2.4169)
-
-[node name="cube_fire38" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.9494, 0.738308, -2.4169)
-
-[node name="cube_fire44" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.9494, 0.738308, -1.4169)
-
-[node name="cube_fire43" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.9494, 0.738308, -3.4169)
-
-[node name="cube_fire40" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.9494, 0.738308, 5.5831)
-
-[node name="cube_fire45" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.9494, 0.738308, 5.5831)
-
-[node name="cube_fire46" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.9494, 0.738308, 5.5831)
-
-[node name="cube_fire47" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.9494, 0.738308, 3.5831)
-
-[node name="cube_fire48" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.9494, 0.738308, 3.5831)
-
-[node name="cube_fire49" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.9494, 0.738308, 3.5831)
-
-[node name="cube_fire50" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.9494, 0.738308, 3.5831)
-
-[node name="cube_fire51" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.9494, 0.738308, -0.416896)
-
-[node name="cube_fire52" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.9494, 0.738308, 0.583104)
-
-[node name="cube_fire53" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.9494, 0.738308, -0.416896)
-
-[node name="cube_fire54" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.9494, 0.738308, -0.416896)
-
-[node name="cube_fire55" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.9494, 0.738308, -6.4169)
-
-[node name="cube_fire64" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.9494, 0.738308, -6.4169)
-
-[node name="cube_fire65" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.9494, 0.738308, -9.4169)
-
-[node name="cube_fire66" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.9494, 0.738308, -2.4169)
-
-[node name="cube_fire67" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.9494, 0.738308, -9.4169)
-
-[node name="cube_fire68" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.9494, 0.738308, -13.4169)
-
-[node name="cube_fire70" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.9494, 0.738308, -11.4169)
-
-[node name="cube_fire69" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.9494, 0.738308, -13.4169)
-
-[node name="cube_fire71" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.9494, 0.738308, -14.4169)
-
-[node name="cube_fire72" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.9494, 0.738308, -13.4169)
-
-[node name="cube_fire73" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.9494, 0.738308, -12.4169)
-
-[node name="cube_fire74" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.9494, 3.73831, -14.4169)
-
-[node name="cube_fire75" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.9494, 3.73831, -13.4169)
-
-[node name="cube_fire77" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.9494, 3.73831, -4.4169)
-
-[node name="cube_fire81" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.9494, 3.73831, -7.4169)
-
-[node name="cube_fire82" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.9494, 3.73831, -8.4169)
-
-[node name="cube_fire83" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.9494, 3.73831, -8.4169)
-
-[node name="cube_fire84" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.9494, 3.73831, -7.4169)
-
-[node name="cube_fire85" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.9494, 3.73831, -7.4169)
-
-[node name="cube_fire86" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.9494, 3.73831, -9.4169)
-
-[node name="cube_fire87" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.9494, 3.73831, -5.4169)
-
-[node name="cube_fire88" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.9494, 3.73831, -4.4169)
-
-[node name="cube_fire89" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.9494, 3.73831, -3.4169)
-
-[node name="cube_fire90" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.9494, 3.73831, -2.4169)
-
-[node name="cube_fire91" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.9494, 3.73831, -1.4169)
-
-[node name="cube_fire118" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.9494, 3.73831, -1.4169)
-
-[node name="cube_fire129" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.9494, 3.73831, 0.583104)
-
-[node name="cube_fire130" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.9494, 3.73831, 2.5831)
-
-[node name="cube_fire131" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.9494, 3.73831, 6.5831)
-
-[node name="cube_fire132" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.9494, 3.73831, 6.5831)
-
-[node name="cube_fire133" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.9494, 3.73831, 3.5831)
-
-[node name="cube_fire137" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.9494, 3.73831, 0.583104)
-
-[node name="cube_fire134" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.9494, 3.73831, 3.5831)
-
-[node name="cube_fire136" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.9494, 3.73831, 2.5831)
-
-[node name="cube_fire135" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.9494, 3.73831, 2.5831)
-
-[node name="cube_fire119" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.9494, 3.73831, -3.4169)
-
-[node name="cube_fire120" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9494, 3.73831, -2.4169)
-
-[node name="cube_fire147" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9494, 3.73831, -4.4169)
-
-[node name="cube_fire138" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9494, 3.73831, -8.4169)
-
-[node name="cube_fire139" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.9494, 3.73831, -7.4169)
-
-[node name="cube_fire140" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.9494, 3.73831, -9.4169)
-
-[node name="cube_fire141" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.9494, 3.73831, -13.4169)
-
-[node name="cube_fire142" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9494, 3.73831, -13.4169)
-
-[node name="cube_fire143" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.9494, 3.73831, -10.4169)
-
-[node name="cube_fire145" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9494, 3.73831, -10.4169)
-
-[node name="cube_fire146" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9494, 3.73831, -8.4169)
-
-[node name="cube_fire144" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.9494, 3.73831, -9.4169)
-
-[node name="cube_fire121" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.9494, 3.73831, -2.4169)
-
-[node name="cube_fire122" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.9494, 3.73831, -2.4169)
-
-[node name="cube_fire127" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.9494, 3.73831, -5.4169)
-
-[node name="cube_fire128" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.9494, 3.73831, -5.4169)
-
-[node name="cube_fire78" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.9494, 3.73831, -9.4169)
-
-[node name="cube_fire79" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.9494, 3.73831, -12.4169)
-
-[node name="cube_fire80" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.9494, 3.73831, -11.4169)
-
-[node name="cube_fire76" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.9494, 3.73831, -11.4169)
-
-[node name="cube_fire101" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.9494, 3.73831, -10.4169)
-
-[node name="cube_fire103" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.9494, 3.73831, -9.4169)
-
-[node name="cube_fire104" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.9494, 3.73831, -7.4169)
-
-[node name="cube_fire105" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.9494, 3.73831, -7.4169)
-
-[node name="cube_fire106" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.9494, 3.73831, -5.4169)
-
-[node name="cube_fire107" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.9494, 3.73831, 0.583104)
-
-[node name="cube_fire108" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.9494, 4.73831, 1.5831)
-
-[node name="cube_fire109" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.9494, 3.73831, 1.5831)
-
-[node name="cube_fire110" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.9494, 3.73831, 2.5831)
-
-[node name="cube_fire111" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.9494, 3.73831, 6.5831)
-
-[node name="cube_fire112" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.9494, 3.73831, 5.5831)
-
-[node name="cube_fire113" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.9494, 3.73831, 5.5831)
-
-[node name="cube_fire114" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.9494, 3.73831, 3.5831)
-
-[node name="cube_fire115" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.9494, 3.73831, 3.5831)
-
-[node name="cube_fire117" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.9494, 3.73831, 3.5831)
-
-[node name="cube_fire116" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.9494, 3.73831, 2.5831)
-
-[node name="cube_fire102" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.9494, 3.73831, -10.4169)
-
-[node name="cube_fire59" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.9494, 0.738308, -7.4169)
-
-[node name="cube_fire62" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.9494, 0.738308, -9.4169)
-
-[node name="cube_fire63" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.9494, 0.738308, -10.4169)
-
-[node name="cube_fire60" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.9494, 0.738308, -9.4169)
-
-[node name="cube_fire61" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.9494, 0.738308, -6.4169)
-
-[node name="cube_fire56" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.9494, 0.738308, -6.4169)
-
-[node name="cube_fire57" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.9494, 0.738308, -3.4169)
-
-[node name="cube_fire58" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.9494, 0.738308, -4.4169)
-
-[node name="cube_fire41" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.9494, 0.738308, 3.5831)
-
-[node name="cube_fire42" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.9494, 0.738308, 0.583104)
-
-[node name="cube_fire39" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.9494, 0.738308, -4.4169)
-
-[node name="cube_fire30" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.9494, 0.738308, 0.583104)
-
-[node name="cube_fire31" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9494, 0.738308, 2.5831)
-
-[node name="cube_fire32" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.9494, 0.738308, 2.5831)
-
-[node name="cube_fire33" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.9494, 0.738308, 2.5831)
-
-[node name="cube_fire34" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.9494, 0.738308, 0.583104)
-
-[node name="cube_fire35" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.9494, 0.738308, 5.5831)
-
-[node name="cube_fire36" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.9494, 0.738308, 5.5831)
-
-[node name="cube_fire37" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.9494, 0.738308, 6.5831)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0506, -5.26169, -8.4169)
 
 [node name="cube_fire26" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9494, 0.738308, -4.4169)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0506, -5.26169, -7.4169)
 
-[node name="cube_fire27" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9494, 0.738308, -3.4169)
+[node name="cube_fire50" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0506, -5.26169, -1.4169)
 
-[node name="cube_fire28" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9494, 0.738308, -5.4169)
+[node name="cube_fire51" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0506, -5.26169, 3.5831)
+
+[node name="cube_fire52" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0506, -5.26169, 3.5831)
+
+[node name="cube_fire53" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0506, -5.26169, 3.5831)
+
+[node name="cube_fire49" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9494, -5.26169, -7.4169)
+
+[node name="cube_fire20" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9494, -5.26169, -15.4169)
+
+[node name="cube_fire21" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9494, -5.26169, -15.4169)
 
 [node name="cube_fire22" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9494, 0.738308, 0.583104)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.9494, -5.26169, -14.4169)
+
+[node name="cube_fire23" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9494, -5.26169, -18.4169)
+
+[node name="cube_fire25" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9494, -5.26169, -22.4169)
+
+[node name="cube_fire27" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.9494, -5.26169, -27.4169)
+
+[node name="cube_fire28" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9494, -5.26169, -27.4169)
+
+[node name="cube_fire29" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9494, -5.26169, -30.4169)
+
+[node name="cube_fire30" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9494, -5.26169, -25.4169)
+
+[node name="cube_fire31" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.9494, -5.26169, -27.4169)
+
+[node name="cube_fire32" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.9494, -5.26169, -31.4169)
+
+[node name="cube_fire33" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9494, -5.26169, -31.4169)
+
+[node name="cube_fire34" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9494, -5.26169, -26.4169)
+
+[node name="cube_fire35" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.9494, -5.26169, -27.4169)
+
+[node name="cube_fire36" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.9494, -5.26169, -23.4169)
+
+[node name="cube_fire37" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9494, -5.26169, -23.4169)
+
+[node name="cube_fire38" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9494, -5.26169, -19.4169)
+
+[node name="cube_fire39" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.9494, -5.26169, -19.4169)
+
+[node name="cube_fire40" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.9494, -5.26169, -15.4169)
+
+[node name="cube_fire43" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9494, -5.26169, -12.4169)
+
+[node name="cube_fire44" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9494, -5.26169, -12.4169)
+
+[node name="cube_fire45" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.9494, -5.26169, -10.4169)
+
+[node name="cube_fire46" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.9494, -5.26169, -10.4169)
+
+[node name="cube_fire47" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.9494, -5.26169, -5.4169)
+
+[node name="cube_fire54" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9494, -5.26169, 0.583099)
+
+[node name="cube_fire55" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.9494, -5.26169, 3.5831)
+
+[node name="cube_fire57" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.9494, -0.261692, 9.5831)
+
+[node name="cube_fire56" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.9494, -5.26169, 4.5831)
+
+[node name="cube_fire48" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9494, -5.26169, -8.4169)
+
+[node name="cube_fire41" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.9494, -5.26169, -15.4169)
+
+[node name="cube_fire42" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9494, -5.26169, -14.4169)
+
+[node name="warehouse" parent="fire_system/fire_container" instance=ExtResource("20_aadq6")]
+transform = Transform3D(-2.843, 0, 2.48543e-07, 0, 2.843, 0, -2.48543e-07, 0, -2.843, -145.2, -2.192, -8)
 
 [node name="active_checker" type="Area3D" parent="fire_system"]
 collision_layer = 0
@@ -645,12 +618,37 @@ script = ExtResource("16_c7dus")
 
 [node name="paper_piece" parent="pcs" instance=ExtResource("17_ks0kc")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 4.5, 0.604)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, -5.7, 13.204)
 
 [node name="combos" type="Node" parent="."]
 
 [node name="combo_area" parent="combos" instance=ExtResource("18_1gftc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 5)
+
+[node name="CollisionShape3D" parent="combos/combo_area" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.842224, -0.567511, 0.750732)
+shape = SubResource("BoxShape3D_utp88")
+
+[node name="combo_area2" parent="combos" instance=ExtResource("18_1gftc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 5)
+
+[node name="CollisionShape3D" parent="combos/combo_area2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.575546, -0.567511, 0.750732)
+shape = SubResource("BoxShape3D_jjrpn")
+
+[node name="combo_area3" parent="combos" instance=ExtResource("18_1gftc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, -25)
+
+[node name="CollisionShape3D" parent="combos/combo_area3" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.575546, -0.567511, 0.750732)
+shape = SubResource("BoxShape3D_ex2r7")
+
+[node name="combo_area4" parent="combos" instance=ExtResource("18_1gftc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, -5, -25)
+
+[node name="CollisionShape3D" parent="combos/combo_area4" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.263336, -0.567511, -0.674316)
+shape = SubResource("BoxShape3D_cjs6o")
 
 [node name="breakables" type="Node" parent="."]
 
@@ -663,3 +661,8 @@ collision_layer = 515
 [connection signal="area_exited" from="fire_system/active_checker" to="fire_system" method="fire_killed"]
 
 [editable path="sprinkler_system/sprinkler_container/spinkler"]
+[editable path="sprinkler_system/sprinkler_container/spinkler2"]
+[editable path="combos/combo_area"]
+[editable path="combos/combo_area2"]
+[editable path="combos/combo_area3"]
+[editable path="combos/combo_area4"]
