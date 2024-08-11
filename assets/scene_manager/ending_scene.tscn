@@ -1,0 +1,100 @@
+[gd_scene load_steps=9 format=3 uid="uid://dhp2k42fs6rv5"]
+
+[ext_resource type="Script" path="res://assets/scene_manager/ending_scene.gd" id="1_3pqoj"]
+[ext_resource type="Texture2D" uid="uid://dxwtiwbyqvor7" path="res://assets/images/scenes/scene2.png" id="1_snkye"]
+[ext_resource type="PackedScene" uid="uid://bjlo7l7uu7ylo" path="res://assets/scene_manager/scene_manager.tscn" id="4_arc8e"]
+[ext_resource type="FontFile" uid="uid://55nvttuxhy57" path="res://assets/fonts/NutgameDEMO-Bold.ttf" id="4_q47lk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_e4ddj"]
+font = ExtResource("4_q47lk")
+font_size = 50
+
+[sub_resource type="Animation" id="Animation_nq4d1"]
+resource_name = "fade"
+length = 3.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.5, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wi3bm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gw6lc"]
+_data = {
+"RESET": SubResource("Animation_wi3bm"),
+"fade": SubResource("Animation_nq4d1")
+}
+
+[node name="EndingScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3pqoj")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_snkye")
+expand_mode = 2
+
+[node name="SceneManager" parent="." instance=ExtResource("4_arc8e")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Few days later"
+label_settings = SubResource("LabelSettings_e4ddj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gw6lc")
+}
+autoplay = "fade"

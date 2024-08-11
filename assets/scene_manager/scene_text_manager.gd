@@ -74,6 +74,7 @@ func update_text():
 		print_debug("Dialogue Exhausted")
 		parent.anim_manager.fade_box(false)
 		await parent.anim_manager.animation_player.animation_finished
+		parent.emit_signal("scene_finished")
 
 	
 
@@ -117,8 +118,6 @@ func set_delay():
 
 func change_value(value):
 	if not value:
-		print(value)
 		return
-	print(value)
 	nextNodeValue = int(value)
 	emit_signal("value_returned")

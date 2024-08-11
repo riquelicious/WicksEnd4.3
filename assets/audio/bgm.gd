@@ -1,13 +1,13 @@
 extends AudioStreamPlayer
-var target_volume:= 5.0
-var current_volume := 0.0
-var equal := true
+var target_volume:= 0.0
+var current_volume := 5.0
+var equal := false
 var prev_vol
 
 signal vol_lerp_finished
 
 func _ready() -> void:
-	#volume_db = linear_to_db(5)
+	volume_db = linear_to_db(0)
 	finished.connect(loop_audio)
 	
 func _process(delta: float) -> void:

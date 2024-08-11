@@ -23,7 +23,6 @@ func add_objective_marker():
 			var object = player.object_markers
 			if object:
 				objective_marker_id = object.add_3d_marker(marker_origin)
-				print(objective_marker_id)
 				objective_added = true
 	
 func remove_marker():

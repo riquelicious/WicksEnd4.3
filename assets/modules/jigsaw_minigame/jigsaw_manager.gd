@@ -63,7 +63,6 @@ func snap_pieces(delta) -> bool:
 				connected_piece += 1
 		else:
 			continue
-	print(connected_piece)
 	return connected_piece == 4
 
 func display_paper(value : bool):

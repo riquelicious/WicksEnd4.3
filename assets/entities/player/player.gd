@@ -24,6 +24,7 @@ var is_interacting := false
 var health = 100.0
 var water = 100.0
 var extinguisher = 100.0
+var dead := false
 
 func _ready():
 	camera_manager.initialize(self)
@@ -36,9 +37,7 @@ func _ready():
 	extinguisher_manager.initialize(self)
 	inventory_manager.initialize(self)
 	BGM.change_bgm("res://assets/audio/BGM/HurryTFup.mp3")
-	# var bgm = preload("res://assets/audio/BGM/HurryTFup.mp3")
-	# BGM.stream = bgm
-	# BGM.play()
+
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -46,6 +45,7 @@ func _input(event):
 		camera_manager.target_rotation_x = -1 * (event.position.y - (viewport_size.y / 2)) * camera_sensitivity
 
 func _physics_process(delta):
+	check_health()
 	interaction_manager.check_collision()
 	point_manager.update_points(delta)
 	pressurized_water.update_water_stream(delta)
@@ -61,3 +61,14 @@ func _physics_process(delta):
 	camera_manager.update_aim(delta)
 	camera_manager.update_nozzle_aim(delta)
 	movement_manager.update_movement(delta)
+
+func check_health():
+	if health <=0:
+		if not dead:
+			game_over()
+			dead = true
+			
+func game_over():
+	var game_over = $%game_over
+	if game_over:
+		game_over.game_over()

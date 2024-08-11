@@ -20,7 +20,7 @@
 [ext_resource type="Script" path="res://assets/entities/interactables/evidencesystem.gd" id="17_8jwm5"]
 [ext_resource type="PackedScene" uid="uid://crcx0uou65ta" path="res://assets/entities/interactables/pcs/pc.tscn" id="18_rv1rq"]
 [ext_resource type="PackedScene" uid="uid://3whxti0e2onl" path="res://assets/modules/combo/combo_area.tscn" id="19_ig2qs"]
-[ext_resource type="PackedScene" uid="uid://dl1s37dxw4b5j" path="res://assets/entities/interactables/breakable.tscn" id="20_xivwe"]
+[ext_resource type="PackedScene" path="res://assets/entities/interactables/breakable.tscn" id="20_xivwe"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p0f3a"]
 transparency = 1
@@ -113,7 +113,6 @@ mesh = SubResource("BoxMesh_cq31c")
 [node name="StaticBody3D" type="StaticBody3D" parent="World/MeshInstance3D2"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/MeshInstance3D2/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_tigkc")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="World"]
@@ -123,7 +122,6 @@ mesh = SubResource("BoxMesh_cq31c")
 [node name="StaticBody3D" type="StaticBody3D" parent="World/MeshInstance3D3"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/MeshInstance3D3/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_tigkc")
 
 [node name="BahayFinal" parent="World" instance=ExtResource("3_kues7")]

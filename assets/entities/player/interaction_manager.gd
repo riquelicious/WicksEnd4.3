@@ -123,7 +123,6 @@ func do_drop_civilian():
 func damage_player(amount):
 	if iframes_timer.time_left == 0:
 		var remaining_health = player.health - (amount - ((amount * 0.01) * (defense)))
-		prints(remaining_health, amount, ((amount * 0.01) * (defense)), (amount - ((amount * 0.01) * (defense))))
 		player.health = clamp(remaining_health, 0.0, 100.0)
 		player.damage_animation_player.play("damage_animation")
 		iframes_timer.start(iframes_duration)

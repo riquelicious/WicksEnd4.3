@@ -34,7 +34,7 @@ func update():
 	init_points()
 	
 func init_points():
-	current_points = Global.level_settings.lvlPoints
+	current_points = Global.level_settings.curPoints
 	points_label.text = str(current_points)
 	points_label_shadow.text = str(current_points)
 	lerp_points = current_points

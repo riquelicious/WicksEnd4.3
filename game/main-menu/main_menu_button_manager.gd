@@ -62,6 +62,7 @@ func connect_buttons():
 	back_button_shop.button_clicked.connect(back_shop_)
 
 	back_button_evidence.button_activated.connect(back_evidence_)
+	parent.ending.scene_finished.connect(to_scene)
 
 func new_game_():
 	SaveManager.new_data()   
@@ -92,7 +93,7 @@ func evidence_():
 func play_():
 	var level = Global.level_settings.level_selection
 	if Global.level_settings.unlocked_levels[str(level)] == true:
-		Transition.change_scene(FilePaths.levels[Global.level_settings.level_selection])
+		Transition.change_scene(FilePaths.level_scene)
 
 func upgrade_():
 	upgrade_shop.shop_description_manager.update()
@@ -110,8 +111,15 @@ func back_shop_():
 	SaveManager.save_data()
 
 func back_evidence_():
-	parent.anim_manager.switch_ui(1)
+	if not Global.gameplay_settings.evFinished:
+		parent.anim_manager.switch_ui(1)
+	else:
+		parent.ending.text_manager.script_json = parent.ending.json_manager.load_json(4)
+		parent.ending.text_manager.init_text()
 
 func update_continue():
 	var save_path = "user://wicks_end.json"
 	continue_button.disabled = !FileAccess.file_exists(save_path)
+
+func to_scene():
+	Transition.change_scene("res://assets/scene_manager/ending_scene.tscn")

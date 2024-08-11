@@ -2,10 +2,10 @@ extends Node
 class_name LevelSettings
 # Level
 var level_timer_list: Array = [
-	11,
-	12,
-	13,
-	14
+	600,
+	900,
+	600,
+	1200
 ]
 
 var unlocked_levels = {
@@ -15,9 +15,9 @@ var unlocked_levels = {
 	"3" : false
 }
 
-var level_selection: int = 3
-var lvlPoints := 1000.0
-
+var level_selection: int = 0
+var lvlPoints := 0
+var curPoints := 0
 var civilians_remaining := 0
 
 var quest_message = ""

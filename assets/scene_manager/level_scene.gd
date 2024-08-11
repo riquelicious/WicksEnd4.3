@@ -11,6 +11,7 @@ func _ready() -> void:
 	traffic.finished.connect(reset_traffic)
 	scene_manager.text_manager.script_json = scene_manager.json_manager.load_json(Global.level_settings.level_selection)
 	scene_manager.text_manager.init_text()
+	scene_manager.scene_finished.connect(to_level)
 	pass # Replace with function body.
 
 

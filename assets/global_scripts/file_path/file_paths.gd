@@ -64,3 +64,5 @@ var cvHelpSounds : Array = [
 	"res://assets/audio/sfx/civilian/help-02.ogg",
 	"res://assets/audio/sfx/civilian/help-03.ogg"
 ]
+
+var level_scene : String = "res://assets/scene_manager/level_scene.tscn"
