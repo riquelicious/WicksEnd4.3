@@ -55,7 +55,6 @@ size = Vector3(6, 1, 1)
 size = Vector3(100, 30, 100)
 
 [node name="Level-1" type="Node3D" node_paths=PackedStringArray("quests")]
-visible = false
 script = ExtResource("1_amc4j")
 quests = [NodePath("civilian_system"), NodePath("stair_system"), NodePath("pcs"), NodePath("sprinkler_system"), NodePath("fire_system")]
 
