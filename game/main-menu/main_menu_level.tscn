@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cdawb4igah42t"]
+[gd_scene load_steps=16 format=3 uid="uid://cdawb4igah42t"]
 
 [ext_resource type="Script" path="res://game/main-menu/main_menu_level.gd" id="1_1v7a3"]
 [ext_resource type="PackedScene" uid="uid://bvxjgcnlaplpk" path="res://game/main-menu/menu_script/main_menu_ui.tscn" id="2_yk03q"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://deuc616mep0xa" path="res://game/main-menu/level_selector/level_selector_ui.tscn" id="6_fd3ha"]
 [ext_resource type="PackedScene" uid="uid://ctr27imw0v806" path="res://assets/modules/jigsaw_minigame/jigsaw_minigame.tscn" id="6_he4x4"]
 [ext_resource type="FontFile" uid="uid://bymlhp6jn8gl" path="res://assets/fonts/NutgameDEMO-Italic.ttf" id="7_pfnf4"]
+[ext_resource type="PackedScene" uid="uid://bjlo7l7uu7ylo" path="res://assets/scene_manager/scene_manager.tscn" id="8_1ivvd"]
 
 [sub_resource type="Environment" id="Environment_a5h1b"]
 background_mode = 1
@@ -132,6 +133,17 @@ You better keep your promise about the promotion and pay. I’m managing these t
 
 Best regards, T.B[/b].[/i]"
 
+[node name="ending_scene" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="SceneManager" parent="UI/ending_scene" instance=ExtResource("8_1ivvd")]
+
+[node name="Control" parent="UI/ending_scene/SceneManager" index="1"]
+mouse_filter = 2
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
 libraries = {
 "": SubResource("AnimationLibrary_v6xpe")
@@ -207,3 +219,4 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.8459
 
 [editable path="UI/evidence_menu"]
 [editable path="UI/evidence_menu/Back"]
+[editable path="UI/ending_scene/SceneManager"]

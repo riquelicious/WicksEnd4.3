@@ -6,6 +6,7 @@ extends Node3D
 
 ]
 var current
+var finished = false
 
 func _ready() -> void:
 	if paper_piece:
@@ -28,23 +29,25 @@ func _process(delta: float) -> void:
 	mission_string += evidence(current)
 	#mission_string += "[/center]"
 	Global.level_settings.quest_message = mission_string
+	
+	
 func get_quest():
 	for quest in quests:
 		if not quest.finished:
 			return quest
-		
+	if not finished:
+		finished = true
+		%game_over.game_finished()
 
 
 func get_civilians(quest_type) -> String:
 	if quest_type is CivilianSystem:
-		return "Find the civilians and carry them to the entrance.[/center]\n%s left." % Global.level_settings.civilians_remaining
+		return "Find the civilians and carry them to the entrance.[/center]"#\n%s left." % Global.level_settings.civilians_remaining
 	return ""
 
 func pick(quest_type) -> String:
 	if quest_type is PickablesSystem:
-		
-		return "'It seems like some of the stairs are broken.'
-		\nCreate a makeshift staircase." 
+		return "'It seems like some of the stairs are broken.'\nCreate a makeshift staircase." 
 	return ""
 
 func valves(quest_type) -> String:
@@ -56,7 +59,7 @@ func get_fire(quest_type) -> String:
 	if quest_type is FireSystem:
 		return "There are still some fires around.\nLet’s extinguish them all.\nFire Extingished: %s"  % Global.level_settings.extinguished_percentage
 	return ""
-	
+
 func evidence(quest_type) -> String:
 	if quest_type is EvidenceSystem:
 		return "The building is now relatively safe.\nLet's gather some evidence"

@@ -31,8 +31,8 @@ func initialize(parent_instance : Node):
 	start_delay_timer = parent.get_node("start_delay")
 	audio_pop = parent.get_node("AudioStreamPlayer")
 	#call_deferred("init_text")
-	script_json = parent.json_manager.load_json(Global.level_settings.level_selection)
-	init_text()
+	#script_json = parent.json_manager.load_json(Global.level_settings.level_selection)
+	#init_text()
 	
 
 func init_text():
@@ -74,6 +74,7 @@ func update_text():
 		print_debug("Dialogue Exhausted")
 		parent.anim_manager.fade_box(false)
 		await parent.anim_manager.animation_player.animation_finished
+		parent.emit_signal("scene_finished")
 
 	
 
@@ -117,8 +118,6 @@ func set_delay():
 
 func change_value(value):
 	if not value:
-		print(value)
 		return
-	print(value)
 	nextNodeValue = int(value)
 	emit_signal("value_returned")

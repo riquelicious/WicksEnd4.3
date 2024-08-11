@@ -21,6 +21,7 @@ func switch_ui(index : int):
 		await ui_anim.animation_finished
 		for c in ui_container.get_children():
 			if c is Control:
+				if c.name == "ending_scene": continue
 				c.visible = false
 				c.process_mode = Node.PROCESS_MODE_DISABLED
 		child.visible = true

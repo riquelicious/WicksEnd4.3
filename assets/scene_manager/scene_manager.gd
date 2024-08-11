@@ -3,6 +3,7 @@ extends CanvasLayer
 
 ##buttons
 @onready var choices_button_container := $Control/choices_button_container
+signal scene_finished
 
 var json_manager : SceneJsonManager = SceneJsonManager.new()
 var text_manager : SceneTextManager = SceneTextManager.new() 

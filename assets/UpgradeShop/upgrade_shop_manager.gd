@@ -61,5 +61,5 @@ func update_level(increrment : int):
 func update_equipment_settings():
 	current_points = parent.shop_description_manager.current_points
 	var temp = desc_manager.temp_equipment_stats
-	Global.level_settings.lvlPoints = current_points
+	Global.level_settings.curPoints = current_points
 	Global.equipment_settings.equipments = temp

@@ -6,7 +6,7 @@ var eqAimToggleSpeed: float = 2.0
 var uiInvToggleSpeed: float = 2.0
 
 var mvTurningSensitivity: float = 0.001
-var mvWalkingSpeed: float = 2.5
+var mvWalkingSpeed: float = 4.0
 
 var evFinished : bool = false
 var evPiece : Dictionary = {
@@ -15,3 +15,5 @@ var evPiece : Dictionary = {
 	"2": false,
 	"3": false
 }
+
+var from_level := false

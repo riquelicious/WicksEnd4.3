@@ -1,0 +1,409 @@
+[gd_scene load_steps=33 format=3 uid="uid://cf820dabgwbc2"]
+
+[ext_resource type="Script" path="res://game/levels/level1/level-1.gd" id="1_x2f44"]
+[ext_resource type="Environment" uid="uid://c1jsw4puq6pku" path="res://assets/environments/level1.tres" id="2_b2n3l"]
+[ext_resource type="PackedScene" uid="uid://bev5tc1uhkp1j" path="res://assets/entities/interactables/interactable.tscn" id="3_50u3m"]
+[ext_resource type="PackedScene" uid="uid://cgqdby1r48cqg" path="res://game/levels/level3/BahayFinal.glb" id="3_kues7"]
+[ext_resource type="PackedScene" uid="uid://q1yxpssljlq1" path="res://assets/entities/player/player.tscn" id="4_cr8bg"]
+[ext_resource type="Script" path="res://assets/entities/interactables/civilian_module/civilian_system.gd" id="5_o22gc"]
+[ext_resource type="PackedScene" uid="uid://dfv6t4ldj2v1p" path="res://assets/entities/interactables/drop_area.tscn" id="6_vdq8y"]
+[ext_resource type="PackedScene" uid="uid://c55ams3nst3h4" path="res://assets/entities/interactables/civilian.tscn" id="7_vo4vg"]
+[ext_resource type="Script" path="res://assets/entities/interactables/important_pickables.gd" id="8_857du"]
+[ext_resource type="PackedScene" uid="uid://dwhmjssaki4oo" path="res://assets/entities/interactables/pickup.tscn" id="9_xajfk"]
+[ext_resource type="Script" path="res://game/levels/level1/staircase.gd" id="10_8rs2y"]
+[ext_resource type="Script" path="res://assets/entities/interactables/valve_module/valve_container.gd" id="11_4a3yn"]
+[ext_resource type="PackedScene" uid="uid://dodep8crmbfm6" path="res://assets/entities/interactables/valve.tscn" id="12_h7fiv"]
+[ext_resource type="PackedScene" uid="uid://j1d8e7jm3t7u" path="res://assets/entities/sprinkler/spinkler.tscn" id="13_ca6rp"]
+[ext_resource type="Script" path="res://assets/entities/sprinkler/spinkler.gd" id="14_kmf6l"]
+[ext_resource type="Script" path="res://assets/modules/fire_system/fire_system.gd" id="15_8ntv6"]
+[ext_resource type="PackedScene" uid="uid://c7lfbpnhhs0hr" path="res://assets/entities/fire/cube_fire.tscn" id="16_tmutm"]
+[ext_resource type="Script" path="res://assets/entities/interactables/evidencesystem.gd" id="17_8jwm5"]
+[ext_resource type="PackedScene" uid="uid://crcx0uou65ta" path="res://assets/entities/interactables/pcs/pc.tscn" id="18_rv1rq"]
+[ext_resource type="PackedScene" uid="uid://3whxti0e2onl" path="res://assets/modules/combo/combo_area.tscn" id="19_ig2qs"]
+[ext_resource type="PackedScene" path="res://assets/entities/interactables/breakable.tscn" id="20_xivwe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p0f3a"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_6neps"]
+material = SubResource("StandardMaterial3D_p0f3a")
+radial_segments = 8
+rings = 4
+
+[sub_resource type="Curve" id="Curve_2enan"]
+_data = [Vector2(0, 0.320755), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_js6bg"]
+colors = PackedColorArray(0.140447, 0.140447, 0.140447, 1, 0.534361, 0.534361, 0.534361, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cq31c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tigkc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wnwlo"]
+size = Vector3(6, 1, 5)
+
+[sub_resource type="PrismMesh" id="PrismMesh_w5dac"]
+left_to_right = 1.0
+size = Vector3(4, 3, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wwg0q"]
+size = Vector3(6, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kagwj"]
+size = Vector3(3, 5, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eqofl"]
+size = Vector3(100, 30, 100)
+
+[node name="Level-1" type="Node3D"]
+script = ExtResource("1_x2f44")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_b2n3l")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.830637, -0.053575, -0.554231, 0.26487, -0.837515, 0.477925, -0.489781, -0.543782, -0.681481, 0, 23.3263, 5.29147)
+layers = 524289
+light_color = Color(0.99917, 0.947104, 0.85874, 1)
+light_energy = 1.625
+light_indirect_energy = 1.525
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="smokes" type="CPUParticles3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -5)
+amount = 64
+lifetime = 0.75
+speed_scale = 1.94
+mesh = SubResource("SphereMesh_6neps")
+emission_shape = 3
+emission_box_extents = Vector3(10, 1, 10)
+direction = Vector3(0, -1, 0)
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 5, 0)
+scale_amount_curve = SubResource("Curve_2enan")
+color_ramp = SubResource("Gradient_js6bg")
+
+[node name="smokes4" type="CPUParticles3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -4)
+amount = 64
+lifetime = 0.75
+speed_scale = 1.94
+mesh = SubResource("SphereMesh_6neps")
+emission_shape = 3
+emission_box_extents = Vector3(10, 1, 10)
+direction = Vector3(0, -1, 0)
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 5, 0)
+scale_amount_curve = SubResource("Curve_2enan")
+color_ramp = SubResource("Gradient_js6bg")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="World"]
+transform = Transform3D(23.24, 0, 0, 0, 0.6, 0, 0, 0, 14.976, 8.7, -0.200001, -4.9)
+mesh = SubResource("BoxMesh_cq31c")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/MeshInstance3D2/StaticBody3D"]
+shape = SubResource("BoxShape3D_tigkc")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="World"]
+transform = Transform3D(23.24, 0, 0, 0, 0.6, 0, 0, 0, 14.976, 8.7, 3.5, -4.9)
+mesh = SubResource("BoxMesh_cq31c")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/MeshInstance3D3/StaticBody3D"]
+shape = SubResource("BoxShape3D_tigkc")
+
+[node name="BahayFinal" parent="World" instance=ExtResource("3_kues7")]
+transform = Transform3D(0.61, 0, 0, 0, 0.61, 0, 0, 0, 0.61, 0, 0, 0)
+
+[node name="interactable" parent="." instance=ExtResource("3_50u3m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.8, 0.8, -6)
+collision_layer = 515
+
+[node name="marker_origin" parent="interactable" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="something" parent="interactable" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -0.2, 3.43616)
+
+[node name="player" parent="." instance=ExtResource("4_cr8bg")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 2)
+
+[node name="civilian_system" type="Node" parent="."]
+script = ExtResource("5_o22gc")
+
+[node name="DropArea" parent="civilian_system" instance=ExtResource("6_vdq8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 1.3, 1.8)
+
+[node name="civilians" type="Node" parent="civilian_system"]
+
+[node name="civilian" parent="civilian_system/civilians" instance=ExtResource("7_vo4vg")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.8, 1.1, -10.7)
+collision_layer = 519
+collision_mask = 519
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+
+[node name="stair_system" type="Node" parent="."]
+script = ExtResource("8_857du")
+
+[node name="pickups" type="Node" parent="stair_system"]
+
+[node name="pickup" parent="stair_system/pickups" instance=ExtResource("9_xajfk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9, 0.5, -7.8)
+
+[node name="pickup2" parent="stair_system/pickups" instance=ExtResource("9_xajfk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.5, 0)
+
+[node name="pickup3" parent="stair_system/pickups" instance=ExtResource("9_xajfk")]
+transform = Transform3D(0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0, 0, 1, 14, 0.3, -7.9)
+
+[node name="makeshift_staircase" type="Node" parent="stair_system"]
+
+[node name="staircase" type="Area3D" parent="stair_system/makeshift_staircase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 0)
+script = ExtResource("10_8rs2y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stair_system/makeshift_staircase/staircase"]
+shape = SubResource("BoxShape3D_wnwlo")
+
+[node name="stair_model" type="StaticBody3D" parent="stair_system/makeshift_staircase/staircase/CollisionShape3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="stair_system/makeshift_staircase/staircase/CollisionShape3D/stair_model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 2)
+mesh = SubResource("PrismMesh_w5dac")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stair_system/makeshift_staircase/staircase/CollisionShape3D/stair_model"]
+transform = Transform3D(0.781858, -0.623457, 0, 0.623457, 0.781858, 0, 0, 0, 1, -0.0999999, 0.3, 0)
+shape = SubResource("BoxShape3D_wwg0q")
+
+[node name="sprinkler_system" type="Node" parent="."]
+script = ExtResource("11_4a3yn")
+
+[node name="valve_container" type="Node" parent="sprinkler_system"]
+
+[node name="valve" parent="sprinkler_system/valve_container" instance=ExtResource("12_h7fiv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2, 7)
+visible = false
+
+[node name="sprinkler_container" type="Node" parent="sprinkler_system"]
+
+[node name="spinkler" parent="sprinkler_system/sprinkler_container" instance=ExtResource("13_ca6rp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 3, -2)
+collision_layer = 0
+script = ExtResource("14_kmf6l")
+
+[node name="sprinkler" parent="sprinkler_system/sprinkler_container/spinkler" index="0"]
+transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 1.28052, 0.5, 0)
+
+[node name="CollisionShape3D" parent="sprinkler_system/sprinkler_container/spinkler" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="sprinkler_system/sprinkler_container/spinkler"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("BoxShape3D_kagwj")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="sprinkler_system/sprinkler_container/spinkler"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("BoxShape3D_kagwj")
+
+[node name="fire_system" type="Node" parent="."]
+script = ExtResource("15_8ntv6")
+
+[node name="fire_container" type="Node" parent="fire_system"]
+
+[node name="cube_fire" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 1, -2)
+
+[node name="cube_fire16" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -3)
+
+[node name="cube_fire25" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -11)
+
+[node name="cube_fire19" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3)
+
+[node name="cube_fire65" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2, 1, 1.4)
+
+[node name="cube_fire68" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 7.8, 0.5, -0.7)
+
+[node name="cube_fire27" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.58507, 0.4, -10.3897)
+
+[node name="cube_fire28" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.48507, 0.4, -7.98967)
+
+[node name="cube_fire30" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.48507, 1.4, -7.98967)
+
+[node name="cube_fire29" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.48507, 0.4, -6.98967)
+
+[node name="cube_fire73" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58507, 1.4, -10.3897)
+
+[node name="cube_fire74" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.58507, 1.4, -10.3897)
+
+[node name="cube_fire76" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.585073, 1.6, -8.88967)
+
+[node name="cube_fire33" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.9652, 1.2, -9.72702)
+
+[node name="cube_fire70" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9652, 1.2, -9.72702)
+
+[node name="cube_fire71" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9652, 0.4, -8.72702)
+
+[node name="cube_fire78" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.9652, 0.4, -8.72702)
+
+[node name="cube_fire32" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0652, 1.02081, -11.227)
+
+[node name="cube_fire79" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0652, 1.02081, -10.227)
+
+[node name="cube_fire80" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5859, 0.44575, -9.40811)
+
+[node name="cube_fire82" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0859, 0.44575, -8.60811)
+
+[node name="cube_fire83" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0859, 0.44575, -4.50811)
+
+[node name="cube_fire84" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0859, 1.44575, -4.50811)
+
+[node name="cube_fire81" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5859, 1.44575, -9.40811)
+
+[node name="cube_fire23" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3, 1.4, -6.6)
+
+[node name="cube_fire26" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3, 0.4, -6.6)
+
+[node name="cube_fire17" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, -2)
+
+[node name="cube_fire18" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, -4)
+
+[node name="cube_fire14" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.4, 0)
+
+[node name="cube_fire20" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 1.4, 0.9)
+
+[node name="cube_fire21" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0.6, 0.9)
+
+[node name="cube_fire22" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0.6, -2.13603)
+
+[node name="cube_fire85" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.6, -6.13603)
+
+[node name="cube_fire63" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 1.6, -2.13603)
+
+[node name="cube_fire66" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 1.4, -1.13603)
+
+[node name="cube_fire69" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1.4, -1.13603)
+
+[node name="cube_fire13" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0.5, 0)
+
+[node name="cube_fire72" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.4, -3)
+is_blue = true
+
+[node name="cube_fire75" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1, 0.562494, -3)
+is_blue = true
+
+[node name="cube_fire67" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(0.999777, -0.0211344, 0, 0.0211344, 0.999777, 0, 0, 0, 1, 2.57715, 0.6, -10.3)
+is_blue = true
+
+[node name="cube_fire77" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 0.6, -3.1)
+is_blue = true
+
+[node name="cube_fire34" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0.6, -0.2)
+is_blue = true
+
+[node name="cube_fire35" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1, 1.5, 1.3)
+is_blue = true
+
+[node name="cube_fire4" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, -1)
+
+[node name="cube_fire5" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -1)
+
+[node name="cube_fire6" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -2)
+
+[node name="cube_fire7" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4848, 0.469595, 0.945266)
+
+[node name="cube_fire15" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.28479, 0.469595, 0.545266)
+
+[node name="cube_fire64" parent="fire_system/fire_container" instance=ExtResource("16_tmutm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.28479, 1.4696, 0.545266)
+
+[node name="active_checker" type="Area3D" parent="fire_system"]
+collision_layer = 0
+collision_mask = 2048
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="fire_system/active_checker"]
+shape = SubResource("BoxShape3D_eqofl")
+
+[node name="pcs" type="Node" parent="."]
+script = ExtResource("17_8jwm5")
+
+[node name="paper_piece" parent="pcs" instance=ExtResource("18_rv1rq")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0.5, -7.396)
+
+[node name="combos" type="Node" parent="."]
+
+[node name="combo_area" parent="combos" instance=ExtResource("19_ig2qs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -6)
+
+[node name="breakables" type="Node" parent="."]
+
+[node name="breakable" parent="breakables" instance=ExtResource("20_xivwe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.18567, 0.5, -3.9)
+collision_layer = 515
+
+[connection signal="area_entered" from="fire_system/active_checker" to="fire_system" method="fire_alive"]
+[connection signal="area_exited" from="fire_system/active_checker" to="fire_system" method="fire_killed"]
+
+[editable path="interactable"]
+[editable path="sprinkler_system/sprinkler_container/spinkler"]
