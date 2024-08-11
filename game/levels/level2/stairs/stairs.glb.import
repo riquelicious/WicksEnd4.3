@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://q35h37cnbrmx"
-path="res://.godot/imported/makeshift_stairs.gltf-9ad6f7b8564aab6078304d78f91395a5.scn"
+uid="uid://cqli5virdjans"
+path="res://.godot/imported/stairs.glb-e07bca4e6586cb92f7363ba2c68c03b6.scn"
 
 [deps]
 
-source_file="res://game/levels/level2/stairs/makeshift_stairs.gltf"
-dest_files=["res://.godot/imported/makeshift_stairs.gltf-9ad6f7b8564aab6078304d78f91395a5.scn"]
+source_file="res://game/levels/level2/stairs/stairs.glb"
+dest_files=["res://.godot/imported/stairs.glb-e07bca4e6586cb92f7363ba2c68c03b6.scn"]
 
 [params]
 

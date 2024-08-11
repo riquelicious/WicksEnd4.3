@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dc6ijyutixcx6"
-path.s3tc="res://.godot/imported/makeshift_stairs_1.png-ea4c6dc030df3c25ac07d9d1d1a4d187.s3tc.ctex"
+uid="uid://ctimmf2dy202k"
+path.s3tc="res://.godot/imported/stairs_Image_1.png-5e8a7d9cb34b03fbf4863eb891921c9e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://game/levels/level2/stairs/makeshift_stairs_1.png"
-dest_files=["res://.godot/imported/makeshift_stairs_1.png-ea4c6dc030df3c25ac07d9d1d1a4d187.s3tc.ctex"]
+source_file="res://game/levels/level2/stairs/stairs_Image_1.png"
+dest_files=["res://.godot/imported/stairs_Image_1.png-5e8a7d9cb34b03fbf4863eb891921c9e.s3tc.ctex"]
 
 [params]
 
