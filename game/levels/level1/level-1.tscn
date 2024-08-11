@@ -61,6 +61,7 @@ point_count = 2
 colors = PackedColorArray(0.140447, 0.140447, 0.140447, 1, 0.534361, 0.534361, 0.534361, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wnwlo"]
+size = Vector3(6, 1, 5)
 
 [sub_resource type="PrismMesh" id="PrismMesh_w5dac"]
 left_to_right = 1.0
@@ -212,7 +213,18 @@ axis_lock_angular_z = true
 [node name="stair_system" type="Node" parent="."]
 script = ExtResource("17_77qdh")
 
-[node name="pickup" parent="stair_system" instance=ExtResource("8_tuyxg")]
+[node name="pickups" type="Node" parent="stair_system"]
+
+[node name="pickup" parent="stair_system/pickups" instance=ExtResource("8_tuyxg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -7)
+
+[node name="pickup2" parent="stair_system/pickups" instance=ExtResource("8_tuyxg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -7)
+
+[node name="pickup3" parent="stair_system/pickups" instance=ExtResource("8_tuyxg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -7)
+
+[node name="pickup4" parent="stair_system/pickups" instance=ExtResource("8_tuyxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -7)
 
 [node name="makeshift_staircase" type="Node" parent="stair_system"]
@@ -224,14 +236,13 @@ script = ExtResource("10_068pn")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="stair_system/makeshift_staircase/staircase"]
 shape = SubResource("BoxShape3D_wnwlo")
 
-[node name="stair_model" type="StaticBody3D" parent="stair_system/makeshift_staircase/staircase"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+[node name="stair_model" type="StaticBody3D" parent="stair_system/makeshift_staircase/staircase/CollisionShape3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="stair_system/makeshift_staircase/staircase/stair_model"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="stair_system/makeshift_staircase/staircase/CollisionShape3D/stair_model"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("PrismMesh_w5dac")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="stair_system/makeshift_staircase/staircase/stair_model"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stair_system/makeshift_staircase/staircase/CollisionShape3D/stair_model"]
 transform = Transform3D(0.781858, -0.623457, 0, 0.623457, 0.781858, 0, 0, 0, 1, -0.0999999, 0.3, 0)
 shape = SubResource("BoxShape3D_wwg0q")
 
@@ -297,6 +308,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 7.604)
 [node name="combos" type="Node" parent="."]
 
 [node name="combo_area" parent="combos" instance=ExtResource("11_qej83")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5)
 
 [node name="breakables" type="Node" parent="."]
 

@@ -2,7 +2,7 @@
 #TODO
 
 # * dialogues
-# * place on pickup stairs
+#// * place on pickup stairs
 #// * extinguisher gauge
 
 # * helps
