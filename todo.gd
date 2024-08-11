@@ -12,3 +12,4 @@
 #// * markers
 # * pause?
 # * locking of equipments
+# * reset when quit

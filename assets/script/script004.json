@@ -80,6 +80,16 @@
 			"text": "Alright, let’s do this.",
 			"name": "Captain Hayes",
 			"choices": []
+		},
+		"21": {
+			"text": "Alright, let’s do this. It seems like Burke is already here. ",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"22": {
+			"text": "He has a knack for being where he’s not supposed to be, and his intentions are always a bit... questionable.",
+			"name": "Captain Hayes",
+			"choices": []
 		}
 	}
 }

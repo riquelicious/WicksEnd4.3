@@ -3,7 +3,6 @@ extends Node3D
 @onready var player : CharacterBody3D = $%player
 @onready var paper_piece : Pickups = $%paper_piece
 @export var quests : Array[Node] = [
-
 ]
 var current
 

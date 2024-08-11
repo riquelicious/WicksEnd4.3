@@ -99,6 +99,11 @@
 			"text": "Alright, let’s get moving. We’ll need to stay focused and handle this situation carefully.",
 			"name": "Captain Hayes",
 			"choices": []
+		},
+		"21": {
+			"text": "I heard Burke might have arrived before us. His presence here could complicate things.",
+			"name": "Captain Hayes",
+			"choices": []
 		}
 	}
 }

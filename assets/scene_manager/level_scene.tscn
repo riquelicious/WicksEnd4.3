@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://rtd0g4m8puiu"]
+
+[ext_resource type="Script" path="res://assets/scene_manager/level_scene.gd" id="1_cq1s5"]
+[ext_resource type="Texture2D" uid="uid://cdvxaiefndmer" path="res://assets/images/scenes/scene1.png" id="1_noxd0"]
+[ext_resource type="AudioStream" uid="uid://cosmibkyas24j" path="res://assets/audio/sfx/scenes/traffic.wav" id="2_00txb"]
+[ext_resource type="PackedScene" uid="uid://bjlo7l7uu7ylo" path="res://assets/scene_manager/scene_manager.tscn" id="2_v7ubg"]
+[ext_resource type="AudioStream" uid="uid://cf7y7ycolvytr" path="res://assets/audio/sfx/scenes/truck_loop.wav" id="3_u3kip"]
+
+[node name="LevelScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cq1s5")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_noxd0")
+expand_mode = 2
+
+[node name="traffic" type="AudioStreamPlayer" parent="TextureRect"]
+stream = ExtResource("2_00txb")
+volume_db = -30.0
+autoplay = true
+
+[node name="truck" type="AudioStreamPlayer" parent="TextureRect"]
+stream = ExtResource("3_u3kip")
+volume_db = -20.0
+autoplay = true
+
+[node name="SceneManager" parent="." instance=ExtResource("2_v7ubg")]

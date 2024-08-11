@@ -1,0 +1,90 @@
+{
+	"nodes": {
+		"1": {
+			"text": "Why did you do it?",
+			"name": "You",
+			"choices": []
+		},
+		"2": {
+			"text": "I see, so you already know.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"3": {
+			"text": "I thought it was Bruke when I saw the initials, but the keychain from the camera...",
+			"name": "You",
+			"choices": []
+		},
+		"4": {
+			"text": "T.B... it stands for Teddy Bear doesn't it?, the keychain...",
+			"name": "You",
+			"choices": []
+		},
+		"5": {
+			"text": "Yes, the keychain... I’m the one behind these fires. I’m getting old, and I needed money for my grandchildren.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"6": {
+			"text": "The fire started out as a way to make some extra cash. I set buildings on fire to collect insurance money from companies.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"7": {
+			"text": "So, you didn’t know that my house was included?",
+			"name": "You",
+			"choices": []
+		},
+		"8": {
+			"text": "No, I had no idea. When I found out, I realized how wrong it was. ",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"9": {
+			"text": " It’s one thing to commit a crime for money, but when it affects innocent lives directly... it’s unforgivable.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"10": {
+			"text": "But why keep going, even when you knew the risks?",
+			"name": "You",
+			"choices": []
+		},
+		"11": {
+			"text": "I thought I could control it, keep it limited to abandoned buildings. I didn’t realize how far it would go.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"12": {
+			"text": "Once I started, it became a way of life, a twisted solution to a desperate situation.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"13": {
+			"text": "And now? What are you going to do?",
+			"name": "You",
+			"choices": []
+		},
+		"14": {
+			"text": "I’m turning myself in. I know it won’t fix anything, but I have to face the consequences of my actions.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"15": {
+			"text": "I’m truly sorry for what I’ve done. I’ll turn myself in and accept whatever comes my way.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"16": {
+			"text": "Is there anything else you want to say before we end this?",
+			"name": "You",
+			"choices": []
+		},
+		"17": {
+			"text": "Just that I’m sorry. For everything. I should have known better, and I should have stopped before it was too late.",
+			"name": "Captain Hayes",
+			"choices": []
+		}
+
+	}
+}
