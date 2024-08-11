@@ -26,3 +26,6 @@ func reset_traffic():
 func reset_truck():
 	truck.stream_paused = false
 	truck.play()
+	
+func to_level():
+	Transition.change_scene(FilePaths.levels[Global.level_settings.level_selection])

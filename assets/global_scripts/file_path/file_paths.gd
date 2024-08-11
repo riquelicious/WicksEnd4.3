@@ -46,7 +46,10 @@ var uiObjectiveMarker := preload("res://assets/modules/3d/floating_ui/objective.
 var script_file_list := [
 	"res://assets/script/script001.json",
 	"res://assets/script/script002.json",
-	"res://assets/script/script003.json"
+	"res://assets/script/script003.json",
+	"res://assets/script/script004.json",
+	"res://assets/script/script005.json",
+	"res://assets/script/script006.json"
 ]
 
 var fire_shader := preload("res://assets/shaders/fire_material.tres")
