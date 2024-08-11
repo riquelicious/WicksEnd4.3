@@ -27,7 +27,7 @@ var blank_save = {
 	"points": 1000,
 	"upgrade": {
 		"axe": 0,
-		"blanket": 0,
+		# "blanket": 0,
 		"extinguisher": 0,
 		"gear": 0,
 		"nozzle": 0

@@ -1,3 +1,4 @@
+class_name SprinklerSystem
 extends Node
 
  
@@ -13,6 +14,7 @@ func _ready() -> void:
 	sprinkler_container = get_node("sprinkler_container")
 	valves = valve_container.get_children()
 	sprinklers = sprinkler_container.get_children()
+	add_markers()
 
 func _process(delta: float) -> void:
 	var status = valve_status_manager.is_mission_finished(valves)
@@ -41,3 +43,8 @@ class SprinklerStatusManager:
 		for sprinkler in sprinklers:
 			sprinkler.kill_fire()
 		finished = true
+		
+func add_markers():
+	for valve in valves:
+		valve.objective_marker.add_objective_marker()
+		valve.objective_marker.show_marker = true

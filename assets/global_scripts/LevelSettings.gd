@@ -18,3 +18,8 @@ var unlocked_levels = {
 var level_selection: int = 0
 var lvlPoints := 1000.0
 
+var civilians_remaining := 0
+
+var quest_message = ""
+
+var extinguished_percentage = 0.0

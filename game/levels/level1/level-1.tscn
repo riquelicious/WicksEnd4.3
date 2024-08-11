@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://js0y1ym1045y"]
+[gd_scene load_steps=36 format=3 uid="uid://js0y1ym1045y"]
 
 [ext_resource type="Script" path="res://game/levels/level1/level-1.gd" id="1_amc4j"]
 [ext_resource type="PackedScene" uid="uid://q1yxpssljlq1" path="res://assets/entities/player/player.tscn" id="1_yf7aq"]
@@ -7,15 +7,19 @@
 [ext_resource type="PackedScene" uid="uid://bev5tc1uhkp1j" path="res://assets/entities/interactables/interactable.tscn" id="4_lpi4d"]
 [ext_resource type="PackedScene" uid="uid://c55ams3nst3h4" path="res://assets/entities/interactables/civilian.tscn" id="6_r4n0h"]
 [ext_resource type="PackedScene" uid="uid://c7lfbpnhhs0hr" path="res://assets/entities/fire/cube_fire.tscn" id="6_xin8i"]
-[ext_resource type="PackedScene" path="res://assets/entities/interactables/valve.tscn" id="7_6iftk"]
+[ext_resource type="PackedScene" uid="uid://dodep8crmbfm6" path="res://assets/entities/interactables/valve.tscn" id="7_6iftk"]
 [ext_resource type="PackedScene" uid="uid://dwhmjssaki4oo" path="res://assets/entities/interactables/pickup.tscn" id="8_tuyxg"]
-[ext_resource type="PackedScene" path="res://assets/entities/interactables/drop_area.tscn" id="10_enc66"]
-[ext_resource type="Script" path="res://assets/game_objects/interactables/combo_area.gd" id="11_18p2i"]
-[ext_resource type="AudioStream" uid="uid://dvxhpl54bsc6d" path="res://assets/audio/sfx/warning/Retro Event Wrong Echo 03.wav" id="12_m30pt"]
+[ext_resource type="Script" path="res://game/levels/level1/staircase.gd" id="10_068pn"]
+[ext_resource type="PackedScene" uid="uid://dfv6t4ldj2v1p" path="res://assets/entities/interactables/drop_area.tscn" id="10_enc66"]
+[ext_resource type="PackedScene" uid="uid://3whxti0e2onl" path="res://assets/modules/combo/combo_area.tscn" id="11_qej83"]
 [ext_resource type="PackedScene" uid="uid://crcx0uou65ta" path="res://assets/entities/interactables/pcs/pc.tscn" id="13_7oyi8"]
+[ext_resource type="Script" path="res://assets/entities/interactables/evidencesystem.gd" id="13_32unq"]
 [ext_resource type="PackedScene" uid="uid://j1d8e7jm3t7u" path="res://assets/entities/sprinkler/spinkler.tscn" id="13_kiquy"]
 [ext_resource type="Script" path="res://assets/entities/sprinkler/spinkler.gd" id="14_vfkdc"]
+[ext_resource type="Script" path="res://assets/modules/fire_system/fire_system.gd" id="15_8v846"]
 [ext_resource type="Script" path="res://assets/entities/interactables/valve_module/valve_container.gd" id="15_kryyx"]
+[ext_resource type="Script" path="res://assets/entities/interactables/civilian_module/civilian_system.gd" id="16_mekid"]
+[ext_resource type="Script" path="res://assets/entities/interactables/important_pickables.gd" id="17_77qdh"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_n042r"]
 
@@ -56,10 +60,21 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_js6bg"]
 colors = PackedColorArray(0.140447, 0.140447, 0.140447, 1, 0.534361, 0.534361, 0.534361, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_wn25s"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_wnwlo"]
 
-[node name="Level-1" type="Node3D"]
+[sub_resource type="PrismMesh" id="PrismMesh_w5dac"]
+left_to_right = 1.0
+size = Vector3(4, 3, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wwg0q"]
+size = Vector3(6, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eqofl"]
+size = Vector3(100, 30, 100)
+
+[node name="Level-1" type="Node3D" node_paths=PackedStringArray("quests")]
 script = ExtResource("1_amc4j")
+quests = [NodePath("civilian_system"), NodePath("stair_system"), NodePath("pcs"), NodePath("sprinkler_system"), NodePath("fire_system")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_dtwka")
@@ -153,30 +168,6 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/top4"]
 shape = SubResource("BoxShape3D_vxusw")
 
-[node name="fires" type="Node3D" parent="World"]
-
-[node name="cube_fire" parent="World/fires" instance=ExtResource("6_xin8i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -3)
-
-[node name="cube_fire3" parent="World/fires" instance=ExtResource("6_xin8i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -2)
-is_blue = true
-
-[node name="cube_fire4" parent="World/fires" instance=ExtResource("6_xin8i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -1)
-
-[node name="cube_fire5" parent="World/fires" instance=ExtResource("6_xin8i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -1)
-
-[node name="cube_fire6" parent="World/fires" instance=ExtResource("6_xin8i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -2)
-
-[node name="cube_fire2" parent="World/fires" instance=ExtResource("6_xin8i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -3)
-
-[node name="cube_fire7" parent="World/fires" instance=ExtResource("6_xin8i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3, -3)
-
 [node name="smokes" type="CPUParticles3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 amount = 64
@@ -192,10 +183,6 @@ gravity = Vector3(0, 5, 0)
 scale_amount_curve = SubResource("Curve_2enan")
 color_ramp = SubResource("Gradient_js6bg")
 
-[node name="breakable" parent="." instance=ExtResource("3_ifjm6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -6)
-collision_layer = 515
-
 [node name="interactable" parent="." instance=ExtResource("4_lpi4d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, -6)
 collision_layer = 515
@@ -203,37 +190,50 @@ collision_layer = 515
 [node name="marker_origin" parent="interactable" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="pickup" parent="." instance=ExtResource("8_tuyxg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -7)
+[node name="player" parent="." instance=ExtResource("1_yf7aq")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="DropArea" parent="." instance=ExtResource("10_enc66")]
+[node name="civilian_system" type="Node" parent="."]
+script = ExtResource("16_mekid")
+
+[node name="DropArea" parent="civilian_system" instance=ExtResource("10_enc66")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1.6, 6)
 
-[node name="civilian" parent="." instance=ExtResource("6_r4n0h")]
+[node name="civilians" type="Node" parent="civilian_system"]
+
+[node name="civilian" parent="civilian_system/civilians" instance=ExtResource("6_r4n0h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 3, -4)
 collision_layer = 519
 collision_mask = 519
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 
-[node name="player" parent="." instance=ExtResource("1_yf7aq")]
-unique_name_in_owner = true
+[node name="stair_system" type="Node" parent="."]
+script = ExtResource("17_77qdh")
+
+[node name="pickup" parent="stair_system" instance=ExtResource("8_tuyxg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -7)
+
+[node name="makeshift_staircase" type="Node" parent="stair_system"]
+
+[node name="staircase" type="Area3D" parent="stair_system/makeshift_staircase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 0)
+script = ExtResource("10_068pn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stair_system/makeshift_staircase/staircase"]
+shape = SubResource("BoxShape3D_wnwlo")
+
+[node name="stair_model" type="StaticBody3D" parent="stair_system/makeshift_staircase/staircase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="stair_system/makeshift_staircase/staircase/stair_model"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("PrismMesh_w5dac")
 
-[node name="combo_area" type="Area3D" parent="."]
-process_mode = 3
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
-script = ExtResource("11_18p2i")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="combo_area"]
-shape = SubResource("BoxShape3D_wn25s")
-
-[node name="warning_audio" type="AudioStreamPlayer3D" parent="combo_area"]
-stream = ExtResource("12_m30pt")
-
-[node name="paper_piece" parent="." instance=ExtResource("13_7oyi8")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 7.604)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stair_system/makeshift_staircase/staircase/stair_model"]
+transform = Transform3D(0.781858, -0.623457, 0, 0.623457, 0.781858, 0, 0, 0, 1, -0.0999999, 0.3, 0)
+shape = SubResource("BoxShape3D_wwg0q")
 
 [node name="sprinkler_system" type="Node" parent="."]
 script = ExtResource("15_kryyx")
@@ -243,20 +243,69 @@ script = ExtResource("15_kryyx")
 [node name="valve" parent="sprinkler_system/valve_container" instance=ExtResource("7_6iftk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, -6)
 
-[node name="valve2" parent="sprinkler_system/valve_container" instance=ExtResource("7_6iftk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -6)
-
-[node name="valve3" parent="sprinkler_system/valve_container" instance=ExtResource("7_6iftk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, -6)
-
 [node name="sprinkler_container" type="Node" parent="sprinkler_system"]
 
 [node name="spinkler" parent="sprinkler_system/sprinkler_container" instance=ExtResource("13_kiquy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 3, -2)
+collision_layer = 0
 script = ExtResource("14_vfkdc")
 
 [node name="CollisionShape3D" parent="sprinkler_system/sprinkler_container/spinkler" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="fire_system" type="Node" parent="."]
+script = ExtResource("15_8v846")
+
+[node name="fire_container" type="Node" parent="fire_system"]
+
+[node name="cube_fire" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -3)
+
+[node name="cube_fire3" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -2)
+is_blue = true
+
+[node name="cube_fire4" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -1)
+
+[node name="cube_fire5" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -1)
+
+[node name="cube_fire6" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -2)
+
+[node name="cube_fire2" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -3)
+
+[node name="cube_fire7" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3, -3)
+
+[node name="active_checker" type="Area3D" parent="fire_system"]
+collision_layer = 0
+collision_mask = 2048
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="fire_system/active_checker"]
+shape = SubResource("BoxShape3D_eqofl")
+
+[node name="pcs" type="Node" parent="."]
+script = ExtResource("13_32unq")
+
+[node name="paper_piece" parent="pcs" instance=ExtResource("13_7oyi8")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 7.604)
+
+[node name="combos" type="Node" parent="."]
+
+[node name="combo_area" parent="combos" instance=ExtResource("11_qej83")]
+
+[node name="breakables" type="Node" parent="."]
+
+[node name="breakable" parent="breakables" instance=ExtResource("3_ifjm6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -6)
+collision_layer = 515
+
+[connection signal="area_entered" from="fire_system/active_checker" to="fire_system" method="fire_alive"]
+[connection signal="area_exited" from="fire_system/active_checker" to="fire_system" method="fire_killed"]
 
 [editable path="interactable"]
 [editable path="sprinkler_system/sprinkler_container/spinkler"]

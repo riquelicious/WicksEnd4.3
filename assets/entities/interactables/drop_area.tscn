@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://wgfefarodfrv"]
+[gd_scene load_steps=3 format=3 uid="uid://dfv6t4ldj2v1p"]
 
 [ext_resource type="Script" path="res://assets/entities/interactables/civilian_module/dropping_area.gd" id="1_0niua"]
 
@@ -11,3 +11,5 @@ script = ExtResource("1_0niua")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_dpepo")
+
+[node name="Marker3D" type="Marker3D" parent="."]

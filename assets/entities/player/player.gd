@@ -6,6 +6,7 @@ extends CharacterBody3D
 @onready var damage_animation_player := $"Control/on-screen-ui/overlays/AnimationPlayer"
 @onready var viewport_size := get_viewport().get_visible_rect().size
 @onready var viewport := get_viewport()
+@onready var object_markers: Control = $"Control/equipment-overlay/ObjectMarkers"
 
 var camera_manager : CameraManager = CameraManager.new() 
 var equipment_manager : EquipmentManger = EquipmentManger.new()
@@ -20,8 +21,9 @@ var inventory_manager : InventoryManager = InventoryManager.new()
 var is_aim_active : bool = false
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var is_interacting := false
-var health = 100
+var health = 100.0
 var water = 100.0
+var extinguisher = 100.0
 
 func _ready():
 	camera_manager.initialize(self)
@@ -33,6 +35,10 @@ func _ready():
 	point_manager.initialize(self)
 	extinguisher_manager.initialize(self)
 	inventory_manager.initialize(self)
+	BGM.change_bgm("res://assets/audio/BGM/HurryTFup.mp3")
+	# var bgm = preload("res://assets/audio/BGM/HurryTFup.mp3")
+	# BGM.stream = bgm
+	# BGM.play()
 
 func _input(event):
 	if event is InputEventMouseMotion:

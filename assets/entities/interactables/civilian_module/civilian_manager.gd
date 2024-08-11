@@ -20,6 +20,7 @@ func pickup():
 	animation_player.play("stand")
 	await  animation_player.animation_finished
 	parent.visible = false
+	animation_player.play_backwards("stand")
 	parent.set_collision_layer_value(1, false)
 
 func drop(pos: Vector3):

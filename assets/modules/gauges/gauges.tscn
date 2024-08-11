@@ -29,7 +29,7 @@ script = ExtResource("1_5375m")
 anchor_mode = 0
 
 [node name="health" type="Node2D" parent="."]
-position = Vector2(973, 590)
+position = Vector2(576, 590)
 
 [node name="background" type="Sprite2D" parent="health"]
 texture = ExtResource("2_7lyir")
@@ -47,9 +47,10 @@ metadata/_edit_lock_ = true
 blend_mode = 2
 range_item_cull_mask = 2
 texture = ExtResource("2_i1psp")
+metadata/_edit_lock_ = true
 
 [node name="water" type="Node2D" parent="."]
-position = Vector2(973, 615)
+position = Vector2(576, 615)
 
 [node name="background" type="Sprite2D" parent="water"]
 texture = ExtResource("3_2erlq")
@@ -67,6 +68,7 @@ metadata/_edit_lock_ = true
 blend_mode = 2
 range_item_cull_mask = 2
 texture = ExtResource("4_8tcd0")
+metadata/_edit_lock_ = true
 
 [node name="water-timer" type="Timer" parent="."]
 one_shot = true

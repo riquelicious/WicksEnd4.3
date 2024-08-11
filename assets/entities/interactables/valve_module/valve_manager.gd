@@ -65,4 +65,5 @@ func animate_valve():
 	await valve_anim.animation_finished
 	player.camera_manager.reset_camera_position()
 	Global.level_settings.lvlPoints += parent.points_to_add
+	parent.objective_marker.remove_marker()
 	

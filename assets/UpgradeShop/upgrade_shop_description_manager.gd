@@ -17,8 +17,8 @@ var dict_reference : Dictionary = {
 	0 : "nozzle",
 	1 : "axe",
 	2 : "extinguisher",
-	3 : "blanket",
-	4 : "gear"
+	#3 : "blanket",
+	3 : "gear"
 }
 
 func initialize(parent_instance : Node):

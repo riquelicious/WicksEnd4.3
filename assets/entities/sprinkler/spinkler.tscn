@@ -41,6 +41,7 @@ amount = 32
 speed_scale = 2.0
 randomness = 0.83
 visibility_aabb = AABB(-2, 0, -2, 4, -10, 4)
+trail_lifetime = 0.01
 process_material = SubResource("ParticleProcessMaterial_kp86q")
 draw_pass_1 = SubResource("RibbonTrailMesh_8llb4")
 

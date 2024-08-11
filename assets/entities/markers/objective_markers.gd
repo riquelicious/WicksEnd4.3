@@ -1,7 +1,7 @@
 class_name ObjectiveMarker
 extends Node
 
-var player : CharacterBody3D 
+var player : PlayerA 
 var marker_origin : Marker3D 
 var show_marker := false
 var parent : Node
@@ -15,14 +15,15 @@ func initialize(object_instance : Node3D, marker_origin_instance : Marker3D):
 	
 
 func add_objective_marker():
-	if not show_marker: return
+	#if not show_marker: return
 	if player:
 		if !objective_added:
 			if not player.is_node_ready():
 				await player.ready
-			var object = player.objective_markers
+			var object = player.object_markers
 			if object:
 				objective_marker_id = object.add_3d_marker(marker_origin)
+				print(objective_marker_id)
 				objective_added = true
 	
 func remove_marker():

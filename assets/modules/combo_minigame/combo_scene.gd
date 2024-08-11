@@ -44,7 +44,8 @@ func lose():
 		player.camera_manager.apply_shake()
 		player.audio_manager.rubble_audio.play()
 		player.damage_animation_player.play("damage_animation")
-		player.health -= damage
+		#player.health -= damage
+		player.interaction_manager.damage_player(damage)
 		queue_free()
 
 func win():

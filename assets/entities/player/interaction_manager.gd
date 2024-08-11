@@ -15,6 +15,7 @@ var objective_markers : Control
 var equipment_manager : EquipmentManger
 var iframes_duration : float 
 var iframes_timer : Timer
+var defense : float
 
 func initialize(player_instance: PlayerA):
 	player = player_instance
@@ -27,6 +28,7 @@ func initialize(player_instance: PlayerA):
 	iframes_timer.one_shot = true
 	iframes_duration = Global.fire_settings.fire_damage_cooldown_speed
 	axe_damage = Global.equipment_settings.calculate_stat(["axe","damage"])
+	defense = Global.equipment_settings.calculate_stat(["gear","defense"])
 
 func check_collision():
 	if player.is_aim_active: return
@@ -120,7 +122,8 @@ func do_drop_civilian():
 
 func damage_player(amount):
 	if iframes_timer.time_left == 0:
-		var remaining_health = player.health - amount
-		player.health = clamp(remaining_health, 0, 100)
+		var remaining_health = player.health - (amount - ((amount * 0.01) * (defense)))
+		prints(remaining_health, amount, ((amount * 0.01) * (defense)), (amount - ((amount * 0.01) * (defense))))
+		player.health = clamp(remaining_health, 0.0, 100.0)
 		player.damage_animation_player.play("damage_animation")
 		iframes_timer.start(iframes_duration)

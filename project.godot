@@ -33,6 +33,7 @@ MousePositioning="*res://assets/global_scripts/cursor/mouse_positioning.tscn"
 GesturedDebug="*res://assets/global_scripts/gestured_debug.gd"
 Transition="*res://assets/transition/Transition.tscn"
 SaveManager="*res://assets/global_scripts/save_manager/SaveManager.gd"
+BGM="*res://assets/audio/BGM.tscn"
 
 [debug]
 

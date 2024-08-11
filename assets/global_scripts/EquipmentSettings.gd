@@ -47,8 +47,12 @@ var equipments: Dictionary = {
 			"multiplier": 0.5
 		},
 		"capacity": {
+			"increase": {
+				"base": 1.0,
+				"multiplier" : 0.1
+			},
 			"decrease": {
-				"base" : 8.0,
+				"base" : 12.0,
 				"multiplier" : -0.05
 			}
 		},
@@ -58,18 +62,18 @@ var equipments: Dictionary = {
 		}
 	},
 
-	"blanket": {
-		"level": 1.0,
-		"price": {
-			"base": 100.0,
-			"multiplier": 0.5
+	# "blanket": {
+	# 	"level": 1.0,
+	# 	"price": {
+	# 		"base": 100.0,
+	# 		"multiplier": 0.5
 
-		},
-		"amount" : {
-			"base" : 1.0,
-			"multiplier" : 1.0
-		}
-	},
+	# 	},
+	# 	"amount" : {
+	# 		"base" : 1.0,
+	# 		"multiplier" : 1.0
+	# 	}
+	# },
 	
 	"gear": {
 		"level": 1.0,
@@ -78,7 +82,7 @@ var equipments: Dictionary = {
 			"multiplier": 0.5
 		},
 		"defense": {
-			"base" : 5.0,
+			"base" : 7.0,
 			"multiplier" : 1.0
 		}
 	}
@@ -91,5 +95,5 @@ func calculate_stat(keys : Array) -> float:
 		eq = eq[key]
 	var base = eq["base"]
 	var multiplier = eq["multiplier"]
-	var value = base + ((base * multiplier) * level - 1)
+	var value = base + ((base * multiplier) * (level - 1))
 	return value

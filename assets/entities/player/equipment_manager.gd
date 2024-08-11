@@ -6,10 +6,11 @@ var equipment_sway_amout : float = 0.0005
 var equipment_node : Node3D
 var default_equipment_hold_position : Vector3
 var anim : AnimationPlayer
-
+var gauge 
 func initialize(player_instance: PlayerA):
 	player = player_instance
 	equipment_node = player.get_node("Control/equipment-overlay/SubViewportContainer/SubViewport/viewmodel-camera/equipment_node")
+	gauge = player.get_node("Control/on-screen-ui/ui/gauges/SubViewport/gauges")
 	anim = player.get_node("AnimationPlayer")
 	default_equipment_hold_position = equipment_node.position
 	change_equipment(0)
@@ -49,3 +50,4 @@ func change_equipment(equipment: int, slowed : bool = false,):
 		await anim.animation_finished
 		if slowed:
 			anim.speed_scale = 1.0
+	gauge.current_eq = equipment
