@@ -15,4 +15,3 @@ func _ready():
 	choice_manager.initialize(self)
 	anim_manager.initialize(self)
 	text_manager.initialize(self)
-
