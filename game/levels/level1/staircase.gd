@@ -8,6 +8,7 @@ var finished := false
 func _ready() -> void:
 	body_entered.connect(_show.bind())
 	stair_model.visible = false
+	stair_model.set_collision_layer_value(1, false)
 
 func _show(body):
 	if not picked_up: return
@@ -15,3 +16,4 @@ func _show(body):
 	if body == player:
 		finished = true
 		stair_model.visible = true
+		stair_model.set_collision_layer_value(1, true)
