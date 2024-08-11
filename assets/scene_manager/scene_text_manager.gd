@@ -31,8 +31,8 @@ func initialize(parent_instance : Node):
 	start_delay_timer = parent.get_node("start_delay")
 	audio_pop = parent.get_node("AudioStreamPlayer")
 	#call_deferred("init_text")
-	script_json = parent.json_manager.load_json(Global.level_settings.level_selection)
-	init_text()
+	#script_json = parent.json_manager.load_json(Global.level_settings.level_selection)
+	#init_text()
 	
 
 func init_text():

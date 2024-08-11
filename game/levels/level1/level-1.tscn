@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://game/levels/level1/level-1.gd" id="1_amc4j"]
 [ext_resource type="PackedScene" uid="uid://q1yxpssljlq1" path="res://assets/entities/player/player.tscn" id="1_yf7aq"]
 [ext_resource type="Environment" uid="uid://c1jsw4puq6pku" path="res://assets/environments/level1.tres" id="2_dtwka"]
-[ext_resource type="PackedScene" uid="uid://dl1s37dxw4b5j" path="res://assets/entities/interactables/breakable.tscn" id="3_ifjm6"]
+[ext_resource type="PackedScene" path="res://assets/entities/interactables/breakable.tscn" id="3_ifjm6"]
 [ext_resource type="PackedScene" uid="uid://c55ams3nst3h4" path="res://assets/entities/interactables/civilian.tscn" id="6_r4n0h"]
 [ext_resource type="PackedScene" uid="uid://c7lfbpnhhs0hr" path="res://assets/entities/fire/cube_fire.tscn" id="6_xin8i"]
 [ext_resource type="PackedScene" uid="uid://dodep8crmbfm6" path="res://assets/entities/interactables/valve.tscn" id="7_6iftk"]
