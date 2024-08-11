@@ -547,9 +547,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.9494, -5.26169, -26.4169)
 [node name="cube_fire35" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.9494, -5.26169, -27.4169)
 
-[node name="cube_fire36" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.9494, -5.26169, -23.4169)
-
 [node name="cube_fire37" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9494, -5.26169, -23.4169)
 
@@ -568,15 +565,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9494, -5.26169, -12.4169)
 [node name="cube_fire44" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9494, -5.26169, -12.4169)
 
-[node name="cube_fire45" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.9494, -5.26169, -10.4169)
-
-[node name="cube_fire46" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.9494, -5.26169, -10.4169)
-
-[node name="cube_fire47" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.9494, -5.26169, -5.4169)
-
 [node name="cube_fire54" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9494, -5.26169, 0.583099)
 
@@ -588,9 +576,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.9494, -0.261692, 9.5831)
 
 [node name="cube_fire56" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.9494, -5.26169, 4.5831)
-
-[node name="cube_fire48" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9494, -5.26169, -8.4169)
 
 [node name="cube_fire41" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.9494, -5.26169, -15.4169)
