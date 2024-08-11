@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bt3821w77j3x3"
-path="res://.godot/imported/nozzle.glb-5cfcda269821336b9215daaee3e1d346.scn"
+uid="uid://cgqdby1r48cqg"
+path="res://.godot/imported/BahayFinal.glb-bb1a876fdd6520c844cf00d48af1a52b.scn"
 
 [deps]
 
-source_file="res://assets/models/equipments/nozzle.glb"
-dest_files=["res://.godot/imported/nozzle.glb-5cfcda269821336b9215daaee3e1d346.scn"]
+source_file="res://game/levels/level3/BahayFinal.glb"
+dest_files=["res://.godot/imported/BahayFinal.glb-bb1a876fdd6520c844cf00d48af1a52b.scn"]
 
 [params]
 
