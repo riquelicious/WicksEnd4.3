@@ -1,8 +1,9 @@
-[gd_scene load_steps=36 format=3 uid="uid://cq38hnb276qij"]
+[gd_scene load_steps=37 format=3 uid="uid://cq38hnb276qij"]
 
 [ext_resource type="Script" path="res://game/levels/level1/level-1.gd" id="1_4cva0"]
 [ext_resource type="Environment" uid="uid://c1jsw4puq6pku" path="res://assets/environments/level1.tres" id="2_1xg0j"]
 [ext_resource type="PackedScene" uid="uid://bev5tc1uhkp1j" path="res://assets/entities/interactables/interactable.tscn" id="3_8jt48"]
+[ext_resource type="PackedScene" uid="uid://5qjkfwpj02jt" path="res://assets/modules/game_over/game_over.tscn" id="3_ms5ps"]
 [ext_resource type="PackedScene" uid="uid://q1yxpssljlq1" path="res://assets/entities/player/player.tscn" id="4_x30h3"]
 [ext_resource type="Script" path="res://assets/entities/interactables/civilian_module/civilian_system.gd" id="5_6peey"]
 [ext_resource type="PackedScene" uid="uid://dfv6t4ldj2v1p" path="res://assets/entities/interactables/drop_area.tscn" id="6_8vgsb"]
@@ -19,7 +20,7 @@
 [ext_resource type="Script" path="res://assets/entities/interactables/evidencesystem.gd" id="17_clq06"]
 [ext_resource type="PackedScene" uid="uid://crcx0uou65ta" path="res://assets/entities/interactables/pcs/pc.tscn" id="18_564cr"]
 [ext_resource type="PackedScene" uid="uid://3whxti0e2onl" path="res://assets/modules/combo/combo_area.tscn" id="19_rg8ff"]
-[ext_resource type="PackedScene" uid="uid://dl1s37dxw4b5j" path="res://assets/entities/interactables/breakable.tscn" id="20_wtn17"]
+[ext_resource type="PackedScene" path="res://assets/entities/interactables/breakable.tscn" id="20_wtn17"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_n042r"]
 
@@ -73,11 +74,15 @@ size = Vector3(6, 1, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_eqofl"]
 size = Vector3(100, 30, 100)
 
-[node name="Level-1" type="Node3D"]
+[node name="Level-1" type="Node3D" node_paths=PackedStringArray("quests")]
 script = ExtResource("1_4cva0")
+quests = [NodePath("civilian_system"), NodePath("fire_system"), NodePath("pcs")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_1xg0j")
+
+[node name="game_over" parent="." instance=ExtResource("3_ms5ps")]
+unique_name_in_owner = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.830637, -0.0535748, -0.554231, 0.26487, -0.837515, 0.477925, -0.489781, -0.543782, -0.681481, 0, 2.32634, 4.29147)
