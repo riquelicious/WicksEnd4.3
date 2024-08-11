@@ -55,7 +55,7 @@ func get_fire(quest_type) -> String:
 	if quest_type is FireSystem:
 		return "There are still some fires around.\nLet’s extinguish them all.\nFire Extingished: %s"  % Global.level_settings.extinguished_percentage
 	return ""
-	
+
 func evidence(quest_type) -> String:
 	if quest_type is EvidenceSystem:
 		return "The building is now relatively safe.\nLet's gather some evidence"
