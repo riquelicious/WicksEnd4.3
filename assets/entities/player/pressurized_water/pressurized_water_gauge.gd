@@ -22,11 +22,11 @@ func update_water_gauge(delta):
 		pressurized_water.player.water =  clamp(pressurized_water.player.water + (water_replenish * delta), 0, 100)
 
 func update_water_status(delta):
-	if not pressurized_water.player.is_aim_active: return
+	if not pressurized_water.toggle_water: return
 	if pressurized_water.player.water <= 0.0:
-		pressurized_water.toggle_water = false
+		pressurized_water.water_available = false
 	else:
 		timer += delta
 		if timer < update_delay: return
 		timer = 0.0
-		pressurized_water.toggle_water = true
+		pressurized_water.water_available = true

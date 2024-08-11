@@ -1,0 +1,109 @@
+{
+	"nodes": {
+		"1": {
+			"text": "We’re heading into a complex warehouse fire. Be prepared for various fire types and hazardous materials. Keep your wits about you.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"2": {
+			"text": "Any more questions before we arrive?",
+			"name": "Captain Hayes",
+			"choices": [
+				{ "text": "About the warehouse...", "nextNode": "5" },
+				{ "text": "Warehouse sprinklers?", "nextNode": "10" },
+				{ "text": "Torn paper", "nextNode": "15" },
+				{ "text": "No, Captain!", "nextNode": "20" }
+			]
+		},
+		"5": {
+			"text": "Can you provide more details about the warehouse?",
+			"name": "You",
+			"choices": []
+		},
+		"6": {
+			"text": "All I know about this warehouse is that some of the stairs are weak and might already be broken.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"7": {
+			"text": "Additionally, things might start falling down, so be careful as you navigate the area. ",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"8": {
+			"text": "We might need to find alternate ways to get up if we need to reach higher levels.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"9": {
+			"text": "Any more questions before we arrive?",
+			"name": "Captain Hayes",
+			"choices": [
+				{ "text": "About the warehouse...", "nextNode": "5" },
+				{ "text": "Warehouse sprinklers?", "nextNode": "10" },
+				{ "text": "Torn paper", "nextNode": "15" },
+				{ "text": "No, Captain!", "nextNode": "20" }
+			]
+		},
+		"10": {
+			"text": "I noticed the sprinklers aren’t working. Shouldn’t they be activated automatically?",
+			"name": "You",
+			"choices": []
+		},
+		"11": {
+			"text": "The sprinklers should indeed be working. It’s unusual that they’re not. Let’s stay alert.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"12": {
+			"text": "(It seems like someone might have tampered with the valves. We’ll need to be extra vigilant.)",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"13": {
+			"text": "Any more questions before we arrive?",
+			"name": "Captain Hayes",
+			"choices": [
+				{ "text": "About the warehouse...", "nextNode": "5" },
+				{ "text": "Warehouse sprinklers?", "nextNode": "10" },
+				{ "text": "Torn paper", "nextNode": "15" },
+				{ "text": "No, Captain!", "nextNode": "20" }
+			]
+		},
+		"15": {
+			"text": "I found a piece of torn paper at the apartment fire. We might need to investigate this further.",
+			"name": "You",
+			"choices": []
+		},
+		"16": {
+			"text": "A piece of torn paper? We need to focus on the fire at hand.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"17": {
+			"text": " Let’s keep our attention on the current mission and deal with any potential evidence afterward.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"18": {
+			"text": "Any more questions before we arrive?",
+			"name": "Captain Hayes",
+			"choices": [
+				{ "text": "About the warehouse...", "nextNode": "5" },
+				{ "text": "Warehouse sprinklers?", "nextNode": "10" },
+				{ "text": "Torn paper", "nextNode": "15" },
+				{ "text": "No, Captain!", "nextNode": "20" }
+			]
+		},
+		"20": {
+			"text": "Alright, let’s get moving. We’ll need to stay focused and handle this situation carefully.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"21": {
+			"text": "I heard Burke might have arrived before us. His presence here could complicate things.",
+			"name": "Captain Hayes",
+			"choices": []
+		}
+	}
+}

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://3whxti0e2onl"]
+
+[ext_resource type="Script" path="res://assets/game_objects/interactables/combo_area.gd" id="1_3lv12"]
+[ext_resource type="AudioStream" uid="uid://dvxhpl54bsc6d" path="res://assets/audio/sfx/warning/Retro Event Wrong Echo 03.wav" id="2_sxdjr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wn25s"]
+
+[node name="combo_area" type="Area3D"]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+script = ExtResource("1_3lv12")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_wn25s")
+
+[node name="warning_audio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_sxdjr")

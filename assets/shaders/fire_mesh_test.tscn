@@ -1,28 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4kxishkjysba"]
+[gd_scene load_steps=3 format=3 uid="uid://d4kxishkjysba"]
 
-[ext_resource type="Shader" path="res://assets/shaders/fire.gdshader" id="1_mnltx"]
-[ext_resource type="Texture2D" uid="uid://ht5p78ijmutm" path="res://assets/noise_textures/pixelated_noise.png" id="2_bfu6c"]
+[ext_resource type="Material" uid="uid://dayghhdwgt8oy" path="res://assets/shaders/fire_plane_material.tres" id="1_sfmy2"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xe8vu"]
-render_priority = 0
-shader = ExtResource("1_mnltx")
-shader_parameter/root_color = Color(1, 0.75, 0.3, 1)
-shader_parameter/tip_color = Color(1, 0.03, 0.001, 1)
-shader_parameter/fire_alpha = 1.0
-shader_parameter/fire_speed = Vector2(0, 1)
-shader_parameter/fire_aperture = 0.0
-shader_parameter/fire_percentage = 100.0
-shader_parameter/glow = 0.05
-shader_parameter/is_on_bottom = false
-shader_parameter/base_amplitude = 0.1
-shader_parameter/base_frequency = 1.0
-shader_parameter/edge_thickness = 0.65
-shader_parameter/noise_tex = ExtResource("2_bfu6c")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_kgx5k"]
-material = SubResource("ShaderMaterial_xe8vu")
-size = Vector2(1, 1)
-orientation = 0
+[sub_resource type="BoxMesh" id="BoxMesh_pjfbm"]
+material = ExtResource("1_sfmy2")
 
 [node name="MeshInstance3D" type="MeshInstance3D"]
-mesh = SubResource("PlaneMesh_kgx5k")
+mesh = SubResource("BoxMesh_pjfbm")

@@ -36,7 +36,7 @@ func _process(_delta):
 	previous_flags["sprite_visibility"] = bool(disable_cursor)
 
 
-func add_3d_marker(target : Node3D, _type : String = "None") -> void:
+func add_3d_marker(target : Node3D):
 	var objective_instance = objective_module.instantiate()
 	objective_instance.marker_target = target
 	self.add_child(objective_instance)

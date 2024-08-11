@@ -1,0 +1,112 @@
+{
+	"nodes": {
+		"1": {
+			"text": "Alright, team, we’ve got a fire at a residential building.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"2": {
+			"text": "Be prepared for electrical hazards, things could get dangerous. Stay alert and keep your wits about you.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"3": {
+			"text": "Any questions before we get arrive?",
+			"name": "Captain Hayes",
+			"choices": [
+				{ "text": "About the house...", "nextNode": "5" },
+				{ "text": "Handling fires here", "nextNode": "10" },
+				{ "text": "No, Captain!", "nextNode": "20" }
+			]
+		},
+		"5": {
+			"text": "What can you tell me about the house we’re going to?",
+			"name": "You",
+			"choices": []
+		},
+		"6": {
+			"text": "The house is filled with appliances, so electrical fires are likely. Be cautious and use the CO2 extinguisher for these.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"7": {
+			"text": "Water could make things more dangerous. Watch out for falling debris and anything that might complicate our efforts. Stay sharp.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"8": {
+			"text": "Any more questions before we get arrive?",
+			"name": "Captain Hayes",
+			"choices": [
+				{ "text": "About the house...", "nextNode": "5" },
+				{ "text": "Handling fires here...", "nextNode": "10" },
+				{ "text": "No, Captain!", "nextNode": "20" }
+			]
+		},
+		"10": {
+			"text": "How should we handle the fires here?",
+			"name": "You",
+			"choices": []
+		},
+		"11": {
+			"text": "In this house, you’ll encounter various electrical appliances. ",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"12": {
+			"text": "Use the CO2 fire extinguisher on any electrical fires to avoid spreading them or causing electrocution.",
+			"name": "You",
+			"choices": []
+		},
+		"13": {
+			"text": "Any questions before we get arrive?",
+			"name": "Captain Hayes",
+			"choices": [
+				{ "text": "About the house...", "nextNode": "5" },
+				{ "text": "Handling fires here...", "nextNode": "10" },
+				{ "text": "No, Captain!", "nextNode": "20" }
+			]
+		},
+		
+		"20": {
+			"text": "Great! It seems like we will arrive before Burke. We’re heading to 78 Crestwood Avenue. It’s a few blocks away.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"21": {
+			"text": "78 Crestwood Avenue?",
+			"name": "You",
+			"choices": []
+		},
+		"22": {
+			"text": "[shake rate=20.0 level=5 connected=1]W-wait, that’s my address![/shake]",
+			"name": "You",
+			"choices": []
+		},
+		"23": {
+			"text": "What!?",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"24": {
+			"text": "[shake rate=20.0 level=5 connected=1]My daughter… My wife…[/shake] We should hurry!",
+			"name": "You",
+			"choices": []
+		},
+		"25": {
+			"text": "Calm down, young man. I know it’s hard, but try to stay level-headed. We need to focus on getting there quickly.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"26": {
+			"text": "Also, You’ll need this for any electrical fires. Water alone can spread them or cause electrocution.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"27": {
+			"text": "[color=yellow]You received a CO2 FIRE EXTINGUISHER![/color]",
+			"name": "Captain Hayes",
+			"choices": []
+		}
+	}
+}

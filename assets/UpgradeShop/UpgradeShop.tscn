@@ -1,16 +1,18 @@
-[gd_scene load_steps=55 format=3 uid="uid://hv22w03byfgv"]
+[gd_scene load_steps=51 format=3 uid="uid://hv22w03byfgv"]
 
 [ext_resource type="Script" path="res://assets/UpgradeShop/upgrade_shop.gd" id="1_8dgpv"]
 [ext_resource type="Theme" uid="uid://xiy1beq5fkuh" path="res://assets/theme/Global.tres" id="3_kfuj7"]
 [ext_resource type="Texture2D" uid="uid://b6ov7hlgts3vh" path="res://assets/gestures/thumbsup.png" id="4_1jm4m"]
 [ext_resource type="Script" path="res://assets/modules/button.gd" id="4_tch11"]
 [ext_resource type="FontFile" uid="uid://55nvttuxhy57" path="res://assets/fonts/NutgameDEMO-Bold.ttf" id="5_oeeuq"]
+[ext_resource type="PackedScene" uid="uid://dprsalqd77m3j" path="res://assets/models/equipments/fireextinguisher_idle.tscn" id="6_75hhf"]
 [ext_resource type="PackedScene" uid="uid://bohtjbfefqrws" path="res://assets/models/equipments/fire_axe.tscn" id="6_k7s76"]
 [ext_resource type="FontFile" uid="uid://be7tsy07e5604" path="res://assets/fonts/OPTIMA_B.TTF" id="6_lv3w1"]
-[ext_resource type="AudioStream" uid="uid://bohrc4wl23els" path="res://assets/sfx/Upgrade_shop/refund.ogg" id="7_dlbuj"]
+[ext_resource type="AudioStream" uid="uid://bohrc4wl23els" path="res://assets/audio/sfx/Upgrade_shop/refund.ogg" id="7_dlbuj"]
 [ext_resource type="PackedScene" uid="uid://bradyey5jbin0" path="res://assets/models/equipments/nozzle.tscn" id="7_gveyp"]
-[ext_resource type="AudioStream" uid="uid://c83i1poc3dwwc" path="res://assets/sfx/Upgrade_shop/purchase.ogg" id="8_xgxbx"]
-[ext_resource type="AudioStream" uid="uid://r8qsq4lnxt5v" path="res://assets/sfx/Upgrade_shop/deny.ogg" id="9_60uk0"]
+[ext_resource type="PackedScene" uid="uid://coq3n0q577rcb" path="res://assets/models/equipments/armor.tscn" id="7_trslv"]
+[ext_resource type="AudioStream" uid="uid://c83i1poc3dwwc" path="res://assets/audio/sfx/Upgrade_shop/purchase.ogg" id="8_xgxbx"]
+[ext_resource type="AudioStream" uid="uid://r8qsq4lnxt5v" path="res://assets/audio/sfx/Upgrade_shop/deny.ogg" id="9_60uk0"]
 [ext_resource type="Texture2D" uid="uid://75m7lx62tblq" path="res://assets/images/ui/merit/merit.png" id="9_gxtj5"]
 [ext_resource type="FontFile" uid="uid://b5l6b7c8p8kpy" path="res://assets/fonts/OPTIMA.TTF" id="11_3ltcy"]
 [ext_resource type="Shader" path="res://assets/shaders/font_gradient.gdshader" id="11_njh7e"]
@@ -169,27 +171,6 @@ corner_radius_bottom_left = 5
 [sub_resource type="Environment" id="Environment_0a3xo"]
 ambient_light_source = 3
 tonemap_mode = 3
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j6lq2"]
-albedo_color = Color(1, 0, 0, 1)
-roughness = 0.41
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_8gokw"]
-material = SubResource("StandardMaterial3D_j6lq2")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ufeo"]
-albedo_color = Color(1, 0, 0, 1)
-roughness = 0.41
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_2ma6u"]
-material = SubResource("StandardMaterial3D_1ufeo")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e13kj"]
-albedo_color = Color(1, 0, 0, 1)
-roughness = 0.41
-
-[sub_resource type="TorusMesh" id="TorusMesh_k7v5d"]
-material = SubResource("StandardMaterial3D_e13kj")
 
 [sub_resource type="Animation" id="Animation_luqf2"]
 length = 0.001
@@ -816,20 +797,11 @@ transform = Transform3D(1, 0, 1.49012e-08, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 
 [node name="fire_axe" parent="ItemInfo/HBoxContainer/SubViewport/container" instance=ExtResource("6_k7s76")]
 transform = Transform3D(-0.36922, -0.376284, -1.40431, 0, 1.44889, -0.388229, 1.45385, -0.0955612, -0.356639, 0.0969233, -0.2, 0.0246147)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ItemInfo/HBoxContainer/SubViewport/container"]
-transform = Transform3D(0.4, 0, 0, 0, 0.282843, 0.282843, 0, -0.282843, 0.282843, 0, 0.15, 0)
-layers = 524288
-mesh = SubResource("CapsuleMesh_8gokw")
+[node name="fireextinguisher_idle" parent="ItemInfo/HBoxContainer/SubViewport/container" instance=ExtResource("6_75hhf")]
+transform = Transform3D(0.4, 0, 0, 0, 0.341784, 0.207808, 0, -0.207808, 0.341784, 0, -0.2, 0.2)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="ItemInfo/HBoxContainer/SubViewport/container"]
-transform = Transform3D(0.4, 0, 0, 0, 0.282843, 0.282843, 0, -0.282843, 0.282843, 0, 0.15, 0)
-layers = 524288
-mesh = SubResource("CylinderMesh_2ma6u")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="ItemInfo/HBoxContainer/SubViewport/container"]
-transform = Transform3D(0.4, 0, 0, 0, 0.282843, 0.282843, 0, -0.282843, 0.282843, 0, 0.15, 0)
-layers = 524288
-mesh = SubResource("TorusMesh_k7v5d")
+[node name="armor" parent="ItemInfo/HBoxContainer/SubViewport/container" instance=ExtResource("7_trslv")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.3, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ItemInfo/HBoxContainer/SubViewport"]
 libraries = {
@@ -1035,23 +1007,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("5_oeeuq")
 theme_override_font_sizes/font_size = 35
 text = "Extinguisher"
-label_settings = SubResource("LabelSettings_i88jr")
-
-[node name="blanket" type="HBoxContainer" parent="buttons"]
-custom_minimum_size = Vector2(0, 70)
-layout_mode = 2
-
-[node name="button_gesture_icon" type="TextureRect" parent="buttons/blanket"]
-layout_mode = 2
-texture = ExtResource("4_1jm4m")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="Label" type="Label" parent="buttons/blanket"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_oeeuq")
-theme_override_font_sizes/font_size = 35
-text = "Fire Blanket"
 label_settings = SubResource("LabelSettings_i88jr")
 
 [node name="gear" type="HBoxContainer" parent="buttons"]

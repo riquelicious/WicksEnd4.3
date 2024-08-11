@@ -26,6 +26,8 @@ func switch_ui(index : int):
 		child.visible = true
 		child.process_mode = Node.PROCESS_MODE_INHERIT
 		parent.camera_manager.update_position(index)
+		if child.name == "level-selector-ui" or child.name == "level_selector":
+			level_anim.play("RESET")
 		await parent.camera_manager.camera_movement_finished
 		ui_anim.play_backwards("fade")
 		await ui_anim.animation_finished
@@ -33,6 +35,7 @@ func switch_ui(index : int):
 			level_anim.play("fade")
 
 func switch_level(index : int):
+	
 	var child = ui_container.get_child(1)
 	ui_anim.play("fade")
 	child.mouse_filter = 2 
@@ -42,5 +45,6 @@ func switch_level(index : int):
 	await parent.camera_manager.camera_movement_finished
 	ui_anim.play_backwards("fade")
 	await ui_anim.animation_finished
+	level_select.image.check_status()
 	level_anim.play("fade")
 	child.mouse_filter = 0

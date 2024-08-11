@@ -11,9 +11,11 @@ func _ready():
 	button_manager.initialize(self)
 	camera_manager.initialize(self)
 	anim_manager.switch_ui(0)
-	#var bgm = preload("res://Assets/Audio/BGM/ThreeCandles.mp3")
-	#GlobalAudio.stream = bgm
-	#GlobalAudio.play()
+	BGM.change_bgm("res://assets/audio/BGM/ThreeCandles.mp3")
+	# var bgm = preload("res://Assets/Audio/BGM/ThreeCandles.mp3")
+	# BGM.stream = bgm
+	# BGM.play()
+
 
 func _process(delta: float) -> void:
 	camera_manager.update_camera_position(delta)

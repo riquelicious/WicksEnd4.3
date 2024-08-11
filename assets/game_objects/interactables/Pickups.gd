@@ -6,6 +6,11 @@ extends StaticBody3D
 var objective_marker : ObjectiveMarker = ObjectiveMarker.new()
 var pickup_manager : PickupManager = PickupManager.new()
 
+@export var piece_index : int = 0
+
+signal picked_up
+
+
 func _ready(): 
 	objective_marker.initialize(self,objective_marker_origin)
 	pickup_manager.initialize(self)

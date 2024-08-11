@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://8uli17sofrdi"]
+
+[ext_resource type="PackedScene" uid="uid://b5r50gyw64gmw" path="res://assets/models/valves/valve.glb" id="1_k40la"]
+
+[node name="valve" instance=ExtResource("1_k40la")]

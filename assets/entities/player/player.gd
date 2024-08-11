@@ -1,28 +1,29 @@
 class_name PlayerA
 extends CharacterBody3D
 
-@export var camera_sensitivity : float = 0.075
-
+@export var camera_sensitivity : float = 0.1
 @onready var default_cam_marker = $cam_marker
 @onready var damage_animation_player := $"Control/on-screen-ui/overlays/AnimationPlayer"
-@onready var objective_markers := $"Control/equipment-overlay/ObjectMarkers"
-@onready var back_button = $"Control/on-screen-ui/ui/button_container/Back"
-@onready var gauges := $Control/gauges
 @onready var viewport_size := get_viewport().get_visible_rect().size
 @onready var viewport := get_viewport()
-@onready var camera_manager : CameraManager = CameraManager.new()
-@onready var equipment_manager : EquipmentManger = EquipmentManger.new()
-@onready var movement_manager : MovementManager = MovementManager.new()
-@onready var interaction_manager : InteractionManager = InteractionManager.new()
-@onready var audio_manager : AudioManager = AudioManager.new()
-@onready var pressurized_water : PressurizedWater = PressurizedWater.new()
-@onready var point_manager : PointManager = PointManager.new()
+@onready var object_markers: Control = $"Control/equipment-overlay/ObjectMarkers"
+
+var camera_manager : CameraManager = CameraManager.new() 
+var equipment_manager : EquipmentManger = EquipmentManger.new()
+var movement_manager : MovementManager = MovementManager.new()
+var interaction_manager : InteractionManager = InteractionManager.new()
+var audio_manager : AudioManager = AudioManager.new()
+var pressurized_water : PressurizedWater = PressurizedWater.new()
+var extinguisher_manager : ExtinguisherManager = ExtinguisherManager.new() 
+var point_manager : PointManager = PointManager.new()
+var inventory_manager : InventoryManager = InventoryManager.new()
 
 var is_aim_active : bool = false
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var is_interacting := false
-var health = 100
+var health = 100.0
 var water = 100.0
+var extinguisher = 100.0
 
 func _ready():
 	camera_manager.initialize(self)
@@ -32,8 +33,12 @@ func _ready():
 	audio_manager.initialize(self)
 	pressurized_water.initialize(self)
 	point_manager.initialize(self)
-	camera_manager.back_button_container.visible = false
-	back_button.button_clicked.connect(camera_manager.reset_camera_position)
+	extinguisher_manager.initialize(self)
+	inventory_manager.initialize(self)
+	BGM.change_bgm("res://assets/audio/BGM/HurryTFup.mp3")
+	# var bgm = preload("res://assets/audio/BGM/HurryTFup.mp3")
+	# BGM.stream = bgm
+	# BGM.play()
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -44,9 +49,15 @@ func _physics_process(delta):
 	interaction_manager.check_collision()
 	point_manager.update_points(delta)
 	pressurized_water.update_water_stream(delta)
+	extinguisher_manager.update_extinguisher(delta)
+	camera_manager.camera_shake(delta)
 	if is_interacting: return
-	movement_manager.update_movement(delta)
-	camera_manager.update_aim(delta)
-	camera_manager.update_nozzle_aim(delta)
+	inventory_manager.toggle_inventory(delta)
 	equipment_manager.update_sway(delta)
 	equipment_manager.update_bob(velocity.length(),delta)
+	if inventory_manager.is_inventory: 
+		inventory_manager.select_equipment()
+		return
+	camera_manager.update_aim(delta)
+	camera_manager.update_nozzle_aim(delta)
+	movement_manager.update_movement(delta)

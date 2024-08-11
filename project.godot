@@ -14,7 +14,12 @@ config/name="Wicks End"
 config/tags=PackedStringArray("current")
 run/main_scene="res://game/main-menu/main_menu_level.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.117647, 0.117647, 0.117647, 1)
+boot_splash/image="res://assets/icons/icon.png"
+boot_splash/fullsize=false
+boot_splash/use_filter=false
+config/icon="res://assets/icons/icon.svg"
+config/windows_native_icon="res://assets/icons/icon.ico"
 
 [autoload]
 
@@ -28,6 +33,7 @@ MousePositioning="*res://assets/global_scripts/cursor/mouse_positioning.tscn"
 GesturedDebug="*res://assets/global_scripts/gestured_debug.gd"
 Transition="*res://assets/transition/Transition.tscn"
 SaveManager="*res://assets/global_scripts/save_manager/SaveManager.gd"
+BGM="*res://assets/audio/BGM.tscn"
 
 [debug]
 
@@ -36,7 +42,6 @@ gdscript/warnings/unused_signal=0
 
 [display]
 
-window/size/borderless=true
 window/size/window_width_override=576
 window/size/window_height_override=324
 window/stretch/mode="canvas_items"
@@ -67,6 +72,7 @@ folder_colors={
 [layer_names]
 
 2d_render/layer_2="health"
+3d_render/layer_18="player_model"
 3d_render/layer_20="viewmodel"
 3d_physics/layer_1="player"
 3d_physics/layer_2="other_stuff"
@@ -80,6 +86,6 @@ folder_colors={
 
 [rendering]
 
-rendering_device/driver="vulcan"
+rendering_device/driver="d3d12"
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"

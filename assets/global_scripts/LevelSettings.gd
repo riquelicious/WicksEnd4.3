@@ -8,13 +8,18 @@ var level_timer_list: Array = [
 	14
 ]
 
-var unlocked_levels = [
-	true,
-	false,
-	false,
-	false,
-	false
-]
+var unlocked_levels = {
+	"0" : true,
+	"1" : false,
+	"2" : false,
+	"3" : false
+}
 
-var level_selection: int = 0
+var level_selection: int = 2
 var lvlPoints := 1000.0
+
+var civilians_remaining := 0
+
+var quest_message = ""
+
+var extinguished_percentage = 0.0

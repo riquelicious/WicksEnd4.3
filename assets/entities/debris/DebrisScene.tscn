@@ -1,0 +1,446 @@
+[gd_scene load_steps=34 format=3 uid="uid://bd8uxbhr00tux"]
+
+[ext_resource type="Script" path="res://assets/modules/combo_minigame/combo_scene.gd" id="1_e7v2c"]
+[ext_resource type="Shader" path="res://assets/shaders/distortion.gdshader" id="2_bvuka"]
+[ext_resource type="Texture2D" uid="uid://cuqwa058d5k5q" path="res://assets/noise_textures/T_Noise_05.png" id="3_i0678"]
+[ext_resource type="PackedScene" uid="uid://faxxs63wwsr5" path="res://assets/modules/combo_minigame/combo_minigame.tscn" id="4_smf8k"]
+[ext_resource type="PackedScene" uid="uid://dppwah7kypju2" path="res://assets/models/player/character.tscn" id="5_noooj"]
+[ext_resource type="Shader" uid="uid://cplccbp7l15ot" path="res://assets/shaders/fire_mesh_test.tres" id="6_mk2f5"]
+[ext_resource type="Texture2D" uid="uid://d4drjop32y0p" path="res://assets/noise_textures/T_Noise_03.png" id="7_hhgnc"]
+[ext_resource type="PackedScene" uid="uid://elptwgghwptv" path="res://assets/models/rubbish/cracked_wood1.gltf" id="8_7hupf"]
+[ext_resource type="AudioStream" uid="uid://bbpg22xv1aqjb" path="res://assets/audio/sfx/fire/fire_crackle.ogg" id="9_enaar"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tr137"]
+shader = ExtResource("2_bvuka")
+shader_parameter/resolution = Vector2(1152, 648)
+shader_parameter/amplitude = 0.001
+shader_parameter/frequency = 1.0
+shader_parameter/speed = 10.0
+shader_parameter/noiseTexture = ExtResource("3_i0678")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pgybn"]
+viewport_path = NodePath("ui/SubViewport")
+
+[sub_resource type="Animation" id="Animation_wgqbe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ui/SubViewport/Camera3D:fov")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [8.0]
+}
+
+[sub_resource type="Animation" id="Animation_hvw3n"]
+resource_name = "fall_debris"
+length = 15.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("World/debri:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 5, 3), Vector3(0.966667, 4.85, 3.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("World/debri3:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.5, 5.2, 4.2), Vector3(-0.483333, 5.04333, 4.26)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("World/debri2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.745878, 4.23477, 3.60526), Vector3(-0.721015, 4.11028, 3.68508)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ui/SubViewport/Camera3D:fov")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(-0.5, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [100.0, 10.0]
+}
+
+[sub_resource type="Animation" id="Animation_sg5di"]
+resource_name = "pan_camera"
+length = 4.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ui/SubViewport/Camera3D:fov")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.6, 4),
+"transitions": PackedFloat32Array(-2, 0.5, 0.5),
+"update": 0,
+"values": [8.0, 8.0, 100.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dipnr"]
+_data = {
+"RESET": SubResource("Animation_wgqbe"),
+"fall_debris": SubResource("Animation_hvw3n"),
+"pan_camera": SubResource("Animation_sg5di")
+}
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1vh8q"]
+sky_top_color = Color(0.286307, 0.430578, 0.594383, 1)
+sky_horizon_color = Color(0.855748, 0.587475, 0.363265, 1)
+sky_curve = 0.212132
+sky_energy_multiplier = 0.75
+ground_horizon_color = Color(0.652008, 0.44797, 0.246579, 1)
+ground_curve = 0.0186606
+sun_angle_max = 53.49
+sun_curve = 0.14489
+
+[sub_resource type="Sky" id="Sky_bpnjx"]
+sky_material = SubResource("ProceduralSkyMaterial_1vh8q")
+
+[sub_resource type="Environment" id="Environment_uhyd5"]
+background_mode = 1
+background_color = Color(0.701961, 0.364706, 0.203922, 1)
+background_energy_multiplier = 0.1
+sky = SubResource("Sky_bpnjx")
+ambient_light_source = 3
+ambient_light_color = Color(0.37, 0.0925, 0.0925, 1)
+tonemap_mode = 3
+glow_enabled = true
+glow_bloom = 0.1
+fog_enabled = true
+fog_light_color = Color(0.774302, 0.456916, 0.294201, 1)
+adjustment_brightness = 0.75
+adjustment_saturation = 0.75
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_52b51"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_ci42k"]
+material = SubResource("StandardMaterial3D_52b51")
+radial_segments = 8
+rings = 4
+
+[sub_resource type="Curve" id="Curve_eg7wd"]
+_data = [Vector2(0, 0.320755), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_n1ufg"]
+interpolation_mode = 2
+colors = PackedColorArray(0.260506, 0.260506, 0.260506, 1, 0.534361, 0.534361, 0.534361, 1)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_iko7t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cgs1v"]
+albedo_color = Color(0.45, 0.45, 0.45, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7dcm2"]
+material = SubResource("StandardMaterial3D_cgs1v")
+size = Vector3(100, 1, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5mgy0"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ba60o"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o48d0"]
+material = SubResource("StandardMaterial3D_cgs1v")
+size = Vector3(20, 15, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_je8un"]
+size = Vector3(20, 7, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7juyw"]
+render_priority = 0
+shader = ExtResource("6_mk2f5")
+shader_parameter/is_blue = false
+shader_parameter/top_color2 = Color(0, 0.278431, 0.670588, 1)
+shader_parameter/bottom_color2 = Color(0.745098, 0.952941, 0.752941, 1)
+shader_parameter/isBottom = false
+shader_parameter/fire_percentage = 100.0
+shader_parameter/custom_texture = true
+shader_parameter/speed = Vector2(0, 1)
+shader_parameter/glow = 0.05
+shader_parameter/top_color = Color(0.829678, 0, 0.080224, 1)
+shader_parameter/bottom_color = Color(1, 0.741176, 0, 1)
+shader_parameter/noise_tex = ExtResource("7_hhgnc")
+
+[sub_resource type="QuadMesh" id="QuadMesh_g2o20"]
+material = SubResource("ShaderMaterial_7juyw")
+
+[sub_resource type="BoxMesh" id="BoxMesh_5a0y6"]
+size = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="PrismMesh" id="PrismMesh_c3nqd"]
+
+[node name="debris_scene" type="Node3D"]
+script = ExtResource("1_e7v2c")
+
+[node name="ui" type="CanvasLayer" parent="."]
+layer = 108
+
+[node name="SubViewport" type="SubViewport" parent="ui"]
+audio_listener_enable_3d = true
+size = Vector2i(1152, 648)
+
+[node name="Camera3D" type="Camera3D" parent="ui/SubViewport"]
+transform = Transform3D(-1, -5.79281e-08, 6.54758e-08, 0, 0.748956, 0.66262, -8.74228e-08, 0.66262, -0.748956, 2.02975e-07, 4.85412, 3.17824)
+current = true
+fov = 8.0
+
+[node name="camera" type="TextureRect" parent="ui"]
+material = SubResource("ShaderMaterial_tr137")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_pgybn")
+
+[node name="ComboMinigame" parent="ui" instance=ExtResource("4_smf8k")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dipnr")
+}
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uhyd5")
+
+[node name="World" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="smokes" type="CPUParticles3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+amount = 64
+lifetime = 0.75
+speed_scale = 0.1
+mesh = SubResource("SphereMesh_ci42k")
+emission_shape = 3
+emission_box_extents = Vector3(10, 1, 10)
+direction = Vector3(0, -1, 0)
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 5, 0)
+scale_amount_curve = SubResource("Curve_eg7wd")
+color_ramp = SubResource("Gradient_n1ufg")
+
+[node name="bottom" type="StaticBody3D" parent="World"]
+collision_layer = 3
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_iko7t")
+metadata/_edit_lock_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/bottom"]
+mesh = SubResource("BoxMesh_7dcm2")
+skeleton = NodePath("../../..")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/bottom"]
+shape = SubResource("BoxShape3D_5mgy0")
+metadata/_edit_lock_ = true
+
+[node name="top" type="StaticBody3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 0)
+collision_layer = 3
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_iko7t")
+metadata/_edit_lock_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/top"]
+mesh = SubResource("BoxMesh_7dcm2")
+skeleton = NodePath("../../..")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/top"]
+shape = SubResource("BoxShape3D_ba60o")
+metadata/_edit_lock_ = true
+
+[node name="top2" type="StaticBody3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 10)
+collision_layer = 3
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_iko7t")
+metadata/_edit_lock_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/top2"]
+mesh = SubResource("BoxMesh_o48d0")
+skeleton = NodePath("../..")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/top2"]
+shape = SubResource("BoxShape3D_je8un")
+metadata/_edit_lock_ = true
+
+[node name="top5" type="StaticBody3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -10)
+collision_layer = 3
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_iko7t")
+metadata/_edit_lock_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/top5"]
+mesh = SubResource("BoxMesh_o48d0")
+skeleton = NodePath("../..")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/top5"]
+shape = SubResource("BoxShape3D_je8un")
+metadata/_edit_lock_ = true
+
+[node name="top3" type="StaticBody3D" parent="World"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10, 8, 0)
+collision_layer = 3
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_iko7t")
+metadata/_edit_lock_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/top3"]
+mesh = SubResource("BoxMesh_o48d0")
+skeleton = NodePath("../..")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/top3"]
+shape = SubResource("BoxShape3D_je8un")
+metadata/_edit_lock_ = true
+
+[node name="top4" type="StaticBody3D" parent="World"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 8, 0)
+collision_layer = 3
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_iko7t")
+metadata/_edit_lock_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/top4"]
+mesh = SubResource("BoxMesh_o48d0")
+skeleton = NodePath("../..")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/top4"]
+shape = SubResource("BoxShape3D_je8un")
+metadata/_edit_lock_ = true
+
+[node name="character" parent="World" instance=ExtResource("5_noooj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 6)
+
+[node name="Skeleton3D" parent="World/character/human" index="0"]
+bones/0/position = Vector3(-9.89968e-08, 0.75, 0.00193214)
+bones/0/rotation = Quaternion(0.258819, -3.19579e-08, 5.31442e-08, 0.965926)
+bones/1/position = Vector3(7.27023e-15, 0.227503, 1.88848e-07)
+bones/1/rotation = Quaternion(-0.382683, 4.56194e-08, 1.30987e-08, 0.92388)
+bones/2/position = Vector3(-6.39053e-15, 0.461401, 1.94311e-07)
+bones/2/rotation = Quaternion(0.443852, -8.61579e-08, -1.24922e-07, 0.8961)
+bones/3/position = Vector3(3.48864e-14, 0.121224, 1.29839e-07)
+bones/3/rotation = Quaternion(0.0614368, 3.1474e-08, 7.64132e-09, 0.998111)
+bones/4/position = Vector3(0.149349, 0.430779, 0.0605678)
+bones/4/rotation = Quaternion(-0.354423, -0.619836, -0.424863, 0.556489)
+bones/4/scale = Vector3(1, 1, 1)
+bones/8/position = Vector3(-0.149349, 0.430779, 0.0605678)
+bones/8/rotation = Quaternion(-0.354423, 0.619836, 0.424863, 0.556489)
+bones/12/position = Vector3(0.15625, 4.09782e-08, -0.00193219)
+bones/12/rotation = Quaternion(0.970974, 0.116646, -0.0585734, -0.200433)
+bones/12/scale = Vector3(1, 1, 0.999997)
+bones/13/position = Vector3(1.48004e-08, 0.291453, -2.3877e-07)
+bones/13/rotation = Quaternion(-0.415824, -0.0471795, -0.000671457, 0.90822)
+bones/13/scale = Vector3(1, 1, 0.999999)
+bones/15/position = Vector3(-0.15625, 6.15948e-08, -0.00193209)
+bones/15/rotation = Quaternion(0.973765, -0.108003, 0.0732976, 0.1864)
+bones/15/scale = Vector3(1, 1, 0.999998)
+
+[node name="fire" type="MeshInstance3D" parent="World"]
+transform = Transform3D(-6.5, 0, -8.74228e-08, 0, 4.0885, 0, 5.68248e-07, 0, -1, 6.81898e-07, 2, 7.8)
+material_override = SubResource("ShaderMaterial_7juyw")
+mesh = SubResource("QuadMesh_g2o20")
+skeleton = NodePath("../..")
+
+[node name="fire3" type="MeshInstance3D" parent="World"]
+transform = Transform3D(-4.59619, 0, 0.707107, 0, 4.0885, 0, -4.59619, 0, -0.707107, -5.45079, 2, 5.57764)
+mesh = SubResource("QuadMesh_g2o20")
+skeleton = NodePath("../..")
+
+[node name="fire2" type="MeshInstance3D" parent="World"]
+transform = Transform3D(-2.74702, 0, -0.906308, 0, 4.0885, 0, 5.891, 0, -0.422618, 4.63679, 2, 5.07656)
+mesh = SubResource("QuadMesh_g2o20")
+skeleton = NodePath("../..")
+
+[node name="fire6" type="MeshInstance3D" parent="World"]
+transform = Transform3D(-5.891, -1.22179, 0.298836, 1.19209e-07, 2.89101, 0.707107, -2.74702, 2.62014, -0.640856, 3.77895, 2.01877, 3.35574)
+mesh = SubResource("QuadMesh_g2o20")
+skeleton = NodePath("../..")
+
+[node name="fire7" type="MeshInstance3D" parent="World"]
+transform = Transform3D(-5.95077, 1.18031, -0.280201, 0.0597652, 2.90819, 0.702819, 2.61435, 2.62014, -0.65386, -4.32105, 2.01877, 3.35574)
+mesh = SubResource("QuadMesh_g2o20")
+skeleton = NodePath("../..")
+
+[node name="debri" type="Node3D" parent="World"]
+transform = Transform3D(0.44126, -0.618877, -0.649832, 0.136223, -0.669557, 0.730162, -0.88698, -0.410713, -0.211143, 1, 5, 3)
+
+[node name="cracked_wood" parent="World/debri" instance=ExtResource("8_7hupf")]
+transform = Transform3D(-0.592854, 0.804706, -0.0311808, -0.11679, -0.0476055, 0.992015, 0.796795, 0.591762, 0.122206, -1.07385, 0.0427709, -0.308261)
+
+[node name="debri2" type="Node3D" parent="World"]
+transform = Transform3D(-0.965553, 0.189492, -0.178328, -0.208866, -0.155684, 0.965473, 0.155187, 0.969461, 0.1899, -0.745878, 4.23477, 3.60526)
+
+[node name="debri4" type="MeshInstance3D" parent="World/debri2"]
+transform = Transform3D(1, 0, -2.04891e-08, -1.49012e-08, 1, -7.45058e-08, 5.40167e-08, 0, 1, -0.344448, 0.106935, -0.264427)
+visible = false
+mesh = SubResource("BoxMesh_5a0y6")
+skeleton = NodePath("../../..")
+
+[node name="cracked_wood" parent="World/debri2" instance=ExtResource("8_7hupf")]
+transform = Transform3D(-0.14468, -0.921685, -0.359951, -0.770821, 0.333076, -0.543043, 0.620404, 0.19889, -0.758643, -0.0462191, 0.241066, -0.0539746)
+
+[node name="light" type="OmniLight3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+light_color = Color(1, 0.608, 0.02, 1)
+light_energy = 3.37
+omni_range = 8.8
+
+[node name="OmniLight3D" type="OmniLight3D" parent="World/light"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+light_color = Color(1, 0.608, 0.02, 1)
+light_energy = 3.37
+omni_range = 8.8
+
+[node name="debri3" type="MeshInstance3D" parent="World"]
+transform = Transform3D(-0.674396, 0.306466, -0.671765, -0.497169, -0.861122, 0.106264, -0.545905, 0.405645, 0.733103, -0.5, 5.2, 4.2)
+mesh = SubResource("PrismMesh_c3nqd")
+skeleton = NodePath("../..")
+
+[node name="fire_crackles" type="AudioStreamPlayer3D" parent="World"]
+stream = ExtResource("9_enaar")
+autoplay = true
+
+[editable path="World/character"]

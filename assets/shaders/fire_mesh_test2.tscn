@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvp237ld5505e"]
+
+[ext_resource type="Material" uid="uid://b75scgjfgy45r" path="res://assets/shaders/fire_mat.tres" id="1_watqa"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_35bo4"]
+material = ExtResource("1_watqa")
+
+[node name="MeshInstance3D" type="MeshInstance3D"]
+mesh = SubResource("QuadMesh_35bo4")

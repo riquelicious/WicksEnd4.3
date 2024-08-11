@@ -11,9 +11,10 @@ var current_volume : float = 0.0
 
 func initialize(fire_instance : FireInstance):
 	fire = fire_instance
-	target_volume = Global.audio_settings.default_fire_linear_volume
-	ambient_max_volume = Global.audio_settings.default_fire_linear_volume
+	#Global.audio_settings.default_fire_linear_volume
 	fire_ambient = fire.get_node("audio/fire_ambient")
+	target_volume = fire_ambient.max_db
+	ambient_max_volume = fire_ambient.max_db#Global.audio_settings.default_fire_linear_volume
 	fire_fx = fire.get_node("audio/fire_fx")
 	fire_ambient.volume_db = linear_to_db(ambient_max_volume)
 	fire_ambient.finished.connect(loop_audio)

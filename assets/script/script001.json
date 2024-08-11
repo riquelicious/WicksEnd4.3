@@ -1,21 +1,99 @@
 {
 	"nodes": {
 		"1": {
-			"text": "Hello, adventurer! What do you want to do?",
-			"name": "Stranger",
-			"choices": [
-				{ "text": "About the town...", "nextNode": "2" },
-				{ "text": "Leave.", "nextNode": "3" }
-			]
+			"text": "Alright, team, we’ve got a fire at an apartment building. Our top priority is saving any civilians trapped inside.",
+			"name": "Captain Hayes",
+			"choices": []
 		},
 		"2": {
-			"text": "The town is peaceful and quiet.",
-			"name": "You",
-			"choices": [{ "text": "Thank you.", "nextNode": "1" }]
+			"text": "Be prepared to break down doors if needed and use the hose to control the flames.",
+			"name": "Captain Hayes",
+			"choices": []
 		},
 		"3": {
-			"text": "Goodbye!",
-			"name": "Stranger",
+			"text": "Any more questions before we head out?",
+			"name": "Captain Hayes",
+			"choices": [
+				{ "text": "Our focus", "nextNode": "5" },
+				{ "text": "Equipments", "nextNode": "10" },
+				{ "text": "That keychain...", "nextNode": "15" },
+				{ "text": "No, Captain!", "nextNode": "20" }
+			]
+		},
+		"5": {
+			"text": "What's our main focus captain?",
+			"name": "You",
+			"choices": []
+		},
+		"6": {
+			"text": "Our main focus is rescuing civilians. Once everyone is safe, we can work on controlling the fire.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"7": {
+			"text": "Any more questions before we head out?",
+			"name": "Captain Hayes",
+			"choices": [
+				{ "text": "Our focus", "nextNode": "5" },
+				{ "text": "Equipments", "nextNode": "10" },
+				{ "text": "That keychain...", "nextNode": "15" },
+				{ "text": "No, Captain!", "nextNode": "20" }
+			]
+		},
+		
+		"10": {
+			"text": "Could you explain how our equipment works?",
+			"name": "You",
+			"choices": []
+		},
+		"11": {
+			"text": "Sure, The nozzle on the hose can put out fires, but it needs to be replenished slowly. Use it carefully to manage the water supply.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"12": {
+			"text": "The axe is for breaking down doors and clearing debris, but it’s not ideal for heavy-duty tasks. Use it when necessary to access blocked areas or remove obstacles.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"13": {
+			"text": "Any more questions before we head out?",
+			"name": "Captain Hayes",
+			"choices": [
+				{ "text": "Our focus", "nextNode": "5" },
+				{ "text": "Equipments", "nextNode": "10" },
+				{ "text": "That keychain...", "nextNode": "15" },
+				{ "text": "No, Captain!", "nextNode": "20" }
+			]
+		},
+		"15": {
+			"text": "Can you tell me more about the teddy bear keychain you have?",
+			"name": "You",
+			"choices": []
+		},
+		"16": {
+			"text": "This teddy bear keychain? It’s special to me. My daughter gave it to me.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"17": {
+			"text": "There’s only one like it in the world. It’s a reminder of what’s truly important.",
+			"name": "Captain Hayes",
+			"choices": [
+				{ "text": "Our focus", "nextNode": "5" },
+				{ "text": "Equipments", "nextNode": "10" },
+				{ "text": "That keychain...", "nextNode": "15" },
+				{ "text": "No, Captain!", "nextNode": "20" }
+			]
+		},
+		"20": {
+			"text": "It seems like we’re here. Let’s move out and get to work.",
+			"name": "Captain Hayes",
+			"choices": []
+		},
+		"21": {
+			"text": "Hmm... it seems that Burke is already here. Travis Burke, he’s a reporter known for his... intrusive methods.",
+			"name": "Captain Hayes",
 			"choices": []
 		}
 	}

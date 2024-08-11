@@ -18,11 +18,11 @@ func update_camera_position(delta):
 	if not target_marker: return
 	var finished = 0
 	if not (camera.position - target_marker.position).length() < 0.005:
-		camera.position = lerp(camera.position, target_marker.position, 2 * delta)
+		camera.position = lerp(camera.position, target_marker.position, 4 * delta)
 	else:
 		finished += 1
 	if not (camera.rotation - target_marker.rotation).length() < 0.005:
-		camera.rotation = lerp(camera.rotation, target_marker.rotation, 2 * delta)
+		camera.rotation = lerp(camera.rotation, target_marker.rotation, 4 * delta)
 	else:
 		finished += 1
 	var status = finished == 2

@@ -12,6 +12,7 @@ func initialize(main_instance : Control ,parent_instance : TextureRect):
 	parent = parent_instance
 
 func detect_drag():
+	if main.jigsaw_manager.finished: return
 	if not main.current_piece or main.current_piece == parent.name:
 		var mouse_pos = GlobalCursor.cursor_sprite.position
 		if Global.gesture_settings.gesture == GlobalControls.mgJigsaw:
