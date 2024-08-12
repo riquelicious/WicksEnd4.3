@@ -5,5 +5,6 @@ extends Node
 var finished := false
 
 func _process(delta: float) -> void:
+	if finished : return
 	finished = civilians.get_child_count() == 0
 	Global.level_settings.civilians_remaining = civilians.get_child_count()

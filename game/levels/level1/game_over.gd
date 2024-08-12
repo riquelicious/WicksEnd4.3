@@ -31,6 +31,10 @@ func game_over():
 
 
 func game_finished():
+	$game_finished.start(2)
+
+	
+func done():
 	var cam = get_viewport().get_camera_3d()
 	cam.environment = FilePaths.bw_cam_env
 	var main_process = get_tree().root.get_children()

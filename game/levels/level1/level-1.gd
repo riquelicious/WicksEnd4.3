@@ -34,6 +34,7 @@ func _process(delta: float) -> void:
 func get_quest():
 	for quest in quests:
 		if not quest.finished:
+			prints(quest,quest.finished)
 			return quest
 	if not finished:
 		finished = true
@@ -57,7 +58,7 @@ func valves(quest_type) -> String:
 	
 func get_fire(quest_type) -> String:
 	if quest_type is FireSystem:
-		return "There are still some fires around.\nLet’s extinguish them all.\nFire Extingished: %s"  % Global.level_settings.extinguished_percentage
+		return "There are still some fires around.\nLet’s extinguish them all."
 	return ""
 
 func evidence(quest_type) -> String:

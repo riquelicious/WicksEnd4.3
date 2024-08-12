@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://js0y1ym1045y"]
+[gd_scene load_steps=32 format=3 uid="uid://js0y1ym1045y"]
 
 [ext_resource type="Script" path="res://game/levels/level1/level-1.gd" id="1_amc4j"]
 [ext_resource type="PackedScene" uid="uid://q1yxpssljlq1" path="res://assets/entities/player/player.tscn" id="1_yf7aq"]
@@ -55,9 +55,6 @@ size = Vector3(4, 3, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wwg0q"]
 size = Vector3(6, 1, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_eqofl"]
-size = Vector3(100, 30, 100)
 
 [node name="Level-1" type="Node3D" node_paths=PackedStringArray("quests")]
 script = ExtResource("1_amc4j")
@@ -300,11 +297,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.9494, 0.738308, -1.4169)
 [node name="fire19" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.9494, 3.73831, -3.4169)
 
-[node name="fire17" parent="fire_system/fire_container/fire19" instance=ExtResource("6_xin8i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.9494, 0.738308, -2.4169)
+[node name="fire52" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.8988, 4.47662, -6.8338)
 
-[node name="fire19" parent="fire_system/fire_container/fire19" instance=ExtResource("6_xin8i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.9494, 0.738308, -3.4169)
+[node name="fire51" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.8988, 4.47662, -5.8338)
 
 [node name="fire20" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.9494, 0.738308, 5.5831)
@@ -399,14 +396,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.9494, 3.73831, -5.4169)
 [node name="fire50" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.9494, 3.73831, -4.4169)
 
-[node name="active_checker" type="Area3D" parent="fire_system"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
-collision_layer = 0
-collision_mask = 2048
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="fire_system/active_checker"]
-shape = SubResource("BoxShape3D_eqofl")
-
 [node name="pcs" type="Node" parent="."]
 script = ExtResource("13_32unq")
 
@@ -427,9 +416,6 @@ collision_layer = 515
 
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
 occluder = ExtResource("53_stn8m")
-
-[connection signal="area_entered" from="fire_system/active_checker" to="fire_system" method="fire_alive"]
-[connection signal="area_exited" from="fire_system/active_checker" to="fire_system" method="fire_killed"]
 
 [editable path="civilian_system/DropArea"]
 [editable path="sprinkler_system/sprinkler_container/spinkler"]

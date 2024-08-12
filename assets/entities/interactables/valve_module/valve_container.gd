@@ -43,7 +43,6 @@ class SprinklerStatusManager:
 		for sprinkler in sprinklers:
 			sprinkler.kill_fire()
 		finished = true
-		
 func add_markers():
 	if markers_added: return
 	markers_added = true

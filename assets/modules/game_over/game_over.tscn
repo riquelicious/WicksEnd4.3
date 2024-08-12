@@ -215,3 +215,7 @@ stream = ExtResource("3_mndms")
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_r7uib")
+
+[node name="game_finished" type="Timer" parent="."]
+
+[connection signal="timeout" from="game_finished" to="." method="done"]
