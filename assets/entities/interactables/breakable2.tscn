@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://br473nibrg16"]
+
+[ext_resource type="Script" path="res://assets/entities/breakables/breakable.gd" id="1_bhpn4"]
+[ext_resource type="PackedScene" uid="uid://cb27gtvuv5xuh" path="res://assets/models/door/door.gltf" id="2_x3mhb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4jon8"]
+size = Vector3(1.1, 2.1, 0.1)
+
+[node name="breakable" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 257
+collision_mask = 256
+script = ExtResource("1_bhpn4")
+
+[node name="marker_origin" type="Marker3D" parent="."]
+
+[node name="blockbench_export" parent="." instance=ExtResource("2_x3mhb")]
+transform = Transform3D(1.1, 0, 0, 0, 1.3, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_4jon8")

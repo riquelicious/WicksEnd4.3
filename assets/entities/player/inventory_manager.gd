@@ -12,6 +12,7 @@ var equipment_index : int = 0
 var inventory_ui : Control
 var current_index : int = 0
 var anim : AnimationPlayer
+var is_ext := true
 
 func initialize(parent_instance : Node):
 	parent = parent_instance
@@ -21,6 +22,8 @@ func initialize(parent_instance : Node):
 	inventory_gesture = GlobalControls.uiInventory
 	player_occupied = parent.interaction_manager.is_civilian_carried
 	anim = parent.get_node("Control/on-screen-ui/ui/inventory/AnimationPlayer")
+	if Global.level_settings.level_selection < 2:
+		is_ext = false
 
 func toggle_inventory(delta):
 	if not player_occupied:
@@ -39,6 +42,9 @@ func stop_timer():
 
 func select_equipment():
 	equipment_index = GlobalControls.invControls.find(Global.gesture_settings.gesture)
+	if not is_ext:
+		if equipment_index == 2:
+			equipment_index = -1
 	if equipment_index >= 0:
 		parent.equipment_manager.change_equipment(equipment_index)
 		current_index = equipment_index

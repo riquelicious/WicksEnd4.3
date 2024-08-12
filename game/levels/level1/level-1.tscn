@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://q1yxpssljlq1" path="res://assets/entities/player/player.tscn" id="1_yf7aq"]
 [ext_resource type="Environment" uid="uid://c1jsw4puq6pku" path="res://assets/environments/level1.tres" id="2_dtwka"]
 [ext_resource type="PackedScene" uid="uid://5qjkfwpj02jt" path="res://assets/modules/game_over/game_over.tscn" id="2_rsyaa"]
-[ext_resource type="PackedScene" path="res://assets/entities/interactables/breakable.tscn" id="3_ifjm6"]
+[ext_resource type="PackedScene" uid="uid://dlbi6sd7k5emq" path="res://assets/entities/interactables/breakable.tscn" id="3_ifjm6"]
 [ext_resource type="PackedScene" uid="uid://c55ams3nst3h4" path="res://assets/entities/interactables/civilian.tscn" id="6_r4n0h"]
 [ext_resource type="PackedScene" uid="uid://c7lfbpnhhs0hr" path="res://assets/entities/fire/cube_fire.tscn" id="6_xin8i"]
 [ext_resource type="PackedScene" uid="uid://dodep8crmbfm6" path="res://assets/entities/interactables/valve.tscn" id="7_6iftk"]
@@ -422,8 +422,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5)
 [node name="breakables" type="Node" parent="."]
 
 [node name="breakable" parent="breakables" instance=ExtResource("3_ifjm6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -6)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.2, 0.6, -6.1)
 collision_layer = 515
 
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]

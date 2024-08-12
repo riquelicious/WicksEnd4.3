@@ -20,7 +20,7 @@
 [ext_resource type="Script" path="res://assets/entities/interactables/evidencesystem.gd" id="17_8jwm5"]
 [ext_resource type="PackedScene" uid="uid://crcx0uou65ta" path="res://assets/entities/interactables/pcs/pc.tscn" id="18_rv1rq"]
 [ext_resource type="PackedScene" uid="uid://3whxti0e2onl" path="res://assets/modules/combo/combo_area.tscn" id="19_ig2qs"]
-[ext_resource type="PackedScene" path="res://assets/entities/interactables/breakable.tscn" id="20_xivwe"]
+[ext_resource type="PackedScene" uid="uid://dlbi6sd7k5emq" path="res://assets/entities/interactables/breakable.tscn" id="20_xivwe"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p0f3a"]
 transparency = 1
@@ -59,8 +59,9 @@ size = Vector3(3, 5, 3)
 [sub_resource type="BoxShape3D" id="BoxShape3D_eqofl"]
 size = Vector3(100, 30, 100)
 
-[node name="Level-1" type="Node3D"]
+[node name="Level-1" type="Node3D" node_paths=PackedStringArray("quests")]
 script = ExtResource("1_x2f44")
+quests = [NodePath("civilian_system"), NodePath("fire_system")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_b2n3l")
