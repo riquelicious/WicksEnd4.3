@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bvgjfma24af43"]
+[gd_scene load_steps=34 format=3 uid="uid://bvgjfma24af43"]
 
 [ext_resource type="Script" path="res://game/levels/level1/level-1.gd" id="1_5c2j4"]
 [ext_resource type="Environment" uid="uid://c1jsw4puq6pku" path="res://assets/environments/level1.tres" id="2_k586l"]
@@ -14,11 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://j1d8e7jm3t7u" path="res://assets/entities/sprinkler/spinkler.tscn" id="12_pg3gf"]
 [ext_resource type="Script" path="res://assets/entities/sprinkler/spinkler.gd" id="13_raj36"]
 [ext_resource type="Script" path="res://assets/modules/fire_system/fire_system.gd" id="14_mt4ng"]
-[ext_resource type="PackedScene" uid="uid://hsltjy1vkgs4" path="res://assets/models/sprinkler/sprinkler.glb" id="14_q866g"]
 [ext_resource type="PackedScene" uid="uid://c7lfbpnhhs0hr" path="res://assets/entities/fire/cube_fire.tscn" id="15_p2wwo"]
-[ext_resource type="Texture2D" uid="uid://cy837883aktk0" path="res://assets/flare/flare_12.png" id="15_u5d58"]
 [ext_resource type="Script" path="res://assets/entities/interactables/evidencesystem.gd" id="16_c7dus"]
-[ext_resource type="AudioStream" uid="uid://c0goprnbqmni4" path="res://assets/audio/sfx/sprinkler/sprinkler.ogg" id="16_imvmb"]
 [ext_resource type="PackedScene" uid="uid://crcx0uou65ta" path="res://assets/entities/interactables/pcs/pc.tscn" id="17_ks0kc"]
 [ext_resource type="PackedScene" uid="uid://3whxti0e2onl" path="res://assets/modules/combo/combo_area.tscn" id="18_1gftc"]
 [ext_resource type="PackedScene" uid="uid://dl1s37dxw4b5j" path="res://assets/entities/interactables/breakable.tscn" id="19_10g0n"]
@@ -53,26 +50,6 @@ size = Vector3(6, 1, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_xro8e"]
 size = Vector3(6, 1, 1)
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kp86q"]
-particle_flag_align_y = true
-direction = Vector3(0, -1, 0)
-spread = 20.0
-initial_velocity_min = 10.0
-initial_velocity_max = 10.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8quth"]
-transparency = 1
-cull_mode = 2
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.541176, 1, 1, 1)
-albedo_texture = ExtResource("15_u5d58")
-refraction_scale = -1.0
-
-[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_8llb4"]
-material = SubResource("StandardMaterial3D_8quth")
-size = 0.1
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_eqofl"]
 size = Vector3(100, 30, 100)
 
@@ -83,7 +60,7 @@ size = Vector3(2.68445, 1, 4.1499)
 size = Vector3(11.3147, 1, 7)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ex2r7"]
-size = Vector3(11.3147, 1, 7)
+size = Vector3(3.0332, 1, 7)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cjs6o"]
 size = Vector3(11.3147, 1, 7)
@@ -137,7 +114,7 @@ scale_amount_curve = SubResource("Curve_2enan")
 color_ramp = SubResource("Gradient_js6bg")
 
 [node name="smokes3" type="CPUParticles3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.8826, 1, -30)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8826, -4, -30)
 amount = 64
 lifetime = 0.75
 speed_scale = 1.94
@@ -152,7 +129,7 @@ scale_amount_curve = SubResource("Curve_2enan")
 color_ramp = SubResource("Gradient_js6bg")
 
 [node name="smokes4" type="CPUParticles3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8826, -8, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.8826, -5, -23)
 amount = 64
 lifetime = 0.75
 speed_scale = 1.94
@@ -256,201 +233,170 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 29.253
 
 [node name="sprinkler_container" type="Node" parent="sprinkler_system"]
 
-[node name="spinkler" parent="sprinkler_system/sprinkler_container" instance=ExtResource("12_pg3gf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6, 1, -2)
-collision_layer = 0
-script = ExtResource("13_raj36")
-
-[node name="CollisionShape3D" parent="sprinkler_system/sprinkler_container/spinkler" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-
-[node name="sprinkler2" parent="sprinkler_system/sprinkler_container/spinkler" instance=ExtResource("14_q866g")]
-transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, -2, 2.5, 7)
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler2"]
-transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
-amount = 32
-speed_scale = 2.0
-randomness = 0.83
-visibility_aabb = AABB(-2, 0, -2, 4, -10, 4)
-trail_lifetime = 0.01
-process_material = SubResource("ParticleProcessMaterial_kp86q")
-draw_pass_1 = SubResource("RibbonTrailMesh_8llb4")
-
-[node name="sprinkler_audio" type="AudioStreamPlayer3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler2"]
-transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
-stream = ExtResource("16_imvmb")
-volume_db = -2.0
-max_db = -1.0
-bus = &"SFX"
-
-[node name="sprinkler3" parent="sprinkler_system/sprinkler_container/spinkler" instance=ExtResource("14_q866g")]
-transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, -2, 2.5, 12)
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler3"]
-transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
-amount = 32
-speed_scale = 2.0
-randomness = 0.83
-visibility_aabb = AABB(-2, 0, -2, 4, -10, 4)
-trail_lifetime = 0.01
-process_material = SubResource("ParticleProcessMaterial_kp86q")
-draw_pass_1 = SubResource("RibbonTrailMesh_8llb4")
-
-[node name="sprinkler_audio" type="AudioStreamPlayer3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler3"]
-transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
-stream = ExtResource("16_imvmb")
-volume_db = -2.0
-max_db = -1.0
-bus = &"SFX"
-
-[node name="sprinkler4" parent="sprinkler_system/sprinkler_container/spinkler" instance=ExtResource("14_q866g")]
-transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, -2, 2.5, 17)
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler4"]
-transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
-amount = 32
-speed_scale = 2.0
-randomness = 0.83
-visibility_aabb = AABB(-2, 0, -2, 4, -10, 4)
-trail_lifetime = 0.01
-process_material = SubResource("ParticleProcessMaterial_kp86q")
-draw_pass_1 = SubResource("RibbonTrailMesh_8llb4")
-
-[node name="sprinkler_audio" type="AudioStreamPlayer3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler4"]
-transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
-stream = ExtResource("16_imvmb")
-volume_db = -2.0
-max_db = -1.0
-bus = &"SFX"
-
-[node name="sprinkler5" parent="sprinkler_system/sprinkler_container/spinkler" instance=ExtResource("14_q866g")]
-transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 3, 2.5, 17)
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler5"]
-transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
-amount = 32
-speed_scale = 2.0
-randomness = 0.83
-visibility_aabb = AABB(-2, 0, -2, 4, -10, 4)
-trail_lifetime = 0.01
-process_material = SubResource("ParticleProcessMaterial_kp86q")
-draw_pass_1 = SubResource("RibbonTrailMesh_8llb4")
-
-[node name="sprinkler_audio" type="AudioStreamPlayer3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler5"]
-transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
-stream = ExtResource("16_imvmb")
-volume_db = -2.0
-max_db = -1.0
-bus = &"SFX"
-
-[node name="sprinkler6" parent="sprinkler_system/sprinkler_container/spinkler" instance=ExtResource("14_q866g")]
-transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 8, 2.5, 17)
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler6"]
-transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
-amount = 32
-speed_scale = 2.0
-randomness = 0.83
-visibility_aabb = AABB(-2, 0, -2, 4, -10, 4)
-trail_lifetime = 0.01
-process_material = SubResource("ParticleProcessMaterial_kp86q")
-draw_pass_1 = SubResource("RibbonTrailMesh_8llb4")
-
-[node name="sprinkler_audio" type="AudioStreamPlayer3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler6"]
-transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
-stream = ExtResource("16_imvmb")
-volume_db = -2.0
-max_db = -1.0
-bus = &"SFX"
-
-[node name="sprinkler7" parent="sprinkler_system/sprinkler_container/spinkler" instance=ExtResource("14_q866g")]
-transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 14, 2.5, 17)
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler7"]
-transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
-amount = 32
-speed_scale = 2.0
-randomness = 0.83
-visibility_aabb = AABB(-2, 0, -2, 4, -10, 4)
-trail_lifetime = 0.01
-process_material = SubResource("ParticleProcessMaterial_kp86q")
-draw_pass_1 = SubResource("RibbonTrailMesh_8llb4")
-
-[node name="sprinkler_audio" type="AudioStreamPlayer3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler7"]
-transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
-stream = ExtResource("16_imvmb")
-volume_db = -2.0
-max_db = -1.0
-bus = &"SFX"
-
-[node name="sprinkler8" parent="sprinkler_system/sprinkler_container/spinkler" instance=ExtResource("14_q866g")]
-transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 14, 2.5, 10)
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler8"]
-transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
-amount = 32
-speed_scale = 2.0
-randomness = 0.83
-visibility_aabb = AABB(-2, 0, -2, 4, -10, 4)
-trail_lifetime = 0.01
-process_material = SubResource("ParticleProcessMaterial_kp86q")
-draw_pass_1 = SubResource("RibbonTrailMesh_8llb4")
-
-[node name="sprinkler_audio" type="AudioStreamPlayer3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler8"]
-transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
-stream = ExtResource("16_imvmb")
-volume_db = -2.0
-max_db = -1.0
-bus = &"SFX"
-
-[node name="sprinkler9" parent="sprinkler_system/sprinkler_container/spinkler" instance=ExtResource("14_q866g")]
-transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 14, 2.5, -4)
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler9"]
-transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
-amount = 32
-speed_scale = 2.0
-randomness = 0.83
-visibility_aabb = AABB(-2, 0, -2, 4, -10, 4)
-trail_lifetime = 0.01
-process_material = SubResource("ParticleProcessMaterial_kp86q")
-draw_pass_1 = SubResource("RibbonTrailMesh_8llb4")
-
-[node name="sprinkler_audio" type="AudioStreamPlayer3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler9"]
-transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
-stream = ExtResource("16_imvmb")
-volume_db = -2.0
-max_db = -1.0
-bus = &"SFX"
-
-[node name="sprinkler10" parent="sprinkler_system/sprinkler_container/spinkler" instance=ExtResource("14_q866g")]
-transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 3, 2.5, -4)
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler10"]
-transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
-amount = 32
-speed_scale = 2.0
-randomness = 0.83
-visibility_aabb = AABB(-2, 0, -2, 4, -10, 4)
-trail_lifetime = 0.01
-process_material = SubResource("ParticleProcessMaterial_kp86q")
-draw_pass_1 = SubResource("RibbonTrailMesh_8llb4")
-
-[node name="sprinkler_audio" type="AudioStreamPlayer3D" parent="sprinkler_system/sprinkler_container/spinkler/sprinkler10"]
-transform = Transform3D(20, 0, 0, 0, -20, -3.01992e-06, 0, 3.01992e-06, -20, 0, 10, -1.50996e-06)
-stream = ExtResource("16_imvmb")
-volume_db = -2.0
-max_db = -1.0
-bus = &"SFX"
-
 [node name="spinkler2" parent="sprinkler_system/sprinkler_container" instance=ExtResource("12_pg3gf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6, 1, -6)
 collision_layer = 0
 script = ExtResource("13_raj36")
 
+[node name="sprinkler" parent="sprinkler_system/sprinkler_container/spinkler2" index="0"]
+transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 5, 2.5, -4)
+
 [node name="CollisionShape3D" parent="sprinkler_system/sprinkler_container/spinkler2" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -3.5, -4)
+
+[node name="spinkler16" parent="sprinkler_system/sprinkler_container" instance=ExtResource("12_pg3gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6, 1, -6)
+collision_layer = 0
+script = ExtResource("13_raj36")
+
+[node name="sprinkler" parent="sprinkler_system/sprinkler_container/spinkler16" index="0"]
+transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 5, 2.5, -4)
+
+[node name="CollisionShape3D" parent="sprinkler_system/sprinkler_container/spinkler16" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -3.5, -4)
+
+[node name="spinkler3" parent="sprinkler_system/sprinkler_container" instance=ExtResource("12_pg3gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6, 1, 0)
+collision_layer = 0
+script = ExtResource("13_raj36")
+
+[node name="sprinkler" parent="sprinkler_system/sprinkler_container/spinkler3" index="0"]
+transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 5, 2.5, -4)
+
+[node name="CollisionShape3D" parent="sprinkler_system/sprinkler_container/spinkler3" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -3.5, -4)
+
+[node name="spinkler4" parent="sprinkler_system/sprinkler_container" instance=ExtResource("12_pg3gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.6, 1, -2)
+collision_layer = 0
+script = ExtResource("13_raj36")
+
+[node name="sprinkler" parent="sprinkler_system/sprinkler_container/spinkler4" index="0"]
+transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 5, 2.5, -4)
+
+[node name="CollisionShape3D" parent="sprinkler_system/sprinkler_container/spinkler4" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -3.5, -4)
+
+[node name="spinkler5" parent="sprinkler_system/sprinkler_container" instance=ExtResource("12_pg3gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.6, 1, -3)
+collision_layer = 0
+script = ExtResource("13_raj36")
+
+[node name="sprinkler" parent="sprinkler_system/sprinkler_container/spinkler5" index="0"]
+transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 5, 2.5, -4)
+
+[node name="CollisionShape3D" parent="sprinkler_system/sprinkler_container/spinkler5" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -3.5, -4)
+
+[node name="spinkler15" parent="sprinkler_system/sprinkler_container" instance=ExtResource("12_pg3gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.6, 1, 1)
+collision_layer = 0
+script = ExtResource("13_raj36")
+
+[node name="sprinkler" parent="sprinkler_system/sprinkler_container/spinkler15" index="0"]
+transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 5, 2.5, -4)
+
+[node name="CollisionShape3D" parent="sprinkler_system/sprinkler_container/spinkler15" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -3.5, -4)
+
+[node name="spinkler6" parent="sprinkler_system/sprinkler_container" instance=ExtResource("12_pg3gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.6, 1, 8)
+collision_layer = 0
+script = ExtResource("13_raj36")
+
+[node name="sprinkler" parent="sprinkler_system/sprinkler_container/spinkler6" index="0"]
+transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 5, 2.5, -4)
+
+[node name="CollisionShape3D" parent="sprinkler_system/sprinkler_container/spinkler6" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -3.5, -4)
+
+[node name="spinkler7" parent="sprinkler_system/sprinkler_container" instance=ExtResource("12_pg3gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.6, 1, 14)
+collision_layer = 0
+script = ExtResource("13_raj36")
+
+[node name="sprinkler" parent="sprinkler_system/sprinkler_container/spinkler7" index="0"]
+transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 5, 2.5, -4)
+
+[node name="CollisionShape3D" parent="sprinkler_system/sprinkler_container/spinkler7" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -3.5, -4)
+
+[node name="spinkler8" parent="sprinkler_system/sprinkler_container" instance=ExtResource("12_pg3gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.6, 1, 7)
+collision_layer = 0
+script = ExtResource("13_raj36")
+
+[node name="sprinkler" parent="sprinkler_system/sprinkler_container/spinkler8" index="0"]
+transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 5, 2.5, -4)
+
+[node name="CollisionShape3D" parent="sprinkler_system/sprinkler_container/spinkler8" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -3.5, -4)
+
+[node name="spinkler9" parent="sprinkler_system/sprinkler_container" instance=ExtResource("12_pg3gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.6, 1, 15)
+collision_layer = 0
+script = ExtResource("13_raj36")
+
+[node name="sprinkler" parent="sprinkler_system/sprinkler_container/spinkler9" index="0"]
+transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 5, 2.5, -4)
+
+[node name="CollisionShape3D" parent="sprinkler_system/sprinkler_container/spinkler9" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -3.5, -4)
+
+[node name="spinkler10" parent="sprinkler_system/sprinkler_container" instance=ExtResource("12_pg3gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.6, 1, 20)
+collision_layer = 0
+script = ExtResource("13_raj36")
+
+[node name="sprinkler" parent="sprinkler_system/sprinkler_container/spinkler10" index="0"]
+transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 5, 2.5, -4)
+
+[node name="CollisionShape3D" parent="sprinkler_system/sprinkler_container/spinkler10" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -3.5, -4)
+
+[node name="spinkler11" parent="sprinkler_system/sprinkler_container" instance=ExtResource("12_pg3gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.6, 1, 20)
+collision_layer = 0
+script = ExtResource("13_raj36")
+
+[node name="sprinkler" parent="sprinkler_system/sprinkler_container/spinkler11" index="0"]
+transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 5, 2.5, -4)
+
+[node name="CollisionShape3D" parent="sprinkler_system/sprinkler_container/spinkler11" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -3.5, -4)
+
+[node name="spinkler12" parent="sprinkler_system/sprinkler_container" instance=ExtResource("12_pg3gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6, 1, 20)
+collision_layer = 0
+script = ExtResource("13_raj36")
+
+[node name="sprinkler" parent="sprinkler_system/sprinkler_container/spinkler12" index="0"]
+transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 5, 2.5, -4)
+
+[node name="CollisionShape3D" parent="sprinkler_system/sprinkler_container/spinkler12" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -3.5, -4)
+
+[node name="spinkler13" parent="sprinkler_system/sprinkler_container" instance=ExtResource("12_pg3gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6, 1, 8)
+collision_layer = 0
+script = ExtResource("13_raj36")
+
+[node name="sprinkler" parent="sprinkler_system/sprinkler_container/spinkler13" index="0"]
+transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 5, 2.5, -4)
+
+[node name="CollisionShape3D" parent="sprinkler_system/sprinkler_container/spinkler13" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -3.5, -4)
+
+[node name="spinkler14" parent="sprinkler_system/sprinkler_container" instance=ExtResource("12_pg3gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6, 1, 15)
+collision_layer = 0
+script = ExtResource("13_raj36")
+
+[node name="sprinkler" parent="sprinkler_system/sprinkler_container/spinkler14" index="0"]
+transform = Transform3D(0.05, 0, 0, 0, -0.05, 7.54979e-09, 0, -7.54979e-09, -0.05, 5, 2.5, -4)
+
+[node name="CollisionShape3D" parent="sprinkler_system/sprinkler_container/spinkler14" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -3.5, -4)
 
 [node name="fire_system" type="Node" parent="."]
 script = ExtResource("14_mt4ng")
@@ -503,7 +449,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0506, -5.26169, 3.5831)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0506, -5.26169, 3.5831)
 
 [node name="cube_fire49" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9494, -5.26169, -7.4169)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9494, -5.26169, -7.4169)
+
+[node name="cube_fire66" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.9494, -5.26169, -10.4169)
+
+[node name="cube_fire67" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9494, -5.26169, -6.4169)
+
+[node name="cube_fire68" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9494, -5.26169, -6.4169)
+
+[node name="cube_fire69" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.9494, -5.26169, -7.4169)
 
 [node name="cube_fire20" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9494, -5.26169, -15.4169)
@@ -557,13 +515,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9494, -5.26169, -19.4169)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.9494, -5.26169, -19.4169)
 
 [node name="cube_fire40" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.9494, -5.26169, -15.4169)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.9494, -5.26169, -10.4169)
 
 [node name="cube_fire43" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9494, -5.26169, -12.4169)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9494, -5.26169, -3.4169)
 
 [node name="cube_fire44" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9494, -5.26169, -12.4169)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9494, -5.26169, -3.4169)
+
+[node name="cube_fire45" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9494, -5.26169, -7.4169)
+
+[node name="cube_fire46" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9494, -5.26169, -7.4169)
 
 [node name="cube_fire54" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9494, -5.26169, 0.583099)
@@ -576,6 +540,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.9494, -0.261692, 9.5831)
 
 [node name="cube_fire56" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.9494, -5.26169, 4.5831)
+
+[node name="cube_fire58" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9494, -5.26169, 8.5831)
+
+[node name="cube_fire59" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9494, -5.26169, 6.5831)
+
+[node name="cube_fire60" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.9494, -5.26169, 15.5831)
+
+[node name="cube_fire63" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9494, -5.26169, 5.5831)
+
+[node name="cube_fire64" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9494, -5.26169, 1.5831)
+
+[node name="cube_fire65" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9494, -5.26169, -2.4169)
+
+[node name="cube_fire62" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9494, -5.26169, 11.5831)
+
+[node name="cube_fire61" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.9494, -5.26169, 15.5831)
+
+[node name="cube_fire70" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9494, -5.26169, 11.5831)
 
 [node name="cube_fire41" parent="fire_system/fire_container" instance=ExtResource("15_p2wwo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.9494, -5.26169, -15.4169)
@@ -620,7 +611,7 @@ shape = SubResource("BoxShape3D_jjrpn")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, -25)
 
 [node name="CollisionShape3D" parent="combos/combo_area3" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.575546, -0.567511, 0.750732)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.22997, -0.567511, 0.750732)
 shape = SubResource("BoxShape3D_ex2r7")
 
 [node name="combo_area4" parent="combos" instance=ExtResource("18_1gftc")]
@@ -640,8 +631,21 @@ collision_layer = 515
 [connection signal="area_entered" from="fire_system/active_checker" to="fire_system" method="fire_alive"]
 [connection signal="area_exited" from="fire_system/active_checker" to="fire_system" method="fire_killed"]
 
-[editable path="sprinkler_system/sprinkler_container/spinkler"]
 [editable path="sprinkler_system/sprinkler_container/spinkler2"]
+[editable path="sprinkler_system/sprinkler_container/spinkler16"]
+[editable path="sprinkler_system/sprinkler_container/spinkler3"]
+[editable path="sprinkler_system/sprinkler_container/spinkler4"]
+[editable path="sprinkler_system/sprinkler_container/spinkler5"]
+[editable path="sprinkler_system/sprinkler_container/spinkler15"]
+[editable path="sprinkler_system/sprinkler_container/spinkler6"]
+[editable path="sprinkler_system/sprinkler_container/spinkler7"]
+[editable path="sprinkler_system/sprinkler_container/spinkler8"]
+[editable path="sprinkler_system/sprinkler_container/spinkler9"]
+[editable path="sprinkler_system/sprinkler_container/spinkler10"]
+[editable path="sprinkler_system/sprinkler_container/spinkler11"]
+[editable path="sprinkler_system/sprinkler_container/spinkler12"]
+[editable path="sprinkler_system/sprinkler_container/spinkler13"]
+[editable path="sprinkler_system/sprinkler_container/spinkler14"]
 [editable path="combos/combo_area"]
 [editable path="combos/combo_area2"]
 [editable path="combos/combo_area3"]

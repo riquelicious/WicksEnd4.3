@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=29 format=3 uid="uid://dwksql8j3g1pm"]
+[gd_resource type="VisualShader" load_steps=29 format=3 uid="uid://cplccbp7l15ot"]
 
 [ext_resource type="Texture2D" uid="uid://ht5p78ijmutm" path="res://assets/noise_textures/pixelated_noise.png" id="1_kh2gb"]
 
