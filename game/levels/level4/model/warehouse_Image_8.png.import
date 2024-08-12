@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://dpciowmbuuwib"
+path.s3tc="res://.godot/imported/warehouse_Image_8.png-00870a68df2c054cc278f7d27a567f21.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "ff612093dd0f98fba8525f9cac0b7678"
+}
+
+[deps]
+
+source_file="res://game/levels/level4/model/warehouse_Image_8.png"
+dest_files=["res://.godot/imported/warehouse_Image_8.png-00870a68df2c054cc278f7d27a567f21.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
