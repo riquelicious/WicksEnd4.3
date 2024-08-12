@@ -47,20 +47,26 @@ func get_civilians(quest_type) -> String:
 
 func pick(quest_type) -> String:
 	if quest_type is PickablesSystem:
+		if quest_type.staircase.picked_up:
+			quest_type.add_markers2()
+		else:
+			quest_type.add_markers()
 		return "'It seems like some of the stairs are broken.'\nCreate a makeshift staircase." 
 	return ""
 
 func valves(quest_type) -> String:
 	if quest_type is SprinklerSystem:
+		quest_type.add_markers()
 		"The sprinklers are turned off.\n Let's turn the valves on"
 	return ""
 	
 func get_fire(quest_type) -> String:
 	if quest_type is FireSystem:
-		return "There are still some fires around.\nLet’s extinguish them all.\nFire Extingished: %s"  % Global.level_settings.extinguished_percentage
+		return "There are still some fires around.\nLet’s extinguish them all."
 	return ""
 
 func evidence(quest_type) -> String:
 	if quest_type is EvidenceSystem:
+		quest_type.add_markers()
 		return "The building is now relatively safe.\nLet's gather some evidence"
 	return ""

@@ -31,7 +31,7 @@ var equipments: Dictionary = {
 			"multiplier": 0.5
 		},
 		"damage": {
-			"base" : 20.0,
+			"base" : 40.0,
 			"multiplier" : 0.5
 		},
 		"swing" : {

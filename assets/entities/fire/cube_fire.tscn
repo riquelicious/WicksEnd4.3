@@ -96,7 +96,7 @@ shader_parameter/noise_tex = ExtResource("4_21fgb")
 [sub_resource type="BoxMesh" id="BoxMesh_8ll13"]
 material = ExtResource("3_vxjcb")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fksvy"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eag0y"]
 render_priority = 0
 shader = ExtResource("6_pg544")
 shader_parameter/is_blue = false
@@ -176,7 +176,7 @@ shape = SubResource("BoxShape3D_y2cm8")
 [node name="fire_ambient" type="AudioStreamPlayer3D" parent="audio"]
 stream = ExtResource("2_hul2y")
 autoplay = true
-max_distance = 5.0
+max_distance = 10.0
 bus = &"SFX"
 
 [node name="fire_fx" type="AudioStreamPlayer3D" parent="audio"]
@@ -207,23 +207,23 @@ transform = Transform3D(0.97, 0, 0, 0, 1, 0, 0, 0, 0.97, 0, 0, 0)
 
 [node name="x1" type="MeshInstance3D" parent="faces"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
-material_override = SubResource("ShaderMaterial_fksvy")
+material_override = SubResource("ShaderMaterial_eag0y")
 mesh = SubResource("PlaneMesh_0t6ec")
 
 [node name="x2" type="MeshInstance3D" parent="faces"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
-material_override = SubResource("ShaderMaterial_fksvy")
+material_override = SubResource("ShaderMaterial_eag0y")
 mesh = SubResource("PlaneMesh_0t6ec")
 
 [node name="x3" type="MeshInstance3D" parent="faces"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
-material_override = SubResource("ShaderMaterial_fksvy")
+material_override = SubResource("ShaderMaterial_eag0y")
 mesh = SubResource("PlaneMesh_kkd1s")
 skeleton = NodePath("../x2")
 
 [node name="x4" type="MeshInstance3D" parent="faces"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
-material_override = SubResource("ShaderMaterial_fksvy")
+material_override = SubResource("ShaderMaterial_eag0y")
 mesh = SubResource("PlaneMesh_kkd1s")
 skeleton = NodePath("../x2")
 

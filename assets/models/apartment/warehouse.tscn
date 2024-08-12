@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://drtglp3vna2v0"]
+
+[ext_resource type="PackedScene" uid="uid://ktc6bu0r2vj2" path="res://game/levels/level2/model/warehouse.glb" id="1_gja3g"]
+
+[node name="warehouse" instance=ExtResource("1_gja3g")]

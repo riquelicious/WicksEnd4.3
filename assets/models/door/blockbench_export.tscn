@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://o4oitynvqerj"]
+
+[ext_resource type="PackedScene" uid="uid://cb27gtvuv5xuh" path="res://assets/models/door/door.gltf" id="1_ou7nx"]
+
+[node name="blockbench_export" instance=ExtResource("1_ou7nx")]

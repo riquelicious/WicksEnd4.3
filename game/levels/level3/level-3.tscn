@@ -1,12 +1,19 @@
-[gd_scene load_steps=33 format=3 uid="uid://cf820dabgwbc2"]
+[gd_scene load_steps=43 format=3 uid="uid://cf820dabgwbc2"]
 
 [ext_resource type="Script" path="res://game/levels/level1/level-1.gd" id="1_x2f44"]
+[ext_resource type="PackedScene" uid="uid://5qjkfwpj02jt" path="res://assets/modules/game_over/game_over.tscn" id="2_2yswm"]
 [ext_resource type="Environment" uid="uid://c1jsw4puq6pku" path="res://assets/environments/level1.tres" id="2_b2n3l"]
+[ext_resource type="Script" path="res://game/levels/level3/help.gd" id="2_v15lw"]
 [ext_resource type="PackedScene" uid="uid://bev5tc1uhkp1j" path="res://assets/entities/interactables/interactable.tscn" id="3_50u3m"]
+[ext_resource type="Texture2D" uid="uid://bxheuqsen08tg" path="res://assets/images/ui/gesture_icons/fist.png" id="3_iehsw"]
 [ext_resource type="PackedScene" uid="uid://cgqdby1r48cqg" path="res://game/levels/level3/BahayFinal.glb" id="3_kues7"]
+[ext_resource type="FontFile" uid="uid://55nvttuxhy57" path="res://assets/fonts/NutgameDEMO-Bold.ttf" id="4_3v6ij"]
 [ext_resource type="PackedScene" uid="uid://q1yxpssljlq1" path="res://assets/entities/player/player.tscn" id="4_cr8bg"]
 [ext_resource type="Script" path="res://assets/entities/interactables/civilian_module/civilian_system.gd" id="5_o22gc"]
+[ext_resource type="Texture2D" uid="uid://b3g31lm6wst2s" path="res://assets/images/ui/gesture_icons/palm.png" id="5_sv0w4"]
+[ext_resource type="Texture2D" uid="uid://fg5b0nnw60fm" path="res://assets/images/ui/gesture_icons/thumbs_up.png" id="6_5mpio"]
 [ext_resource type="PackedScene" uid="uid://dfv6t4ldj2v1p" path="res://assets/entities/interactables/drop_area.tscn" id="6_vdq8y"]
+[ext_resource type="Texture2D" uid="uid://chk1q68b2gl3n" path="res://assets/images/ui/gesture_icons/victory.png" id="7_o6pqf"]
 [ext_resource type="PackedScene" uid="uid://c55ams3nst3h4" path="res://assets/entities/interactables/civilian.tscn" id="7_vo4vg"]
 [ext_resource type="Script" path="res://assets/entities/interactables/important_pickables.gd" id="8_857du"]
 [ext_resource type="PackedScene" uid="uid://dwhmjssaki4oo" path="res://assets/entities/interactables/pickup.tscn" id="9_xajfk"]
@@ -20,7 +27,72 @@
 [ext_resource type="Script" path="res://assets/entities/interactables/evidencesystem.gd" id="17_8jwm5"]
 [ext_resource type="PackedScene" uid="uid://crcx0uou65ta" path="res://assets/entities/interactables/pcs/pc.tscn" id="18_rv1rq"]
 [ext_resource type="PackedScene" uid="uid://3whxti0e2onl" path="res://assets/modules/combo/combo_area.tscn" id="19_ig2qs"]
-[ext_resource type="PackedScene" path="res://assets/entities/interactables/breakable.tscn" id="20_xivwe"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v3ii7"]
+font = ExtResource("4_3v6ij")
+font_size = 40
+
+[sub_resource type="Animation" id="Animation_52eqa"]
+resource_name = "fade"
+length = 8.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(4.5, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_1j45a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rsk32"]
+_data = {
+"RESET": SubResource("Animation_1j45a"),
+"fade": SubResource("Animation_52eqa")
+}
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p0f3a"]
 transparency = 1
@@ -59,8 +131,112 @@ size = Vector3(3, 5, 3)
 [sub_resource type="BoxShape3D" id="BoxShape3D_eqofl"]
 size = Vector3(100, 30, 100)
 
-[node name="Level-1" type="Node3D"]
+[node name="Level-1" type="Node3D" node_paths=PackedStringArray("quests")]
 script = ExtResource("1_x2f44")
+quests = [NodePath("civilian_system"), NodePath("fire_system"), NodePath("pcs")]
+
+[node name="game_over" parent="." instance=ExtResource("2_2yswm")]
+unique_name_in_owner = true
+
+[node name="help" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+layer = 100
+script = ExtResource("2_v15lw")
+
+[node name="Control" type="Control" parent="help"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="help/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="help/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.5
+offset_top = -106.0
+offset_right = 106.5
+offset_bottom = 106.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="help/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="help/Control/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("3_iehsw")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="help/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Walk"
+label_settings = SubResource("LabelSettings_v3ii7")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="help/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="help/Control/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("5_sv0w4")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="help/Control/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Stop
+"
+label_settings = SubResource("LabelSettings_v3ii7")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="help/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="help/Control/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("6_5mpio")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="help/Control/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Interact with objects"
+label_settings = SubResource("LabelSettings_v3ii7")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="help/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="help/Control/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("7_o6pqf")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="help/Control/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Use equipment"
+label_settings = SubResource("LabelSettings_v3ii7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="help"]
+libraries = {
+"": SubResource("AnimationLibrary_rsk32")
+}
+autoplay = "fade"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_b2n3l")
@@ -390,6 +566,7 @@ script = ExtResource("17_8jwm5")
 [node name="paper_piece" parent="pcs" instance=ExtResource("18_rv1rq")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0.5, -7.396)
+piece_index = 2
 
 [node name="combos" type="Node" parent="."]
 
@@ -398,10 +575,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -6)
 
 [node name="breakables" type="Node" parent="."]
 
-[node name="breakable" parent="breakables" instance=ExtResource("20_xivwe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.18567, 0.5, -3.9)
-collision_layer = 515
-
+[connection signal="animation_finished" from="help/AnimationPlayer" to="help" method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="fire_system/active_checker" to="fire_system" method="fire_alive"]
 [connection signal="area_exited" from="fire_system/active_checker" to="fire_system" method="fire_killed"]
 

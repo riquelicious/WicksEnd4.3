@@ -16,8 +16,8 @@ var unlocked_levels = {
 }
 
 var level_selection: int = 0
-var lvlPoints := 0
-var curPoints := 0
+var lvlPoints := 0.0
+var curPoints := 0.0
 var civilians_remaining := 0
 
 var quest_message = ""

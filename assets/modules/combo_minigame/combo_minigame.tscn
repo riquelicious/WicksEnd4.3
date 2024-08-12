@@ -1,6 +1,37 @@
-[gd_scene load_steps=2 format=3 uid="uid://faxxs63wwsr5"]
+[gd_scene load_steps=7 format=3 uid="uid://faxxs63wwsr5"]
 
 [ext_resource type="Script" path="res://assets/modules/combo_minigame/combo_minigame.gd" id="1_vhbsl"]
+[ext_resource type="FontFile" uid="uid://55nvttuxhy57" path="res://assets/fonts/NutgameDEMO-Bold.ttf" id="2_yhl4n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m3prs"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_euehf"]
+bg_color = Color(0.870975, 0.255391, 0.24425, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4yj78"]
+bg_color = Color(0, 0, 0, 0.470588)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_r7ehs"]
+font = ExtResource("2_yhl4n")
+font_size = 30
+shadow_size = 5
 
 [node name="ComboMinigame" type="Control"]
 layout_mode = 3
@@ -12,11 +43,37 @@ grow_vertical = 2
 script = ExtResource("1_vhbsl")
 
 [node name="countdown_bar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -27.0
+offset_right = 250.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(250, 0)
+theme_override_styles/background = SubResource("StyleBoxFlat_m3prs")
+theme_override_styles/fill = SubResource("StyleBoxFlat_euehf")
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -320.0
+offset_right = 320.0
+offset_bottom = 31.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4yj78")
+
+[node name="RichTextLabel" type="Label" parent="Panel"]
 layout_mode = 2
-offset_left = 574.0
-offset_top = 621.0
-offset_right = 578.0
-offset_bottom = 648.0
+text = "Quick! copy the gestures to dodge the falling debris."
+label_settings = SubResource("LabelSettings_r7ehs")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 custom_minimum_size = Vector2(0, 200)
