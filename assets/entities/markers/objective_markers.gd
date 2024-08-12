@@ -26,4 +26,5 @@ func add_objective_marker():
 				objective_added = true
 	
 func remove_marker():
-	instance_from_id(objective_marker_id).queue_free()
+	if objective_marker_id:
+		instance_from_id(objective_marker_id).queue_free()

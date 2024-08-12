@@ -14,8 +14,6 @@ func initialize(player_instance: PlayerA):
 	anim = player.get_node("AnimationPlayer")
 	default_equipment_hold_position = equipment_node.position
 	change_equipment(0)
-	#turning_pads = player.get_node("on-screen-ui/turning-pads")
-	#turning_panel_animation = player.get_node("on-screen-ui/turning-pads/turning_panel_animation")
 
 func update_sway(delta):
 	var mouse_input = lerp(Vector2.ZERO, Vector2.ZERO, 10 * delta)

@@ -7,7 +7,6 @@ var levels = [
 	"res://game/levels/level2/level-2.tscn",
 	"res://game/levels/level3/level-3.tscn",
 	"res://game/levels/level4/level-4.tscn",
-	"res://game/levels/level5/level-5.tscn"
 ]
 
 var cursor_images = [

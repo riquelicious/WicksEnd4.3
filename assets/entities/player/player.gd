@@ -69,6 +69,6 @@ func check_health():
 			dead = true
 			
 func game_over():
-	var game_over = $%game_over
-	if game_over:
-		game_over.game_over()
+	var go = $%game_over
+	if go:
+		go.game_over()

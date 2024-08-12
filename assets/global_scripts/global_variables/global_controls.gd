@@ -1,7 +1,7 @@
 extends Node
 
 @onready var eqAim : String = Global.gesture_settings.gesture_list[6]
-@onready var eqAxeSwing : String = Global.gesture_settings.gesture_list[7]
+@onready var eqAxeSwing : String = Global.gesture_settings.gesture_list[6]
 @onready var mvWalk : String = Global.gesture_settings.gesture_list[1]
 @onready var mvInteract : String = Global.gesture_settings.gesture_list[5]
 @onready var lsEvidence : String = Global.gesture_settings.gesture_list[7] 

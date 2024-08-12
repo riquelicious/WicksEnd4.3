@@ -66,7 +66,7 @@ func new_data():
 	update_data(current_save)
 
 func update_data(save : Dictionary) -> void:
-	for eq in Global.equipment_settings.equipments.keys():
+	for eq in Global.equipment_settings.equipments.keys(): 
 		Global.equipment_settings.equipments[eq]["level"] = save["upgrade"][eq]
 	Global.level_settings.unlocked_levels = save["levels"]
 	Global.level_settings.curPoints = save["points"]

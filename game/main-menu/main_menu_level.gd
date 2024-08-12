@@ -12,7 +12,7 @@ func _ready():
 	anim_manager.initialize(self)
 	button_manager.initialize(self)
 	camera_manager.initialize(self)
-	BGM.change_bgm("res://assets/audio/BGM/ThreeCandles.mp3")
+	#BGM.change_bgm("res://assets/audio/BGM/ThreeCandles.mp3")
 	if Global.gameplay_settings.from_level:
 		anim_manager.switch_ui(1)
 		Global.gameplay_settings.from_level = false

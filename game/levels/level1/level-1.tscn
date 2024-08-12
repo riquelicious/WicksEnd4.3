@@ -1,13 +1,19 @@
-[gd_scene load_steps=32 format=3 uid="uid://js0y1ym1045y"]
+[gd_scene load_steps=42 format=3 uid="uid://js0y1ym1045y"]
 
 [ext_resource type="Script" path="res://game/levels/level1/level-1.gd" id="1_amc4j"]
 [ext_resource type="PackedScene" uid="uid://q1yxpssljlq1" path="res://assets/entities/player/player.tscn" id="1_yf7aq"]
 [ext_resource type="Environment" uid="uid://c1jsw4puq6pku" path="res://assets/environments/level1.tres" id="2_dtwka"]
 [ext_resource type="PackedScene" uid="uid://5qjkfwpj02jt" path="res://assets/modules/game_over/game_over.tscn" id="2_rsyaa"]
 [ext_resource type="PackedScene" uid="uid://dlbi6sd7k5emq" path="res://assets/entities/interactables/breakable.tscn" id="3_ifjm6"]
+[ext_resource type="Script" path="res://game/levels/level3/help.gd" id="3_ssfwt"]
+[ext_resource type="Texture2D" uid="uid://bxheuqsen08tg" path="res://assets/images/ui/gesture_icons/fist.png" id="4_5ylk1"]
+[ext_resource type="FontFile" uid="uid://55nvttuxhy57" path="res://assets/fonts/NutgameDEMO-Bold.ttf" id="5_taf5h"]
+[ext_resource type="Texture2D" uid="uid://b3g31lm6wst2s" path="res://assets/images/ui/gesture_icons/palm.png" id="6_75ei2"]
 [ext_resource type="PackedScene" uid="uid://c55ams3nst3h4" path="res://assets/entities/interactables/civilian.tscn" id="6_r4n0h"]
 [ext_resource type="PackedScene" uid="uid://c7lfbpnhhs0hr" path="res://assets/entities/fire/cube_fire.tscn" id="6_xin8i"]
 [ext_resource type="PackedScene" uid="uid://dodep8crmbfm6" path="res://assets/entities/interactables/valve.tscn" id="7_6iftk"]
+[ext_resource type="Texture2D" uid="uid://fg5b0nnw60fm" path="res://assets/images/ui/gesture_icons/thumbs_up.png" id="7_311lo"]
+[ext_resource type="Texture2D" uid="uid://chk1q68b2gl3n" path="res://assets/images/ui/gesture_icons/victory.png" id="8_bafie"]
 [ext_resource type="PackedScene" uid="uid://dwhmjssaki4oo" path="res://assets/entities/interactables/pickup.tscn" id="8_tuyxg"]
 [ext_resource type="Script" path="res://game/levels/level1/staircase.gd" id="10_068pn"]
 [ext_resource type="PackedScene" uid="uid://dfv6t4ldj2v1p" path="res://assets/entities/interactables/drop_area.tscn" id="10_enc66"]
@@ -22,6 +28,72 @@
 [ext_resource type="Script" path="res://assets/entities/interactables/important_pickables.gd" id="17_77qdh"]
 [ext_resource type="PackedScene" uid="uid://cx3ts0cog3g8j" path="res://assets/models/apartment/apartment.tscn" id="36_2u6q2"]
 [ext_resource type="ArrayOccluder3D" uid="uid://cbktuktflys47" path="res://game/levels/level1/level-1.occ" id="53_stn8m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_81koh"]
+font = ExtResource("5_taf5h")
+font_size = 40
+
+[sub_resource type="Animation" id="Animation_52eqa"]
+resource_name = "fade"
+length = 8.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(4.5, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_1j45a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rsk32"]
+_data = {
+"RESET": SubResource("Animation_1j45a"),
+"fade": SubResource("Animation_52eqa")
+}
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p0f3a"]
 transparency = 1
@@ -62,6 +134,106 @@ quests = [NodePath("civilian_system"), NodePath("fire_system"), NodePath("pcs")]
 
 [node name="game_over" parent="." instance=ExtResource("2_rsyaa")]
 unique_name_in_owner = true
+
+[node name="help" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+layer = 100
+script = ExtResource("3_ssfwt")
+
+[node name="Control" type="Control" parent="help"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="help/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="help/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.5
+offset_top = -106.0
+offset_right = 106.5
+offset_bottom = 106.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="help/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="help/Control/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("4_5ylk1")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="help/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Walk"
+label_settings = SubResource("LabelSettings_81koh")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="help/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="help/Control/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("6_75ei2")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="help/Control/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Stop
+"
+label_settings = SubResource("LabelSettings_81koh")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="help/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="help/Control/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("7_311lo")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="help/Control/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Interact with objects"
+label_settings = SubResource("LabelSettings_81koh")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="help/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="help/Control/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("8_bafie")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="help/Control/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Use equipment"
+label_settings = SubResource("LabelSettings_81koh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="help"]
+libraries = {
+"": SubResource("AnimationLibrary_rsk32")
+}
+autoplay = "fade"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_dtwka")
@@ -416,6 +588,8 @@ collision_layer = 515
 
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
 occluder = ExtResource("53_stn8m")
+
+[connection signal="animation_finished" from="help/AnimationPlayer" to="help" method="_on_animation_player_animation_finished"]
 
 [editable path="civilian_system/DropArea"]
 [editable path="sprinkler_system/sprinkler_container/spinkler"]

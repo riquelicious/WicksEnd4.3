@@ -1,9 +1,10 @@
-[gd_scene load_steps=34 format=3 uid="uid://d4gpsbhevbe8y"]
+[gd_scene load_steps=48 format=3 uid="uid://d4gpsbhevbe8y"]
 
 [ext_resource type="Script" path="res://game/levels/level1/level-1.gd" id="1_5x7e7"]
 [ext_resource type="Environment" uid="uid://c1jsw4puq6pku" path="res://assets/environments/level1.tres" id="2_o7bl7"]
 [ext_resource type="PackedScene" uid="uid://q1yxpssljlq1" path="res://assets/entities/player/player.tscn" id="3_oawqb"]
 [ext_resource type="Script" path="res://assets/entities/interactables/civilian_module/civilian_system.gd" id="4_heef5"]
+[ext_resource type="PackedScene" uid="uid://bqwloqko4y8n" path="res://assets/models/palette/palette.tscn" id="4_pyver"]
 [ext_resource type="PackedScene" uid="uid://dfv6t4ldj2v1p" path="res://assets/entities/interactables/drop_area.tscn" id="5_nbwuf"]
 [ext_resource type="PackedScene" uid="uid://c55ams3nst3h4" path="res://assets/entities/interactables/civilian.tscn" id="6_quify"]
 [ext_resource type="Script" path="res://assets/entities/interactables/important_pickables.gd" id="7_f57ve"]
@@ -11,6 +12,7 @@
 [ext_resource type="Script" path="res://game/levels/level1/staircase.gd" id="9_mekkg"]
 [ext_resource type="Script" path="res://assets/entities/interactables/valve_module/valve_container.gd" id="10_68a5o"]
 [ext_resource type="PackedScene" uid="uid://dodep8crmbfm6" path="res://assets/entities/interactables/valve.tscn" id="11_v2co4"]
+[ext_resource type="PackedScene" uid="uid://cqli5virdjans" path="res://game/levels/level2/stairs/stairs.glb" id="11_x0u8w"]
 [ext_resource type="PackedScene" uid="uid://j1d8e7jm3t7u" path="res://assets/entities/sprinkler/spinkler.tscn" id="12_rd848"]
 [ext_resource type="Script" path="res://assets/entities/sprinkler/spinkler.gd" id="13_y7md2"]
 [ext_resource type="Script" path="res://assets/modules/fire_system/fire_system.gd" id="14_apj6n"]
@@ -19,7 +21,21 @@
 [ext_resource type="Script" path="res://assets/entities/interactables/evidencesystem.gd" id="17_1inmd"]
 [ext_resource type="PackedScene" uid="uid://crcx0uou65ta" path="res://assets/entities/interactables/pcs/pc.tscn" id="18_5ksc5"]
 [ext_resource type="PackedScene" uid="uid://3whxti0e2onl" path="res://assets/modules/combo/combo_area.tscn" id="19_dtoqx"]
-[ext_resource type="PackedScene" uid="uid://dl1s37dxw4b5j" path="res://assets/entities/interactables/breakable.tscn" id="20_aca82"]
+[ext_resource type="PackedScene" uid="uid://br473nibrg16" path="res://assets/entities/interactables/breakable2.tscn" id="20_0mqjd"]
+[ext_resource type="Script" path="res://game/levels/level3/help.gd" id="21_22v1x"]
+[ext_resource type="Texture2D" uid="uid://bxheuqsen08tg" path="res://assets/images/ui/gesture_icons/fist.png" id="22_42afe"]
+[ext_resource type="FontFile" uid="uid://55nvttuxhy57" path="res://assets/fonts/NutgameDEMO-Bold.ttf" id="23_300ug"]
+[ext_resource type="Texture2D" uid="uid://b3g31lm6wst2s" path="res://assets/images/ui/gesture_icons/palm.png" id="24_axebq"]
+[ext_resource type="Texture2D" uid="uid://fg5b0nnw60fm" path="res://assets/images/ui/gesture_icons/thumbs_up.png" id="25_gn0u3"]
+[ext_resource type="Texture2D" uid="uid://chk1q68b2gl3n" path="res://assets/images/ui/gesture_icons/victory.png" id="26_mykrv"]
+[ext_resource type="ArrayOccluder3D" uid="uid://cj6xsue3ocqlx" path="res://game/levels/level4/level-4.occ" id="29_7akfk"]
+[ext_resource type="PackedScene" uid="uid://5qjkfwpj02jt" path="res://assets/modules/game_over/game_over.tscn" id="30_w5dd7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2asi7"]
+size = Vector3(1, 10, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_koreh"]
+size = Vector3(2, 0.5, 5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p0f3a"]
 transparency = 1
@@ -38,20 +54,14 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_js6bg"]
 colors = PackedColorArray(0.140447, 0.140447, 0.140447, 1, 0.534361, 0.534361, 0.534361, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_rvmu0"]
-size = Vector3(14.1753, 0.4, 3.24268)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_wnwlo"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_gwpmu"]
 size = Vector3(6, 1, 5)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_wwg0q"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_e46br"]
 size = Vector3(6, 1, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_xro8e"]
+[sub_resource type="BoxMesh" id="BoxMesh_6yeqr"]
 size = Vector3(6, 1, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_eqofl"]
-size = Vector3(100, 30, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_utp88"]
 size = Vector3(2.68445, 1, 4.1499)
@@ -65,9 +75,75 @@ size = Vector3(3.0332, 1, 7)
 [sub_resource type="BoxShape3D" id="BoxShape3D_cjs6o"]
 size = Vector3(11.3147, 1, 7)
 
+[sub_resource type="LabelSettings" id="LabelSettings_5k65v"]
+font = ExtResource("23_300ug")
+font_size = 40
+
+[sub_resource type="Animation" id="Animation_52eqa"]
+resource_name = "fade"
+length = 8.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(4.5, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_1j45a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rsk32"]
+_data = {
+"RESET": SubResource("Animation_1j45a"),
+"fade": SubResource("Animation_52eqa")
+}
+
 [node name="Level-2" type="Node3D" node_paths=PackedStringArray("quests")]
 script = ExtResource("1_5x7e7")
-quests = [NodePath("civilian_system"), NodePath("stair_system"), NodePath("pcs"), NodePath("sprinkler_system"), NodePath("fire_system")]
+quests = [NodePath("civilian_system"), NodePath("stair_system"), NodePath("sprinkler_system"), NodePath("fire_system"), NodePath("pcs")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_o7bl7")
@@ -83,89 +159,48 @@ shadow_enabled = true
 
 [node name="World" type="Node3D" parent="."]
 
-[node name="smokes" type="CPUParticles3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.1174, 1, -10)
-amount = 64
-lifetime = 0.75
-speed_scale = 1.94
-mesh = SubResource("SphereMesh_6neps")
-emission_shape = 3
-emission_box_extents = Vector3(10, 1, 10)
-direction = Vector3(0, -1, 0)
-spread = 180.0
-flatness = 1.0
-gravity = Vector3(0, 5, 0)
-scale_amount_curve = SubResource("Curve_2enan")
-color_ramp = SubResource("Gradient_js6bg")
-
-[node name="smokes2" type="CPUParticles3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1174, -5, 9)
-amount = 64
-lifetime = 0.75
-speed_scale = 1.94
-mesh = SubResource("SphereMesh_6neps")
-emission_shape = 3
-emission_box_extents = Vector3(10, 1, 10)
-direction = Vector3(0, -1, 0)
-spread = 180.0
-flatness = 1.0
-gravity = Vector3(0, 5, 0)
-scale_amount_curve = SubResource("Curve_2enan")
-color_ramp = SubResource("Gradient_js6bg")
-
-[node name="smokes3" type="CPUParticles3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.8826, -5, -26)
-amount = 64
-lifetime = 0.75
-speed_scale = 1.94
-mesh = SubResource("SphereMesh_6neps")
-emission_shape = 3
-emission_box_extents = Vector3(10, 1, 10)
-direction = Vector3(0, -1, 0)
-spread = 180.0
-flatness = 1.0
-gravity = Vector3(0, 5, 0)
-scale_amount_curve = SubResource("Curve_2enan")
-color_ramp = SubResource("Gradient_js6bg")
-
-[node name="smokes4" type="CPUParticles3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8826, -4.37281, -23)
-amount = 64
-lifetime = 0.75
-speed_scale = 1.94
-mesh = SubResource("SphereMesh_6neps")
-emission_shape = 3
-emission_box_extents = Vector3(10, 1, 10)
-direction = Vector3(0, -1, 0)
-spread = 180.0
-flatness = 1.0
-gravity = Vector3(0, 5, 0)
-scale_amount_curve = SubResource("Curve_2enan")
-color_ramp = SubResource("Gradient_js6bg")
+[node name="warehouse" parent="World" instance=ExtResource("16_5d73k")]
+transform = Transform3D(-2.843, 0, 2.48543e-07, 0, 2.843, 0, -2.48543e-07, 0, -2.843, -145.2, -2.192, -8)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66, 0, -6.9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -3, -9)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/StaticBody3D"]
-transform = Transform3D(-4.00951e-08, 1.74089e-08, 1, -0.36853, -0.929616, 1.40732e-09, 0.929616, -0.36853, 4.36887e-08, 59.7917, -3.76756, -21.3843)
-shape = SubResource("BoxShape3D_rvmu0")
+shape = SubResource("BoxShape3D_2asi7")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+transform = Transform3D(1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, 29.4, -3, -34.3)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/StaticBody3D2"]
-transform = Transform3D(1.49012e-08, -1.49012e-08, -1, 0.398269, 0.917269, 7.19671e-09, 0.917269, -0.398269, 2.98023e-08, 50.6703, 2.0598, -3.55227)
-shape = SubResource("BoxShape3D_rvmu0")
+transform = Transform3D(1, 0, 0, 0, 0.999999, -3.27826e-07, 0, 3.27826e-07, 0.999999, -0.700001, 1.427, 0.668909)
+shape = SubResource("BoxShape3D_koreh")
+
+[node name="blockbench_export" parent="World/StaticBody3D2" instance=ExtResource("4_pyver")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -0.5, 0.346411, -0.199999)
 
 [node name="player" parent="." instance=ExtResource("3_oawqb")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.478, -6.24523, -2.01865)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.478, -6.24523, -11.0187)
+
+[node name="smokes" type="CPUParticles3D" parent="player"]
+amount = 64
+lifetime = 0.75
+speed_scale = 1.94
+mesh = SubResource("SphereMesh_6neps")
+emission_shape = 3
+emission_box_extents = Vector3(10, 1, 10)
+direction = Vector3(0, -1, 0)
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 5, 0)
+scale_amount_curve = SubResource("Curve_2enan")
+color_ramp = SubResource("Gradient_js6bg")
 
 [node name="civilian_system" type="Node" parent="."]
 script = ExtResource("4_heef5")
 
 [node name="DropArea" parent="civilian_system" instance=ExtResource("5_nbwuf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1.6, 6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, -6.4, -9)
 
 [node name="civilians" type="Node" parent="civilian_system"]
 
@@ -203,22 +238,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, -5, -18)
 [node name="makeshift_staircase" type="Node" parent="stair_system"]
 
 [node name="staircase" type="Area3D" parent="stair_system/makeshift_staircase"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, -5, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 29.1962, -5, -27)
 script = ExtResource("9_mekkg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="stair_system/makeshift_staircase/staircase"]
-shape = SubResource("BoxShape3D_wnwlo")
+shape = SubResource("BoxShape3D_gwpmu")
 
 [node name="stair_model" type="StaticBody3D" parent="stair_system/makeshift_staircase/staircase/CollisionShape3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="stair_system/makeshift_staircase/staircase/CollisionShape3D/stair_model"]
 transform = Transform3D(0.781858, -0.623457, 0, 0.623457, 0.781858, 0, 0, 0, 1, -0.0999999, 0.3, 0)
-shape = SubResource("BoxShape3D_wwg0q")
+shape = SubResource("BoxShape3D_e46br")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="stair_system/makeshift_staircase/staircase/CollisionShape3D/stair_model/CollisionShape3D"]
 transform = Transform3D(1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 0, 1, 0, 0, 0)
 visible = false
-mesh = SubResource("BoxMesh_xro8e")
+mesh = SubResource("BoxMesh_6yeqr")
+
+[node name="stairs" parent="stair_system/makeshift_staircase/staircase/CollisionShape3D/stair_model" instance=ExtResource("11_x0u8w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.599998)
+
+[node name="marker_origin" type="Marker3D" parent="stair_system/makeshift_staircase/staircase"]
 
 [node name="sprinkler_system" type="Node" parent="."]
 script = ExtResource("10_68a5o")
@@ -634,22 +674,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.9494, -5.26169, -15.4169)
 [node name="cube_fire42" parent="fire_system/fire_container" instance=ExtResource("15_623uw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9494, -5.26169, -14.4169)
 
-[node name="warehouse" parent="fire_system/fire_container" instance=ExtResource("16_5d73k")]
-transform = Transform3D(-2.843, 0, 2.48543e-07, 0, 2.843, 0, -2.48543e-07, 0, -2.843, -145.2, -2.192, -8)
-
-[node name="active_checker" type="Area3D" parent="fire_system"]
-collision_layer = 0
-collision_mask = 2048
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="fire_system/active_checker"]
-shape = SubResource("BoxShape3D_eqofl")
-
 [node name="pcs" type="Node" parent="."]
 script = ExtResource("17_1inmd")
 
 [node name="paper_piece" parent="pcs" instance=ExtResource("18_5ksc5")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, -5.7, 13.204)
+piece_index = 3
 
 [node name="combos" type="Node" parent="."]
 
@@ -683,13 +714,131 @@ shape = SubResource("BoxShape3D_cjs6o")
 
 [node name="breakables" type="Node" parent="."]
 
-[node name="breakable" parent="breakables" instance=ExtResource("20_aca82")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -6)
-visible = false
-collision_layer = 515
+[node name="breakable2" parent="breakables" instance=ExtResource("20_0mqjd")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0, -5.6, -14.8)
 
-[connection signal="area_entered" from="fire_system/active_checker" to="fire_system" method="fire_alive"]
-[connection signal="area_exited" from="fire_system/active_checker" to="fire_system" method="fire_killed"]
+[node name="breakable3" parent="breakables" instance=ExtResource("20_0mqjd")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 8, -5.6, -27.8)
+
+[node name="breakable4" parent="breakables" instance=ExtResource("20_0mqjd")]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 13, -5.6, -15.8)
+
+[node name="breakable5" parent="breakables" instance=ExtResource("20_0mqjd")]
+transform = Transform3D(0.0540789, 0, 0.998537, 0, 1, 0, -0.998537, 0, 0.0540789, 13, -5.6, -10.8)
+
+[node name="breakable6" parent="breakables" instance=ExtResource("20_0mqjd")]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 14, -5.6, -4.5)
+
+[node name="breakable7" parent="breakables" instance=ExtResource("20_0mqjd")]
+transform = Transform3D(4.47035e-08, 0, -1, 0, 1, 0, 1, 0, 4.47035e-08, 19, -5.6, -4.5)
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
+occluder = ExtResource("29_7akfk")
+
+[node name="help" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+layer = 100
+script = ExtResource("21_22v1x")
+
+[node name="Control" type="Control" parent="help"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="help/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="help/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.5
+offset_top = -106.0
+offset_right = 106.5
+offset_bottom = 106.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="help/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="help/Control/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("22_42afe")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="help/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Walk"
+label_settings = SubResource("LabelSettings_5k65v")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="help/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="help/Control/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("24_axebq")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="help/Control/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Stop
+"
+label_settings = SubResource("LabelSettings_5k65v")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="help/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="help/Control/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("25_gn0u3")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="help/Control/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Interact with objects"
+label_settings = SubResource("LabelSettings_5k65v")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="help/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="help/Control/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+texture = ExtResource("26_mykrv")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="help/Control/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Use equipment"
+label_settings = SubResource("LabelSettings_5k65v")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="help"]
+libraries = {
+"": SubResource("AnimationLibrary_rsk32")
+}
+autoplay = "fade"
+
+[node name="game_over" parent="." instance=ExtResource("30_w5dd7")]
+unique_name_in_owner = true
+
+[connection signal="animation_finished" from="help/AnimationPlayer" to="help" method="_on_animation_player_animation_finished"]
 
 [editable path="sprinkler_system/sprinkler_container/spinkler2"]
 [editable path="sprinkler_system/sprinkler_container/spinkler16"]

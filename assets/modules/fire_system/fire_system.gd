@@ -16,6 +16,5 @@ func _process(delta: float) -> void:
 	if fire_index <= children.size() - 1:
 		if children[fire_index].health > 0: return
 		fire_index += 1
-	
 	else:
 		finished = true
