@@ -16,12 +16,12 @@ script = ExtResource("1_7we14")
 lbl_handedness = NodePath("CanvasLayer/Label")
 image_view = NodePath("CanvasLayer/stream_frame")
 permission_dialog = NodePath("CanvasLayer/camera_permission")
-vision_task = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 50
 
 [node name="stream_frame" type="TextureRect" parent="CanvasLayer"]
+visible = false
 custom_minimum_size = Vector2(200, 200)
 anchors_preset = 1
 anchor_left = 1.0
@@ -41,5 +41,6 @@ ok_button_text = "Allow"
 dialog_text = "Please grant camera permission to continue"
 
 [node name="Label" type="Label" parent="CanvasLayer"]
+visible = false
 offset_right = 40.0
 offset_bottom = 23.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://cq38hnb276qij"]
+[gd_scene load_steps=36 format=3 uid="uid://cq38hnb276qij"]
 
 [ext_resource type="Script" path="res://game/levels/level1/level-1.gd" id="1_4cva0"]
 [ext_resource type="Script" path="res://game/levels/level3/help.gd" id="2_1octo"]
@@ -14,18 +14,10 @@
 [ext_resource type="Script" path="res://assets/entities/interactables/civilian_module/civilian_system.gd" id="5_6peey"]
 [ext_resource type="PackedScene" uid="uid://dfv6t4ldj2v1p" path="res://assets/entities/interactables/drop_area.tscn" id="6_8vgsb"]
 [ext_resource type="PackedScene" uid="uid://c55ams3nst3h4" path="res://assets/entities/interactables/civilian.tscn" id="7_djlvh"]
-[ext_resource type="Script" path="res://assets/entities/interactables/important_pickables.gd" id="8_we60t"]
-[ext_resource type="PackedScene" uid="uid://dwhmjssaki4oo" path="res://assets/entities/interactables/pickup.tscn" id="9_8bne8"]
-[ext_resource type="Script" path="res://game/levels/level1/staircase.gd" id="10_407dk"]
-[ext_resource type="Script" path="res://assets/entities/interactables/valve_module/valve_container.gd" id="11_q6xdw"]
-[ext_resource type="PackedScene" uid="uid://dodep8crmbfm6" path="res://assets/entities/interactables/valve.tscn" id="12_lwn2t"]
-[ext_resource type="PackedScene" uid="uid://j1d8e7jm3t7u" path="res://assets/entities/sprinkler/spinkler.tscn" id="13_42qa3"]
-[ext_resource type="Script" path="res://assets/entities/sprinkler/spinkler.gd" id="14_fuw7w"]
 [ext_resource type="Script" path="res://assets/modules/fire_system/fire_system.gd" id="15_5kx7t"]
 [ext_resource type="PackedScene" uid="uid://c7lfbpnhhs0hr" path="res://assets/entities/fire/cube_fire.tscn" id="16_3i5jn"]
 [ext_resource type="Script" path="res://assets/entities/interactables/evidencesystem.gd" id="17_clq06"]
 [ext_resource type="PackedScene" uid="uid://crcx0uou65ta" path="res://assets/entities/interactables/pcs/pc.tscn" id="18_564cr"]
-[ext_resource type="PackedScene" uid="uid://3whxti0e2onl" path="res://assets/modules/combo/combo_area.tscn" id="19_rg8ff"]
 [ext_resource type="PackedScene" uid="uid://dlbi6sd7k5emq" path="res://assets/entities/interactables/breakable.tscn" id="20_wtn17"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g0xio"]
@@ -132,16 +124,6 @@ point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_js6bg"]
 colors = PackedColorArray(0.140447, 0.140447, 0.140447, 1, 0.534361, 0.534361, 0.534361, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_wnwlo"]
-size = Vector3(6, 1, 5)
-
-[sub_resource type="PrismMesh" id="PrismMesh_w5dac"]
-left_to_right = 1.0
-size = Vector3(4, 3, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_wwg0q"]
-size = Vector3(6, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eqofl"]
 size = Vector3(100, 30, 100)
@@ -387,60 +369,6 @@ collision_mask = 519
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 
-[node name="stair_system" type="Node" parent="."]
-script = ExtResource("8_we60t")
-
-[node name="pickups" type="Node" parent="stair_system"]
-
-[node name="pickup" parent="stair_system/pickups" instance=ExtResource("9_8bne8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -7)
-
-[node name="pickup2" parent="stair_system/pickups" instance=ExtResource("9_8bne8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -7)
-
-[node name="pickup3" parent="stair_system/pickups" instance=ExtResource("9_8bne8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -7)
-
-[node name="pickup4" parent="stair_system/pickups" instance=ExtResource("9_8bne8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -7)
-
-[node name="makeshift_staircase" type="Node" parent="stair_system"]
-
-[node name="staircase" type="Area3D" parent="stair_system/makeshift_staircase"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 0)
-script = ExtResource("10_407dk")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="stair_system/makeshift_staircase/staircase"]
-shape = SubResource("BoxShape3D_wnwlo")
-
-[node name="stair_model" type="StaticBody3D" parent="stair_system/makeshift_staircase/staircase/CollisionShape3D"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="stair_system/makeshift_staircase/staircase/CollisionShape3D/stair_model"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("PrismMesh_w5dac")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="stair_system/makeshift_staircase/staircase/CollisionShape3D/stair_model"]
-transform = Transform3D(0.781858, -0.623457, 0, 0.623457, 0.781858, 0, 0, 0, 1, -0.0999999, 0.3, 0)
-shape = SubResource("BoxShape3D_wwg0q")
-
-[node name="sprinkler_system" type="Node" parent="."]
-script = ExtResource("11_q6xdw")
-
-[node name="valve_container" type="Node" parent="sprinkler_system"]
-
-[node name="valve" parent="sprinkler_system/valve_container" instance=ExtResource("12_lwn2t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, -6)
-
-[node name="sprinkler_container" type="Node" parent="sprinkler_system"]
-
-[node name="spinkler" parent="sprinkler_system/sprinkler_container" instance=ExtResource("13_42qa3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 3, -2)
-collision_layer = 0
-script = ExtResource("14_fuw7w")
-
-[node name="CollisionShape3D" parent="sprinkler_system/sprinkler_container/spinkler" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-
 [node name="fire_system" type="Node" parent="."]
 script = ExtResource("15_5kx7t")
 
@@ -482,11 +410,6 @@ script = ExtResource("17_clq06")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 7.604)
 
-[node name="combos" type="Node" parent="."]
-
-[node name="combo_area" parent="combos" instance=ExtResource("19_rg8ff")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5)
-
 [node name="breakables" type="Node" parent="."]
 
 [node name="breakable" parent="breakables" instance=ExtResource("20_wtn17")]
@@ -498,4 +421,3 @@ collision_layer = 515
 [connection signal="area_exited" from="fire_system/active_checker" to="fire_system" method="fire_killed"]
 
 [editable path="interactable"]
-[editable path="sprinkler_system/sprinkler_container/spinkler"]

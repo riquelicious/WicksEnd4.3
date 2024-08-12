@@ -39,7 +39,9 @@ offset_bottom = 41.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Buttons can be activated by either hovering over them 
-or replicating the gesture displayed next to them."
+or replicating the gesture displayed next to them.
+
+(only one hand can be detected at a time)"
 label_settings = SubResource("LabelSettings_afp4x")
 horizontal_alignment = 1
 
