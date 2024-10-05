@@ -5,37 +5,10 @@
 [ext_resource type="Shader" path="res://assets/shaders/fire.gdshader" id="3_qlss5"]
 [ext_resource type="Material" uid="uid://b7eiti7ytsghs" path="res://assets/shaders/fire_material.tres" id="3_vxjcb"]
 [ext_resource type="Texture2D" uid="uid://ht5p78ijmutm" path="res://assets/noise_textures/pixelated_noise.png" id="4_21fgb"]
-[ext_resource type="Shader" uid="uid://cplccbp7l15ot" path="res://assets/shaders/fire_mesh_test.tres" id="6_pg544"]
+[ext_resource type="Shader" uid="uid://dwksql8j3g1pm" path="res://assets/shaders/fire_mesh_test.tres" id="6_pg544"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y2cm8"]
 size = Vector3(0.8, 0.8, 0.8)
-
-[sub_resource type="Animation" id="Animation_diuln"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("faces:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.97, 1, 0.97)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("faces:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_fntw1"]
 resource_name = "fade"
@@ -64,6 +37,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(-2, -2, -2),
 "update": 0,
 "values": [Vector3(0, -0.5, 0), Vector3(0, -0.2, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_diuln"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("faces:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.97, 1, 0.97)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("faces:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jt54j"]
@@ -96,7 +96,7 @@ shader_parameter/noise_tex = ExtResource("4_21fgb")
 [sub_resource type="BoxMesh" id="BoxMesh_8ll13"]
 material = ExtResource("3_vxjcb")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_eag0y"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p5mq6"]
 render_priority = 0
 shader = ExtResource("6_pg544")
 shader_parameter/is_blue = false
@@ -207,23 +207,23 @@ transform = Transform3D(0.97, 0, 0, 0, 1, 0, 0, 0, 0.97, 0, 0, 0)
 
 [node name="x1" type="MeshInstance3D" parent="faces"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
-material_override = SubResource("ShaderMaterial_eag0y")
+material_override = SubResource("ShaderMaterial_p5mq6")
 mesh = SubResource("PlaneMesh_0t6ec")
 
 [node name="x2" type="MeshInstance3D" parent="faces"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
-material_override = SubResource("ShaderMaterial_eag0y")
+material_override = SubResource("ShaderMaterial_p5mq6")
 mesh = SubResource("PlaneMesh_0t6ec")
 
 [node name="x3" type="MeshInstance3D" parent="faces"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
-material_override = SubResource("ShaderMaterial_eag0y")
+material_override = SubResource("ShaderMaterial_p5mq6")
 mesh = SubResource("PlaneMesh_kkd1s")
 skeleton = NodePath("../x2")
 
 [node name="x4" type="MeshInstance3D" parent="faces"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
-material_override = SubResource("ShaderMaterial_eag0y")
+material_override = SubResource("ShaderMaterial_p5mq6")
 mesh = SubResource("PlaneMesh_kkd1s")
 skeleton = NodePath("../x2")
 

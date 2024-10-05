@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://bqvseb30x52iy"]
+
+[ext_resource type="Script" path="res://game/main-menu/UI/level_selection_menu/level_selection_menu.gd" id="1_a43na"]
+[ext_resource type="PackedScene" uid="uid://cat16tsjuq6mn" path="res://assets/modules/button_move_left.tscn" id="1_g3hmv"]
+[ext_resource type="PackedScene" uid="uid://bekt23g3qtpbm" path="res://assets/modules/buttons/image_hover_node/ImageHoverNode.tscn" id="2_jy6dy"]
+[ext_resource type="PackedScene" uid="uid://dosr4gyclbxwq" path="res://assets/modules/button_move_right.tscn" id="2_m74g6"]
+[ext_resource type="Script" path="res://assets/modules/buttons/hover_node/hover_node.gd" id="2_wjkyg"]
+[ext_resource type="PackedScene" uid="uid://c4oghvu16k874" path="res://assets/modules/buttons/gesture_hold_node/GestureHoldNode.tscn" id="5_wbt2o"]
+
+[node name="LevelSelectionMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a43na")
+
+[node name="SelectionContainer" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="polaroidButton" parent="SelectionContainer" instance=ExtResource("2_jy6dy")]
+layout_mode = 1
+
+[node name="CycleLeft" parent="SelectionContainer" instance=ExtResource("1_g3hmv")]
+layout_mode = 1
+offset_right = 75.0
+script = ExtResource("2_wjkyg")
+button_name = "←"
+
+[node name="CycleRight" parent="SelectionContainer" instance=ExtResource("2_m74g6")]
+layout_mode = 1
+script = ExtResource("2_wjkyg")
+button_name = "→"
+
+[node name="GestureButton" type="HBoxContainer" parent="SelectionContainer"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="EvidenceButton" parent="SelectionContainer/GestureButton" instance=ExtResource("5_wbt2o")]
+layout_mode = 2
+button_name = "Evidence"
+
+[node name="ShopButton" parent="SelectionContainer/GestureButton" instance=ExtResource("5_wbt2o")]
+layout_mode = 2
+button_name = "Upgrade Shop"
+
+[node name="BackButton" parent="SelectionContainer/GestureButton" instance=ExtResource("5_wbt2o")]
+layout_mode = 2
+button_name = "Back"

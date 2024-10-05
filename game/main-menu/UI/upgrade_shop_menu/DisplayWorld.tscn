@@ -1,0 +1,96 @@
+[gd_scene load_steps=9 format=3 uid="uid://isybh11ch3gv"]
+
+[ext_resource type="PackedScene" uid="uid://bradyey5jbin0" path="res://assets/models/equipments/nozzle.tscn" id="1_t0c8m"]
+[ext_resource type="PackedScene" uid="uid://bohtjbfefqrws" path="res://assets/models/equipments/fire_axe.tscn" id="2_wgt7b"]
+[ext_resource type="PackedScene" uid="uid://dprsalqd77m3j" path="res://assets/models/equipments/fireextinguisher_idle.tscn" id="3_440w5"]
+[ext_resource type="PackedScene" uid="uid://coq3n0q577rcb" path="res://assets/models/equipments/armor.tscn" id="4_tq3lo"]
+
+[sub_resource type="Environment" id="Environment_qngqr"]
+ambient_light_source = 3
+tonemap_mode = 3
+
+[sub_resource type="Animation" id="Animation_luqf2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("container:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_oe7rm"]
+resource_name = "rotate"
+length = 4.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("container:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.14159, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jhkh1"]
+_data = {
+"RESET": SubResource("Animation_luqf2"),
+"rotate": SubResource("Animation_oe7rm")
+}
+
+[node name="SubViewport" type="SubViewport"]
+transparent_bg = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, -3.8, 0)
+cull_mask = 524288
+environment = SubResource("Environment_qngqr")
+projection = 1
+size = 1.5
+
+[node name="soft" type="OmniLight3D" parent="Camera3D"]
+layers = 524288
+light_energy = 2.836
+light_cull_mask = 4294443008
+omni_range = 2.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D"]
+transform = Transform3D(-1, -3.09086e-08, 7.462e-08, 3.09086e-08, 0.707107, 0.707107, -7.462e-08, 0.707107, -0.707107, 1.48619e-07, 2.4, -3.4)
+layers = 524288
+light_energy = 16.0
+light_cull_mask = 4294443008
+spot_angle = 30.6268
+
+[node name="container" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+
+[node name="nozzle" parent="container" instance=ExtResource("1_t0c8m")]
+transform = Transform3D(1, 0, 1.49012e-08, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, -0.2)
+
+[node name="fire_axe" parent="container" instance=ExtResource("2_wgt7b")]
+transform = Transform3D(-0.36922, -0.376284, -1.40431, 0, 1.44889, -0.388229, 1.45385, -0.0955612, -0.356639, 0.0969233, -0.2, 0.0246147)
+visible = false
+
+[node name="fireextinguisher_idle" parent="container" instance=ExtResource("3_440w5")]
+transform = Transform3D(0.4, 0, 0, 0, 0.341784, 0.207808, 0, -0.207808, 0.341784, 0, -0.2, 0.2)
+visible = false
+
+[node name="armor" parent="container" instance=ExtResource("4_tq3lo")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.3, 0)
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jhkh1")
+}
+autoplay = "rotate"

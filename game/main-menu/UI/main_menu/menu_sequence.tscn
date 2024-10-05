@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs34w4qadjtc4"]
+
+[ext_resource type="PackedScene" uid="uid://cptcbgyqa5kjl" path="res://game/main-menu/UI/main_menu.tscn" id="1_08rpg"]
+[ext_resource type="PackedScene" uid="uid://bqvseb30x52iy" path="res://game/main-menu/UI/level_selection_menu/level_selection_menu.tscn" id="2_gg6n8"]
+[ext_resource type="PackedScene" uid="uid://cwfmfir0i461p" path="res://game/main-menu/UI/upgrade_shop_menu/upgrade_shop_menu.tscn" id="3_pn2rt"]
+
+[node name="MenuSequence" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenu" parent="." instance=ExtResource("1_08rpg")]
+layout_mode = 1
+
+[node name="LevelSelectionMenu" parent="." instance=ExtResource("2_gg6n8")]
+layout_mode = 1
+
+[node name="UpgradeShopMenu" parent="." instance=ExtResource("3_pn2rt")]
+layout_mode = 1

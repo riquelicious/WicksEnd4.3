@@ -1,22 +1,22 @@
-class_name HoverButton
+class_name HoverButtona
 extends Control
 
 signal button_clicked
 
 @export var delay := 0.0
-@export var one_shot : bool = false
-@onready var anim : AnimationPlayer = $AnimationPlayer
-@export var disableable : bool = false
-var disabled : bool = false
-var prev_status : bool = false
-var label : Label
+@export var one_shot: bool = false
+@onready var anim: AnimationPlayer = $AnimationPlayer
+@export var disableable: bool = false
+var disabled: bool = false
+var prev_status: bool = false
+var label: Label
 #@onready var button_label : Label = $"button-label"
 
-var previous_animation : String = ''
-var is_button_clicked : bool = false
-var is_hover :bool = false
-var loop_animation_finished : bool = true
-var is_executed : bool = false
+var previous_animation: String = ''
+var is_button_clicked: bool = false
+var is_hover: bool = false
+var loop_animation_finished: bool = true
+var is_executed: bool = false
 var time := 0.0
 
 func _ready():
@@ -25,11 +25,11 @@ func _ready():
 	mouse_entered.connect(_mouse_entered)
 
 func check_status():
-	if prev_status == disabled : return
+	if prev_status == disabled: return
 	prev_status = disabled
 	if disableable:
 		if disabled:
-			label.modulate = Color(1.0,1.0,1.0,0.5)
+			label.modulate = Color(1.0, 1.0, 1.0, 0.5)
 		else:
 			label.modulate = Color.WHITE
 
@@ -41,7 +41,7 @@ func _fade_in():
 	anim.queue("light_button_up")
 	anim.queue("clicked")
 
-func _fade_out(): 
+func _fade_out():
 	if is_button_clicked:
 		return
 	if anim.is_playing():

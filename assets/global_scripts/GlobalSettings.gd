@@ -7,7 +7,7 @@ var audio_settings: AudioSettings
 var gesture_settings: GestureSettings
 var level_settings: LevelSettings
 var equipment_settings: EquipmentSettings
-var gameplay_settings : GameplaySettings
+var gameplay_settings: GameplaySettings
 
 func _ready():
 	fire_settings = preload("res://assets/global_scripts/FireSettings.gd").new()

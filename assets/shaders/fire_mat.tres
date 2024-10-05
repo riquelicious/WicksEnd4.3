@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b75scgjfgy45r"]
 
-[ext_resource type="Shader" uid="uid://cplccbp7l15ot" path="res://assets/shaders/fire_mesh_test.tres" id="1_0ymx6"]
+[ext_resource type="Shader" uid="uid://dwksql8j3g1pm" path="res://assets/shaders/fire_mesh_test.tres" id="1_0ymx6"]
 
 [resource]
 render_priority = 0

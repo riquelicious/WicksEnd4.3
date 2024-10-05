@@ -1,10 +1,10 @@
 class_name UpgradeShop
 extends Control
 
-var shop_button_texture : ShopButtonTextureManager = ShopButtonTextureManager.new()
-var shop_icon_manager : ShopIconManager = ShopIconManager.new()
-var shop_description_manager : ShopDescriptionManager = ShopDescriptionManager.new()  
-var shop_manager : ShopManager = ShopManager.new()  
+var shop_button_texture: ShopButtonTextureManager = ShopButtonTextureManager.new()
+var shop_icon_manager: ShopIconManager = ShopIconManager.new()
+var shop_description_manager: ShopDescriptionManager = ShopDescriptionManager.new()
+var shop_manager: ShopManager = ShopManager.new()
 
 signal button_activated
 
@@ -16,6 +16,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	shop_button_texture.move_background(delta)
-	shop_button_texture.detect_gesture() 
+	shop_button_texture.detect_gesture()
 	shop_description_manager.update_text()
 	shop_description_manager.update_points(delta)

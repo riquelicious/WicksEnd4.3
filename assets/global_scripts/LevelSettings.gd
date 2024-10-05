@@ -9,10 +9,10 @@ var level_timer_list: Array = [
 ]
 
 var unlocked_levels = {
-	"0" : true,
-	"1" : false,
-	"2" : false,
-	"3" : false
+	"0": true,
+	"1": false,
+	"2": false,
+	"3": false
 }
 
 var level_selection: int = 0

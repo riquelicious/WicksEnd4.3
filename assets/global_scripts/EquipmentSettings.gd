@@ -12,16 +12,16 @@ var equipments: Dictionary = {
 		"capacity": {
 			"increase": {
 				"base": 6.0,
-				"multiplier" : 0.1
+				"multiplier": 0.1
 			},
 			"decrease": {
-				"base" : 8.0,
-				"multiplier" : -0.05
+				"base": 8.0,
+				"multiplier": - 0.05
 			},
 		},
 		"damage": {
-			"base" : 12.0,
-			"multiplier" : 0.5
+			"base": 12.0,
+			"multiplier": 0.5
 		}
 	},
 	"axe": {
@@ -31,12 +31,12 @@ var equipments: Dictionary = {
 			"multiplier": 0.5
 		},
 		"damage": {
-			"base" : 40.0,
-			"multiplier" : 0.5
+			"base": 40.0,
+			"multiplier": 0.5
 		},
-		"swing" : {
-			"base" : 100.0,
-			"multiplier" : 0.1
+		"swing": {
+			"base": 100.0,
+			"multiplier": 0.1
 		}
 	},
 	
@@ -49,16 +49,16 @@ var equipments: Dictionary = {
 		"capacity": {
 			"increase": {
 				"base": 1.0,
-				"multiplier" : 0.1
+				"multiplier": 0.1
 			},
 			"decrease": {
-				"base" : 20.0,
-				"multiplier" : -0.05
+				"base": 20.0,
+				"multiplier": - 0.05
 			}
 		},
 		"damage": {
-			"base" : 10.0,
-			"multiplier" : 0.25
+			"base": 10.0,
+			"multiplier": 0.25
 		}
 	},
 
@@ -82,13 +82,13 @@ var equipments: Dictionary = {
 			"multiplier": 0.5
 		},
 		"defense": {
-			"base" : 7.0,
-			"multiplier" : 1.0
+			"base": 7.0,
+			"multiplier": 1.0
 		}
 	}
 }
 
-func calculate_stat(keys : Array) -> float:
+func calculate_stat(keys: Array) -> float:
 	var eq = equipments
 	var level = eq[keys[0]]["level"]
 	for key in keys:

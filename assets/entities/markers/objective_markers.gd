@@ -1,14 +1,14 @@
 class_name ObjectiveMarker
 extends Node
 
-var player : PlayerA 
-var marker_origin : Marker3D 
+var player: PlayerEntity
+var marker_origin: Marker3D
 var show_marker := false
-var parent : Node
+var parent: Node
 var objective_added = false
 var objective_marker_id
 
-func initialize(object_instance : Node3D, marker_origin_instance : Marker3D):
+func initialize(object_instance: Node3D, marker_origin_instance: Marker3D):
 	parent = object_instance
 	player = parent.get_node("%player")
 	marker_origin = marker_origin_instance

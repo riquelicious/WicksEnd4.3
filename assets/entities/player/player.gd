@@ -1,74 +1,46 @@
-class_name PlayerA
-extends CharacterBody3D
+class_name PlayerEntity
+extends PlayerAbstract
 
-@export var camera_sensitivity : float = 0.1
-@onready var default_cam_marker = $cam_marker
 @onready var damage_animation_player := $"Control/on-screen-ui/overlays/AnimationPlayer"
-@onready var viewport_size := get_viewport().get_visible_rect().size
-@onready var viewport := get_viewport()
-@onready var object_markers: Control = $"Control/equipment-overlay/ObjectMarkers"
 
-var camera_manager : CameraManager = CameraManager.new() 
-var equipment_manager : EquipmentManger = EquipmentManger.new()
-var movement_manager : MovementManager = MovementManager.new()
-var interaction_manager : InteractionManager = InteractionManager.new()
-var audio_manager : AudioManager = AudioManager.new()
-var pressurized_water : PressurizedWater = PressurizedWater.new()
-var extinguisher_manager : ExtinguisherManager = ExtinguisherManager.new() 
-var point_manager : PointManager = PointManager.new()
-var inventory_manager : InventoryManager = InventoryManager.new()
+var equipment_manager: EquipmentManger = EquipmentManger.new(self)
+#var pressurized_water: PressurizedWater = PressurizedWater.new(self)
+#var extinguisher_manager: ExtinguisherManager = ExtinguisherManager.new()
+var point_manager: PointManager = PointManager.new()
+var inventory_manager: InventoryManager = InventoryManager.new(self)
+var nozzleLiquid: NozzleLiquid = NozzleLiquid.new(self)
+var extinguisherLiquid: ExtinguisherLiquid = ExtinguisherLiquid.new(self)
 
-var is_aim_active : bool = false
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-var is_interacting := false
-var health = 100.0
-var water = 100.0
-var extinguisher = 100.0
-var dead := false
+# # #TODO: Change 
+# var health = 100.0
+# var water = 100.0
+# var extinguisher = 100.0
 
 func _ready():
-	camera_manager.initialize(self)
-	equipment_manager.initialize(self)
-	movement_manager.initialize(self)
-	interaction_manager.initialize(self)
-	audio_manager.initialize(self)
-	pressurized_water.initialize(self)
+	super._ready()
+	equipment_manager._ready()
+	#pressurized_water._ready()
 	point_manager.initialize(self)
-	extinguisher_manager.initialize(self)
-	inventory_manager.initialize(self)
-	BGM.change_bgm("res://assets/audio/BGM/HurryTFup.mp3")
-
+	#extinguisher_manager.initialize(self)
+	inventory_manager._ready()
+	nozzleLiquid._ready()
+	extinguisherLiquid._ready()
 
 func _input(event):
-	if event is InputEventMouseMotion:
-		camera_manager.target_rotation_y = -1 * (event.position.x - (viewport_size.x / 2)) * camera_sensitivity
-		camera_manager.target_rotation_x = -1 * (event.position.y - (viewport_size.y / 2)) * camera_sensitivity
+	camera_manager._input(event)
 
 func _physics_process(delta):
 	check_health()
 	interaction_manager.check_collision()
 	point_manager.update_points(delta)
-	pressurized_water.update_water_stream(delta)
-	extinguisher_manager.update_extinguisher(delta)
-	camera_manager.camera_shake(delta)
-	if is_interacting: return
-	inventory_manager.toggle_inventory(delta)
-	equipment_manager.update_sway(delta)
-	equipment_manager.update_bob(velocity.length(),delta)
-	if inventory_manager.is_inventory: 
-		inventory_manager.select_equipment()
-		return
-	camera_manager.update_aim(delta)
-	camera_manager.update_nozzle_aim(delta)
+	#pressurized_water.update_water_stream(delta)
+	#extinguisher_manager.update_extinguisher(delta)
+	camera_manager._physics_process(delta)
 	movement_manager.update_movement(delta)
+	nozzleLiquid._physics_process(delta)
+	extinguisherLiquid._physics_process(delta)
 
-func check_health():
-	if health <=0:
-		if not dead:
-			game_over()
-			dead = true
-			
-func game_over():
-	var go = $%game_over
-	if go:
-		go.game_over()
+func _process(delta):
+	super._process(delta)
+	equipment_manager._process(delta)
+	inventory_manager._process(delta)

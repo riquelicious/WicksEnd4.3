@@ -7,7 +7,7 @@ extends StaticBody3D
 var objective_added = false
 var health := 100
 var objective_marker_id
-var show_marker := false
+var show_marker := true
 
 func _ready():
 	self.add_to_group("breakable")
@@ -20,9 +20,9 @@ func do_damage(damage):
 func _add_objective_marker():
 	if player:
 		if !objective_added:
-			var object = player.get_node("Control/equipment-overlay/ObjectMarkers")
+			var object : GUI = player.get_node("Control")
 			if object:
-				objective_marker_id = object.add_3d_marker(self)
+				objective_marker_id = object.markerManager.add_3d_marker(self)
 				objective_added = true
 
 func _check_health():

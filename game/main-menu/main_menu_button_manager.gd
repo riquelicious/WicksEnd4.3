@@ -52,16 +52,16 @@ func connect_buttons():
 	continue_button.button_clicked.connect(continue_)
 	quit_button.button_clicked.connect(quit_)
 
-	evidence_button.button_activated.connect(evidence_)
+	#evidence_button.button_activated.connect(evidence_)
 	play_button.button_clicked.connect(play_)
 	left_button.button_clicked.connect(left_button_)
 	right_button.button_clicked.connect(right_button_)
-	upgrade_button.button_activated.connect(upgrade_)
-	back_button.button_activated.connect(back_)
+	#upgrade_button.button_activated.connect(upgrade_)
+	#back_button.button_activated.connect(back_)
 
 	back_button_shop.button_clicked.connect(back_shop_)
 
-	back_button_evidence.button_activated.connect(back_evidence_)
+	#back_button_evidence.button_activated.connect(back_evidence_)
 	parent.ending.scene_finished.connect(to_scene)
 
 func new_game_():

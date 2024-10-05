@@ -1,15 +1,15 @@
 class_name FireStateManager
 extends Node3D
 
-var fire : FireInstance
-var spawn_anim : AnimationPlayer
-var fire_illumination : OmniLight3D
-var top_ray : RayCast3D
-var player : PlayerA
-var prev_health : int = 100
-var points : int = 50
+var fire: FireInstance
+var spawn_anim: AnimationPlayer
+var fire_illumination: OmniLight3D
+var top_ray: RayCast3D
+var player: PlayerEntity
+var prev_health: int = 100
+var points: int = 50
 
-func initialize(fire_instance : FireInstance):
+func initialize(fire_instance: FireInstance):
 	fire = fire_instance
 	spawn_anim = fire.get_node("spawn_animation")
 	fire_illumination = fire.get_node("fire_light")
@@ -25,7 +25,7 @@ func update_starting_state() -> void:
 
 func regenerate_health() -> void:
 	if fire.health > 0:
-		fire.health = clamp(fire.health + 5, 0 , 100)
+		fire.health = clamp(fire.health + 5, 0, 100)
 
 func kindle_fire() -> void:
 	fire.health = 100
@@ -33,7 +33,7 @@ func kindle_fire() -> void:
 	fire.fire_spread_manager.update_timer.start()
 	fire.fire_spread_manager.update_bottom(true)
 	fire.fire_audio_manager.kindled_fire()
-	fire.set_collision_layer_value(12,true)
+	fire.set_collision_layer_value(12, true)
 	fire_illumination.visible = true
 
 func extinguish_fire() -> void:
@@ -43,7 +43,7 @@ func extinguish_fire() -> void:
 	spawn_anim.play_backwards("fade")
 	fire.fire_spread_manager.update_bottom(false)
 	fire.fire_audio_manager.extinguished_fire()
-	fire.set_collision_layer_value(12,false)
+	fire.set_collision_layer_value(12, false)
 	fire_illumination.visible = false
 	Global.level_settings.lvlPoints += points
 	points = 10
@@ -60,13 +60,14 @@ func damage_fire(amount):
 func fire_state_listener():
 	if prev_health != fire.health:
 		prev_health = fire.health
-		if fire.health <= 0: 
+		if fire.health <= 0:
 			fire.fire_texture_manager.update_position(false)
 			extinguish_fire()
 
 func check_fire_type() -> bool:
 	if fire.is_blue:
-		return (player.inventory_manager.current_index == 2)
+		return player.inventory_manager.current_equipment == player.inventory_manager.equipments.FIRE_EXTINGUISHER
+		#(player.inventory_manager.current_index == 2)
 	return true
 		
 func do_damage(amount):
@@ -77,4 +78,4 @@ func do_damage(amount):
 			if collider.health > 0:
 				collider.fire_state_manager.damage_fire(amount)
 				return
-	fire.health = clamp(fire.health - amount, 0 , 100)
+	fire.health = clamp(fire.health - amount, 0, 100)

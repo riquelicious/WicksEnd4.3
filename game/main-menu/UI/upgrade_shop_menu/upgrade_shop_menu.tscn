@@ -1,0 +1,432 @@
+[gd_scene load_steps=30 format=3 uid="uid://cwfmfir0i461p"]
+
+[ext_resource type="Script" path="res://game/main-menu/UI/upgrade_shop_menu/upgrade_shop_menu.gd" id="1_7lksn"]
+[ext_resource type="Texture2D" uid="uid://75m7lx62tblq" path="res://assets/images/ui/merit/merit.png" id="2_hkqji"]
+[ext_resource type="Shader" path="res://assets/shaders/invertv2.gdshader" id="2_l5liq"]
+[ext_resource type="FontFile" uid="uid://b5l6b7c8p8kpy" path="res://assets/fonts/OPTIMA.TTF" id="3_f6j53"]
+[ext_resource type="Texture2D" uid="uid://bxheuqsen08tg" path="res://assets/images/ui/gesture_icons/fist.png" id="5_btrpf"]
+[ext_resource type="FontFile" uid="uid://55nvttuxhy57" path="res://assets/fonts/NutgameDEMO-Bold.ttf" id="5_uso5h"]
+[ext_resource type="PackedScene" uid="uid://c08w0qdd41b7y" path="res://assets/modules/buttons/hover_node/HoverNode.tscn" id="6_uketf"]
+[ext_resource type="FontFile" uid="uid://be7tsy07e5604" path="res://assets/fonts/OPTIMA_B.TTF" id="6_vibid"]
+[ext_resource type="FontFile" uid="uid://cjo5pweamkk5f" path="res://assets/fonts/Optima Medium.ttf" id="9_067o2"]
+[ext_resource type="PackedScene" uid="uid://bx0bsnkp4abta" path="res://assets/modules/buttons/hover_node/Upgrade_Node.tscn" id="10_n6rm5"]
+[ext_resource type="PackedScene" uid="uid://bradyey5jbin0" path="res://assets/models/equipments/nozzle.tscn" id="12_7g3a3"]
+[ext_resource type="PackedScene" uid="uid://bohtjbfefqrws" path="res://assets/models/equipments/fire_axe.tscn" id="13_adjj0"]
+[ext_resource type="PackedScene" uid="uid://dprsalqd77m3j" path="res://assets/models/equipments/fireextinguisher_idle.tscn" id="14_sl17y"]
+[ext_resource type="PackedScene" uid="uid://coq3n0q577rcb" path="res://assets/models/equipments/armor.tscn" id="15_rhdih"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5jqh2"]
+font = ExtResource("3_f6j53")
+font_size = 32
+shadow_size = 0
+shadow_color = Color(0.0646965, 0.0646965, 0.0646965, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ult1k"]
+resource_local_to_scene = true
+shader = ExtResource("2_l5liq")
+shader_parameter/invert_amount = 0.0
+shader_parameter/black_threshold = 0.1
+shader_parameter/white_threshold = 0.5
+
+[sub_resource type="LabelSettings" id="LabelSettings_a78ej"]
+font = ExtResource("6_vibid")
+font_size = 32
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.372549)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x54q7"]
+resource_local_to_scene = true
+shader = ExtResource("2_l5liq")
+shader_parameter/invert_amount = 0.0
+shader_parameter/black_threshold = 0.1
+shader_parameter/white_threshold = 0.5
+
+[sub_resource type="LabelSettings" id="LabelSettings_etiyj"]
+font = ExtResource("6_vibid")
+font_size = 32
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.372549)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rdjmk"]
+resource_local_to_scene = true
+shader = ExtResource("2_l5liq")
+shader_parameter/invert_amount = 0.0
+shader_parameter/black_threshold = 0.1
+shader_parameter/white_threshold = 0.5
+
+[sub_resource type="LabelSettings" id="LabelSettings_pidwv"]
+font = ExtResource("6_vibid")
+font_size = 32
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.372549)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c26ri"]
+resource_local_to_scene = true
+shader = ExtResource("2_l5liq")
+shader_parameter/invert_amount = 0.0
+shader_parameter/black_threshold = 0.1
+shader_parameter/white_threshold = 0.5
+
+[sub_resource type="LabelSettings" id="LabelSettings_j0scm"]
+font = ExtResource("6_vibid")
+font_size = 32
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.372549)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_nqrcy"]
+viewport_path = NodePath("ColumnContainer/shopDisplays/ItemInfo/HBoxContainer/DisplayWorld")
+
+[sub_resource type="Environment" id="Environment_qngqr"]
+ambient_light_source = 3
+tonemap_mode = 3
+
+[sub_resource type="Animation" id="Animation_luqf2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("container:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_oe7rm"]
+resource_name = "rotate"
+length = 4.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("container:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.14159, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jhkh1"]
+_data = {
+"RESET": SubResource("Animation_luqf2"),
+"rotate": SubResource("Animation_oe7rm")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kik73"]
+bg_color = Color(0.14902, 0.14902, 0.14902, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 10
+border_width_bottom = 2
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="UpgradeShopMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7lksn")
+
+[node name="ColumnContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="shopControls" type="MarginContainer" parent="ColumnContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="controlContainers" type="VBoxContainer" parent="ColumnContainer/shopControls"]
+layout_mode = 2
+theme_override_constants/separation = 120
+alignment = 1
+
+[node name="PointLabel" type="HBoxContainer" parent="ColumnContainer/shopControls/controlContainers"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="ColumnContainer/shopControls/controlContainers/PointLabel"]
+layout_mode = 2
+texture = ExtResource("2_hkqji")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="ColumnContainer/shopControls/controlContainers/PointLabel"]
+layout_mode = 2
+text = "100"
+label_settings = SubResource("LabelSettings_5jqh2")
+
+[node name="controlButtons" type="VBoxContainer" parent="ColumnContainer/shopControls/controlContainers"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="button1" type="HBoxContainer" parent="ColumnContainer/shopControls/controlContainers/controlButtons"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+metadata/_edit_group_ = true
+
+[node name="buttonIcon" type="TextureRect" parent="ColumnContainer/shopControls/controlContainers/controlButtons/button1"]
+material = SubResource("ShaderMaterial_ult1k")
+layout_mode = 2
+texture = ExtResource("5_btrpf")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="ColumnContainer/shopControls/controlContainers/controlButtons/button1"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_uso5h")
+theme_override_font_sizes/font_size = 35
+text = "Fire Nozle"
+label_settings = SubResource("LabelSettings_a78ej")
+
+[node name="button2" type="HBoxContainer" parent="ColumnContainer/shopControls/controlContainers/controlButtons"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+metadata/_edit_group_ = true
+
+[node name="buttonIcon" type="TextureRect" parent="ColumnContainer/shopControls/controlContainers/controlButtons/button2"]
+material = SubResource("ShaderMaterial_x54q7")
+layout_mode = 2
+texture = ExtResource("5_btrpf")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="ColumnContainer/shopControls/controlContainers/controlButtons/button2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_uso5h")
+theme_override_font_sizes/font_size = 35
+text = "Fire Axe"
+label_settings = SubResource("LabelSettings_etiyj")
+
+[node name="button3" type="HBoxContainer" parent="ColumnContainer/shopControls/controlContainers/controlButtons"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+metadata/_edit_group_ = true
+
+[node name="buttonIcon" type="TextureRect" parent="ColumnContainer/shopControls/controlContainers/controlButtons/button3"]
+material = SubResource("ShaderMaterial_rdjmk")
+layout_mode = 2
+texture = ExtResource("5_btrpf")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="ColumnContainer/shopControls/controlContainers/controlButtons/button3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_uso5h")
+theme_override_font_sizes/font_size = 35
+text = "Fire Extinguisher"
+label_settings = SubResource("LabelSettings_pidwv")
+
+[node name="button4" type="HBoxContainer" parent="ColumnContainer/shopControls/controlContainers/controlButtons"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+metadata/_edit_group_ = true
+
+[node name="buttonIcon" type="TextureRect" parent="ColumnContainer/shopControls/controlContainers/controlButtons/button4"]
+material = SubResource("ShaderMaterial_c26ri")
+layout_mode = 2
+texture = ExtResource("5_btrpf")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="ColumnContainer/shopControls/controlContainers/controlButtons/button4"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_uso5h")
+theme_override_font_sizes/font_size = 35
+text = "Fire Gear"
+label_settings = SubResource("LabelSettings_j0scm")
+
+[node name="BackContainer" type="Control" parent="ColumnContainer/shopControls/controlContainers"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Button" parent="ColumnContainer/shopControls/controlContainers/BackContainer" instance=ExtResource("6_uketf")]
+button_name = "Back"
+
+[node name="shopDisplays" type="MarginContainer" parent="ColumnContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ItemInfo" type="VBoxContainer" parent="ColumnContainer/shopDisplays"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColumnContainer/shopDisplays/ItemInfo"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="ColumnContainer/shopDisplays/ItemInfo/HBoxContainer"]
+custom_minimum_size = Vector2(350, 350)
+layout_mode = 2
+metadata/_edit_group_ = true
+
+[node name="Display" type="TextureRect" parent="ColumnContainer/shopDisplays/ItemInfo/HBoxContainer/Control"]
+custom_minimum_size = Vector2(350, 350)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -175.0
+offset_right = 175.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(175, 175)
+texture = SubResource("ViewportTexture_nqrcy")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColumnContainer/shopDisplays/ItemInfo/HBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 95.0
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("9_067o2")
+theme_override_fonts/bold_font = ExtResource("6_vibid")
+theme_override_font_sizes/bold_font_size = 40
+bbcode_enabled = true
+text = "[b] LVL [color=orange]5[/color] [/b]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="upgrade_button" type="VBoxContainer" parent="ColumnContainer/shopDisplays/ItemInfo/HBoxContainer"]
+layout_mode = 2
+
+[node name="upgrade" type="Control" parent="ColumnContainer/shopDisplays/ItemInfo/HBoxContainer/upgrade_button"]
+custom_minimum_size = Vector2(175, 175)
+layout_mode = 2
+mouse_filter = 1
+metadata/_edit_group_ = true
+
+[node name="CenterContainer" type="CenterContainer" parent="ColumnContainer/shopDisplays/ItemInfo/HBoxContainer/upgrade_button/upgrade"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" parent="ColumnContainer/shopDisplays/ItemInfo/HBoxContainer/upgrade_button/upgrade/CenterContainer" instance=ExtResource("10_n6rm5")]
+layout_mode = 2
+
+[node name="down_grade" type="Control" parent="ColumnContainer/shopDisplays/ItemInfo/HBoxContainer/upgrade_button"]
+custom_minimum_size = Vector2(175, 175)
+layout_mode = 2
+mouse_filter = 1
+metadata/_edit_group_ = true
+
+[node name="CenterContainer" type="CenterContainer" parent="ColumnContainer/shopDisplays/ItemInfo/HBoxContainer/upgrade_button/down_grade"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.14159
+pivot_offset = Vector2(87.5, 87.5)
+
+[node name="Button" parent="ColumnContainer/shopDisplays/ItemInfo/HBoxContainer/upgrade_button/down_grade/CenterContainer" instance=ExtResource("10_n6rm5")]
+layout_mode = 2
+
+[node name="DisplayWorld" type="SubViewport" parent="ColumnContainer/shopDisplays/ItemInfo/HBoxContainer"]
+transparent_bg = true
+
+[node name="Camera3D" type="Camera3D" parent="ColumnContainer/shopDisplays/ItemInfo/HBoxContainer/DisplayWorld"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, -3.8, 0)
+cull_mask = 524288
+environment = SubResource("Environment_qngqr")
+projection = 1
+size = 1.5
+
+[node name="soft" type="OmniLight3D" parent="ColumnContainer/shopDisplays/ItemInfo/HBoxContainer/DisplayWorld/Camera3D"]
+layers = 524288
+light_energy = 2.836
+light_cull_mask = 4294443008
+omni_range = 2.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="ColumnContainer/shopDisplays/ItemInfo/HBoxContainer/DisplayWorld/Camera3D"]
+transform = Transform3D(-1, -3.09086e-08, 7.462e-08, 3.09086e-08, 0.707107, 0.707107, -7.462e-08, 0.707107, -0.707107, 1.48619e-07, 2.4, -3.4)
+layers = 524288
+light_energy = 16.0
+light_cull_mask = 4294443008
+spot_angle = 30.6268
+
+[node name="container" type="Node3D" parent="ColumnContainer/shopDisplays/ItemInfo/HBoxContainer/DisplayWorld"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+
+[node name="nozzle" parent="ColumnContainer/shopDisplays/ItemInfo/HBoxContainer/DisplayWorld/container" instance=ExtResource("12_7g3a3")]
+transform = Transform3D(1, 0, 1.49012e-08, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, -0.2)
+
+[node name="fire_axe" parent="ColumnContainer/shopDisplays/ItemInfo/HBoxContainer/DisplayWorld/container" instance=ExtResource("13_adjj0")]
+transform = Transform3D(-0.36922, -0.376284, -1.40431, 0, 1.44889, -0.388229, 1.45385, -0.0955612, -0.356639, 0.0969233, -0.2, 0.0246147)
+visible = false
+
+[node name="fireextinguisher_idle" parent="ColumnContainer/shopDisplays/ItemInfo/HBoxContainer/DisplayWorld/container" instance=ExtResource("14_sl17y")]
+transform = Transform3D(0.4, 0, 0, 0, 0.341784, 0.207808, 0, -0.207808, 0.341784, 0, -0.2, 0.2)
+visible = false
+
+[node name="armor" parent="ColumnContainer/shopDisplays/ItemInfo/HBoxContainer/DisplayWorld/container" instance=ExtResource("15_rhdih")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.3, 0)
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColumnContainer/shopDisplays/ItemInfo/HBoxContainer/DisplayWorld"]
+libraries = {
+"": SubResource("AnimationLibrary_jhkh1")
+}
+autoplay = "rotate"
+
+[node name="MessageBox" type="Panel" parent="ColumnContainer/shopDisplays/ItemInfo"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_kik73")
+metadata/_edit_group_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="Description" type="RichTextLabel" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer"]
+layout_mode = 2
+bbcode_enabled = true

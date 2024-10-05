@@ -2,15 +2,15 @@ class_name PressurizedWaterMesh
 extends Node3D
 
 static var water_mesh := preload("res://assets/models/equipments/Water/water.tscn")
-var pressurized_water : PressurizedWater
+var pressurized_water: PressurizedWater
 
-func initialize(pressurized_water_instance : PressurizedWater):
+func initialize(pressurized_water_instance: PressurizedWater):
 	pressurized_water = pressurized_water_instance
 
 
 func draw_cube(start, end, thickness, height, index) -> void:
-	var mesh : MeshInstance3D = water_mesh.instantiate()
-	var custom_scale = Vector3(thickness,height,(end - start).length())
+	var mesh: MeshInstance3D = water_mesh.instantiate()
+	var custom_scale = Vector3(thickness, height, (end - start).length())
 	mesh.scale = custom_scale
 	var mid_point = (start + end) / 2
 	mesh.transform.origin = mid_point
@@ -36,4 +36,3 @@ func kill_other_mesh(index) -> void:
 		for i in range(index + 1, child_count):
 			var child = pressurized_water.mesh_container.get_child(i)
 			child.queue_free()
-	

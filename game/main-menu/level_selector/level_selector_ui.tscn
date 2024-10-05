@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://deuc616mep0xa"]
+[gd_scene load_steps=32 format=3 uid="uid://deuc616mep0xa"]
 
 [ext_resource type="Theme" uid="uid://xiy1beq5fkuh" path="res://assets/theme/Global.tres" id="1_6llpi"]
 [ext_resource type="Script" path="res://game/main-menu/level_selector/level_selector_ui.gd" id="1_e2vw8"]
@@ -11,16 +11,15 @@
 [ext_resource type="FontFile" uid="uid://55nvttuxhy57" path="res://assets/fonts/NutgameDEMO-Bold.ttf" id="5_lrt4s"]
 [ext_resource type="Script" path="res://game/main-menu/level_selector/level_selector_buttons/move_right.gd" id="6_flpec"]
 [ext_resource type="Texture2D" uid="uid://nec87xxt23ai" path="res://assets/images/ui/level_selector/play.png" id="6_jbjx1"]
-[ext_resource type="Script" path="res://assets/modules/gesture_button/gesture-button.gd" id="7_jhdbm"]
 [ext_resource type="Shader" path="res://assets/shaders/invertv2.gdshader" id="8_hgxv0"]
 [ext_resource type="Texture2D" uid="uid://b6ov7hlgts3vh" path="res://assets/gestures/thumbsup.png" id="9_dwm8c"]
 [ext_resource type="FontFile" uid="uid://be7tsy07e5604" path="res://assets/fonts/OPTIMA_B.TTF" id="10_81v0g"]
 
-[sub_resource type="Gradient" id="Gradient_jc5k0"]
+[sub_resource type="Gradient" id="Gradient_yfo1b"]
 colors = PackedColorArray(0, 0, 0, 0.392157, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_tv025"]
-gradient = SubResource("Gradient_jc5k0")
+gradient = SubResource("Gradient_yfo1b")
 fill_from = Vector2(1, 1)
 
 [sub_resource type="Animation" id="Animation_mwfn0"]
@@ -329,6 +328,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_tlfve"]
 resource_name = "fade"
 length = 1.3
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -405,6 +405,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.7125, 0.74375, 0.75, 1)
 script = ExtResource("3_bc56j")
+delay = null
 one_shot = true
 disableable = true
 
@@ -536,12 +537,10 @@ text = "		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egesta
 layout_mode = 1
 offset_right = 75.0
 script = ExtResource("4_an5ky")
-delay = 2.5
 
 [node name="move-right" parent="ui" instance=ExtResource("3_enhoi")]
 layout_mode = 1
 script = ExtResource("6_flpec")
-delay = 2.5
 
 [node name="Gesture Buttons" type="HBoxContainer" parent="ui"]
 layout_mode = 1
@@ -557,7 +556,6 @@ alignment = 1
 clip_contents = true
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
-script = ExtResource("7_jhdbm")
 
 [node name="background" type="Control" parent="ui/Gesture Buttons/Evidence"]
 layout_mode = 1
@@ -638,7 +636,6 @@ libraries = {
 clip_contents = true
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
-script = ExtResource("7_jhdbm")
 
 [node name="background" type="Control" parent="ui/Gesture Buttons/Upgrade"]
 layout_mode = 1
@@ -720,7 +717,6 @@ libraries = {
 clip_contents = true
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
-script = ExtResource("7_jhdbm")
 
 [node name="background" type="Control" parent="ui/Gesture Buttons/Back"]
 layout_mode = 1
@@ -770,6 +766,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1, 1e-05)
 pivot_offset = Vector2(0, 50)
+color = Color(1, 0.705882, 0, 1)
 
 [node name="CenterContainer" type="CenterContainer" parent="ui/Gesture Buttons/Back"]
 layout_mode = 2

@@ -4,7 +4,7 @@ extends Control
 @onready var command_container := $CenterContainer/gesture_command_container
 @onready var combo_countdown := $combo_countdown
 @onready var countdown_bar = $countdown_bar
-@onready var combo_node_path : String = FilePaths.combo_node_path
+@onready var combo_node_path: String = FilePaths.combo_node_path
 @onready var color_rect: ColorRect = $ColorRect
 
 var command_list := []
@@ -17,15 +17,15 @@ var combo_achieved = false
 var combo_inistialied := false
 func _ready():
 	color_rect.visible = false
-	combo_countdown.connect("timeout",self._command_failed)
+	combo_countdown.connect("timeout", self._command_failed)
 	#command_list = _generate_combo(5)
 
 signal finished_win
-signal finished_lose	
+signal finished_lose
 
 func generate_combo(combo_amount):
 	var command_array := []
-	var previous_index : int = 0
+	var previous_index: int = 0
 	combo_countdown_duration = combo_amount * min_percommand_duration
 	countdown_bar.max_value = combo_countdown_duration
 	while combo_amount > 0:
@@ -41,10 +41,10 @@ func generate_combo(combo_amount):
 	return command_array
 
 func _add_combo_node(image_index):
-	var node : Resource = load(combo_node_path)
-	var node_instance : TextureRect = node.instantiate()
+	var node: Resource = load(combo_node_path)
+	var node_instance: TextureRect = node.instantiate()
 	node_instance.expand = cn_is_expandable
-	node_instance.custom_minimum_size = Vector2(cn_min_size,cn_min_size)
+	node_instance.custom_minimum_size = Vector2(cn_min_size, cn_min_size)
 	node_instance.texture = FilePaths.gesture_icons[image_index]
 	command_container.add_child(node_instance)
 
@@ -64,7 +64,7 @@ func _command_succeed():
 	print("congrats")
 	emit_signal("finished_win")
 
-func _command_failed():	
+func _command_failed():
 	print("failed")
 	emit_signal("finished_lose")
 	color_rect.visible = true

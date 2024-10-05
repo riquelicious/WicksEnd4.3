@@ -1,33 +1,37 @@
-class_name GestureButtonAnimationManager
+class_name GestureHoldAnimation
 extends Node
 
 var is_button_clicked
-var parent : Node
-var button_anim : AnimationPlayer
-var current_anim : String
+var parent: GestureHoldButton
+var buttonAnimationPlayer: AnimationPlayer
+var current_anim: String
 
-func initialize(parent_instance : Node):
-	parent = parent_instance
-	button_anim = parent.get_node("AnimationPlayer")
-	button_anim.animation_changed.connect(current_animation.bind())
-	button_anim.animation_finished.connect(finished_animation.bind())
+func _init(parent_instance: GestureHoldButton):
+	self.parent = parent_instance
+
+func _ready() -> void:
+	buttonAnimationPlayer = parent.buttonNode.get_node_or_null("AnimationPlayer")
+	assert(buttonAnimationPlayer != null)
+	buttonAnimationPlayer.animation_changed.connect(current_animation.bind())
+	buttonAnimationPlayer.animation_finished.connect(finished_animation.bind())
 
 func fade_in():
-	if button_anim.is_playing(): return
-	button_anim.clear_queue()
-	button_anim.queue("fade_background")
-	button_anim.queue("light_button_up")
-	button_anim.queue("clicked")
+	if buttonAnimationPlayer.is_playing(): return
+	buttonAnimationPlayer.clear_queue()
+	buttonAnimationPlayer.queue("fade_background")
+	buttonAnimationPlayer.queue("light_button_up")
+	buttonAnimationPlayer.queue("clicked")
 
 func fade_out():
-	button_anim.clear_queue()
-	button_anim.play_backwards("fade_background")
+	buttonAnimationPlayer.clear_queue()
+	buttonAnimationPlayer.play_backwards("fade_background")
 
 func finished_animation(anim_name):
 	if anim_name == "clicked":
 		await fade_out()
-		parent.emit_signal("button_activated")
+		parent.callback.call()
+		#parent.emit_signal("button_activated")
 
 
-func current_animation(_previous_anim,cur_anim):
+func current_animation(_previous_anim, cur_anim):
 	self.current_anim = cur_anim

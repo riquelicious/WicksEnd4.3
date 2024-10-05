@@ -1,28 +1,28 @@
-class_name ExtinguisherManager 
+class_name ExtinguisherManager
 extends Node
 
-var parent : Node
-var camera : Camera3D
-var extinguisher_particle : CPUParticles3D
-var ray : RayCast3D
-var extinguisher_tip : Marker3D
+var parent: Node
+var camera: Camera3D
+var extinguisher_particle: CPUParticles3D
+var ray: RayCast3D
+var extinguisher_tip: Marker3D
 
-var damage : float
+var damage: float
 
-var update_speed : float = 0.3
-var time : float = 0.0
+var update_speed: float = 0.3
+var time: float = 0.0
 var toggle_extinguisher := false
 var ext_available := true
-var gauge : Gauge = Gauge.new()
+var gauge: Gauge = Gauge.new()
 
-func initialize(parent_instance : Node):
+func initialize(parent_instance: Node):
 	parent = parent_instance
 	ray = parent.get_node("player-camera/extinguisher_raycast")
 	extinguisher_particle = parent.get_node("extinguisher_particle")
 	camera = parent.get_node("player-camera")
 	gauge.initialize(self)
 	extinguisher_tip = camera.get_node("nozzle_end_point")
-	damage = Global.equipment_settings.calculate_stat(["extinguisher","damage"])
+	damage = Global.equipment_settings.calculate_stat(["extinguisher", "damage"])
 
 func update_extinguisher(delta):
 	gauge.update_water_gauge(delta)
@@ -50,28 +50,28 @@ func update_particle_position():
 	extinguisher_particle.transform.basis.z = camera.transform.basis.z
 
 
-
-
 class Gauge:
 	var parent
 	var active := false
 	var timer := 0.0
 	const update_delay := 2.0
-	var ext_depletion : float
-	var ext_replenish : float
+	var ext_depletion: float
+	var ext_replenish: float
 
 	func initialize(parent_instance):
 		parent = parent_instance
-		ext_depletion = Global.equipment_settings.calculate_stat(["extinguisher","capacity","decrease"])
-		ext_replenish = Global.equipment_settings.calculate_stat(["extinguisher","capacity","increase"])
+		ext_depletion = Global.equipment_settings.calculate_stat(["extinguisher", "capacity", "decrease"])
+		ext_replenish = Global.equipment_settings.calculate_stat(["extinguisher", "capacity", "increase"])
 
 
 	func update_water_gauge(delta):
 		update_water_status(delta)
 		if active:
-			parent.parent.extinguisher = clamp(parent.parent.extinguisher - (ext_depletion * delta), 0, 100)
+			pass
+			#parent.parent.extinguisher = clamp(parent.parent.extinguisher - (ext_depletion * delta), 0, 100)
 		else:
-			parent.parent.extinguisher =  clamp(parent.parent.extinguisher + (ext_replenish * delta), 0, 100)
+			pass
+			#parent.parent.extinguisher =  clamp(parent.parent.extinguisher + (ext_replenish * delta), 0, 100)
 
 	func update_water_status(delta):
 		if not parent.toggle_extinguisher: return

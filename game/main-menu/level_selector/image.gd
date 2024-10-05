@@ -3,20 +3,20 @@ extends Control
 signal button_clicked
 
 @export var delay := 0.0
-@export var one_shot : bool = false
-@onready var anim : AnimationPlayer = $AnimationPlayer
-@export var disableable : bool = false
+@export var one_shot: bool = false
+@onready var anim: AnimationPlayer = $AnimationPlayer
+@export var disableable: bool = false
 @onready var polaroid: TextureRect = $polaroid
 
-var disabled : bool = false
-var prev_status : bool = false
-var label : Label
+var disabled: bool = false
+var prev_status: bool = false
+var label: Label
 
-var previous_animation : String = ''
-var is_button_clicked : bool = false
-var is_hover :bool = false
-var loop_animation_finished : bool = true
-var is_executed : bool = false
+var previous_animation: String = ''
+var is_button_clicked: bool = false
+var is_hover: bool = false
+var loop_animation_finished: bool = true
+var is_executed: bool = false
 var time := 0.0
 @onready var icon_rect = $"play_rect"
 var lock_tex := preload("res://assets/images/ui/level_selector/lock.png")
@@ -50,7 +50,7 @@ func _fade_in():
 	anim.queue("light_button_up")
 	anim.queue("clicked")
 
-func _fade_out(): 
+func _fade_out():
 	if is_button_clicked:
 		return
 	if anim.is_playing():

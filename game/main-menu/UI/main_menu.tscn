@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://cptcbgyqa5kjl"]
+
+[ext_resource type="Shader" path="res://assets/shaders/font_gradient.gdshader" id="1_eq8qw"]
+[ext_resource type="Script" path="res://game/main-menu/UI/main_menu/main_menu_ui.gd" id="1_ml06b"]
+[ext_resource type="Theme" uid="uid://xiy1beq5fkuh" path="res://assets/theme/Global.tres" id="2_fvrlj"]
+[ext_resource type="FontFile" uid="uid://dgobsdr8j1kjn" path="res://assets/fonts/NutgameDEMO-BoldItalic.ttf" id="3_n6tnk"]
+[ext_resource type="PackedScene" uid="uid://c08w0qdd41b7y" path="res://assets/modules/buttons/hover_node/HoverNode.tscn" id="5_r7ufy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0bjis"]
+shader = ExtResource("1_eq8qw")
+shader_parameter/first_color = Color(1, 1, 1, 1)
+shader_parameter/second_color = Color(1, 1, 1, 1)
+shader_parameter/position = 0.137
+shader_parameter/size = 0.562
+shader_parameter/text_size = Vector2(524, 134)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ml06b")
+
+[node name="GameTitle" type="Label" parent="."]
+material = SubResource("ShaderMaterial_0bjis")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -585.0
+offset_top = 50.0
+offset_right = -100.0
+offset_bottom = 184.0
+grow_horizontal = 0
+theme = ExtResource("2_fvrlj")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_n6tnk")
+theme_override_font_sizes/font_size = 100
+text = "Wick's End"
+
+[node name="MainButtonContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.95
+anchor_right = 0.05
+anchor_bottom = 0.95
+offset_left = -36.2
+offset_top = -158.0
+offset_right = 213.8
+grow_vertical = 0
+
+[node name="NewGameButton" parent="MainButtonContainer" instance=ExtResource("5_r7ufy")]
+layout_mode = 2
+button_name = "New Game"
+
+[node name="ContinueButton" parent="MainButtonContainer" instance=ExtResource("5_r7ufy")]
+layout_mode = 2
+button_name = "Continue"
+
+[node name="QuitButton" parent="MainButtonContainer" instance=ExtResource("5_r7ufy")]
+layout_mode = 2
+button_name = "Quit"

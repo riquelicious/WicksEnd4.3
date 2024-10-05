@@ -1,19 +1,22 @@
 class_name AudioManager
 extends Node
 
-var player : PlayerA
-var foot_audio : AudioStreamPlayer3D
-var rubble_audio : AudioStreamPlayer3D
-var water_audio : AudioStreamPlayer3D
+var player: PlayerEntity
+var foot_audio: AudioStreamPlayer3D
+var rubble_audio: AudioStreamPlayer3D
+var water_audio: AudioStreamPlayer3D
 var previous_bob_position
 var stepped := false
 
-func initialize(player_instance: PlayerA):
-	player = player_instance
+func _init(player_instance: PlayerEntity):
+	self.player = player_instance
+
+func _ready():
 	foot_audio = player.get_node("sounds/foot")
 	rubble_audio = player.get_node("sounds/rubbles")
-	water_audio = player.get_node("sounds/pressurized_water")
-	water_audio.finished.connect(loop_audio.bind(water_audio))
+	#water_audio = player.get_node("sounds/pressurized_water")
+	#water_audio.finished.connect(loop_audio.bind(water_audio))
+	BGM.change_bgm("res://assets/audio/BGM/HurryTFup.mp3")
 	#water_audio.volume_db = linear_to_db(Global.audio_settings.default_water_linear_volume)
 
 func play_footstep_sound():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://js0y1ym1045y"]
+[gd_scene load_steps=32 format=3 uid="uid://js0y1ym1045y"]
 
 [ext_resource type="Script" path="res://game/levels/level1/level-1.gd" id="1_amc4j"]
 [ext_resource type="PackedScene" uid="uid://q1yxpssljlq1" path="res://assets/entities/player/player.tscn" id="1_yf7aq"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://assets/entities/interactables/evidencesystem.gd" id="13_32unq"]
 [ext_resource type="Script" path="res://assets/modules/fire_system/fire_system.gd" id="15_8v846"]
 [ext_resource type="Script" path="res://assets/entities/interactables/civilian_module/civilian_system.gd" id="16_mekid"]
+[ext_resource type="PackedScene" uid="uid://dnyimkhtaym3k" path="res://assets/models/levels/dmodel2.gltf" id="21_t3220"]
 [ext_resource type="PackedScene" uid="uid://cx3ts0cog3g8j" path="res://assets/models/apartment/apartment.tscn" id="36_2u6q2"]
 [ext_resource type="ArrayOccluder3D" uid="uid://cbktuktflys47" path="res://game/levels/level1/level-1.occ" id="53_stn8m"]
 
@@ -293,6 +294,7 @@ disabled = true
 
 [node name="apartment" parent="World" instance=ExtResource("36_2u6q2")]
 transform = Transform3D(1.033, 0, 0, 0, 1.033, 0, 0, 0, 1.033, 26.799, 0.03, 6.342)
+visible = false
 
 [node name="smokes2" type="CPUParticles3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.8826, 1, 2)
@@ -311,7 +313,7 @@ color_ramp = SubResource("Gradient_js6bg")
 
 [node name="player" parent="." instance=ExtResource("1_yf7aq")]
 unique_name_in_owner = true
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 17.522, 1.47449, -3.41865)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.328246, 0.507877, -58.3091)
 floor_max_angle = 1.39626
 
 [node name="civilian_system" type="Node" parent="."]
@@ -520,6 +522,9 @@ collision_layer = 515
 
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
 occluder = ExtResource("53_stn8m")
+
+[node name="blockbench_export" parent="." instance=ExtResource("21_t3220")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50.335)
 
 [connection signal="animation_finished" from="help/AnimationPlayer" to="help" method="_on_animation_player_animation_finished"]
 

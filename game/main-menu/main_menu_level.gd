@@ -1,8 +1,8 @@
 extends Node3D
 
-var anim_manager : MenuAnimationManager = MenuAnimationManager.new()
-var button_manager : MenuButtonManager = MenuButtonManager.new()
-var camera_manager : MenuCameraManager = MenuCameraManager.new()
+var anim_manager: MenuAnimationManager = MenuAnimationManager.new()
+var button_manager: MenuButtonManager = MenuButtonManager.new()
+var camera_manager: MenuCameraManager = MenuCameraManager.new()
 
 @onready var ending = $"UI/ending_scene/SceneManager"
  

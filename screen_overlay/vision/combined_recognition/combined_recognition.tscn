@@ -16,6 +16,7 @@ script = ExtResource("1_7we14")
 lbl_handedness = NodePath("CanvasLayer/Label")
 image_view = NodePath("CanvasLayer/stream_frame")
 permission_dialog = NodePath("CanvasLayer/camera_permission")
+vision_task = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 50

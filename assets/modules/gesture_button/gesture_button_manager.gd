@@ -1,14 +1,15 @@
 class_name GestureButtonManager
 extends Node
 
-var parent : Node
+var parent: Node
 var previous_gesture
 var fetched_gesture
-var gesture_cooldown : float = 0.0
-var gesture_delay : float = 0.3
-var gesture_icon : TextureRect
+var gesture_cooldown: float = 0.0
+var gesture_delay: float = 0.3
+var gesture_icon: TextureRect
 
-func initialize(parent_instance : Node):
+
+func initialize(parent_instance: Node):
 	parent = parent_instance
 	gesture_icon = parent.find_child("button_gesture_icon")
 	fetch_gesture()
@@ -19,15 +20,15 @@ func fetch_gesture() -> void:
 		fetched_gesture = parent.button_gesture
 	elif parent.button_fallback_gesture != 0:
 		fetched_gesture = Global.gesture_settings.gesture_list[parent.button_fallback_gesture]
-	
+
+
 func check_gesture(delta):
-	var gesture = Global.gesture_settings.gesture
-	if gesture == Global.gesture_settings.gesture_list[0]:
+	if Global.gesture_settings.is_gesture_matching(0):
 		gesture_cooldown += delta
 		if gesture_cooldown != gesture_delay:
 			return
 	gesture_cooldown = 0.0
-	previous_gesture = gesture
+	previous_gesture = Global.gesture_settings.current_gesture
 	return previous_gesture
 
 func update_button_state(delta):
@@ -43,5 +44,3 @@ func update_button_state(delta):
 func change_gesture_image():
 	var gesture_index = Global.gesture_settings.gesture_list.find(fetched_gesture)
 	gesture_icon.texture = FilePaths.gesture_icons[gesture_index]
-
-		

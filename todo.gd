@@ -1,4 +1,3 @@
-
 #TODO
 
 # * dialogues
@@ -13,3 +12,8 @@
 # * pause?
 # * locking of equipments
 # * reset when quit
+
+# * change game_over
+
+
+# * fix gesture buttons

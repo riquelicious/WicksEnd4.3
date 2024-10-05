@@ -15,7 +15,7 @@ func detect_drag():
 	if main.jigsaw_manager.finished: return
 	if not main.current_piece or main.current_piece == parent.name:
 		var mouse_pos = GlobalCursor.cursor_sprite.position
-		if Global.gesture_settings.gesture == GlobalControls.mgJigsaw:
+		if Global.gesture_settings.is_gesture_matching(GlobalControls.jigsaw):
 			if parent.get_global_rect().has_point(mouse_pos):
 				dragging = true
 				if not offset:

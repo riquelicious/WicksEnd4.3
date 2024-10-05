@@ -1,15 +1,15 @@
-class_name CivilianManager 
+class_name CivilianManager
 extends Node3D
 
-var parent : Node
-var collision : CollisionShape3D
-var player : PlayerA
-var turn_to_player : bool = false
-var civilian_mesh : Node3D
-var animation_player :  AnimationPlayer
-var rotation_speed : float = 1.0
+var parent: Node
+var collision: CollisionShape3D
+var player: PlayerEntity
+var turn_to_player: bool = false
+var civilian_mesh: Node3D
+var animation_player: AnimationPlayer
+var rotation_speed: float = 1.0
 
-func initialize(parent_instance : Node):
+func initialize(parent_instance: Node):
 	parent = parent_instance
 	player = parent.get_node("%player")
 	collision = parent.get_node("wall_collision")
@@ -18,7 +18,7 @@ func initialize(parent_instance : Node):
 	
 func pickup():
 	animation_player.play("stand")
-	await  animation_player.animation_finished
+	await animation_player.animation_finished
 	parent.visible = false
 	animation_player.play_backwards("stand")
 	parent.set_collision_layer_value(1, false)

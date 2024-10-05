@@ -9,7 +9,7 @@ func initialize(parent_instance : Node):
 	parent = parent_instance
 	button_container = parent.get_node("Control/choices_button_container")
 	values.resize(4)
-	fetch_choice_gestures()
+	#fetch_choice_gestures()
 
 func list_choices():
 	for child in button_container.get_children():
@@ -29,7 +29,7 @@ func list_choices():
 
 func fetch_choice_gestures():
 	for i in button_container.get_child_count():
-		var gesture = GlobalControls.dlControls[i]
+		var gesture = GlobalControls.dialogueContols[i]
 		var child = button_container.get_child(i)
 		child.button_gesture = gesture
 		child.reinitialize()

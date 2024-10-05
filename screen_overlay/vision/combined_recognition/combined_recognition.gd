@@ -12,7 +12,7 @@ var gtask_file := "res://screen_overlay/vision/gesture_recognizer.task"
 
 #cache
 var cached_hresult = null
-var cached_gresult	= null
+var cached_gresult = null
 var cached_landmark_text
 
 func _hresult_callback(hresult: MediaPipeHandLandmarkerResult, image: MediaPipeImage, _timestamp_ms: int) -> void:
@@ -53,7 +53,7 @@ func show_result(image: Image, hresult: MediaPipeHandLandmarkerResult, gresult: 
 
 	if typeof(hresult) != 0:
 		cached_hresult = hresult
-	if typeof(gresult) != 0: 
+	if typeof(gresult) != 0:
 		cached_gresult = gresult
 	if cached_hresult:
 		for landmarks in cached_hresult.hand_landmarks:
@@ -81,17 +81,22 @@ func show_result(image: Image, hresult: MediaPipeHandLandmarkerResult, gresult: 
 				hand_label = 'left'
 			GlobalCursor.handedness = hand_label
 			gesture_text += "%s: %.2f\n%s: %.2f\n\n" % [hand_label, hand_score, gesture_label, gesture_score]
-			Global.gesture_settings.gesture = gesture_label
+			
+			update_stored_gesture(gesture_label)
 	var _lbl_text = gesture_text
 	lbl_handedness.call_deferred("set_text", _lbl_text)
 	update_image(image)
+
+func update_stored_gesture(gesture: String) -> void:
+	Global.gesture_settings.update_gesture(gesture)
+	#Global.gesture_settings.gesture = gesture
 
 func draw_landmarks(image: Image, landmarks: MediaPipeNormalizedLandmarks) -> void:
 	var color := Color.GREEN
 	var rect := Image.create(4, 4, false, image.get_format())
 	rect.fill(color)
 	var image_size := Vector2(image.get_size())
-	var hand_coordinates := Vector2(landmarks.landmarks[6].x,landmarks.landmarks[6].y)
+	var hand_coordinates := Vector2(landmarks.landmarks[6].x, landmarks.landmarks[6].y)
 	for landmark in landmarks.landmarks:
 		var pos := Vector2(landmark.x, landmark.y)
 		image.blit_rect(rect, rect.get_used_rect(), Vector2i(image_size * pos) - rect.get_size() / 2)

@@ -1,20 +1,20 @@
 class_name MenuAnimationManager
 extends Node
 
-var parent : Node
-var ui_anim : AnimationPlayer
-var ui_container : Control
-var level_select : Control
-var level_anim : AnimationPlayer
+var parent: Node
+var ui_anim: AnimationPlayer
+var ui_container: Control
+var level_select: Control
+var level_anim: AnimationPlayer
 
-func initialize(parent_instance : Node):
+func initialize(parent_instance: Node):
 	parent = parent_instance
 	ui_container = parent.get_node("UI")
 	ui_anim = ui_container.get_node("AnimationPlayer")
 	level_select = parent.get_node("UI/level_selector")
 	level_anim = level_select.get_node("AnimationPlayer")
 
-func switch_ui(index : int):
+func switch_ui(index: int):
 	var child = ui_container.get_child(index)
 	if child is Control:
 		ui_anim.play("fade")
@@ -35,11 +35,10 @@ func switch_ui(index : int):
 		if child.name == "level-selector-ui" or child.name == "level_selector":
 			level_anim.play("fade")
 
-func switch_level(index : int):
-	
+func switch_level(index: int):
 	var child = ui_container.get_child(1)
 	ui_anim.play("fade")
-	child.mouse_filter = 2 
+	child.mouse_filter = 2
 	await ui_anim.animation_finished
 	level_anim.play("RESET")
 	parent.camera_manager.update_level(index)

@@ -1,23 +1,23 @@
 class_name Pressurized_Water
 extends Node3D
 
-@onready var player : CharacterBody3D = $"../.."
-@onready var camera : Camera3D = $"../../player-camera"
+@onready var player: CharacterBody3D = $"../.."
+@onready var camera: Camera3D = $"../../player-camera"
 @onready var water_mesh := preload("res://assets/models/equipments/Water/water.tscn")
 @onready var mesh_container := $mesh_container
 @onready var player_camera := get_viewport().get_camera_3d()
 @onready var water_audio := $water_audio
 
-@export var nozzle_end_point : Marker3D
-@export var delay : Timer
-@export var curved_ray : RayCast3D
-@export var steam_particles : CPUParticles3D
+@export var nozzle_end_point: Marker3D
+@export var delay: Timer
+@export var curved_ray: RayCast3D
+@export var steam_particles: CPUParticles3D
 
 var toggle_water := false
 # * water physics
 var force := 20.0
 var gravity := -9.8
-var line_velocity : Vector3
+var line_velocity: Vector3
 # * water mesh
 var line_thickness := 0.04
 var line_height := 0.04
@@ -25,13 +25,13 @@ var draw_speed := 0.005
 var num_segments := 10
 var segment_length := 0.5
 var current_segment := 0
-@onready var current_position := to_local(nozzle_end_point.global_position)#position
+@onready var current_position := to_local(nozzle_end_point.global_position) # position
 # * draw speed and timings
 var update_time := 0.0
 var has_collided := false
 var starting_stream := true
 # * particles
-var steam_timer : Timer
+var steam_timer: Timer
 
 func _ready() -> void:
 	water_audio.finished.connect(_loop_audio)
@@ -46,7 +46,7 @@ func _physics_process(delta) -> void:
 		if update_time < 0.02: return
 		update_time = 0.0
 	# ? runs stream
-	if not toggle_water: 
+	if not toggle_water:
 		for child in mesh_container.get_children():
 			child.queue_free()
 		curved_ray.position = Vector3.ZERO
@@ -54,7 +54,7 @@ func _physics_process(delta) -> void:
 		steam_particles.emitting = false
 		current_segment = 0
 		starting_stream = true
-		current_position = to_local(nozzle_end_point.global_position)#position
+		current_position = to_local(nozzle_end_point.global_position) # position
 		if not water_audio.stream_paused:
 			water_audio.stream_paused = true
 	else:
@@ -65,13 +65,13 @@ func _physics_process(delta) -> void:
 
 func _calculate_trajectory() -> void:
 	var origin := to_local(nozzle_end_point.global_position)
-	var direction = -camera.transform.basis.z.normalized() 
-	line_velocity = direction * force 
+	var direction = -camera.transform.basis.z.normalized()
+	line_velocity = direction * force
 	if current_segment < num_segments:
 		var time = current_segment * segment_length / line_velocity.length()
 		var next_position = origin + line_velocity * time + 0.5 * Vector3(0, gravity, 0) * time * time
-		curved_ray.position = current_position 
-		curved_ray.target_position = next_position - current_position 
+		curved_ray.position = current_position
+		curved_ray.target_position = next_position - current_position
 		var collider = curved_ray.get_collider()
 		if collider:
 			if collider.health > 0:
@@ -95,8 +95,8 @@ func _calculate_trajectory() -> void:
 		starting_stream = false
 
 func draw_cube(start, end, thickness, height, index) -> void:
-	var mesh : MeshInstance3D = water_mesh.instantiate()
-	var custom_scale = Vector3(thickness,height,(end - start).length())
+	var mesh: MeshInstance3D = water_mesh.instantiate()
+	var custom_scale = Vector3(thickness, height, (end - start).length())
 	mesh.scale = custom_scale
 	var mid_point = (start + end) / 2
 	mesh.transform.origin = mid_point

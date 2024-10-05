@@ -1,15 +1,15 @@
 class_name PointManager
 extends Node
 
-var player : PlayerA 
+var player: PlayerEntity
 var current_points := 0
-var label_foreground : Label
-var label_background : Label
-var point_anim : AnimationPlayer
+var label_foreground: Label
+var label_background: Label
+var point_anim: AnimationPlayer
 var popped := false
-var point_sfx : AudioStreamPlayer2D
+var point_sfx: AudioStreamPlayer2D
 
-func initialize(player_instance : PlayerA):
+func initialize(player_instance: PlayerEntity):
 	player = player_instance
 	point_sfx = player.get_node("Control/on-screen-ui/ui/point_system_container/HBoxContainer/point_pop")
 	label_foreground = player.get_node("Control/on-screen-ui/ui/point_system_container/HBoxContainer/Control/foreground")
@@ -26,9 +26,8 @@ func update_points(delta):
 	if Global.level_settings.lvlPoints != current_points:
 		if not popped:
 			popped = true
-			point_anim.play("point_up")  
+			point_anim.play("point_up")
 			if not point_sfx.playing:
-				point_sfx.play()      
+				point_sfx.play()
 	else:
 		popped = false
-		

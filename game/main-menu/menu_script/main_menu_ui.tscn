@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bvxjgcnlaplpk"]
+[gd_scene load_steps=10 format=3 uid="uid://bvxjgcnlaplpk"]
 
 [ext_resource type="Theme" uid="uid://xiy1beq5fkuh" path="res://assets/theme/Global.tres" id="1_hbjkq"]
+[ext_resource type="Script" path="res://game/main-menu/UI/main_menu/main_menu_ui.gd" id="1_k55j8"]
 [ext_resource type="PackedScene" uid="uid://cxy7gsgde6a66" path="res://assets/modules/button.tscn" id="1_kli3d"]
 [ext_resource type="Script" path="res://game/main-menu/menu_script/new_game.gd" id="3_5m5tq"]
 [ext_resource type="Shader" path="res://assets/shaders/font_gradient.gdshader" id="4_8eva2"]
@@ -31,6 +32,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_k55j8")
 
 [node name="ui" type="Control" parent="."]
 layout_mode = 1
@@ -57,6 +59,7 @@ grow_vertical = 0
 layout_mode = 2
 script = ExtResource("3_5m5tq")
 one_shot = true
+disabled = false
 
 [node name="button-label" parent="ui/VBoxContainer/new-game" index="3"]
 theme_override_colors/font_shadow_color = Color(0.226707, 0.226707, 0.226707, 1)
@@ -67,7 +70,7 @@ text = "New Game"
 layout_mode = 2
 script = ExtResource("3_5m5tq")
 one_shot = true
-disableable = true
+disabled = false
 
 [node name="button-label" parent="ui/VBoxContainer/continue" index="3"]
 theme_override_colors/font_shadow_color = Color(0.226707, 0.226707, 0.226707, 1)
@@ -78,6 +81,7 @@ text = "Continue"
 layout_mode = 2
 script = ExtResource("3_5m5tq")
 one_shot = true
+disabled = false
 
 [node name="Bg1" parent="ui/VBoxContainer/quit" index="2"]
 color = Color(1, 0.717647, 0, 1)

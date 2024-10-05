@@ -1,6 +1,7 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cf0mmkkuc8o8"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cf0mmkkuc8o8"]
 
-[ext_resource type="Shader" uid="uid://cplccbp7l15ot" path="res://assets/shaders/fire_mesh_test.tres" id="1_q26ce"]
+[ext_resource type="Shader" uid="uid://dwksql8j3g1pm" path="res://assets/shaders/fire_mesh_test.tres" id="1_q26ce"]
+[ext_resource type="Texture2D" uid="uid://ht5p78ijmutm" path="res://assets/noise_textures/pixelated_noise.png" id="2_otcfw"]
 
 [resource]
 render_priority = 0
@@ -8,8 +9,12 @@ shader = ExtResource("1_q26ce")
 shader_parameter/is_blue = false
 shader_parameter/top_color2 = Color(0, 0.278431, 0.670588, 1)
 shader_parameter/bottom_color2 = Color(0.745098, 0.952941, 0.752941, 1)
+shader_parameter/isBottom = false
 shader_parameter/fire_percentage = 100.0
+shader_parameter/custom_texture = false
 shader_parameter/speed = Vector2(0, 1)
 shader_parameter/glow = 0.05
 shader_parameter/top_color = Color(0.829678, 0, 0.080224, 1)
 shader_parameter/bottom_color = Color(1, 0.741176, 0, 1)
+shader_parameter/noise_tex = ExtResource("2_otcfw")
+shader_parameter/tex_frg_12 = ExtResource("2_otcfw")

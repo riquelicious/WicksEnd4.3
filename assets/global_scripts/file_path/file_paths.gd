@@ -17,7 +17,8 @@ var cursor_images = [
 	preload("res://assets/images/cursor_gestures/thumbs_down.png"),
 	preload("res://assets/images/cursor_gestures/thumbs_up.png"),
 	preload("res://assets/images/cursor_gestures/victory.png"),
-	preload("res://assets/images/cursor_gestures/iloveyou.png")
+	preload("res://assets/images/cursor_gestures/iloveyou.png"),
+	preload("res://assets/images/cursor_gestures/crosshair.png")
 ]
 
 var gesture_icons = [
@@ -55,13 +56,25 @@ var fire_shader := preload("res://assets/shaders/fire_material.tres")
 var fire_extinguished_fx := AudioStreamOggVorbis.load_from_file("res://assets/audio/sfx/fire/fire_wet.ogg")
 var fire_kindled_fx := AudioStreamOggVorbis.load_from_file("res://assets/audio/sfx/fire/fire_woosh.ogg")
 
-var combo_minigame : PackedScene = preload("res://assets/entities/debris/DebrisScene.tscn")
-var bw_cam_env : Resource = preload("res://assets/environments/BW2.tres")
+var combo_minigame: PackedScene = preload("res://assets/entities/debris/DebrisScene.tscn")
+var bw_cam_env: Resource = preload("res://assets/environments/BW2.tres")
  
-var cvHelpSounds : Array = [
+var cvHelpSounds: Array = [
 	"res://assets/audio/sfx/civilian/help-01.ogg",
 	"res://assets/audio/sfx/civilian/help-02.ogg",
 	"res://assets/audio/sfx/civilian/help-03.ogg"
 ]
 
-var level_scene : String = "res://assets/scene_manager/level_scene.tscn"
+var level_scene: String = "res://assets/scene_manager/level_scene.tscn"
+
+
+var polaroids = [
+	preload("res://assets/images/ui/polaroid/apartment_image.png"),
+	preload("res://assets/images/ui/polaroid/apartment_image.png"),
+	preload("res://assets/images/ui/polaroid/apartment_image.png"),
+	preload("res://assets/images/ui/polaroid/apartment_image.png"),
+	preload("res://assets/images/ui/polaroid/black.png")
+]
+
+var lock_tex := preload("res://assets/images/ui/level_selector/lock.png")
+var play_tex := preload("res://assets/images/ui/level_selector/play.png")
