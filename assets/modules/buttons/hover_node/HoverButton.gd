@@ -1,6 +1,6 @@
 class_name HoverButton extends Control
 
-var one_shot: bool = false
+var one_shot: bool = true
 var disabled: bool = false
 
 var hoverAnimationManager: HoverAnimationManager = HoverAnimationManager.new(self)

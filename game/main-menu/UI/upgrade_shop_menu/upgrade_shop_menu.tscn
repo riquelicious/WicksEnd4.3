@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cwfmfir0i461p"]
+[gd_scene load_steps=36 format=3 uid="uid://cwfmfir0i461p"]
 
 [ext_resource type="Script" path="res://game/main-menu/UI/upgrade_shop_menu/upgrade_shop_menu.gd" id="1_7lksn"]
 [ext_resource type="Texture2D" uid="uid://75m7lx62tblq" path="res://assets/images/ui/merit/merit.png" id="2_hkqji"]
@@ -80,6 +80,44 @@ shadow_color = Color(0, 0, 0, 0.372549)
 [sub_resource type="ViewportTexture" id="ViewportTexture_nqrcy"]
 viewport_path = NodePath("ColumnContainer/shopDisplays/ItemInfo/HBoxContainer/DisplayWorld")
 
+[sub_resource type="Animation" id="Animation_jvtv5"]
+resource_name = "pop_up"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Display:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.1),
+"transitions": PackedFloat32Array(-0.5, -0.5, -0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_f4ko5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Display:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wv8d0"]
+_data = {
+"RESET": SubResource("Animation_f4ko5"),
+"pop_up": SubResource("Animation_jvtv5")
+}
+
 [sub_resource type="Environment" id="Environment_qngqr"]
 ambient_light_source = 3
 tonemap_mode = 3
@@ -133,6 +171,20 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_4l8h1"]
+font = ExtResource("6_vibid")
+font_size = 25
+font_color = Color(1, 0.647059, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_epghm"]
+font = ExtResource("6_vibid")
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_a82pm"]
+font = ExtResource("6_vibid")
+font_size = 25
+font_color = Color(0, 1, 0.0666666, 1)
 
 [node name="UpgradeShopMenu" type="Control"]
 layout_mode = 3
@@ -323,6 +375,11 @@ text = "[b] LVL [color=orange]5[/color] [/b]"
 fit_content = true
 autowrap_mode = 0
 
+[node name="DisplayAnimation" type="AnimationPlayer" parent="ColumnContainer/shopDisplays/ItemInfo/HBoxContainer/Control"]
+libraries = {
+"": SubResource("AnimationLibrary_wv8d0")
+}
+
 [node name="upgrade_button" type="VBoxContainer" parent="ColumnContainer/shopDisplays/ItemInfo/HBoxContainer"]
 layout_mode = 2
 
@@ -427,6 +484,193 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 10
 
-[node name="Description" type="RichTextLabel" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer"]
+[node name="StatColumn" type="VBoxContainer" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer"]
 layout_mode = 2
-bbcode_enabled = true
+
+[node name="Damage" type="HBoxContainer" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer/StatColumn"]
+layout_mode = 2
+
+[node name="Stat" type="Label" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer/StatColumn/Damage"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Damage: "
+label_settings = SubResource("LabelSettings_4l8h1")
+
+[node name="Value" type="Label" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer/StatColumn/Damage"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "100"
+label_settings = SubResource("LabelSettings_epghm")
+horizontal_alignment = 2
+
+[node name="Arrow" type="Label" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer/StatColumn/Damage"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "→"
+label_settings = SubResource("LabelSettings_4l8h1")
+horizontal_alignment = 1
+
+[node name="NextValue" type="Label" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer/StatColumn/Damage"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "200"
+label_settings = SubResource("LabelSettings_a82pm")
+horizontal_alignment = 2
+
+[node name="Swing" type="HBoxContainer" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer/StatColumn"]
+layout_mode = 2
+
+[node name="Stat" type="Label" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer/StatColumn/Swing"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Swing Speed: "
+label_settings = SubResource("LabelSettings_4l8h1")
+
+[node name="Value" type="Label" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer/StatColumn/Swing"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "100"
+label_settings = SubResource("LabelSettings_epghm")
+horizontal_alignment = 2
+
+[node name="Arrow" type="Label" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer/StatColumn/Swing"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "→"
+label_settings = SubResource("LabelSettings_4l8h1")
+horizontal_alignment = 1
+
+[node name="NextValue" type="Label" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer/StatColumn/Swing"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "200"
+label_settings = SubResource("LabelSettings_a82pm")
+horizontal_alignment = 2
+
+[node name="ReplenishRate" type="HBoxContainer" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer/StatColumn"]
+layout_mode = 2
+
+[node name="Stat" type="Label" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer/StatColumn/ReplenishRate"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Replenish Rate:"
+label_settings = SubResource("LabelSettings_4l8h1")
+
+[node name="Value" type="Label" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer/StatColumn/ReplenishRate"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "100"
+label_settings = SubResource("LabelSettings_epghm")
+horizontal_alignment = 2
+
+[node name="Arrow" type="Label" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer/StatColumn/ReplenishRate"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "→"
+label_settings = SubResource("LabelSettings_4l8h1")
+horizontal_alignment = 1
+
+[node name="NextValue" type="Label" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer/StatColumn/ReplenishRate"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "200"
+label_settings = SubResource("LabelSettings_a82pm")
+horizontal_alignment = 2
+
+[node name="DepletionRate" type="HBoxContainer" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer/StatColumn"]
+layout_mode = 2
+
+[node name="Stat" type="Label" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer/StatColumn/DepletionRate"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Depletion Rate:"
+label_settings = SubResource("LabelSettings_4l8h1")
+
+[node name="Value" type="Label" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer/StatColumn/DepletionRate"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "100"
+label_settings = SubResource("LabelSettings_epghm")
+horizontal_alignment = 2
+
+[node name="Arrow" type="Label" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer/StatColumn/DepletionRate"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "→"
+label_settings = SubResource("LabelSettings_4l8h1")
+horizontal_alignment = 1
+
+[node name="NextValue" type="Label" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer/StatColumn/DepletionRate"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "200"
+label_settings = SubResource("LabelSettings_a82pm")
+horizontal_alignment = 2
+
+[node name="DamageResist" type="HBoxContainer" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer/StatColumn"]
+visible = false
+layout_mode = 2
+
+[node name="Stat" type="Label" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer/StatColumn/DamageResist"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Damage Resist:"
+label_settings = SubResource("LabelSettings_4l8h1")
+
+[node name="Value" type="Label" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer/StatColumn/DamageResist"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "100"
+label_settings = SubResource("LabelSettings_epghm")
+horizontal_alignment = 2
+
+[node name="Arrow" type="Label" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer/StatColumn/DamageResist"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "→"
+label_settings = SubResource("LabelSettings_4l8h1")
+horizontal_alignment = 1
+
+[node name="NextValue" type="Label" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer/StatColumn/DamageResist"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "200"
+label_settings = SubResource("LabelSettings_a82pm")
+horizontal_alignment = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -110.0
+offset_top = -50.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="DamageResist" type="HBoxContainer" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer2/DamageResist"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("2_hkqji")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Value" type="Label" parent="ColumnContainer/shopDisplays/ItemInfo/MessageBox/MarginContainer2/DamageResist"]
+layout_mode = 2
+text = "100"
+label_settings = SubResource("LabelSettings_epghm")
+horizontal_alignment = 2

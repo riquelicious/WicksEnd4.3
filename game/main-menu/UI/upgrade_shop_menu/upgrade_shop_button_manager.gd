@@ -21,6 +21,8 @@ func _ready() -> void:
 	assert(downgrade_node, "Upgrade Shop Button Manager: Downgrade Node not found!")
 	upgrade_button._ready()
 	downgrade_button._ready()
+	upgrade_button.one_shot = false
+	downgrade_button.one_shot = false
 	update_icon()
 	pick_button(0)
 
@@ -45,16 +47,34 @@ func update_buttons():
 	var button_index = Global.gesture_settings.get_index_from(GlobalControls.upgradeShopControls)
 	if button_index != -1 and button_index != previous_button:
 		pick_button(button_index)
+		parent.upgradeDisplayManager.update_display(button_index)
+		parent.upgradeDisplayManager.update_text(false)
 
 func _process(_delta: float) -> void:
 	update_buttons()
 	upgrade_button._process(_delta)
 	downgrade_button._process(_delta)
 
-
 func upgradeFunc():
-	pass
-
+	var price = parent.upgradeDisplayManager.current_price
+	if parent.available_points < price:
+		print("Not enough points!")
+		#TODO : deny
+		return
+	#TODO : accept
+	parent.available_points -= price
+	parent.update_dictionary_stats(1)
+	parent.upgradeDisplayManager.update_text(true)
 
 func downgradeFunc():
-	pass
+	var key = parent.temporary_stats.keys()[parent.equipment_index]
+	var equipment = parent.temporary_stats[key]
+	var temp = parent.temporary_stats[key]["level"]
+	var real = Global.equipment_settings.equipments[key]["level"]
+	if temp == real:
+		#TODO : deny
+		return
+	#TODO : accept
+	parent.available_points += parent.upgradeDisplayManager.calculate_current_value(equipment, ["price"])
+	parent.update_dictionary_stats(-1)
+	parent.upgradeDisplayManager.update_text(true)
