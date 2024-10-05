@@ -22,12 +22,10 @@ func _ready() -> void:
 	continueButton._ready()
 	quitButton._ready()
 	
-	
 func _process(delta: float) -> void:
 	newGameButton._process(delta)
 	continueButton._process(delta)
 	quitButton._process(delta)
-
 
 func newGameFunc():
 	pass

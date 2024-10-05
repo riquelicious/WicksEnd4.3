@@ -37,10 +37,12 @@ func finished_animation(anim_name):
 		is_button_clicked = false
 		if not parent.one_shot:
 			is_looped = true
+			print_debug("%s called at %s" % [parent.callback, parent.buttonNode.name])
 			parent.callback.call()
 		fade_out()
 	elif anim_name == "fade_in_background" and previous_animation == "clicked":
 		if parent.one_shot:
+			print_debug("%s called at %s" % [parent.callback, parent.buttonNode.name])
 			parent.callback.call()
 	previous_animation = anim_name
 

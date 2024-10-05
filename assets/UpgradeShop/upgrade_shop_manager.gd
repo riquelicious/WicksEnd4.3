@@ -1,19 +1,19 @@
 class_name ShopManager
 extends Node
 
-var parent : Node
-var desc_manager : ShopDescriptionManager
-var current_price : float
-var current_points : float
-var real_equipment_diciontary : Dictionary
-var upgrade : Control
-var downgrade : Control
-var purchase_sfx : AudioStreamPlayer2D
-var refund_sfx : AudioStreamPlayer2D
-var deny_sfx : AudioStreamPlayer2D
-var back_button : Control
+var parent: Node
+var desc_manager: ShopDescriptionManager
+var current_price: float
+var current_points: float
+var real_equipment_diciontary: Dictionary
+var upgrade: Control
+var downgrade: Control
+var purchase_sfx: AudioStreamPlayer2D
+var refund_sfx: AudioStreamPlayer2D
+var deny_sfx: AudioStreamPlayer2D
+var back_button: Control
 
-func initialize(parent_instance : Node):
+func initialize(parent_instance: Node):
 	parent = parent_instance
 	desc_manager = parent.shop_description_manager
 	real_equipment_diciontary = Global.equipment_settings.equipments.duplicate(true)
@@ -30,7 +30,7 @@ func initialize(parent_instance : Node):
 func purchase():
 	current_price = desc_manager.current_price
 	current_points = parent.shop_description_manager.current_points
-	if current_points < desc_manager.current_price: 
+	if current_points < desc_manager.current_price:
 		deny_sfx.play()
 		return
 	purchase_sfx.play()
@@ -42,7 +42,7 @@ func refund():
 	var equipment = desc_manager.current_equipment
 	var temp = desc_manager.temp_equipment_stats[equipment]["level"]
 	var real = real_equipment_diciontary[equipment]["level"]
-	if temp == real : 
+	if temp == real:
 		deny_sfx.play()
 		return
 	refund_sfx.play()
@@ -51,10 +51,10 @@ func refund():
 	desc_manager.update_text(true)
 
 func calculate_refund(equipment):
-	var refund_value = desc_manager.calculate_current_value(equipment,["price"])
+	var refund_value = desc_manager.calculate_current_value(equipment, ["price"])
 	return refund_value
 
-func update_level(increrment : int):
+func update_level(increrment: int):
 	var equipment = desc_manager.current_equipment
 	desc_manager.temp_equipment_stats[equipment]["level"] += increrment
 	

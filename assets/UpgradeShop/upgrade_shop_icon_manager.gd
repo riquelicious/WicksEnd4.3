@@ -10,7 +10,7 @@ func initialize(parent_instance: Node):
 	parent = parent_instance
 	equipment_container = parent.get_node("ItemInfo/HBoxContainer/SubViewport/container")
 	animation_player = parent.get_node("AnimationPlayer")
-	update_icon(0)
+	#update_icon(0)
 	
 func update_icon(index: int):
 	if index == current_icon: return
