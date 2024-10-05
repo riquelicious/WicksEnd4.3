@@ -674,3 +674,5 @@ layout_mode = 2
 text = "100"
 label_settings = SubResource("LabelSettings_epghm")
 horizontal_alignment = 2
+
+[node name="ButtonSounds" type="AudioStreamPlayer2D" parent="ColumnContainer"]

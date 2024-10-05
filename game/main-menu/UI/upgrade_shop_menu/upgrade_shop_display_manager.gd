@@ -92,8 +92,7 @@ func update_replenish(equipment_stat: Dictionary):
 	if not "increase" in equipment_stat["capacity"]:
 		stat_labels[STATS.REPLENISH].visible = false
 		return
-
-	change_stat_text(equipment_stat, STATS.REPLENISH, ["capacity", "increase"])
+	change_stat_text(equipment_stat, STATS.REPLENISH, ["capacity", "increase"], true)
 
 func update_depletion(equipment_stat: Dictionary):
 	if not "capacity" in equipment_stat:
@@ -102,7 +101,7 @@ func update_depletion(equipment_stat: Dictionary):
 	if not "decrease" in equipment_stat["capacity"]:
 		stat_labels[STATS.DEPLETION].visible = false
 		return
-	change_stat_text(equipment_stat, STATS.DEPLETION, ["capacity", "decrease"])
+	change_stat_text(equipment_stat, STATS.DEPLETION, ["capacity", "decrease"], true)
 
 func update_damage_resist(equipment_stat: Dictionary):
 	if not "defense" in equipment_stat:
@@ -128,16 +127,29 @@ func calculate_current_value(equipment: Dictionary, keys: Array):
 	var multiplier = float(stat["multiplier"])
 	return (base + ((base * multiplier) * level))
 
-func change_stat_text(equipment: Dictionary, stat: STATS, keys: Array) -> void:
+func get_base_value(equipment: Dictionary, keys: Array) -> float:
+	var stat = equipment
+	for key in keys:
+		stat = stat[key]
+	return float(stat["base"])
+
+func change_stat_text(equipment: Dictionary, stat: STATS, keys: Array, percentage: bool = false) -> void:
 	var value = calculate_current_value(equipment, keys)
 	var next_value = calculate_next_value(equipment, keys)
-	set_stat_value(stat, value, next_value)
+	if percentage:
+		value = value / get_base_value(equipment, keys) * 100
+		next_value = next_value / get_base_value(equipment, keys) * 100
+	set_stat_value(stat, value, next_value, percentage)
 
-func set_stat_value(stat: STATS, value: int, next_value: int) -> void:
+func set_stat_value(stat: STATS, value: float, next_value: float, percentage: bool = false) -> void:
 	var stat_label = stat_labels[stat]
 	var value_label = stat_label.get_node("Value")
 	var next_value_label = stat_label.get_node("NextValue")
 	stat_label.visible = true
+	if percentage:
+		value_label.text = str(int(value)) + "%"
+		next_value_label.text = str(int(next_value)) + "%"
+		return
 	value_label.text = str(value)
 	next_value_label.text = str(next_value)
 

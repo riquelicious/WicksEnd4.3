@@ -78,3 +78,10 @@ var polaroids = [
 
 var lock_tex := preload("res://assets/images/ui/level_selector/lock.png")
 var play_tex := preload("res://assets/images/ui/level_selector/play.png")
+
+
+var upgrade_shop_sounds: Array = [
+	"res://assets/audio/sfx/Upgrade_shop/deny.ogg",
+	"res://assets/audio/sfx/Upgrade_shop/purchase.ogg",
+	"res://assets/audio/sfx/Upgrade_shop/refund.ogg"
+]

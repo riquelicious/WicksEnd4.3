@@ -7,7 +7,13 @@ var upgrade_node: Control
 var downgrade_node: Control
 var upgrade_button: HoverButton
 var downgrade_button: HoverButton
-
+var buttonAudio: AudioStreamPlayer2D
+var sounds: Array = []
+enum SFX {
+	DENY,
+	ACCEPT,
+	REFUND
+}
 func _init(parent_instance: UpgradeShopMenu):
 	self.parent = parent_instance
 
@@ -15,6 +21,10 @@ func _ready() -> void:
 	button_container = parent.get_node("ColumnContainer/shopControls/controlContainers/controlButtons").get_children()
 	upgrade_node = parent.get_node("ColumnContainer/shopDisplays/ItemInfo/HBoxContainer/upgrade_button/upgrade/CenterContainer/Button")
 	downgrade_node = parent.get_node("ColumnContainer/shopDisplays/ItemInfo/HBoxContainer/upgrade_button/down_grade/CenterContainer/Button")
+	buttonAudio = parent.get_node("ColumnContainer/ButtonSounds")
+	sounds.append(load(FilePaths.upgrade_shop_sounds[0]))
+	sounds.append(load(FilePaths.upgrade_shop_sounds[1]))
+	sounds.append(load(FilePaths.upgrade_shop_sounds[2]))
 	upgrade_button = HoverButton.new(upgrade_node, upgradeFunc)
 	downgrade_button = HoverButton.new(downgrade_node, downgradeFunc)
 	assert(upgrade_node, "Upgrade Shop Button Manager: Upgrade Node not found!")
@@ -59,9 +69,9 @@ func upgradeFunc():
 	var price = parent.upgradeDisplayManager.current_price
 	if parent.available_points < price:
 		print("Not enough points!")
-		#TODO : deny
+		play_sound(SFX.DENY)
 		return
-	#TODO : accept
+	play_sound(SFX.ACCEPT)
 	parent.available_points -= price
 	parent.update_dictionary_stats(1)
 	parent.upgradeDisplayManager.update_text(true)
@@ -72,9 +82,14 @@ func downgradeFunc():
 	var temp = parent.temporary_stats[key]["level"]
 	var real = Global.equipment_settings.equipments[key]["level"]
 	if temp == real:
-		#TODO : deny
+		play_sound(SFX.DENY)
 		return
-	#TODO : accept
+	play_sound(SFX.REFUND)
 	parent.available_points += parent.upgradeDisplayManager.calculate_current_value(equipment, ["price"])
 	parent.update_dictionary_stats(-1)
 	parent.upgradeDisplayManager.update_text(true)
+
+
+func play_sound(index: SFX):
+	buttonAudio.stream = sounds[index]
+	buttonAudio.play()
