@@ -1,10 +1,10 @@
 class_name JigsawNotesManager
 extends Node
 
-var parent : Node
+var parent: Node
 var notes: Array
-var animation_player : AnimationPlayer
-var prev_piece_index : int = -1
+var animation_player: AnimationPlayer
+var prev_piece_index: int = -1
 var pieces = [
 	"piece #1",
 	"piece #2",
@@ -12,13 +12,13 @@ var pieces = [
 	"piece #4"
 ]
 
-func initialize(parent_instance : Node):
+func initialize(parent_instance: Node):
 	parent = parent_instance
 	notes = parent.get_node("notes/CenterContainer/container").get_children()
 	animation_player = parent.get_node("AnimationPlayer")
 	switch_note(-1)
 
-func switch_note(index : int):
+func switch_note(index: int):
 	if SaveManager.current_save["evidence_finished"]:
 		animation_player.play("finished")
 		return
@@ -28,7 +28,7 @@ func switch_note(index : int):
 		note.visible = false
 	if index != -1:
 		notes[index].visible = true
-	
+
 	animation_player.play("fade_notes")
 	await animation_player.animation_finished
 
