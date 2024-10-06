@@ -35,7 +35,6 @@ func check_status_unlocked():
 		piece_container.get_child(index).visible = pieces[str(index)]
 
 func check_status_finished():
-	
 	if Global.gameplay_settings.evFinished:
 		display_paper(true)
 		for piece in piece_container.get_children():
