@@ -1,10 +1,10 @@
 class_name SceneAnimationManager
 extends Node
 
-var parent : Node
-var animation_player : AnimationPlayer
+var parent: Node
+var animation_player: AnimationPlayer
 
-func initialize(parent_instance : Node):
+func initialize(parent_instance: Node):
 	parent = parent_instance
 	animation_player = parent.get_node("AnimationPlayer")
 

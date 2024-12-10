@@ -1,11 +1,11 @@
 class_name SceneChoiceManager
 extends Node
 
-var parent : Node
-var button_container : VBoxContainer
-var values : Array
+var parent: Node
+var button_container: VBoxContainer
+var values: Array
 
-func initialize(parent_instance : Node):
+func initialize(parent_instance: Node):
 	parent = parent_instance
 	button_container = parent.get_node("Control/choices_button_container")
 	values.resize(4)
@@ -16,7 +16,7 @@ func list_choices():
 		var anim = child.get_node("AnimationPlayer")
 		child.visible = false
 		anim.play("RESET")
-	var index = 0 
+	var index = 0
 	for choice in parent.text_manager.choices_list:
 		var button_name = choice["text"]
 		var button_value = choice["nextNode"]

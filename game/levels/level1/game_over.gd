@@ -24,10 +24,15 @@ func game_over():
 			audio_stream_player.play()
 			animation_player.play("fade")
 			Global.gameplay_settings.from_level = true
-			var index = $%paper_piece.piece_index
+			# var index = $%paper_piece.piece_index
+			var index = get_paper_piece()
 			Global.gameplay_settings.evPiece[str(index)] = true
 			await animation_player.animation_finished
 			Transition.change_scene("res://game/main-menu/main_menu_level.tscn")
+
+func get_paper_piece():
+	var level: Level = get_parent()
+	return level.paper_piece
 
 
 func game_finished():
@@ -41,9 +46,9 @@ func done():
 	for process in main_process:
 		if process is Level:
 			process.process_mode = Node.PROCESS_MODE_DISABLED
+			Global.level_settings.unlock_next_level()
 			audio_stream_player_2.play()
 			animation_player.play("fade_2")
 			Global.gameplay_settings.from_level = true
 			await animation_player.animation_finished
 			Transition.change_scene("res://game/main-menu/main_menu_level.tscn")
-			
