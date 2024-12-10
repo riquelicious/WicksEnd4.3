@@ -8,6 +8,7 @@ var buttonIcon: TextureRect
 var maxCooldown: float = 0.3
 var spam_timer: float = 0.0
 var previous_gesture: int = 0
+var disabled: bool = false
 
 func _ready():
 	gestureHoldAnimation._ready()
@@ -21,6 +22,7 @@ func _init(button_instance: Control, gesture: int, callback_func: Callable) -> v
 	self.gesture_index = gesture
 
 func _process(delta):
+	if disabled: return
 	update_state(delta)
 
 func check_gesture(delta):
@@ -35,7 +37,6 @@ func check_gesture(delta):
 func update_state(delta) -> void:
 	var gesture = check_gesture(delta)
 	if gesture != null:
-		print(gesture)
 		if gesture == gesture_index:
 			gestureHoldAnimation.fade_in()
 		else:

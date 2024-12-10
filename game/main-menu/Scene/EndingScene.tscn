@@ -1,0 +1,118 @@
+[gd_scene load_steps=9 format=3 uid="uid://n8kn7y5awfcb"]
+
+[ext_resource type="Script" path="res://game/main-menu/Scene/ending_scene.gd" id="1_jkuwv"]
+[ext_resource type="Texture2D" uid="uid://dxwtiwbyqvor7" path="res://assets/images/scenes/scene2.png" id="1_yml1s"]
+[ext_resource type="FontFile" uid="uid://dj5pbb3fkregr" path="res://assets/fonts/oldnewspapertypes/OldNewspaperTypes.ttf" id="2_ld4aa"]
+[ext_resource type="PackedScene" uid="uid://cutjv4ortnt58" path="res://assets/scene_manager/main/scene_manager.tscn" id="3_b5gyo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fkyrd"]
+font = ExtResource("2_ld4aa")
+font_size = 50
+
+[sub_resource type="Animation" id="Animation_rf6ap"]
+resource_name = "Fade"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Time:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uixh0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Time:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s36we"]
+_data = {
+"Fade": SubResource("Animation_rf6ap"),
+"RESET": SubResource("Animation_uixh0")
+}
+
+[node name="EndingScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jkuwv")
+
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yml1s")
+expand_mode = 2
+
+[node name="Time" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -147.5
+offset_top = -25.5
+offset_right = 147.5
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Few days later"
+label_settings = SubResource("LabelSettings_fkyrd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_s36we")
+}
+autoplay = "Fade"
+
+[node name="CutSceneManager" parent="." instance=ExtResource("3_b5gyo")]
+layout_mode = 1

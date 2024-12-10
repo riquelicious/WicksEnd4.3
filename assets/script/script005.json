@@ -1,19 +1,19 @@
 {
-	"nodes": {
-		"1": {
-			"text": "T.B.? Travis Bruke!? The reporter?",
-			"name": "You",
-			"choices": []
-		},
-		"2": {
-			"text": "[i]phone rings[/i]",
-			"name": "You",
-			"choices": []
-		},
-		"3": {
-			"text": "Hello? Camera footage of the culprit!? I’ll go right away",
-			"name": "You",
-			"choices": []
-		}
-	}
+  "nodes": {
+    "1": {
+      "text": "T.B.? Travis Bruke!? The reporter?",
+      "name": "You",
+      "choices": []
+    },
+    "2": {
+      "text": "[i]phone rings[/i]",
+      "name": "You",
+      "choices": []
+    },
+    "3": {
+      "text": "Hello? Camera footage of the culprit!? I’ll go right away",
+      "name": "You",
+      "choices": []
+    }
+  }
 }

@@ -67,8 +67,10 @@ enabled=PackedStringArray("res://addons/GDMP/plugin.cfg", "res://addons/nv.file_
 folder_colors={
 "res://addons/": "blue",
 "res://assets/": "yellow",
+"res://entity/": "pink",
 "res://game/": "green",
-"res://screen_overlay/": "red"
+"res://screen_overlay/": "red",
+"res://ui/": "teal"
 }
 
 [layer_names]
@@ -88,6 +90,7 @@ folder_colors={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver="d3d12"
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"

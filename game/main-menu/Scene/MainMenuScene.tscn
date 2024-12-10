@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://bu8jnwrulng2m"]
+
+[ext_resource type="PackedScene" uid="uid://dl7jwxqldgexf" path="res://game/main-menu/Scene/main_menu_world.tscn" id="1_6keo0"]
+[ext_resource type="Script" path="res://game/main-menu/Scene/main_menu_scene.gd" id="1_ijftu"]
+[ext_resource type="PackedScene" uid="uid://cs34w4qadjtc4" path="res://game/main-menu/UI/main_menu/menu_sequence.tscn" id="2_17gcu"]
+
+[sub_resource type="Environment" id="Environment_adma8"]
+background_mode = 1
+ambient_light_source = 3
+reflected_light_source = 2
+tonemap_mode = 3
+glow_enabled = true
+glow_intensity = 0.3
+fog_enabled = true
+fog_light_color = Color(0.05, 0.0136583, 0.0055, 1)
+fog_light_energy = 13.67
+fog_density = 0.4516
+adjustment_enabled = true
+adjustment_brightness = 0.7
+adjustment_saturation = 0.4
+
+[node name="MainMenuScene" type="Node3D"]
+script = ExtResource("1_ijftu")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_adma8")
+
+[node name="MenuCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03413, 1.29935, -0.374025)
+cull_mask = 524287
+current = true
+
+[node name="MainMenuWorld" parent="." instance=ExtResource("1_6keo0")]
+
+[node name="CameraPositions" type="Node3D" parent="."]
+
+[node name="MainMenuMarker" type="Marker3D" parent="CameraPositions"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03413, 1.29935, -0.374025)
+
+[node name="LevelSelectionMenuMarker" type="Node3D" parent="CameraPositions"]
+
+[node name="Level1Marker" type="Marker3D" parent="CameraPositions/LevelSelectionMenuMarker"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 2.12135, 0.624826)
+
+[node name="Level2Marker" type="Marker3D" parent="CameraPositions/LevelSelectionMenuMarker"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 2.625, -0.25)
+
+[node name="Level3Marker" type="Marker3D" parent="CameraPositions/LevelSelectionMenuMarker"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 2.307, -0.814)
+
+[node name="Level4Marker" type="Marker3D" parent="CameraPositions/LevelSelectionMenuMarker"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 1.751, -0.126721)
+
+[node name="UpgradeShopMarker" type="Marker3D" parent="CameraPositions"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.591, 2.001, -0.204)
+
+[node name="EvidenceMenuMarker" type="Marker3D" parent="CameraPositions"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.845912, 1.306, -0.920595)
+
+[node name="MenuSequence" parent="." instance=ExtResource("2_17gcu")]

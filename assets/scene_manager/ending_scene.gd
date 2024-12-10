@@ -12,14 +12,14 @@ func _ready() -> void:
 	scene_manager.text_manager.init_text()
 	scene_manager.scene_finished.connect(to_level)
 	pass # Replace with function body.
-	
-#func 
+
+#func
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-	
 func to_level():
 	Global.gameplay_settings.from_level = true
 	Transition.change_scene("res://game/main-menu/main_menu_level.tscn")
+	

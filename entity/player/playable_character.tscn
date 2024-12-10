@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://btuk6egq07oh"]
+
+[ext_resource type="Script" path="res://entity/player/playable_character.gd" id="1_glq0l"]
+[ext_resource type="PackedScene" uid="uid://d1orn3t1jwnah" path="res://ui/game_ui/game_ui.tscn" id="1_q1cqe"]
+[ext_resource type="PackedScene" uid="uid://bgevyna0mbvqd" path="res://ui/game_ui/sub_viewport_container.tscn" id="3_42uos"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eg8at"]
+radius = 0.4
+height = 1.5
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ofru5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ixf6w"]
+albedo_color = Color(1, 0.65, 0, 1)
+
+[node name="PlayableCharacter" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_glq0l")
+
+[node name="GameUi" parent="." instance=ExtResource("1_q1cqe")]
+
+[node name="EquipmentOverlay" parent="." instance=ExtResource("3_42uos")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("CapsuleShape3D_eg8at")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+layers = 512
+mesh = SubResource("CapsuleMesh_ofru5")
+surface_material_override/0 = SubResource("StandardMaterial3D_ixf6w")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
+cull_mask = 524287

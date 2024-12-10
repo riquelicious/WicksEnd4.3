@@ -29,6 +29,7 @@ func fade_out():
 func finished_animation(anim_name):
 	if anim_name == "clicked":
 		await fade_out()
+		print(typeof(parent.callback))
 		parent.callback.call()
 		#parent.emit_signal("button_activated")
 

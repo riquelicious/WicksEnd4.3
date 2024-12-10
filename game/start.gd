@@ -11,4 +11,4 @@ func _process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
-	Transition.change_scene("res://game/main-menu/main_menu_level.tscn")
+	Transition.change_scene(FilePaths.MAIN_MENU)

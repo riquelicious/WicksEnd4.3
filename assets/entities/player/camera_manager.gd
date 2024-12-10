@@ -9,9 +9,9 @@ var aim_timer: Timer
 var default_camera_rotation: Vector3
 var equipment_manager: Node3D
 var back_button_container: Control
-var back_button: Control
+var back_button_node: Control
 var rng = RandomNumberGenerator.new()
-
+var back_button: HoverButton
 #@onready var GlobalGesture = Global.gesture_settings
 
 var target_rotation_x = 0.0
@@ -34,16 +34,21 @@ func _init(player_instance: PlayerEntity) -> void:
 
 func _ready() -> void:
 	previous_gesture = GlobalControls.gestures.none
+	#player_camera = player.get_node("player-camera")
+	player_camera = player.get_viewport().get_camera_3d()
+	viewmodel_camera = player.get_node_or_null("PlayerUI/EquipmentOverlay/SubViewport/viewmodel-camera")
 
-	player_camera = player.get_node("player-camera")
-	viewmodel_camera = player.get_node("Control/equipment-overlay/SubViewportContainer/SubViewport/viewmodel-camera")
-	anim = player.get_node("AnimationPlayer")
-	aim_timer = player.get_node("timers/nozzle_aim_delay")
-	back_button_container = player.get_node("Control/on-screen-ui/ui/button_container")
-	back_button = player.get_node("Control/on-screen-ui/ui/button_container/Back")
+	# viewmodel_camera = player.get_node_or_null("Control/equipment-overlay/SubViewportContainer/SubViewport/viewmodel-camera")
+	anim = player.get_node_or_null("AnimationPlayer")
+	aim_timer = player.get_node_or_null("timers/nozzle_aim_delay")
+	# back_button_container = player.get_node_or_null("Control/on-screen-ui/ui/button_container")
+	# back_button = player.get_node_or_null("Control/on-screen-ui/ui/button_container/Back")
+	back_button_node = player.get_node_or_null("PlayerUI/ScreenUI/BotUI/LeftPanel/Button")
 	default_camera_rotation = player_camera.rotation
-	back_button.button_clicked.connect(reset_camera_position)
-	back_button_container.visible = false
+	#back_button.button_clicked.connect(reset_camera_position)
+	# back_button_container.visible = false
+	assert(back_button_node)
+	back_button = HoverButton.new(back_button_node, reset_camera_position)
 	self.viewport_size = player.get_viewport().get_visible_rect().size
 
 
@@ -84,7 +89,7 @@ func update_aim(delta):
 func update_aim_status(anim_type: String, equipement_index: int):
 	# if not previous_aim_active_status != player.current_state: return
 	# previous_aim_active_status = player.current_state
-	
+
 
 	if previous_aim_active_status != player.current_state:
 		previous_aim_active_status = player.current_state

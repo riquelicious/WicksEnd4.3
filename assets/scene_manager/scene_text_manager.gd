@@ -3,26 +3,26 @@ extends Node
 
 signal value_returned
 
-var parent : Node
-var text_name : RichTextLabel
-var text_box : RichTextLabel
-var per_char_timer : Timer
-var per_dial_timer : Timer
-var start_delay_timer : Timer
-var script_json : Dictionary
-var audio_pop : AudioStreamPlayer
+var parent: Node
+var text_name: RichTextLabel
+var text_box: RichTextLabel
+var per_char_timer: Timer
+var per_dial_timer: Timer
+var start_delay_timer: Timer
+var script_json: Dictionary
+var audio_pop: AudioStreamPlayer
 
-var displayed_char_length : int = 0
+var displayed_char_length: int = 0
 var node_index := 0
 var char_display_speed := 0.02
-var current_text : String
-var minimum_post_dialogue_pause_duration : float = 3.0
-var start_delay : float = 1.0
-var previous_name_value : String
-var choices_list : Array
+var current_text: String
+var minimum_post_dialogue_pause_duration: float = 3.0
+var start_delay: float = 1.0
+var previous_name_value: String
+var choices_list: Array
 var nextNodeValue := 0
 
-func initialize(parent_instance : Node):
+func initialize(parent_instance: Node):
 	parent = parent_instance
 	text_name = parent.get_node("Control/CenterContainer/DialogueBox/Rows/Name")
 	text_box = parent.get_node("Control/CenterContainer/DialogueBox/Rows/TextBoxContainer/TextBox")
@@ -33,7 +33,7 @@ func initialize(parent_instance : Node):
 	#call_deferred("init_text")
 	#script_json = parent.json_manager.load_json(Global.level_settings.level_selection)
 	#init_text()
-	
+
 
 func init_text():
 	text_name.bbcode_enabled = true
@@ -76,7 +76,6 @@ func update_text():
 		await parent.anim_manager.animation_player.animation_finished
 		parent.emit_signal("scene_finished")
 
-	
 
 func get_char_name(index):
 	if not script_json[index].has("name"): return
@@ -87,12 +86,12 @@ func get_char_name(index):
 	parent.anim_manager.animation_player.play("fade_name")
 	previous_name_value = script_json[index]["name"]
 	await parent.anim_manager.animation_player.animation_finished
-			
+
 func increment_char():
 	if displayed_char_length < len(current_text):
 		if current_text[displayed_char_length] == "[":
 			while current_text[displayed_char_length] != "]":
-				if displayed_char_length < len(current_text)-1:
+				if displayed_char_length < len(current_text) - 1:
 					displayed_char_length += 1
 				else:
 					break

@@ -50,8 +50,8 @@ func check_button_status():
 func _mouse_entered():
 	if disabled: return
 	is_hovering = true
-	
-	
+
+
 func _mouse_exited():
 	if disabled: return
 	is_hovering = false

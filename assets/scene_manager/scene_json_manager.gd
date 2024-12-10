@@ -1,10 +1,10 @@
 class_name SceneJsonManager
 extends Node
 
-var parent : Node
+var parent: Node
 
-func initialize(parent_instance : Node):
-	parent = parent_instance
+func _init(parent_instance: Node) -> void:
+	self.parent = parent_instance
 
 func load_json(file_index: int):
 	var file = FilePaths.script_file_list[file_index]

@@ -34,11 +34,6 @@ func _ready():
 	anim = player.get_node("Control/on-screen-ui/ui/inventory/AnimationPlayer")
 	if Global.level_settings.level_selection < 2: # TODO
 		extinguisherAvailable = false
-	print_rich("[color=green]InventoryManager Initialized[/color]")
-	print_rich("[color=dark_gray]-{0} initialized[/color]".format([item_container.name]))
-	print_rich("[color=dark_gray]-{0} initialized[/color]".format([toggle_timer.name]))
-	print_rich("[color=dark_gray]-{0} initialized[/color]".format([inventory_ui.name]))
-	print_rich("[color=dark_gray]-{0} initialized[/color]".format([anim.name]))
 
 func toggle_inventory(delta):
 	if player.is_occupied() and player.current_state != player.state.INVENTORY: return
@@ -67,7 +62,7 @@ func select_equipment():
 		player.equipment_manager.change_equipment(equipment_index)
 		current_equipment = equipment_index
 		update_name_color(equipment_index)
-	
+
 func update_name_color(index):
 	for item in item_container.get_children():
 		var child: Label = item.get_node("equipment_name")

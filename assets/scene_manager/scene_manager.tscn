@@ -195,7 +195,7 @@ _data = {
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vwn6k"]
 bg_color = Color(0.15, 0.15, 0.15, 1)
-border_width_left = 20
+border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
@@ -410,11 +410,11 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="DialogueBox" type="Panel" parent="Control/CenterContainer"]
-custom_minimum_size = Vector2(830, 100)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vwn6k")
 
 [node name="Rows" type="VBoxContainer" parent="Control/CenterContainer/DialogueBox"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 offset_left = 20.0
 offset_top = 2.0

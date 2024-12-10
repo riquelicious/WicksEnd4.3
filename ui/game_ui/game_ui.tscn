@@ -1,0 +1,162 @@
+[gd_scene load_steps=9 format=3 uid="uid://d1orn3t1jwnah"]
+
+[ext_resource type="Script" path="res://ui/game_ui/game_ui.gd" id="1_4hfe7"]
+[ext_resource type="FontFile" uid="uid://be7tsy07e5604" path="res://assets/fonts/OPTIMA_B.TTF" id="1_7lwmg"]
+[ext_resource type="Texture2D" uid="uid://des0c0xa8uy1g" path="res://assets/ui/ongame/merit.png" id="1_d1vcr"]
+[ext_resource type="Texture2D" uid="uid://b348ie115ki44" path="res://assets/ui/ongame/barbackground.png" id="1_fesb2"]
+[ext_resource type="Texture2D" uid="uid://dsf2nx0gm7f66" path="res://assets/ui/ongame/waterbar.png" id="2_6rcdq"]
+[ext_resource type="Texture2D" uid="uid://0ba7totkwebr" path="res://assets/ui/ongame/healthbar.png" id="3_bsask"]
+[ext_resource type="Texture2D" uid="uid://vsowetx8a4as" path="res://assets/ui/ongame/foambar.png" id="6_deuw7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6okk7"]
+font = ExtResource("1_7lwmg")
+font_size = 40
+font_color = Color(0.94902, 0.941176, 0.898039, 1)
+outline_size = 10
+outline_color = Color(0.207843, 0.168627, 0.258824, 1)
+shadow_color = Color(0, 0, 0, 0.392157)
+shadow_offset = Vector2(0, 0)
+
+[node name="GameUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4hfe7")
+
+[node name="Header" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Column" type="HBoxContainer" parent="Header"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="LeftContainer" type="CenterContainer" parent="Header/Column"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Header/Column/LeftContainer"]
+layout_mode = 2
+
+[node name="MeritIcon" type="TextureRect" parent="Header/Column/LeftContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("1_d1vcr")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Points" type="Label" parent="Header/Column/LeftContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_6okk7")
+vertical_alignment = 1
+
+[node name="MidContainer" type="Control" parent="Header/Column"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TimerLabel" type="Label" parent="Header/Column/MidContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.996793, 1)
+text = "2:00"
+label_settings = SubResource("LabelSettings_6okk7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightContainer" type="Control" parent="Header/Column"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Footer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Columns" type="HBoxContainer" parent="Footer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="LeftContainer" type="CenterContainer" parent="Footer/Columns"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WaterBar" type="TextureProgressBar" parent="Footer/Columns/LeftContainer"]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("1_fesb2")
+texture_progress = ExtResource("2_6rcdq")
+
+[node name="FoamBar" type="TextureProgressBar" parent="Footer/Columns/LeftContainer"]
+visible = false
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("1_fesb2")
+texture_progress = ExtResource("6_deuw7")
+
+[node name="MidContainer" type="CenterContainer" parent="Footer/Columns"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HealthBar" type="TextureProgressBar" parent="Footer/Columns/MidContainer"]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("1_fesb2")
+texture_progress = ExtResource("3_bsask")
+
+[node name="RightContainer" type="Control" parent="Footer/Columns"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Overlay" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cursor" type="CenterContainer" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -1,0 +1,182 @@
+[gd_scene load_steps=16 format=3 uid="uid://d1t8jxb8t56be"]
+
+[ext_resource type="Shader" path="res://assets/shaders/inline_outline.gdshader" id="1_47x4l"]
+[ext_resource type="PackedScene" uid="uid://bradyey5jbin0" path="res://assets/models/equipments/nozzle.tscn" id="2_275p4"]
+[ext_resource type="PackedScene" uid="uid://bohtjbfefqrws" path="res://assets/models/equipments/fire_axe.tscn" id="3_3fhpm"]
+[ext_resource type="PackedScene" uid="uid://dprsalqd77m3j" path="res://assets/models/equipments/fireextinguisher_idle.tscn" id="4_3h4lr"]
+[ext_resource type="PackedScene" uid="uid://dttjmi8a47id7" path="res://assets/models/equipments/extinguisher_nozzle.tscn" id="5_q28yl"]
+[ext_resource type="PackedScene" uid="uid://hbfgpiuifsgw" path="res://assets/models/civilian/civilian_anim.tscn" id="6_2r0so"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ait8d"]
+shader = ExtResource("1_47x4l")
+shader_parameter/color = Color(0.883378, 0.883378, 0.883378, 0.152941)
+shader_parameter/width = 3.0
+shader_parameter/pattern = 1
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[sub_resource type="Environment" id="Environment_mu1tj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r5as6"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_5uk1m"]
+material = SubResource("StandardMaterial3D_r5as6")
+radius = 0.01
+height = 0.02
+radial_segments = 8
+rings = 4
+
+[sub_resource type="Curve" id="Curve_3dnu3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.732759, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_n2ghu"]
+offsets = PackedFloat32Array(0, 0.281046, 1)
+colors = PackedColorArray(0.73, 0.8515, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_bxtgd"]
+resource_name = "hide_equipment"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Equipment:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(0.241484, 0.241484, 0.241484),
+"update": 0,
+"values": [Vector3(-0.698132, 0, 0), Vector3(0.174533, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Equipment:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.241484, 0.241484),
+"update": 0,
+"values": [Vector3(0, -0.75, 0), Vector3(0, -0.45, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ku3x0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Equipment:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.49924, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Equipment:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.45, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q5hdh"]
+_data = {
+"RESET": SubResource("Animation_ku3x0"),
+"hide_equipment": SubResource("Animation_bxtgd")
+}
+
+[node name="SubViewportContainer" type="SubViewportContainer"]
+material = SubResource("ShaderMaterial_ait8d")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+metadata/_edit_lock_ = true
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="ViewModelCamera" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.404, 0)
+cull_mask = 524288
+environment = SubResource("Environment_mu1tj")
+current = true
+far = 3.06
+
+[node name="Equipment" type="Node3D" parent="SubViewport/ViewModelCamera"]
+transform = Transform3D(1, 0, 0, 0, 0.0714952, 0.997441, 0, -0.997441, 0.0714952, 0, -0.45, 0)
+
+[node name="Nozzle" parent="SubViewport/ViewModelCamera/Equipment" instance=ExtResource("2_275p4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.227, 0, -0.084)
+visible = false
+
+[node name="Axe" parent="SubViewport/ViewModelCamera/Equipment" instance=ExtResource("3_3fhpm")]
+transform = Transform3D(1, 0, 0, 0, 0.99863, 0.052336, 0, -0.052336, 0.99863, 0.237, 0, -0.315)
+visible = false
+
+[node name="Extinguisher" type="Node3D" parent="SubViewport/ViewModelCamera/Equipment"]
+visible = false
+
+[node name="fireextinguisher_idle" parent="SubViewport/ViewModelCamera/Equipment/Extinguisher" instance=ExtResource("4_3h4lr")]
+transform = Transform3D(-0.5, 0, 4.37114e-08, 0, 0.5, 0, -4.37114e-08, 0, -0.5, 0.237, -0.5, -0.315)
+
+[node name="extinguisher_nozzle" parent="SubViewport/ViewModelCamera/Equipment/Extinguisher" instance=ExtResource("5_q28yl")]
+transform = Transform3D(-0.5, 0, 7.54979e-08, 0, 0.5, 0, -7.54979e-08, 0, -0.5, -0.183529, -0.0302522, -0.1)
+
+[node name="Civilian" parent="SubViewport/ViewModelCamera/Equipment" instance=ExtResource("6_2r0so")]
+transform = Transform3D(-0.08, -1.4541e-09, 6.84099e-09, 0, 0.0782518, 0.0166329, -6.99382e-09, 0.0166329, -0.0782518, 0.838235, -0.973171, -0.811615)
+
+[node name="Skeleton3D" parent="SubViewport/ViewModelCamera/Equipment/Civilian/root" index="0"]
+bones/3/rotation = Quaternion(-0.341875, -0.00994756, -0.0273307, 0.939295)
+
+[node name="root" parent="SubViewport/ViewModelCamera/Equipment/Civilian/root/Skeleton3D" index="0"]
+layers = 524288
+
+[node name="AnimationPlayer" parent="SubViewport/ViewModelCamera/Equipment/Civilian" index="1"]
+active = false
+
+[node name="water_particles" type="CPUParticles3D" parent="SubViewport/ViewModelCamera/Equipment"]
+transform = Transform3D(1, 0, 0, 0, 0.0714952, -0.997441, 0, 0.997441, 0.0714952, 0.00267798, 0.434835, 0.342927)
+visible = false
+layers = 524288
+emitting = false
+amount = 15
+lifetime = 0.3
+speed_scale = 1.28
+explosiveness = 0.2
+randomness = 1.0
+lifetime_randomness = 0.4
+mesh = SubResource("SphereMesh_5uk1m")
+direction = Vector3(0, 0, -1)
+spread = 50.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 1.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_3dnu3")
+color_ramp = SubResource("Gradient_n2ghu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewport/ViewModelCamera"]
+libraries = {
+"": SubResource("AnimationLibrary_q5hdh")
+}
+
+[editable path="SubViewport/ViewModelCamera/Equipment/Civilian"]

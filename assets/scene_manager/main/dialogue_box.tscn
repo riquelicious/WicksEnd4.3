@@ -1,0 +1,161 @@
+[gd_scene load_steps=8 format=3 uid="uid://brooi7yxchvmq"]
+
+[ext_resource type="FontFile" uid="uid://be7tsy07e5604" path="res://assets/fonts/OPTIMA_B.TTF" id="1_746em"]
+[ext_resource type="FontFile" uid="uid://dj5pbb3fkregr" path="res://assets/fonts/oldnewspapertypes/OldNewspaperTypes.ttf" id="2_ty1ku"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yp1am"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="Animation" id="Animation_cn5ux"]
+resource_name = "FadeName"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/VBoxContainer/Name:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hmd8n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/VBoxContainer/Name:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(154, 455)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6wamb"]
+resource_name = "ShowBox"
+length = 0.3
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(154, 650), Vector2(154, 455)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yrhdf"]
+_data = {
+"FadeName": SubResource("Animation_cn5ux"),
+"RESET": SubResource("Animation_hmd8n"),
+"ShowBox": SubResource("Animation_6wamb")
+}
+
+[node name="DialogueBox" type="PanelContainer"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -422.0
+offset_top = 2.0
+offset_right = 422.0
+offset_bottom = 195.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_yp1am")
+
+[node name="Panel" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+
+[node name="Name" type="RichTextLabel" parent="Panel/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_746em")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "[color=orange]NAME[/color]"
+fit_content = true
+
+[node name="Contents" type="RichTextLabel" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(800, 115)
+layout_mode = 2
+theme_override_constants/line_separation = 5
+theme_override_fonts/normal_font = ExtResource("2_ty1ku")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "asdasd
+asdasd
+asdasd
+asdasd"
+fit_content = true
+scroll_active = false
+
+[node name="DialogueAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yrhdf")
+}

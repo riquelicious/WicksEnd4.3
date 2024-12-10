@@ -9,6 +9,7 @@ var Liquid: Stat
 func _ready():
 	HealthBar = gui.get_node_or_null("UICanvas/ResourceBars/VBoxContainer/HealthBar")
 	LiquidBar = gui.get_node_or_null("UICanvas/ResourceBars/VBoxContainer/LiquidBar")
+	if gui.player == null: return
 	Health = gui.player.health_bar
 	change_liquid(gui.player.nozzle_bar)
 

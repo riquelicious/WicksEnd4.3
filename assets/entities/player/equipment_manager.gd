@@ -15,16 +15,12 @@ func _init(player_instance: PlayerEntity) -> void:
 
 
 func _ready() -> void:
-	equipment_node = player.get_node("Control/equipment-overlay/SubViewportContainer/SubViewport/viewmodel-camera/equipment_node")
+	equipment_node = player.get_node_or_null("PlayerUI/EquipmentOverlay/SubViewport/viewmodel-camera/equipment_node")
 	equipment_nodes = equipment_node.get_children()
-	gauge = player.get_node("Control/on-screen-ui/ui/gauges/SubViewport/gauges")
-	anim = player.get_node("AnimationPlayer")
+	# gauge = player.get_node_or_null("Control/on-screen-ui/ui/gauges/SubViewport/gauges")
+	anim = player.get_node_or_null("AnimationPlayer")
 	default_equipment_hold_position = equipment_node.position
 	change_equipment(0)
-	print_rich("[color=green]{0} Initialized[/color]".format([self.get_script().get_global_name()]))
-	print_rich("[color=dark_gray]-{0} initialized[/color]".format([equipment_node.name]))
-	print_rich("[color=dark_gray]-{0} initialized[/color]".format([gauge.name]))
-	print_rich("[color=dark_gray]-{0} initialized[/color]".format([anim.name]))
 
 func update_sway(delta):
 	var mouse_input = lerp(Vector2.ZERO, Vector2.ZERO, 10 * delta)
@@ -42,7 +38,7 @@ func update_bob(vel: float, delta):
 		else:
 			equipment_node.position.z = lerp(equipment_node.position.z, default_equipment_hold_position.z, 10 * delta)
 			equipment_node.position.y = lerp(equipment_node.position.y, default_equipment_hold_position.y, 10 * delta)
- 
+
 func change_equipment(equipment_index: int, slowed: bool = false, ):
 	if equipment_nodes[equipment_index].visible == true:
 		return

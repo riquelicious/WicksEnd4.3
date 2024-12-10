@@ -1,5 +1,6 @@
 extends Node
 
+
 var combo_node_path = "res://assets/modules/combo_minigame/combo_node.tscn"
 
 var levels = [
@@ -8,6 +9,9 @@ var levels = [
 	"res://game/levels/level3/level-3.tscn",
 	"res://game/levels/level4/level-4.tscn",
 ]
+
+
+var MAIN_MENU: String = "res://game/main-menu/Scene/MainMenuScene.tscn"
 
 var cursor_images = [
 	preload("res://assets/images/cursor_gestures/arrow.png"),
@@ -58,14 +62,14 @@ var fire_kindled_fx := AudioStreamOggVorbis.load_from_file("res://assets/audio/s
 
 var combo_minigame: PackedScene = preload("res://assets/entities/debris/DebrisScene.tscn")
 var bw_cam_env: Resource = preload("res://assets/environments/BW2.tres")
- 
+
 var cvHelpSounds: Array = [
 	"res://assets/audio/sfx/civilian/help-01.ogg",
 	"res://assets/audio/sfx/civilian/help-02.ogg",
 	"res://assets/audio/sfx/civilian/help-03.ogg"
 ]
 
-var level_scene: String = "res://assets/scene_manager/level_scene.tscn"
+var level_scene: String = "res://assets/scene_manager/level_sceneV2.tscn"#"res://assets/scene_manager/level_scene.tscn"
 
 
 var polaroids = [

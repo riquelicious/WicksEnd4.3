@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://fbdcbh4lvup1"]
+
+[ext_resource type="Texture2D" uid="uid://75m7lx62tblq" path="res://assets/images/ui/merit/merit.png" id="1_eny32"]
+[ext_resource type="FontFile" uid="uid://55nvttuxhy57" path="res://assets/fonts/NutgameDEMO-Bold.ttf" id="2_mwu4t"]
+[ext_resource type="AudioStream" uid="uid://dby0mynphwcuy" path="res://assets/audio/sfx/points/point_upV2.ogg" id="3_nck5x"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dok0d"]
+font = ExtResource("2_mwu4t")
+font_size = 50
+shadow_size = 0
+shadow_color = Color(0.0646965, 0.0646965, 0.0646965, 1)
+
+[node name="Points" type="HBoxContainer"]
+theme_override_constants/separation = 20
+
+[node name="PointIcon" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_eny32")
+expand_mode = 2
+
+[node name="PointLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "100"
+label_settings = SubResource("LabelSettings_dok0d")
+
+[node name="PointSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-0.478363, 1.63236)
+stream = ExtResource("3_nck5x")
+pitch_scale = 1.6
+bus = &"UIFX"

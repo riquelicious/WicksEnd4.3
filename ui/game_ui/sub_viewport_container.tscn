@@ -1,0 +1,387 @@
+[gd_scene load_steps=19 format=3 uid="uid://bgevyna0mbvqd"]
+
+[ext_resource type="PackedScene" uid="uid://bradyey5jbin0" path="res://assets/models/equipments/nozzle.tscn" id="2_iappm"]
+[ext_resource type="Script" path="res://ui/game_ui/equipment_viewport.gd" id="2_jjos5"]
+[ext_resource type="PackedScene" uid="uid://bohtjbfefqrws" path="res://assets/models/equipments/fire_axe.tscn" id="3_k4b1v"]
+[ext_resource type="PackedScene" uid="uid://dprsalqd77m3j" path="res://assets/models/equipments/fireextinguisher_idle.tscn" id="4_3dpds"]
+[ext_resource type="PackedScene" uid="uid://dttjmi8a47id7" path="res://assets/models/equipments/extinguisher_nozzle.tscn" id="5_iq08s"]
+[ext_resource type="PackedScene" uid="uid://hbfgpiuifsgw" path="res://assets/models/civilian/civilian_anim.tscn" id="6_m6hap"]
+
+[sub_resource type="Environment" id="Environment_mu1tj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r5as6"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_5uk1m"]
+material = SubResource("StandardMaterial3D_r5as6")
+radius = 0.01
+height = 0.02
+radial_segments = 8
+rings = 4
+
+[sub_resource type="Curve" id="Curve_3dnu3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.732759, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_n2ghu"]
+offsets = PackedFloat32Array(0, 0.281046, 1)
+colors = PackedColorArray(0.73, 0.8515, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_ku3x0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Equipment:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(2),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Equipment:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(2),
+"update": 0,
+"values": [Vector3(0, -0.45, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Equipment/Nozzle:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.227, 0, -0.084)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Equipment/Nozzle:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:fov")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [75.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Equipment/Axe:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector3(0.237, 0, -0.315)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Equipment/Extinguisher/extinguisher_nozzle:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector3(0, -0.37, -0.1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Equipment/Extinguisher/fireextinguisher_idle:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(-2),
+"update": 0,
+"values": [Vector3(0.237, -0.5, -0.315)]
+}
+
+[sub_resource type="Animation" id="Animation_b7ovg"]
+resource_name = "aim_extinguisher"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Equipment/Extinguisher/fireextinguisher_idle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0.237, -0.5, -0.315), Vector3(0.7666, -0.915319, -0.00279212)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Equipment/Extinguisher/extinguisher_nozzle:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector3(0, -0.37, -0.1), Vector3(0, 0.298672, -0.1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:fov")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [75.0, 60.0]
+}
+
+[sub_resource type="Animation" id="Animation_pd73i"]
+resource_name = "aim_nozzle"
+length = 0.3
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Equipment/Nozzle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector3(0.227, 0, -0.084), Vector3(0, 0.108, -0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Equipment/Nozzle:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.142857, 0.3),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.174533, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:fov")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [75.0, 60.0]
+}
+
+[sub_resource type="Animation" id="Animation_bxtgd"]
+resource_name = "hide_equipment"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Equipment:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(2, 3, 2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.174533, 0, 0), Vector3(-0.698132, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Equipment:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [Vector3(0, -0.45, 0), Vector3(0, -0.75, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_s6teh"]
+resource_name = "retrieve_axe"
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Equipment/Axe:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.45, 0.5, 0.55, 1),
+"transitions": PackedFloat32Array(0.5, 0.5, 1, 2, 2, 2),
+"update": 0,
+"values": [Vector3(0.062, 0, -0.35), Vector3(0.062, 0, -0.35), Vector3(0.062, 0.105, -0.275), Vector3(0.237, 0.01, -0.315), Vector3(0.237, 0.01, -0.315), Vector3(0.237, 0.01, -0.315)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Equipment/Axe:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.45, 0.5, 0.55, 0.6, 1),
+"transitions": PackedFloat32Array(0.5, 0.5, 1, 2, 2, 2, 2),
+"update": 0,
+"values": [Vector3(-0.479966, 0, -0.270526), Vector3(-0.479966, 0, -0.270526), Vector3(-0.724312, 0, -0.270526), Vector3(0, 0, 0), Vector3(0.139626, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_k1224"]
+resource_name = "swing_axe"
+length = 0.7
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Equipment/Axe:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4, 0.6, 0.7),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector3(0.237, 0, -0.315), Vector3(0.237, -0.03, -0.35), Vector3(0.237, 0.135, -0.35), Vector3(0.237, 0.135, -0.35), Vector3(0.062, 0, -0.35)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Equipment/Axe:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4, 0.6, 0.7),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0523599, 0, 0.0872665), Vector3(0.436332, 0, -0.270526), Vector3(0.436332, 0, -0.270526), Vector3(-0.479966, 0, -0.270526)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q5hdh"]
+_data = {
+"RESET": SubResource("Animation_ku3x0"),
+"aim_extinguisher": SubResource("Animation_b7ovg"),
+"aim_nozzle": SubResource("Animation_pd73i"),
+"hide_equipment": SubResource("Animation_bxtgd"),
+"retrieve_axe": SubResource("Animation_s6teh"),
+"swing_axe": SubResource("Animation_k1224")
+}
+
+[node name="SubViewportContainer" type="SubViewportContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+script = ExtResource("2_jjos5")
+metadata/_edit_lock_ = true
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="ViewModelCamera" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.404, 0)
+cull_mask = 524288
+environment = SubResource("Environment_mu1tj")
+current = true
+far = 3.06
+
+[node name="Equipment" type="Node3D" parent="SubViewport/ViewModelCamera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45, 0)
+
+[node name="Nozzle" parent="SubViewport/ViewModelCamera/Equipment" instance=ExtResource("2_iappm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.227, 0, -0.084)
+
+[node name="water_particles" type="CPUParticles3D" parent="SubViewport/ViewModelCamera/Equipment/Nozzle"]
+transform = Transform3D(1, 0, 0, 0, 0.0714952, -0.997441, 0, 0.997441, 0.0714952, 0.011, 0.209, -0.616)
+layers = 524288
+amount = 15
+lifetime = 0.3
+speed_scale = 1.28
+explosiveness = 0.2
+randomness = 1.0
+lifetime_randomness = 0.4
+mesh = SubResource("SphereMesh_5uk1m")
+direction = Vector3(0, 0, -1)
+spread = 50.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 1.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_3dnu3")
+color_ramp = SubResource("Gradient_n2ghu")
+
+[node name="Axe" parent="SubViewport/ViewModelCamera/Equipment" instance=ExtResource("3_k4b1v")]
+transform = Transform3D(0.96363, 0.267238, -1.80381e-09, -0.237043, 0.854751, 0.461749, 0.123397, -0.444956, 0.887011, 0.237, 0, -0.315)
+visible = false
+
+[node name="Extinguisher" type="Node3D" parent="SubViewport/ViewModelCamera/Equipment"]
+visible = false
+
+[node name="fireextinguisher_idle" parent="SubViewport/ViewModelCamera/Equipment/Extinguisher" instance=ExtResource("4_3dpds")]
+transform = Transform3D(-0.5, 0, 4.37114e-08, 0, 0.5, 0, -4.37114e-08, 0, -0.5, 0.237, -0.5, -0.315)
+
+[node name="extinguisher_nozzle" parent="SubViewport/ViewModelCamera/Equipment/Extinguisher" instance=ExtResource("5_iq08s")]
+transform = Transform3D(-0.5, 0, 7.54979e-08, 0, 0.5, 0, -7.54979e-08, 0, -0.5, 0, -0.37, -0.1)
+
+[node name="Civilian" parent="SubViewport/ViewModelCamera/Equipment" instance=ExtResource("6_m6hap")]
+transform = Transform3D(-0.08, -1.4541e-09, 6.84099e-09, 0, 0.0782518, 0.0166329, -6.99382e-09, 0.0166329, -0.0782518, 0.838235, -0.973171, -0.811615)
+visible = false
+
+[node name="Skeleton3D" parent="SubViewport/ViewModelCamera/Equipment/Civilian/root" index="0"]
+bones/3/rotation = Quaternion(-0.341875, -0.00994756, -0.0273307, 0.939295)
+
+[node name="root" parent="SubViewport/ViewModelCamera/Equipment/Civilian/root/Skeleton3D" index="0"]
+layers = 524288
+
+[node name="AnimationPlayer" parent="SubViewport/ViewModelCamera/Equipment/Civilian" index="1"]
+active = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewport/ViewModelCamera"]
+libraries = {
+"": SubResource("AnimationLibrary_q5hdh")
+}
+
+[editable path="SubViewport/ViewModelCamera/Equipment/Civilian"]

@@ -16,4 +16,6 @@
 # * change game_over
 
 
+#* turning highlights
+
 # * fix gesture buttons

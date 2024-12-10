@@ -1,17 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://bdi6qpk55jm0u"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_q55nx"]
-size = Vector3(20, 1, 20)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_74yvv"]
-size = Vector3(20, 1, 20)
+[ext_resource type="PackedScene" uid="uid://cutjv4ortnt58" path="res://assets/scene_manager/main/scene_manager.tscn" id="1_aqakt"]
+[ext_resource type="Script" path="res://assets/modules/3d/test.gd" id="1_v3qhn"]
 
 [node name="Test" type="Node3D"]
+script = ExtResource("1_v3qhn")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_q55nx")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("BoxShape3D_74yvv")
+[node name="CutSceneManager" parent="." instance=ExtResource("1_aqakt")]
+metadata/_edit_use_anchors_ = true

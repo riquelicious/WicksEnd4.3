@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c1v33gxei0t4s"]
+[gd_scene load_steps=21 format=3 uid="uid://c1v33gxei0t4s"]
 
 [ext_resource type="Texture2D" uid="uid://btnk0hdim0jr3" path="res://assets/images/pcs/pc1.png" id="1_hf7bu"]
 [ext_resource type="Script" path="res://game/main-menu/UI/evidence_menu/evidence_menu.gd" id="1_hkeub"]
@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://b055q5k4ah4cv" path="res://assets/fonts/Optima_Italic.ttf" id="6_dhydc"]
 [ext_resource type="FontFile" uid="uid://be7tsy07e5604" path="res://assets/fonts/OPTIMA_B.TTF" id="8_1hjt1"]
 [ext_resource type="FontFile" uid="uid://b5l6b7c8p8kpy" path="res://assets/fonts/OPTIMA.TTF" id="9_xwfo2"]
+[ext_resource type="PackedScene" uid="uid://c08w0qdd41b7y" path="res://assets/modules/buttons/hover_node/HoverNode.tscn" id="10_qyj6t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7xqm4"]
 bg_color = Color(0, 0, 0, 0.313726)
@@ -352,3 +353,15 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 1
 tab_size = 3
+
+[node name="Button" parent="." instance=ExtResource("10_qyj6t")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.9
+anchor_right = 0.05
+anchor_bottom = 0.9
+offset_top = -50.0
+offset_bottom = 0.0
+grow_vertical = 0
+button_name = "Back"

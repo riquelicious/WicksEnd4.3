@@ -17,10 +17,11 @@ func _ready():
 	assert(polaroid != null)
 	assert(playIcon != null)
 	check_button_status()
-	
+
 func check_button_status():
 	if previous_status == disabled: return
 	previous_status = disabled
+	print(disabled)
 	if can_be_disabled:
 		if disabled:
 			playIcon.texture = FilePaths.lock_tex
@@ -30,6 +31,7 @@ func check_button_status():
 			polaroid.texture = FilePaths.polaroids[Global.level_settings.level_selection]
 
 func _process(delta):
+	check_button_status()
 	if not mouse_filter == 0: return
 	is_hovering = buttonNode.get_global_rect().has_point(GlobalCursor.cursor_sprite.position)
 	if disabled: return

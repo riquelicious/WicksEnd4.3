@@ -1,0 +1,136 @@
+[gd_scene load_steps=12 format=3 uid="uid://riuakuwwbdrj"]
+
+[ext_resource type="PackedScene" uid="uid://btuk6egq07oh" path="res://entity/player/playable_character.tscn" id="1_vkbgo"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vuddn"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ch1cf"]
+sky_material = SubResource("ProceduralSkyMaterial_vuddn")
+
+[sub_resource type="Environment" id="Environment_pod1g"]
+background_mode = 2
+sky = SubResource("Sky_ch1cf")
+tonemap_mode = 2
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fenay"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_suty6"]
+albedo_color = Color(0.45, 0.45, 0.45, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tefg8"]
+material = SubResource("StandardMaterial3D_suty6")
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ixtu5"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7rktk"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kjn7k"]
+material = SubResource("StandardMaterial3D_suty6")
+size = Vector3(20, 7, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xtwxx"]
+size = Vector3(20, 7, 1)
+
+[node name="Test" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pod1g")
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="bottom" type="StaticBody3D" parent="World"]
+collision_layer = 3
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_fenay")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/bottom"]
+mesh = SubResource("BoxMesh_tefg8")
+skeleton = NodePath("../../..")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/bottom"]
+shape = SubResource("BoxShape3D_ixtu5")
+metadata/_edit_lock_ = true
+
+[node name="top" type="StaticBody3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+visible = false
+collision_layer = 3
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_fenay")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/top"]
+mesh = SubResource("BoxMesh_tefg8")
+skeleton = NodePath("../../..")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/top"]
+shape = SubResource("BoxShape3D_7rktk")
+metadata/_edit_lock_ = true
+
+[node name="top2" type="StaticBody3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 10)
+collision_layer = 3
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_fenay")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/top2"]
+mesh = SubResource("BoxMesh_kjn7k")
+skeleton = NodePath("../..")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/top2"]
+shape = SubResource("BoxShape3D_xtwxx")
+metadata/_edit_lock_ = true
+
+[node name="top5" type="StaticBody3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -10)
+collision_layer = 3
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_fenay")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/top5"]
+mesh = SubResource("BoxMesh_kjn7k")
+skeleton = NodePath("../..")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/top5"]
+shape = SubResource("BoxShape3D_xtwxx")
+metadata/_edit_lock_ = true
+
+[node name="top3" type="StaticBody3D" parent="World"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10, 3, 0)
+collision_layer = 3
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_fenay")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/top3"]
+mesh = SubResource("BoxMesh_kjn7k")
+skeleton = NodePath("../..")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/top3"]
+shape = SubResource("BoxShape3D_xtwxx")
+metadata/_edit_lock_ = true
+
+[node name="top4" type="StaticBody3D" parent="World"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 3, 0)
+collision_layer = 3
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_fenay")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/top4"]
+mesh = SubResource("BoxMesh_kjn7k")
+skeleton = NodePath("../..")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/top4"]
+shape = SubResource("BoxShape3D_xtwxx")
+metadata/_edit_lock_ = true
+
+[node name="PlayableCharacter" parent="." instance=ExtResource("1_vkbgo")]

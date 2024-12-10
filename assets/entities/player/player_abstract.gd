@@ -30,7 +30,7 @@ func _ready():
 	audio_manager._ready()
 	camera_manager._ready()
 	update_bars()
-	
+
 
 func update_bars():
 	nozzle_bar.regen_speed = Global.equipment_settings.calculate_stat(["nozzle", "capacity", "increase"])
@@ -45,7 +45,7 @@ func check_health():
 		if current_state != state.DEAD:
 			game_over()
 			current_state = state.DEAD
-			
+
 func game_over():
 	var go = $%game_over
 	if go:

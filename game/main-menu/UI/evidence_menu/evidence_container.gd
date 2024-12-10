@@ -79,3 +79,4 @@ func display_paper(value: bool):
 		await PuzzleAnimationPlayer.animation_finished
 		PuzzleAnimationPlayer.queue("PuzzleFinished")
 		await PuzzleAnimationPlayer.animation_finished
+		#parent.emit_signal("evidence_complete")

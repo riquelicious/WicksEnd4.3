@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://q1yxpssljlq1"]
+[gd_scene load_steps=31 format=3 uid="uid://q1yxpssljlq1"]
 
 [ext_resource type="Script" path="res://assets/entities/player/player.gd" id="1_n13cy"]
 [ext_resource type="PackedScene" uid="uid://bdg72lm1xj3p7" path="res://assets/gui/Gui.tscn" id="2_ybsma"]
@@ -437,6 +437,23 @@ interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.300885, 0.778761)
 colors = PackedColorArray(1, 1, 1, 1, 0.76242, 0.785295, 0.906141, 1, 0.49399, 0.52804, 0.569714, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p0f3a"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_ck6bw"]
+material = SubResource("StandardMaterial3D_p0f3a")
+radial_segments = 8
+rings = 4
+
+[sub_resource type="Curve" id="Curve_tx5pk"]
+_data = [Vector2(0, 0.320755), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ny85a"]
+colors = PackedColorArray(0.140447, 0.140447, 0.140447, 1, 0.534361, 0.534361, 0.534361, 1)
+
 [node name="player" type="CharacterBody3D"]
 collision_layer = 4097
 collision_mask = 4097
@@ -517,21 +534,6 @@ bus = &"SFX"
 [node name="rubbles" type="AudioStreamPlayer3D" parent="sounds"]
 stream = ExtResource("17_gqy4a")
 
-[node name="timers" type="Node3D" parent="."]
-
-[node name="water_detection_delay" type="Timer" parent="timers"]
-
-[node name="nozzle_aim_delay" type="Timer" parent="timers"]
-one_shot = true
-
-[node name="inventory_delay" type="Timer" parent="timers"]
-one_shot = true
-
-[node name="drop_delay" type="Timer" parent="timers"]
-
-[node name="iframe_delay" type="Timer" parent="timers"]
-one_shot = true
-
 [node name="particles" type="Node3D" parent="."]
 
 [node name="SteamParticle" type="CPUParticles3D" parent="particles"]
@@ -586,4 +588,31 @@ initial_velocity_max = 21.0
 scale_amount_curve = SubResource("Curve_v4wc3")
 color_ramp = SubResource("Gradient_u6tve")
 
-[node name="water_mesh_container" type="Node3D" parent="."]
+[node name="smokes" type="CPUParticles3D" parent="particles"]
+amount = 64
+lifetime = 0.75
+speed_scale = 1.94
+mesh = SubResource("SphereMesh_ck6bw")
+emission_shape = 3
+emission_box_extents = Vector3(10, 1, 10)
+direction = Vector3(0, -1, 0)
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 5, 0)
+scale_amount_curve = SubResource("Curve_tx5pk")
+color_ramp = SubResource("Gradient_ny85a")
+
+[node name="timers" type="Node" parent="."]
+
+[node name="water_detection_delay" type="Timer" parent="timers"]
+
+[node name="nozzle_aim_delay" type="Timer" parent="timers"]
+one_shot = true
+
+[node name="inventory_delay" type="Timer" parent="timers"]
+one_shot = true
+
+[node name="drop_delay" type="Timer" parent="timers"]
+
+[node name="iframe_delay" type="Timer" parent="timers"]
+one_shot = true

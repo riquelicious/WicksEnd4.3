@@ -19,10 +19,10 @@ adjustment_enabled = true
 adjustment_brightness = 0.7
 adjustment_saturation = 0.4
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j5ftk"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_siv5u"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_4rvth"]
-material = SubResource("StandardMaterial3D_j5ftk")
+material = SubResource("StandardMaterial3D_siv5u")
 size = Vector3(0.1, 4, 4)
 
 [node name="main-menu-level" type="Node3D"]

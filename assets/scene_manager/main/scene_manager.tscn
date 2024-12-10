@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=3 uid="uid://cutjv4ortnt58"]
+
+[ext_resource type="PackedScene" uid="uid://brooi7yxchvmq" path="res://assets/scene_manager/main/dialogue_box.tscn" id="1_ay2ea"]
+[ext_resource type="Script" path="res://assets/scene_manager/main/scene_manager.gd" id="1_ry68p"]
+[ext_resource type="PackedScene" uid="uid://c4oghvu16k874" path="res://assets/modules/buttons/gesture_hold_node/GestureHoldNode.tscn" id="2_2edji"]
+
+[sub_resource type="Animation" id="Animation_kodcr"]
+resource_name = "FadeChoices"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2riie"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iu8io"]
+_data = {
+"FadeChoices": SubResource("Animation_kodcr"),
+"RESET": SubResource("Animation_2riie")
+}
+
+[node name="CutSceneManager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ry68p")
+
+[node name="DialogueBox" parent="." instance=ExtResource("1_ay2ea")]
+layout_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="choice_1" parent="VBoxContainer" instance=ExtResource("2_2edji")]
+layout_mode = 2
+
+[node name="choice_2" parent="VBoxContainer" instance=ExtResource("2_2edji")]
+layout_mode = 2
+
+[node name="choice_3" parent="VBoxContainer" instance=ExtResource("2_2edji")]
+layout_mode = 2
+
+[node name="choice_4" parent="VBoxContainer" instance=ExtResource("2_2edji")]
+layout_mode = 2
+
+[node name="ChoiceAnimation" type="AnimationPlayer" parent="VBoxContainer"]
+libraries = {
+"": SubResource("AnimationLibrary_iu8io")
+}

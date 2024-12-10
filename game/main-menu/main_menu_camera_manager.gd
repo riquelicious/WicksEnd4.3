@@ -1,14 +1,14 @@
 class_name MenuCameraManager
 extends Node
 
-var parent : Node
-var camera : Camera3D
-var markers : Array
-var target_marker : Marker3D
+var parent: Node
+var camera: Camera3D
+var markers: Array
+var target_marker: Marker3D
 var preious_status := false
 signal camera_movement_finished
 
-func initialize(parent_instance : Node):
+func initialize(parent_instance: Node):
 	parent = parent_instance
 	camera = parent.get_node("Camera3D")
 	markers = parent.get_node("camera_positions").get_children()
@@ -31,10 +31,10 @@ func update_camera_position(delta):
 			emit_signal("camera_movement_finished")
 	preious_status = status
 
-func update_position(index : int):
+func update_position(index: int):
 	if index > 1:
 		index += 3
 	target_marker = markers[index]
 
-func update_level(index : int):
+func update_level(index: int):
 	target_marker = markers[index + 1]
