@@ -31,7 +31,8 @@ func update():
 	check_status_finished()
 
 func check_status_unlocked():
-	for index in range(pieces.size()):
+	for index in range(pieces.size() -1):
+		print("piece no: " + str(index) + " is " + str(pieces[str(index)]))
 		piece_container.get_child(index).visible = pieces[str(index)]
 
 func check_status_finished():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://js0y1ym1045y"]
+[gd_scene load_steps=34 format=3 uid="uid://js0y1ym1045y"]
 
 [ext_resource type="Script" path="res://game/levels/level1/level-1.gd" id="1_amc4j"]
 [ext_resource type="PackedScene" uid="uid://q1yxpssljlq1" path="res://assets/entities/player/player.tscn" id="1_yf7aq"]
@@ -114,16 +114,7 @@ size = Vector3(3, 3, 3)
 [sub_resource type="BoxShape3D" id="BoxShape3D_yelva"]
 size = Vector3(5, 2, 5)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_hbcec"]
-size = Vector3(2.68445, 1, 4.1499)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_xmmok"]
-size = Vector3(11.3147, 1, 7)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_0jstk"]
-size = Vector3(3.0332, 1, 7)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_xhpa4"]
 size = Vector3(11.3147, 1, 7)
 
 [node name="Level-1" type="Node3D" node_paths=PackedStringArray("quests")]
@@ -359,18 +350,6 @@ script = ExtResource("15_8v846")
 
 [node name="fire_container" type="Node" parent="fire_system"]
 
-[node name="fire" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9494, 0.738308, -9.4169)
-
-[node name="fire2" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9494, 0.738308, -9.4169)
-
-[node name="fire3" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9494, 0.738308, -7.4169)
-
-[node name="fire4" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9494, 0.738308, -7.4169)
-
 [node name="fire5" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9494, 0.738308, -7.4169)
 
@@ -388,12 +367,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.9494, 0.738308, 3.5831)
 
 [node name="fire10" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.9494, 0.738308, -5.4169)
-
-[node name="fire11" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.9494, 0.738308, -7.4169)
-
-[node name="fire12" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.9494, 0.738308, -9.4169)
 
 [node name="fire13" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.9494, 0.738308, -10.4169)
@@ -415,12 +388,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.9494, 0.738308, -1.4169)
 
 [node name="fire19" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.9494, 3.73831, -3.4169)
-
-[node name="fire52" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.8988, 4.47662, -6.8338)
-
-[node name="fire51" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.8988, 4.47662, -5.8338)
 
 [node name="fire20" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.9494, 0.738308, 5.5831)
@@ -515,36 +482,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.9494, 3.73831, -5.4169)
 [node name="fire50" parent="fire_system/fire_container" instance=ExtResource("6_xin8i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.9494, 3.73831, -4.4169)
 
-[node name="combos" type="Node" parent="fire_system"]
-
-[node name="combo_area" parent="fire_system/combos" instance=ExtResource("17_vul0m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 5)
-
-[node name="CollisionShape3D" parent="fire_system/combos/combo_area" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.842224, -0.567511, 0.750732)
-shape = SubResource("BoxShape3D_hbcec")
-
-[node name="combo_area2" parent="fire_system/combos" instance=ExtResource("17_vul0m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 5)
-
-[node name="CollisionShape3D" parent="fire_system/combos/combo_area2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.575546, -0.567511, 0.750732)
-shape = SubResource("BoxShape3D_xmmok")
-
-[node name="combo_area3" parent="fire_system/combos" instance=ExtResource("17_vul0m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, -25)
-
-[node name="CollisionShape3D" parent="fire_system/combos/combo_area3" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.22997, -0.567511, 0.750732)
-shape = SubResource("BoxShape3D_0jstk")
-
-[node name="combo_area4" parent="fire_system/combos" instance=ExtResource("17_vul0m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, -5, -25)
-
-[node name="CollisionShape3D" parent="fire_system/combos/combo_area4" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.263336, -0.567511, -0.674316)
-shape = SubResource("BoxShape3D_xhpa4")
-
 [node name="pcs" type="Node" parent="."]
 script = ExtResource("13_32unq")
 
@@ -573,20 +510,16 @@ collision_layer = 515
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
 occluder = ExtResource("53_stn8m")
 
-[node name="combos" type="Node" parent="."]
+[node name="combos2" type="Node" parent="."]
 
-[node name="combo_area" parent="combos" instance=ExtResource("17_vul0m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.4934, 0.8215, -4.21605)
+[node name="combo_area2" parent="combos2" instance=ExtResource("17_vul0m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.1296, 1.16055, -4.25536)
 
-[node name="CollisionShape3D" parent="combos/combo_area" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.842224, -0.567511, 0.750732)
-shape = SubResource("BoxShape3D_hbcec")
+[node name="CollisionShape3D" parent="combos2/combo_area2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.575546, -0.567511, 0.750732)
+shape = SubResource("BoxShape3D_xmmok")
 
 [connection signal="animation_finished" from="help/AnimationPlayer" to="help" method="_on_animation_player_animation_finished"]
 
 [editable path="civilian_system/DropArea"]
-[editable path="fire_system/combos/combo_area"]
-[editable path="fire_system/combos/combo_area2"]
-[editable path="fire_system/combos/combo_area3"]
-[editable path="fire_system/combos/combo_area4"]
-[editable path="combos/combo_area"]
+[editable path="combos2/combo_area2"]

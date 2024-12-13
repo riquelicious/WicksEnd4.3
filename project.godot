@@ -42,8 +42,8 @@ gdscript/warnings/unused_signal=0
 
 [display]
 
-window/size/window_width_override=576
-window/size/window_height_override=324
+window/size/mode=3
+window/size/borderless=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
 window/layer_20=""

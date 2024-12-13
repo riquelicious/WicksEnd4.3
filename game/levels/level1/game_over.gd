@@ -46,6 +46,7 @@ func done():
 	for process in main_process:
 		if process is Level:
 			process.process_mode = Node.PROCESS_MODE_DISABLED
+			#BGM.stream_paused = true
 			Global.level_settings.unlock_next_level()
 			audio_stream_player_2.play()
 			animation_player.play("fade_2")
